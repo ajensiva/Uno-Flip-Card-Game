@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -14,6 +15,7 @@ public class Uno{
         players = new LinkedList<Player>();
         String[] names = playerList.split(" ");
         for (String name : names) {
+            // Hand hand = new Hand()
             // Player newPlayer = new Player(name, hand);
             // players.add(player);
 

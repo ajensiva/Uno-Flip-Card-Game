@@ -29,6 +29,18 @@ public class Card {
     public ColorLight getColorLight() {
         return this.colorLight;
     }
+    public boolean setColorLight(String user) {
+
+       for (ColorLight colors : ColorLight.values()){
+           if (!(user == colors.toString())){
+               return false;
+           }
+
+       }
+
+       return true;
+    }
+
 
     public TypeLight getTypeLight() {
         return this.typeLight;
