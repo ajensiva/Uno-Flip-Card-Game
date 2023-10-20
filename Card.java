@@ -29,6 +29,18 @@ public class Card {
     public ColorLight getColorLight() {
         return this.colorLight;
     }
+    public boolean setColorLight(String user) {
+
+       for (ColorLight colors : ColorLight.values()){
+           if (!(user == colors.toString())){
+               return false;
+           }
+
+       }
+
+       return true;
+    }
+
 
     public TypeLight getTypeLight() {
         return this.typeLight;
@@ -45,11 +57,7 @@ public class Card {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Light side: [Color: ").append(colorLight)
-                .append(", Type: ").append(typeLight)
-                .append("], Dark side: [Color: ").append(colorDark)
-                .append(", Type: ").append(typeDark)
-                .append("]");
+        sb.append("Light side: [Color: ").append(colorLight).append(", Type: ").append(typeLight).append("], Dark side: [Color: ").append(colorDark).append(", Type: ").append(typeDark).append("]");
         return sb.toString();
     }
 
