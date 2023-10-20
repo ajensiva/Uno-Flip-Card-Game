@@ -1,4 +1,5 @@
 // working on it: karki
+import java.util.Random;
 import java.util.Stack;
 
 public class Deck {
@@ -8,18 +9,38 @@ public class Deck {
     private int FULL_DECK = 112;
 
     // constructor
-    public Deck(){
+    public Deck() {
+            deck = new Stack<Card>();
+            generateDeck();
+    }
 
-        deck = new Stack<Card>();
+    private void generateDeck() {
+        Random random = new Random();
 
-        for(Card.ColorLight color : Card.ColorLight.values()){
-            
+        while (deck.size() < FULL_DECK) {
+            //Generate random enums for ColorLight, ColorDark, TypeLight, and TypeDark.
+            Card.ColorLight colorLight = Card.ColorLight.values()[random.nextInt(Card.ColorLight.values().length)];
+            Card.TypeLight typeLight = Card.TypeLight.values()[random.nextInt(Card.TypeLight.values().length)];
+            Card.ColorDark colorDark = Card.ColorDark.values()[random.nextInt(Card.ColorDark.values().length)];
+            Card.TypeDark typeDark = Card.TypeDark.values()[random.nextInt(Card.TypeDark.values().length)];
+
+            // Create a new card with the generated values.
+            Card newCard = new Card(colorLight, typeLight, colorDark, typeDark);
+
+            // Add the card to the deck.
+            deck.add(newCard);
         }
+    }
 
+    public void printDeck() {
+        for (Card card : deck) {
+            System.out.println(card); // This calls the `toString` method of the `Card` object
+        }
     }
 
     public static void main(String args[]){
-        Deck deck = new Deck();        
+        Deck deck = new Deck();
+        deck.printDeck();
     }
 }
 

@@ -42,6 +42,15 @@ public class Card {
         return this.typeDark;
     }
 
-
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Light side: [Color: ").append(colorLight)
+                .append(", Type: ").append(typeLight)
+                .append("], Dark side: [Color: ").append(colorDark)
+                .append(", Type: ").append(typeDark)
+                .append("]");
+        return sb.toString();
+    }
 
 }
