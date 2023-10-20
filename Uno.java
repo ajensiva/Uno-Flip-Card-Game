@@ -11,7 +11,6 @@ public class Uno{
     private static LinkedList<Player> players;
 
     public Uno(String playerList) {
-        System.out.print("Enter all players: ");
         players = new LinkedList<Player>();
         String[] names = playerList.split(" ");
         for (String name : names) {
@@ -23,18 +22,36 @@ public class Uno{
 
     }
 
-    public void playGame() {}
-
-    public void winner(int score) {}
-
-
-    public static void main(String args[]) {
-
+    public void playGame() {
         Round newRound = new Round(players);
         while (newRound.checkWinner())  {
             newRound.playRound();
             newRound = new Round(players);
+
         }
+
+    }
+
+    public void winner(int score) {}
+
+    public void printPlayers() {
+        for(Player player: players) {
+            System.out.println(player.getName());
+        }
+    }
+
+
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter all players: ");
+        String userInput = scanner.nextLine();
+        Uno newGame = new Uno(userInput);
+
+        newGame.printPlayers();
+
+        newGame.playGame();
+
+
     }
 
 
