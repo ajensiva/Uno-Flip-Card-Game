@@ -1,9 +1,9 @@
 
 public class Card {
 
-    enum TypeLight{ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, NINE, TEN, WILDTWO, SKIP, REVERSE, DRAW_TWO, WILD_DRAW_FOUR, FLIP}
+    enum TypeLight{ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, WILDTWO, SKIP, REVERSE, DRAW_TWO, WILD_DRAW_FOUR, FLIP}
 
-    enum TypeDark{ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, NINE, TEN, WILDTWO, SKIP, REVERSE, DRAW_TWO, WILD_DRAW_FOUR, FLIP}
+    enum TypeDark{ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, WILDTWO, SKIP, REVERSE, DRAW_TWO, WILD_DRAW_FOUR, FLIP}
 
     enum ColorDark {
         Pink, Teal, Purple, Orange
@@ -18,7 +18,7 @@ public class Card {
     private  ColorDark colorDark;
     private  TypeDark typeDark;
 
-    Card(ColorLight colorLight, TypeLight typeLight, ColorDark colorDark, TypeDark typeDark) {
+    Card(ColorLight colorLight, TypeLight typeLight, ColorDark colorDark, TypeDark typeDark){
 
         this.colorLight = colorLight;
         this.typeLight = typeLight;
