@@ -8,25 +8,51 @@ public class Uno{
 
     private final int MAXSCORE = 500;
     private Player winner;
-    LinkedList<Player> players;
+    private static LinkedList<Player> players;
 
     public Uno(String playerList) {
-        System.out.print("Enter all players: ");
         players = new LinkedList<Player>();
         String[] names = playerList.split(" ");
         for (String name : names) {
-            // Hand hand = new Hand()
-            // Player newPlayer = new Player(name, hand);
-            // players.add(player);
+
+            Player newPlayer = new Player(name);
+            players.add(newPlayer);
 
         }
 
     }
 
-    public void playGame() {}
-    // public Player winner() {}
+    public void playGame() {
+        Round newRound = new Round(players);
+        while (newRound.checkWinner())  {
+            newRound.playRound();
+            newRound = new Round(players);
 
-    public static void main(String args[]) {}
+        }
+
+    }
+
+    public void winner(int score) {}
+
+    public void printPlayers() {
+        for(Player player: players) {
+            System.out.println(player.getName());
+        }
+    }
+
+
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter all players: ");
+        String userInput = scanner.nextLine();
+        Uno newGame = new Uno(userInput);
+
+        newGame.printPlayers();
+
+        newGame.playGame();
+
+
+    }
 
 
 

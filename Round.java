@@ -59,7 +59,7 @@ public class Round {
 
     public void wildCard(Card card){}
 
-    public void checkWinner(){}
+    public boolean checkWinner(){return false;}
 
     public void calculatePoints(){}
 

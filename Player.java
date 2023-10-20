@@ -8,9 +8,8 @@ public class Player {
     private int playerScore;
 
     // constructor
-    public Player(String name, Hand hand){
+    public Player(String name){
         this.name = name;
-        this.hand = hand;
     }
 
     // getScore()
