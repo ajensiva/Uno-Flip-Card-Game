@@ -1,4 +1,6 @@
 # Uno-Flip-Card-Game
 
 ## Deliverable One 
-### Objects 
+### Objectives 
+_Begin the Card Class__
+
