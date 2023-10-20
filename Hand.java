@@ -2,23 +2,25 @@ import java.util.ArrayList;
 
 public class Hand {
 
-    private ArrayList<Card> cards;
+    private ArrayList<Card> hand;
 
-    Hand(ArrayList<Card> cards){
+    Hand(){
 
-        this.cards = cards;
+        hand = new ArrayList<Card>();
+
+
     }
 
     public void addCard(Card card){
 
-        cards.add(card);
+        hand.add(card);
 
 
     }
 
     public Card removeCard(Card card){
 
-        cards.remove(card);
+        hand.remove(card);
 
         return card;
     }
