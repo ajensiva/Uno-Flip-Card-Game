@@ -44,8 +44,4 @@ public class Card {
 
 
 
- //new
 }
-
-// new changes karki
-//new changes ajen
