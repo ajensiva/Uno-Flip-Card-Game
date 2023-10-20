@@ -1,14 +1,25 @@
+// working on it: karki
 import java.util.Stack;
 
 public class Deck {
+
+    //private Stack<Card> deck;
     private Stack<Card> deck;
     private int FULL_DECK = 112;
 
-    Deck(){}
+    // constructor
+    public Deck(){
 
-    public Card drawCard(){
+        deck = new Stack<Card>();
 
-        return null;
+        for(Card.ColorLight color : Card.ColorLight.values()){
+            
+        }
+
+    }
+
+    public static void main(String args[]){
+        Deck deck = new Deck();        
     }
 }
 
