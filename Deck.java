@@ -32,6 +32,10 @@ public class Deck {
         }
     }
 
+    public Card pop() {
+        return deck.pop();
+    }
+
     public void printDeck() {
         for (Card card : deck) {
             System.out.println(card); // This calls the `toString` method of the `Card` object

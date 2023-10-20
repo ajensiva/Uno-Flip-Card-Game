@@ -4,21 +4,34 @@ import java.util.Stack;
 
 public class Round {
 
-    private LinkedList<Player> Players;
+    private LinkedList<Player> players;
     private Deck deck;
     private Stack<Card> discard;
 
     private static final boolean darkmode = false;
 
     private Player playcurrentPlayer;
+    private final int DEALTCARDS = 7;
 
-    Round(LinkedList<Player> players){}
+    Round(LinkedList<Player> players){
+        this.players = players;
+        deck = new Deck();
+        discard = new Stack<Card>();
+    }
 
     public Deck getDeck() {
         return deck;
     }
 
-    public void distributeHand(){}
+    public void distributeHand(){
+        int i = 0;
+        while (i < DEALTCARDS) {
+            for (Player players_cards : players){
+                players_cards.getHand().addCard(deck.pop());
+            }
+            i++;
+        }
+    }
 
     public Stack getDiscardStack(){
 
@@ -49,6 +62,19 @@ public class Round {
     public void checkWinner(){}
 
     public void calculatePoints(){}
+
+
+    public static void main (String args[]){
+
+        Hand hand1 = new Hand();
+
+        Player AJ = new Player("AJ", )
+
+        Round round = new Round();
+
+
+
+    }
 
 
 }
