@@ -8,7 +8,6 @@ public class Hand {
 
         hand = new ArrayList<Card>();
 
-
     }
 
     public void addCard(Card card){
@@ -25,18 +24,19 @@ public class Hand {
         return card;
     }
 
-    public void getCards(ArrayList<Card> cards){
 
-        //gets all the cards
+    public String toString(){
+        int i = 0;
+        String return_String;
 
-        for (Card getcards: cards){
-            System.out.println(getcards);
+        while(i < hand.size()){
+
+            return_String = hand.toString();
+
 
         }
 
-
+        return null;
     }
 
-
-    
 }

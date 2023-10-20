@@ -33,7 +33,9 @@ public class Deck {
     }
 
     public Card pop() {
+
         return deck.pop();
+
     }
 
     public void printDeck() {

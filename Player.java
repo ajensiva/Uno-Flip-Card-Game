@@ -30,8 +30,12 @@ public class Player {
         return this.hand;
     }
 
+
+
     // getName()
     public String getName(){
         return this.name;
     }
+
+
 }
