@@ -4,13 +4,36 @@ public class Hand {
 
     private ArrayList<Card> cards;
 
-    Hand(ArrayList<Card> cards){}
+    Hand(ArrayList<Card> cards){
 
-    public void addCard(Card card){}
+        this.cards = cards;
+    }
 
-    public void removeCard(Card card){}
+    public void addCard(Card card){
 
-    public void getCards(ArrayList<Card> cards){}
+        cards.add(card);
+
+
+    }
+
+    public Card removeCard(Card card){
+
+        cards.remove(card);
+
+        return card;
+    }
+
+    public void getCards(ArrayList<Card> cards){
+
+        //gets all the cards
+
+        for (Card getcards: cards){
+            System.out.println(getcards);
+
+        }
+
+
+    }
 
 
     
