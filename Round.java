@@ -67,9 +67,12 @@ public class Round {
             PlayCard = playcurrentPlayer.getHand().getCard(Card_to_play);
 
             if (checkCard(PlayCard, discard.peek())){
+
+                playCard(Card_to_play);
                 System.out.println("Card has been played!");
 
-                //do some shit
+
+
 
             }
             else{
@@ -86,14 +89,13 @@ public class Round {
 
             }
 
+            i++;
+
 
 
 
 
         }
-
-
-
 
 
 
