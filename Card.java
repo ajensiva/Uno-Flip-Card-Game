@@ -1,4 +1,5 @@
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Card {
 
@@ -104,11 +105,17 @@ public class Card {
         return this.typeDark;
     }
 
+    public int getValue(){
+        if(Round.darkmode)
+            return this.getTypeDark().getValue();
+        else
+            return this.getTypeLight().getValue();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Light side: [Color: ").append(colorLight).append(", Type: ").append(typeLight).append("], Dark side: [Color: ").append(colorDark).append(", Type: ").append(typeDark).append("]");
         return sb.toString();
     }
-
 }

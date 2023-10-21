@@ -19,15 +19,14 @@ public class Hand {
         return card;
     }
 
-
+    public ArrayList<Card> getHandList(){
+        return this.hand;
+  
     public Card getCard(int card_num){
-
         return this.hand.get(card_num);
     }
-
-
+  
     public int getSize(){
-
         return this.hand.size();
     }
 
@@ -50,6 +49,6 @@ public class Hand {
         hand.addCard(deck.pop());
         hand.addCard(deck.pop());
         hand.addCard(deck.pop());
-        System.out.println(hand);
+        System.out.println(hand);        
     }
 }

@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Scanner;
@@ -170,9 +171,18 @@ public class Round {
         return false;
     }
 
-    public int calculatePoints(){
-
-        return 0;
+    public int getTotalPoints(){
+        int totalPoint = 0;
+        for(Player plr : players){
+            if(plr != playcurrentPlayer){
+                Hand hand = plr.getHand();
+                for(Card card : hand.getHandList()){
+                    totalPoint += card.getValue();
+                }
+            }
+        }
+        System.out.println("The round's total points is: " + totalPoint);
+        return totalPoint;
     }
 
 
