@@ -19,6 +19,12 @@ public class Hand {
         return card;
     }
 
+
+    public Card getCard(int card_num){
+
+        return this.hand.get(card_num);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -27,7 +33,6 @@ public class Hand {
         }
         return sb.toString();
     }
-
     public static void main(String args[]){
         Deck deck = new Deck();
         Hand hand = new Hand();

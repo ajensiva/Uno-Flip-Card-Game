@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Stack;
+import java.util.Scanner;
 
 
 public class Round {
@@ -42,6 +41,22 @@ public class Round {
 
     public void playRound(){
 
+        playcurrentPlayer = players.get(1);
+
+
+        Scanner user_card = new Scanner(System.in);
+        System.out.println("Input a card: ");
+        System.out.println(playcurrentPlayer.getHand().toString());
+        int Card = user_card.nextInt();
+
+
+        boolean flag = true;
+
+        while (flag){
+
+       
+
+        }
 
 
 
@@ -50,9 +65,23 @@ public class Round {
 
     }
 
+    public Card playCard(int user){
+
+
+        Card addCard;
+
+        addCard = playcurrentPlayer.getHand().getCard(user);
+
+        discard.add(addCard);
+
+
+        return addCard;
+    }
+
+
     public void displayCard(){}
 
-    public void playCard(){}
+
     public boolean checkCard(Card card1, Card card2){
 
         return false;

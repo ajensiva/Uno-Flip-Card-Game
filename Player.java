@@ -18,18 +18,14 @@ public class Player {
         return this.playerScore;
     }
 
-
-    public Card playCard(String user){
-
-        return null;
-    }
-    
     // setScore()
     public void setScore(int score){
         if(score >= 0){
             this.playerScore = score;
         }
     }
+
+
 
     // getHand()
     public Hand getHand(){
