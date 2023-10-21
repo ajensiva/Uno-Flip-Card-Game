@@ -56,6 +56,11 @@ public class Round {
         System.out.println("Input a card: ");
         int Card_to_play = user_card.nextInt();
 
+        discard.add(deck.pop());
+
+        System.out.println(discard.peek());
+
+
         if (!(0 < Card_to_play & Card_to_play < playcurrentPlayer.getHand().getSize() - 1)) {
 
             System.out.println("You are stupid");
