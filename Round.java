@@ -199,9 +199,7 @@ public class Round {
     }
 
     public void reverse(){
-
         Collections.reverse(players);
-
     }
 
     public void wildCard(Card card){
