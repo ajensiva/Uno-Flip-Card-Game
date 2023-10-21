@@ -71,10 +71,11 @@ public class Round {
         Hand hand3 = new Hand();
         Hand hand4 = new Hand();
 
-        Player AJ = new Player("AJ", hand1);
-        Player Jason = new Player("Jason", hand2);
-        Player Zarif = new Player("Zarif", hand3);
-        Player Arun = new Player("Arun", hand4);
+        Player AJ = new Player("AJ");
+        Player Jason = new Player("Jason");
+        Player Zarif = new Player("Zarif");
+        Player Arun = new Player("Arun");
+
         LinkedList<Player> players1 = new LinkedList<>();
         players1.add(AJ);
         players1.add(Jason);

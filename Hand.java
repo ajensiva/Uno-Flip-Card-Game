@@ -6,7 +6,7 @@ public class Hand {
 
     Hand(){
 
-        hand = new ArrayList<Card>();
+        this.hand = new ArrayList<Card>();
 
     }
 
@@ -25,18 +25,22 @@ public class Hand {
     }
 
 
-    public String toString(){
-        int i = 0;
-        String return_String;
-
-        while(i < hand.size()){
-
-            return_String = hand.toString();
-
-
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Card card : hand) {
+            sb.append(card.toString()).append("\n");
         }
-
-        return null;
+        return sb.toString();
     }
 
+    public static void main(String args[]){
+        Deck deck = new Deck();
+        Hand hand = new Hand();
+        hand.addCard(deck.pop());
+        hand.addCard(deck.pop());
+        hand.addCard(deck.pop());
+        hand.addCard(deck.pop());
+        hand.addCard(deck.pop());
+        System.out.println(hand);
+    }
 }
