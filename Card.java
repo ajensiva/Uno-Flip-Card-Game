@@ -70,7 +70,6 @@ public class Card {
     private  TypeDark typeDark;
 
     Card(ColorLight colorLight, TypeLight typeLight, ColorDark colorDark, TypeDark typeDark){
-
         this.colorLight = colorLight;
         this.typeLight = typeLight;
         this.colorDark = colorDark;

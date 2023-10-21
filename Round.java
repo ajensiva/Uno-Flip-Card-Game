@@ -9,7 +9,7 @@ public class Round {
     private Deck deck;
     private Stack<Card> discard;
 
-    private static final boolean darkmode = false;
+    public static boolean darkmode = false;
 
     private Player playcurrentPlayer;
     private final int DEALTCARDS = 7;
@@ -117,7 +117,11 @@ public class Round {
 
     public boolean checkCard(Card card1, Card card2){
 
-        return false;
+        if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) | card1.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+            wildCard(card1);
+            return true;
+        }
+        return card1.getColorLight().equals(card2.getColorLight()) | card1.getTypeLight().equals(card2.getTypeLight());
     }
 
     public boolean takeCardFromDeck(Player player, int n){
@@ -138,11 +142,24 @@ public class Round {
         return false;
     }
 
-    public void skipPlayer() {}
+    public void skipPlayer(){}
 
     public void reverse(){}
 
-    public void wildCard(Card card){}
+    public void wildCard(Card card){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (0), Blue (1), Yellow (2), Green (3): ");
+        int colour = scanner.nextInt();
+        Boolean valid = false;
+        while (colour < 0 | colour < 3 ) {
+            System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (0), Blue (1), Yellow (2), Green (3): ");
+            colour = scanner.nextInt();
+            if (colour == 0) {card.setColorLight("Red");return;}
+            if (colour == 1) {card.setColorLight("Blue");return;}
+            if (colour == 2) {card.setColorLight("Yellow");return;}
+            if (colour == 3) {card.setColorLight("Green");return;}
+        }
+    }
 
     public boolean checkWinner(){return false;}
 
@@ -154,6 +171,7 @@ public class Round {
 
     public static void main (String args[]){
         
+
         Player AJ = new Player("AJ");
         Player Jason = new Player("Jason");
         Player Zarif = new Player("Zarif");
