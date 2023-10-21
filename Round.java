@@ -96,7 +96,7 @@ public class Round {
 
     public boolean checkWinner(){return false;}
 
-    public void calculatePoints(){
+    public int getTotalPoints(){
         int totalPoint = 0;
         for(Player plr : players){
             if(plr != playcurrentPlayer){
@@ -107,6 +107,7 @@ public class Round {
             }
         }
         System.out.println("The round's total points is: " + totalPoint);
+        return totalPoint;
     }
 
 
