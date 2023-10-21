@@ -53,7 +53,7 @@ public class Round {
 
         int i = 0;
 
-        if(n > 0) {
+        if (n > 0) {
 
             while (i < n) {
 
