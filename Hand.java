@@ -26,7 +26,12 @@ public class Hand {
     public Card getCard(int card_num){
         return this.hand.get(card_num);
     }
-  
+
+    public ArrayList<Card> getAll(){
+
+        return hand;
+
+    }
     public int getSize(){
         return this.hand.size();
     }
