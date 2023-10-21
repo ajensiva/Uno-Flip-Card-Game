@@ -21,7 +21,8 @@ public class Hand {
 
     public ArrayList<Card> getHandList(){
         return this.hand;
-  
+    }
+    
     public Card getCard(int card_num){
         return this.hand.get(card_num);
     }
@@ -38,8 +39,6 @@ public class Hand {
         }
         return sb.toString();
     }
-
-
 
     public static void main(String args[]){
         Deck deck = new Deck();
