@@ -161,7 +161,14 @@ public class Round {
         }
     }
 
-    public boolean checkWinner(){return false;}
+    public boolean checkWinner(){
+        for (Player player: players) {
+             if(player.getHand().getSize() == 0) {
+                 return true;
+             }
+        }
+        return false;
+    }
 
     public int calculatePoints(){
 
