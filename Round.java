@@ -44,8 +44,6 @@ public class Round {
 
 
 
-        Player previousPlayer;
-
 
 
 
@@ -90,11 +88,7 @@ public class Round {
 
 
     public static void main (String args[]){
-
-        Hand hand1 = new Hand();
-        Hand hand2 = new Hand();
-        Hand hand3 = new Hand();
-        Hand hand4 = new Hand();
+        
 
         Player AJ = new Player("AJ");
         Player Jason = new Player("Jason");
