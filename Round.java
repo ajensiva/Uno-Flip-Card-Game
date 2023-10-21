@@ -1,10 +1,12 @@
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Stack;
 
 
 public class Round {
 
-    private static LinkedList<Player> players;
+    private static ArrayList<Player> players;
     private Deck deck;
     private Stack<Card> discard;
 
@@ -13,7 +15,7 @@ public class Round {
     private Player playcurrentPlayer;
     private final int DEALTCARDS = 7;
 
-    Round(LinkedList<Player> players){
+    Round(ArrayList<Player> players){
         this.players = players;
         deck = new Deck();
         discard = new Stack<Card>();
@@ -33,12 +35,21 @@ public class Round {
         }
     }
 
-    public Stack getDiscardStack(){
+    public Card getDiscardStack(){
 
-        return discard;
+        return discard.pop();
     }
 
     public void playRound(){
+
+
+
+        Player previousPlayer;
+
+
+
+
+
     }
 
     public void displayCard(){}
@@ -89,7 +100,7 @@ public class Round {
         Player Jason = new Player("Jason");
         Player Zarif = new Player("Zarif");
         Player Arun = new Player("Arun");
-        LinkedList<Player> players1 = new LinkedList<>();
+        ArrayList<Player> players1 = new ArrayList<>();
         players1.add(AJ);
         players1.add(Jason);
         players1.add(Zarif);
