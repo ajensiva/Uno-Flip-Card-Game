@@ -145,7 +145,16 @@ public class Round {
         return false;
     }
 
-    public void skipPlayer(){}
+    public void skipPlayer(){
+        // get current plr's index in the arraylist
+        int currentPlayerIndex = players.indexOf(playcurrentPlayer);
+        if(currentPlayerIndex >= (players.size()-1))
+            // reset to first player in list
+            playcurrentPlayer = players.get(0);
+        else
+            // move to next player
+            playcurrentPlayer = players.get(currentPlayerIndex+1);
+    }
 
     public void reverse(){}
 
