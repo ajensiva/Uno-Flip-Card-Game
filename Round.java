@@ -41,7 +41,9 @@ public class Round {
 
     public void playRound() {
 
-        playcurrentPlayer = players.get(0);
+        int i = 0;
+
+        playcurrentPlayer = players.get(i);
 
 
         Scanner user_card = new Scanner(System.in);
@@ -59,9 +61,29 @@ public class Round {
 
         while (flag){
 
-            Card addCard;
+            Card PlayCard;
 
-            addCard = playcurrentPlayer.getHand().getCard(Card_to_play);
+            PlayCard = playcurrentPlayer.getHand().getCard(Card_to_play);
+
+            if (checkCard(PlayCard, discard.peek())){
+                System.out.println("Card has been played!");
+
+                //do some shit
+
+            }
+            else{
+                System.out.println("You cannot play this card!");
+            }
+
+            if (playcurrentPlayer.getHand().getSize() == 0){
+
+                System.out.println(playcurrentPlayer + " Won this round!" );
+
+                System.out.println(calculatePoints());
+
+                flag = false;
+
+            }
 
 
 
@@ -124,7 +146,10 @@ public class Round {
 
     public boolean checkWinner(){return false;}
 
-    public void calculatePoints(){}
+    public int calculatePoints(){
+
+        return 0;
+    }
 
 
     public static void main (String args[]){
