@@ -55,7 +55,7 @@ public class Round {
 
         if (n > 0) {
 
-            while (i < n) {
+            while (i <= n) {
 
                 player.getHand().addCard(deck.pop());
 
@@ -98,6 +98,10 @@ public class Round {
 
         Round round = new Round(players1);
         round.distributeHand();
+
+
+
+
         }
 
 
