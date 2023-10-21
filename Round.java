@@ -80,7 +80,7 @@ public class Round {
 
                 System.out.println(playcurrentPlayer + " Won this round!" );
 
-                System.out.println(calculatePoints());
+                System.out.println(getTotalPoints());
 
                 flag = false;
 
