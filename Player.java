@@ -17,6 +17,12 @@ public class Player {
     public int getScore(){
         return this.playerScore;
     }
+
+
+    public Card playCard(String user){
+
+        return null;
+    }
     
     // setScore()
     public void setScore(int score){

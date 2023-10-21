@@ -1,7 +1,6 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.*;
+import java.util.Scanner;
+
 
 
 public class Round {
@@ -42,6 +41,24 @@ public class Round {
 
     public void playRound(){
 
+        playcurrentPlayer = players.get(1);
+
+        boolean flag = true;
+        while(flag){
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Which card would you like to play?");
+            String name = scanner.next();
+
+
+            if (playcurrentPlayer.playCard(name).equals(discard.pop())){
+
+
+
+            }
+
+
+        }
 
 
 
@@ -52,7 +69,7 @@ public class Round {
 
     public void displayCard(){}
 
-    public void playCard(){}
+
     public boolean checkCard(Card card1, Card card2){
 
         return false;
@@ -88,8 +105,7 @@ public class Round {
 
 
     public static void main (String args[]){
-        
-=======
+
 
         Player AJ = new Player("AJ");
         Player Jason = new Player("Jason");
