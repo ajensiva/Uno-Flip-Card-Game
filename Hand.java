@@ -11,20 +11,15 @@ public class Hand {
     }
 
     public void addCard(Card card){
-
         hand.add(card);
-
-
     }
 
     public Card removeCard(Card card){
-
         hand.remove(card);
-
         return card;
     }
 
-
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Card card : hand) {

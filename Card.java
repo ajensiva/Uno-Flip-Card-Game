@@ -1,9 +1,60 @@
+import java.util.Objects;
 
 public class Card {
 
-    enum TypeLight{ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, WILDTWO, SKIP, REVERSE, DRAW_TWO, WILD_DRAW_FOUR, FLIP}
+    enum TypeLight{
+        ONE(1),
+        TWO(2),
+        THREE(3),
+        FOUR(4),
+        FIVE(5),
+        SIX(6),
+        SEVEN(7),
+        EIGHT(8),
+        NINE(9),
+        WILDTWO (50),
+        SKIP(30),
+        REVERSE(20),
+        DRAW_TWO(10),
+        WILD_DRAW_FOUR(60),
+        FLIP(20);
 
-    enum TypeDark{ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, WILDDRAW, SKIP, REVERSE, DRAW_TWO, WILD_DRAW_FOUR, FLIP}
+        private final int value;
+        TypeLight(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return this.value;
+        }
+    }
+
+    enum TypeDark{
+        ONE(1),
+        TWO(2),
+        THREE(3),
+        FOUR(4),
+        FIVE(5),
+        SIX(6),
+        SEVEN(7),
+        EIGHT(8),
+        NINE(9),
+        WILDTWO (50),
+        SKIP(30),
+        REVERSE(20),
+        DRAW_TWO(10),
+        WILD_DRAW_FOUR(60),
+        FLIP(20);
+
+        private final int value;
+        TypeDark(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return this.value;
+        }
+      }
 
     enum ColorDark {
         Pink, Teal, Purple, Orange
@@ -32,7 +83,7 @@ public class Card {
     public boolean setColorLight(String user) {
 
        for (ColorLight colors : ColorLight.values()){
-           if (!(user == colors.toString())){
+           if (!(Objects.equals(user, colors.toString()))){
                return false;
            }
 
