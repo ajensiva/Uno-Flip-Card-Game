@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Scanner;
@@ -82,7 +83,7 @@ public class Round {
 
                 System.out.println(playcurrentPlayer + " Won this round!" );
 
-                System.out.println(calculatePoints());
+                System.out.println(getTotalPoints());
 
                 flag = false;
 
@@ -163,11 +164,27 @@ public class Round {
         }
     }
 
-    public boolean checkWinner(){return false;}
+    public boolean checkWinner(){
+        for (Player player: players) {
+             if(player.getHand().getSize() == 0) {
+                 return true;
+             }
+        }
+        return false;
+    }
 
-    public int calculatePoints(){
-
-        return 0;
+    public int getTotalPoints(){
+        int totalPoint = 0;
+        for(Player plr : players){
+            if(plr != playcurrentPlayer){
+                Hand hand = plr.getHand();
+                for(Card card : hand.getHandList()){
+                    totalPoint += card.getValue();
+                }
+            }
+        }
+        System.out.println("The round's total points is: " + totalPoint);
+        return totalPoint;
     }
 
 
