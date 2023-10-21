@@ -39,22 +39,33 @@ public class Round {
         return discard.pop();
     }
 
-    public void playRound(){
+    public void playRound() {
 
-        playcurrentPlayer = players.get(1);
+        playcurrentPlayer = players.get(0);
 
 
         Scanner user_card = new Scanner(System.in);
         System.out.println("Input a card: ");
         System.out.println(playcurrentPlayer.getHand().toString());
-        int Card = user_card.nextInt();
+        int Card_to_play = user_card.nextInt();
 
+        if (!(0 < Card_to_play & Card_to_play < playcurrentPlayer.getHand().getSize()-1)) {
+
+            System.out.println("You are stupid");
+
+        }
 
         boolean flag = true;
 
         while (flag){
 
-       
+            Card addCard;
+
+            addCard = playcurrentPlayer.getHand().getCard(Card_to_play);
+
+
+
+
 
         }
 

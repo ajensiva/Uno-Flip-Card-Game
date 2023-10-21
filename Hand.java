@@ -25,6 +25,12 @@ public class Hand {
         return this.hand.get(card_num);
     }
 
+
+    public int getSize(){
+
+        return this.hand.size();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -33,6 +39,9 @@ public class Hand {
         }
         return sb.toString();
     }
+
+
+
     public static void main(String args[]){
         Deck deck = new Deck();
         Hand hand = new Hand();
