@@ -11,7 +11,7 @@ public class Round {
     private Deck deck;
     private Stack<Card> discard;
 
-    private static final boolean darkmode = false;
+    public static boolean darkmode = false;
 
     private Player playcurrentPlayer;
     private final int DEALTCARDS = 7;
@@ -87,7 +87,7 @@ public class Round {
         return false;
     }
 
-    public void skipPlayer() {}
+    public void skipPlayer(){}
 
     public void reverse(){}
 
@@ -100,6 +100,7 @@ public class Round {
 
     public static void main (String args[]){
         
+
         Player AJ = new Player("AJ");
         Player Jason = new Player("Jason");
         Player Zarif = new Player("Zarif");
