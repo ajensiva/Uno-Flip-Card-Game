@@ -2,6 +2,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Scanner;
+import java.util.Collections;
 
 
 public class Round {
@@ -42,17 +43,18 @@ public class Round {
 
     public void playRound() {
 
+
         int i = 0;
 
         playcurrentPlayer = players.get(i);
 
 
         Scanner user_card = new Scanner(System.in);
-        System.out.println("Input a card: ");
         System.out.println(playcurrentPlayer.getHand().toString());
+        System.out.println("Input a card: ");
         int Card_to_play = user_card.nextInt();
 
-        if (!(0 < Card_to_play & Card_to_play < playcurrentPlayer.getHand().getSize()-1)) {
+        if (!(0 < Card_to_play & Card_to_play < playcurrentPlayer.getHand().getSize() - 1)) {
 
             System.out.println("You are stupid");
 
@@ -60,46 +62,85 @@ public class Round {
 
         boolean flag = true;
 
-        while (flag){
+        while (flag) {
 
             Card PlayCard;
 
             PlayCard = playcurrentPlayer.getHand().getCard(Card_to_play);
 
-            if (checkCard(PlayCard, discard.peek())){
+            if (checkCard(PlayCard, discard.peek())) {
 
                 playCard(Card_to_play);
                 System.out.println("Card has been played!");
 
 
+                if (!(darkmode)) {
+
+                    if (PlayCard.getTypeLight() == (Card.TypeLight.WILDTWO)) {
+
+                        wildCard(PlayCard);
+
+                    }
+
+
+                    if (PlayCard.getTypeLight() == Card.TypeLight.REVERSE) {
+                        reverse();
+                    }
+
+                    if (PlayCard.getTypeLight() == Card.TypeLight.SKIP) {
+
+                        skipPlayer();
+
+                    }
+                    if (PlayCard.getTypeLight() == Card.TypeLight.FLIP) {
+
+                        darkmode = !(darkmode);
+                    }
+                    if (PlayCard.getTypeLight() == Card.TypeLight.DRAW_TWO) {
+
+                        Draw(2);
+
+                    }
+
+                    if (PlayCard.getTypeLight() == Card.TypeLight.WILD_DRAW_FOUR) {
+
+                        wildCard(PlayCard);
+                    }
+                }
+
+
+                // Darkside implementation
+
+
+                } else {
+                    System.out.println("You cannot play this card!");
+                }
+
+                if (playcurrentPlayer.getHand().getSize() == 0) {
+
+                    System.out.println(playcurrentPlayer + " Won this round!");
+
+                    System.out.println(getTotalPoints());
+
+                    flag = false;
+
+                }
+
+                i++;
+
+                if (i == players.size()){ 
+
+                    i = players.size() % 4;
+                }
 
 
             }
-            else{
-                System.out.println("You cannot play this card!");
-            }
-
-            if (playcurrentPlayer.getHand().getSize() == 0){
-
-                System.out.println(playcurrentPlayer + " Won this round!" );
-
-                System.out.println(getTotalPoints());
-
-                flag = false;
-
-            }
-
-            i++;
-
-
-
 
 
         }
 
 
-
-    }
+    public void Draw(int n){}
 
     public Card playCard(int user){
 
@@ -113,6 +154,7 @@ public class Round {
 
         return addCard;
     }
+
 
 
     public void displayCard(){}
@@ -156,7 +198,11 @@ public class Round {
             playcurrentPlayer = players.get(currentPlayerIndex+1);
     }
 
-    public void reverse(){}
+    public void reverse(){
+
+        Collections.reverse(players);
+
+    }
 
     public void wildCard(Card card){
         Scanner scanner = new Scanner(System.in);
