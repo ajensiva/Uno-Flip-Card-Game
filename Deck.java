@@ -38,6 +38,12 @@ public class Deck {
 
     }
 
+    public int getSize(){
+
+        return deck.size();
+
+    }
+
     public void printDeck() {
         for (Card card : deck) {
             System.out.println(card); // This calls the `toString` method of the `Card` object
