@@ -120,11 +120,11 @@ public class Round {
 
     public boolean checkCard(Card card1, Card card2){
 
-        if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) | card1.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+        if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
             wildCard(card1);
             return true;
         }
-        return card1.getColorLight().equals(card2.getColorLight()) | card1.getTypeLight().equals(card2.getTypeLight());
+        return card1.getColorLight().equals(card2.getColorLight()) || card1.getTypeLight().equals(card2.getTypeLight());
     }
 
     public boolean takeCardFromDeck(Player player, int n){
