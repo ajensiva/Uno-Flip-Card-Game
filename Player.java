@@ -56,7 +56,7 @@ public class Player {
     @Override
     public boolean equals(Object obj){
         Player plr = (Player) obj;
-        if(this.getName() == plr.getName()){
+        if(this.getName() == plr.getName() && this.getScore() == plr.getScore()){
             return true;
         }
         return false;
