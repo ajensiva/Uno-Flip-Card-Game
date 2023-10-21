@@ -4,7 +4,7 @@ public class Hand {
 
     private ArrayList<Card> hand;
 
-    Hand(){
+    public Hand(){
 
         hand = new ArrayList<Card>();
 
