@@ -4,7 +4,7 @@ public class Hand {
 
     private ArrayList<Card> hand;
 
-    Hand(){
+    public Hand(){
 
         this.hand = new ArrayList<Card>();
 

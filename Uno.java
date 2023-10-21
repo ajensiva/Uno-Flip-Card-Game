@@ -8,10 +8,10 @@ public class Uno{
 
     private final int MAXSCORE = 500;
     private Player winner;
-    private static LinkedList<Player> players;
+    private static ArrayList<Player> players;
 
     public Uno(String playerList) {
-        players = new LinkedList<Player>();
+        players = new ArrayList<Player>();
         String[] names = playerList.split(" ");
         for (String name : names) {
 
