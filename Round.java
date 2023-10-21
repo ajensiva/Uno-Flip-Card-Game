@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Stack;
+import java.util.Scanner;
 
 
 public class Round {
@@ -54,8 +55,18 @@ public class Round {
 
     public void playCard(){}
     public boolean checkCard(Card card1, Card card2){
-
-        return false;
+        
+        if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) | card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (1), Blue (1), Yellow (1), Green (1): ");
+            int colour = scanner.nextInt();
+            while (colour < 0 | colour < 3 ) {
+                System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (1), Blue (1), Yellow (1), Green (1): ");
+                colour = scanner.nextInt();
+            }
+            return true;
+        }
+        return card1.getColorLight().equals(card2.getColorLight()) | card1.getTypeLight().equals(card2.getTypeLight());
     }
 
     public boolean takeCardFromDeck(Player player, int n){
