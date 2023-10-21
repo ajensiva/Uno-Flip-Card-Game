@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Stack;
 import java.util.Scanner;
 
@@ -41,8 +39,35 @@ public class Round {
         return discard.pop();
     }
 
-    public void playRound(){
+    public void playRound() {
 
+        playcurrentPlayer = players.get(0);
+
+
+        Scanner user_card = new Scanner(System.in);
+        System.out.println("Input a card: ");
+        System.out.println(playcurrentPlayer.getHand().toString());
+        int Card_to_play = user_card.nextInt();
+
+        if (!(0 < Card_to_play & Card_to_play < playcurrentPlayer.getHand().getSize()-1)) {
+
+            System.out.println("You are stupid");
+
+        }
+
+        boolean flag = true;
+
+        while (flag){
+
+            Card addCard;
+
+            addCard = playcurrentPlayer.getHand().getCard(Card_to_play);
+
+
+
+
+
+        }
 
 
 
@@ -51,9 +76,23 @@ public class Round {
 
     }
 
+    public Card playCard(int user){
+
+
+        Card addCard;
+
+        addCard = playcurrentPlayer.getHand().getCard(user);
+
+        discard.add(addCard);
+
+
+        return addCard;
+    }
+
+
     public void displayCard(){}
 
-    public void playCard(){}
+
     public boolean checkCard(Card card1, Card card2){
         
         if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) | card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
