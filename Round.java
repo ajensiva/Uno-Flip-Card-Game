@@ -42,11 +42,13 @@ public class Round {
     }
 
     public void playRound() {
+        //Zarif and AJ
 
 
         int i = 0;
 
         playcurrentPlayer = players.get(i);
+
 
 
         Scanner user_card = new Scanner(System.in);
@@ -63,10 +65,29 @@ public class Round {
         boolean flag = true;
 
         while (flag) {
+            // check can you even play that card, or in fact, any card!
+            int keep_check = 0;
+
+            for (Card card : playcurrentPlayer.getHand().getAll()) {
+
+                if (!(checkCard(card, discard.peek()))) {
+                    keep_check += 1;
+                }
+
+            }
+
+            if (keep_check == playcurrentPlayer.getHand().getSize()){
+
+                Draw(1);
+
+            }
+
 
             Card PlayCard;
 
             PlayCard = playcurrentPlayer.getHand().getCard(Card_to_play);
+
+                //if you have cards to play, move on to play an card!
 
             if (checkCard(PlayCard, discard.peek())) {
 
@@ -113,7 +134,11 @@ public class Round {
 
 
                 } else {
-                    System.out.println("You cannot play this card!");
+
+                System.out.println("That card cannot be played");
+
+
+
                 }
 
                 if (playcurrentPlayer.getHand().getSize() == 0) {
@@ -128,7 +153,7 @@ public class Round {
 
                 i++;
 
-                if (i == players.size()){ 
+                if (i == players.size()){
 
                     i = players.size() % 4;
                 }
@@ -140,7 +165,14 @@ public class Round {
         }
 
 
-    public void Draw(int n){}
+    public void Draw(int n){
+
+        int i = 0;
+        while (i < n+1) {
+            playcurrentPlayer.getHand().addCard(deck.pop());
+            i++;
+        }
+    }
 
     public Card playCard(int user){
 
