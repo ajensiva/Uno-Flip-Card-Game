@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -95,7 +96,18 @@ public class Round {
 
     public boolean checkWinner(){return false;}
 
-    public void calculatePoints(){}
+    public void calculatePoints(){
+        int totalPoint = 0;
+        for(Player plr : players){
+            if(plr != playcurrentPlayer){
+                Hand hand = plr.getHand();
+                for(Card card : hand.getHandList()){
+                    totalPoint += card.getValue();
+                }
+            }
+        }
+        System.out.println("The round's total points is: " + totalPoint);
+    }
 
 
     public static void main (String args[]){

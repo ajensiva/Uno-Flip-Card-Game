@@ -19,6 +19,10 @@ public class Hand {
         return card;
     }
 
+    public ArrayList<Card> getHandList(){
+        return this.hand;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -36,6 +40,6 @@ public class Hand {
         hand.addCard(deck.pop());
         hand.addCard(deck.pop());
         hand.addCard(deck.pop());
-        System.out.println(hand);
+        System.out.println(hand);        
     }
 }

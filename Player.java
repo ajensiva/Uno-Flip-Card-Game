@@ -43,5 +43,13 @@ public class Player {
         return this.name;
     }
 
-
+    // equals override
+    @Override
+    public boolean equals(Object obj){
+        Player plr = (Player) obj;
+        if(this.getName() == plr.getName()){
+            return true;
+        }
+        return false;
+    }
 }
