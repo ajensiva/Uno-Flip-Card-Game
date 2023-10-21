@@ -10,7 +10,7 @@ public class Player {
     // constructor
     public Player(String name){
         this.name = name;
-
+        this.hand = new Hand();
     }
 
     // getScore()
