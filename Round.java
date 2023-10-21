@@ -55,15 +55,9 @@ public class Round {
 
     public void playCard(){}
     public boolean checkCard(Card card1, Card card2){
-        
-        if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) | card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (1), Blue (1), Yellow (1), Green (1): ");
-            int colour = scanner.nextInt();
-            while (colour < 0 | colour < 3 ) {
-                System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (1), Blue (1), Yellow (1), Green (1): ");
-                colour = scanner.nextInt();
-            }
+
+        if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) | card1.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+            wildCard(card1);
             return true;
         }
         return card1.getColorLight().equals(card2.getColorLight()) | card1.getTypeLight().equals(card2.getTypeLight());
@@ -91,7 +85,20 @@ public class Round {
 
     public void reverse(){}
 
-    public void wildCard(Card card){}
+    public void wildCard(Card card){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (0), Blue (1), Yellow (2), Green (3): ");
+        int colour = scanner.nextInt();
+        Boolean valid = false;
+        while (colour < 0 | colour < 3 ) {
+            System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (0), Blue (1), Yellow (2), Green (3): ");
+            colour = scanner.nextInt();
+            if (colour == 0) {card.setColorLight("Red");return;}
+            if (colour == 1) {card.setColorLight("Blue");return;}
+            if (colour == 2) {card.setColorLight("Yellow");return;}
+            if (colour == 3) {card.setColorLight("Green");return;}
+        }
+    }
 
     public boolean checkWinner(){return false;}
 
