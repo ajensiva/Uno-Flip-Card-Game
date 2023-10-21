@@ -1,7 +1,5 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Stack;
 import java.util.Scanner;
 
@@ -42,8 +40,57 @@ public class Round {
         return discard.pop();
     }
 
-    public void playRound(){
+    public void playRound() {
 
+        int i = 0;
+
+        playcurrentPlayer = players.get(i);
+
+
+        Scanner user_card = new Scanner(System.in);
+        System.out.println("Input a card: ");
+        System.out.println(playcurrentPlayer.getHand().toString());
+        int Card_to_play = user_card.nextInt();
+
+        if (!(0 < Card_to_play & Card_to_play < playcurrentPlayer.getHand().getSize()-1)) {
+
+            System.out.println("You are stupid");
+
+        }
+
+        boolean flag = true;
+
+        while (flag){
+
+            Card PlayCard;
+
+            PlayCard = playcurrentPlayer.getHand().getCard(Card_to_play);
+
+            if (checkCard(PlayCard, discard.peek())){
+                System.out.println("Card has been played!");
+
+                //do some shit
+
+            }
+            else{
+                System.out.println("You cannot play this card!");
+            }
+
+            if (playcurrentPlayer.getHand().getSize() == 0){
+
+                System.out.println(playcurrentPlayer + " Won this round!" );
+
+                System.out.println(calculatePoints());
+
+                flag = false;
+
+            }
+
+
+
+
+
+        }
 
 
 
@@ -52,19 +99,27 @@ public class Round {
 
     }
 
+    public Card playCard(int user){
+
+
+        Card addCard;
+
+        addCard = playcurrentPlayer.getHand().getCard(user);
+
+        discard.add(addCard);
+
+
+        return addCard;
+    }
+
+
     public void displayCard(){}
 
-    public void playCard(){}
+
     public boolean checkCard(Card card1, Card card2){
-        
-        if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) | card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (1), Blue (1), Yellow (1), Green (1): ");
-            int colour = scanner.nextInt();
-            while (colour < 0 | colour < 3 ) {
-                System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (1), Blue (1), Yellow (1), Green (1): ");
-                colour = scanner.nextInt();
-            }
+
+        if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) | card1.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+            wildCard(card1);
             return true;
         }
         return card1.getColorLight().equals(card2.getColorLight()) | card1.getTypeLight().equals(card2.getTypeLight());
@@ -92,9 +147,29 @@ public class Round {
 
     public void reverse(){}
 
-    public void wildCard(Card card){}
+    public void wildCard(Card card){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (0), Blue (1), Yellow (2), Green (3): ");
+        int colour = scanner.nextInt();
+        Boolean valid = false;
+        while (colour < 0 | colour < 3 ) {
+            System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (0), Blue (1), Yellow (2), Green (3): ");
+            colour = scanner.nextInt();
+            if (colour == 0) {card.setColorLight("Red");return;}
+            if (colour == 1) {card.setColorLight("Blue");return;}
+            if (colour == 2) {card.setColorLight("Yellow");return;}
+            if (colour == 3) {card.setColorLight("Green");return;}
+        }
+    }
 
-    public boolean checkWinner(){return false;}
+    public boolean checkWinner(){
+        for (Player player: players) {
+             if(player.getHand().getSize() == 0) {
+                 return true;
+             }
+        }
+        return false;
+    }
 
     public int getTotalPoints(){
         int totalPoint = 0;

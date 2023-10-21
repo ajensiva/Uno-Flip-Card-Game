@@ -9,6 +9,7 @@ public class Player {
 
     // constructor
     public Player(String name){
+
         this.name = name;
         this.hand = new Hand();
     }
@@ -18,18 +19,26 @@ public class Player {
         return this.playerScore;
     }
 
-
-    public Card playCard(String user){
-
-        return null;
-    }
-    
     // setScore()
     public void setScore(int score){
         if(score >= 0){
             this.playerScore = score;
         }
     }
+
+
+    public Card playCard(int user){
+
+
+        Card addCard;
+
+        addCard = this.getHand().getCard(user);
+
+
+        return addCard;
+    }
+
+
 
     // getHand()
     public Hand getHand(){
