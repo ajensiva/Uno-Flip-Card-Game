@@ -156,7 +156,9 @@ public class Round {
             playcurrentPlayer = players.get(currentPlayerIndex+1);
     }
 
-    public void reverse(){}
+    public void reverse(){
+        darkmode = !darkmode;
+    }
 
     public void wildCard(Card card){
         Scanner scanner = new Scanner(System.in);
