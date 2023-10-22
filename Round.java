@@ -68,6 +68,8 @@ public class Round {
             // update the current player at the start each player's turn
             System.out.println();
             currentPlayer = players.get(playerIndex);
+            boolean validInput = false;
+            while (!(validInput)) {
             System.out.println("[" + currentPlayer.getName() + "] playing:");
 
 
@@ -95,7 +97,7 @@ public class Round {
                 playCard = currentPlayer.getHand().getCard(cardToPlay);
                 // check to see if the card can be played or not by checking the discard stack
                 if ((checkCard(playCard, discard.peek()))) {
-
+                    validInput = true;
                     playCard(cardToPlay);
                     System.out.println("Card has been played!");
                     // take the card from the player
@@ -139,8 +141,11 @@ public class Round {
                             playerIndex = (playerIndex + 1) % players.size();
                         }
                     }
+                }
             }
-
+            if (!validInput) {
+                System.out.println("Invalid card choice!");
+            }
             }
 
             // if player's hand is 0 then they won the round
