@@ -142,8 +142,6 @@ public class Round {
 
         while (!(checkWinner())) {
 
-            System.out.println(currentPlayer.getName());
-
             if (darkmode){
                 System.out.println("on dark side!\n");
             }
@@ -153,15 +151,18 @@ public class Round {
 
             System.out.println();
             currentPlayer = players.get(i);
+          
+            System.out.println(playcurrentPlayer.getName());
 
-            int Card_to_play = askUser(currentPlayer);
+            int Card_to_play = askUser(playcurrentPlayer);
+
             System.out.println(discard.peek());
 
+            while (!(0 <= Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize() - 1)) {
 
-
-            if (!(0 < Card_to_play & Card_to_play < currentPlayer.getHand().getSize() - 1)) {
 
                 System.out.println("You are stupid");
+                Card_to_play = askUser(playcurrentPlayer);
 
             }
 
@@ -228,7 +229,18 @@ public class Round {
 
                 checkWinner();
 
+                }
 
+                if (playcurrentPlayer.getHand().getSize() == 0) {
+
+                    System.out.println(playcurrentPlayer + " Won this round!");
+
+                    System.out.println(getTotalPoints());
+
+
+                }
+
+                i = i + 1 % players.size();
 
             }
 
@@ -245,7 +257,44 @@ public class Round {
 
             if (i == players.size()){
 
-                i = players.size() % 4;
+        Card addCard;
+
+        addCard = playcurrentPlayer.getHand().getCard(user);
+
+        discard.push(addCard);
+
+
+        return addCard;
+    }
+
+
+
+    public void displayCard(){}
+
+
+    public boolean checkCard(Card card1, Card card2){
+        System.out.println(card1);
+        System.out.println(card2);
+
+        if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+
+            return true;
+        }
+        return card1.getColorLight().equals(card2.getColorLight()) || card1.getTypeLight().equals(card2.getTypeLight());
+    }
+
+    public boolean takeCardFromDeck(Player player, int n){
+
+        int i = 0;
+
+        if (n > 0) {
+
+            while (i <= n) {
+
+                player.getHand().addCard(deck.pop());
+
+                i++;
+
             }
 
 
