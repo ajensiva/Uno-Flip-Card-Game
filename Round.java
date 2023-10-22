@@ -114,6 +114,9 @@ public class Round {
                     if (PlayCard.getTypeLight() == (Card.TypeLight.WILDTWO)) {
 
                         wildCard(PlayCard);
+                        Draw(2);
+                        i = (i + 1) % players.size();
+
 
                     }
 
@@ -141,6 +144,10 @@ public class Round {
                     if (PlayCard.getTypeLight() == Card.TypeLight.WILD_DRAW_FOUR) {
 
                         wildCard(PlayCard);
+                        Draw(4);
+                        i = (i + 1) % players.size();
+
+
                     }
 
                 }
@@ -168,17 +175,32 @@ public class Round {
     public int askUser(Player playcurrentPlayer){
 
         Scanner user_card = new Scanner(System.in);
+
         System.out.println(playcurrentPlayer.getHand().toString());
+
+        System.out.println(" [" + playcurrentPlayer.getHand().getSize() + "] draw one card! " );
         System.out.println("Card at top of the pile:");
         System.out.println(discard.peek());
-        System.out.println("Input a card: ");
+        System.out.println("Input a card or draw a card (last index): ");
         int Card_to_play = user_card.nextInt();
+
+        myDraw(Card_to_play);
 
         return Card_to_play;
 
 
     }
 
+
+    public void myDraw(int Card_to_play){
+
+        if (Card_to_play == playcurrentPlayer.getHand().getSize()){
+
+            playcurrentPlayer.getHand().addCard(deck.pop());
+        }
+
+
+    }
     public void Draw(int n){
 
         int i = 0;
@@ -190,6 +212,7 @@ public class Round {
 
         }
     }
+
 
     public Card playCard(int user){
 
