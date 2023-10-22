@@ -21,29 +21,27 @@ public class Player {
         this.playerScore = 0;
         this.hand = new Hand();
     }
-
+  
     /**
      * Get the player's score.
      *
      * @return The player's score.
      */
-
     public int getScore() {
         return this.playerScore;
     }
-
+  
     /**
      * Set the player's score to the specified value.
      *
      * @param score The new score for the player.
      */
-
     public void setScore(int score) {
         if (score >= 0) {
             this.playerScore = score;
         }
     }
-    
+  
     /**
      * Get the player's hand.
      *
@@ -52,7 +50,7 @@ public class Player {
     public Hand getHand() {
         return this.hand;
     }
-
+  
     /**
      * Get the name of the player.
      *
