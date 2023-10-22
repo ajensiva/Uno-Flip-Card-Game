@@ -40,6 +40,8 @@ public class Hand {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Card card : hand) {
+            sb.append(" [" + hand.indexOf(card) + "] ");
+
             sb.append(card.toString()).append("\n");
         }
         return sb.toString();
