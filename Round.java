@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Scanner;
@@ -53,11 +54,13 @@ public class Round {
 
         Scanner user_card = new Scanner(System.in);
         System.out.println(playcurrentPlayer.getHand().toString());
+        discard.add(deck.pop());
+        System.out.println("Card at top of the pile:");
+        System.out.println(discard.peek());
         System.out.println("Input a card: ");
         int Card_to_play = user_card.nextInt();
 
         discard.add(deck.pop());
-
         System.out.println(discard.peek());
 
 
@@ -295,7 +298,7 @@ public class Round {
 
         Round round = new Round(players1);
         round.distributeHand();
-
+        round.playRound();
 
 
 
