@@ -81,7 +81,7 @@ public class Round {
             while(true){
                 Card_to_play = askUser(playcurrentPlayer);
                 System.out.println(discard.peek());
-                if((0 <= Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize())){
+                if((0 < Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize())){
                     System.out.println("done");
                     break;
                 }
@@ -95,7 +95,7 @@ public class Round {
 
             PlayCard = playcurrentPlayer.getHand().getCard(Card_to_play);
 
-            //if you have cards to play, move on to play an card!
+            //if you have cards to play, move on to play and card!
 
 
             if ((checkCard(PlayCard, discard.peek()))) {
