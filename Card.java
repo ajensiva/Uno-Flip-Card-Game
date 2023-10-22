@@ -82,13 +82,16 @@ public class Card {
     public boolean setColorLight(String user) {
 
        for (ColorLight colors : ColorLight.values()){
-           if (!(Objects.equals(user, colors.toString()))){
-               return false;
+           if ((Objects.equals(user, colors.toString()))){
+               this.colorLight = colors;
+
+               return true;
+
            }
 
        }
 
-       return true;
+       return false;
     }
 
 
