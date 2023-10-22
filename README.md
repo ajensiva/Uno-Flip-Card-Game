@@ -26,7 +26,7 @@ The index's of each card in the hand are provided to the left of each card. You 
 what card you would like to play! 
 
 __Remember__: 
-you many only play a card that is the same colour, or type. Rememeber to look at which side is being played
+you many only play a card that is the same colour, or type. Rememeber, to look at which side is being played
 on currently!
 
 If you have no cards to play, then you can select the last index in your hand to draw from 
