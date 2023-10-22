@@ -253,17 +253,15 @@ public class Round {
 
             }
 
-            i++;
+            i += i % players.size();
 
-            if (i == players.size()) {
 
-            }
     }
 
 
 
     public void displayCard(){}
-    
+
 
     public static void main (String args[]){
         
