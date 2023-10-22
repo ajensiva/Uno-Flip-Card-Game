@@ -42,10 +42,12 @@ public class Uno {
      * Creates and plays rounds until a player wins the game.
      */
     public void playGame() {
+        // start a new round, first round
         Round newRound = new Round(players);
         while (!this.winner()) {
+            // repeat rounds until a winner is found
             newRound.playRound();
-            // Start a new round after the first round is complete
+            // start a new round after the previous round is complete
             newRound = new Round(players);
         }
     }
@@ -56,9 +58,9 @@ public class Uno {
      * @return True if a player has a score greater than or equal to the maximum score; otherwise, false.
      */
     public boolean winner() {
+        // loop all players and check their score and compare with maxscore
         for (Player plr : players) {
             if (plr.getScore() >= MAXSCORE) {
-                System.out.println("The winner is: " + plr + "!");
                 return true;
             }
         }
