@@ -48,11 +48,10 @@ public class Round {
         playcurrentPlayer = players.get(0);
         //Zarif and AJ
 
-        int i = 0;
+        int i = 0; // keep track of current player
 
         discard.add(deck.pop());
-
-
+        //
         while (!(checkWinner())) {
 
 
@@ -66,10 +65,9 @@ public class Round {
             playcurrentPlayer = players.get(i);
 
             System.out.println(playcurrentPlayer.getName());
-
+            /* 
             int Card_to_play = askUser(playcurrentPlayer);
             System.out.println(discard.peek());
-
 
             while (!(0 <= Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize())) {
 
@@ -77,6 +75,18 @@ public class Round {
                 Card_to_play = askUser(playcurrentPlayer);
 
             }
+            */
+            //////
+            int Card_to_play = 0;//askUser(playcurrentPlayer);
+            while(true){
+                Card_to_play = askUser(playcurrentPlayer);
+                System.out.println(discard.peek());
+                if((0 <= Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize())){
+                    System.out.println("done");
+                    break;
+                }
+            }
+            /////
 
 
             // check can you even play that card, or in fact, any card!
@@ -193,7 +203,6 @@ public class Round {
 
 
     public void displayCard(){}
-
 
     public boolean checkCard(Card card1, Card card2){
 
