@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Hand {
 
+    // a hand of cards, originally 7
     private ArrayList<Card> hand;
 
     /**
@@ -56,15 +57,6 @@ public class Hand {
     }
 
     /**
-     * Get all the cards in the hand.
-     *
-     * @return A list containing all the cards in the hand.
-     */
-    public ArrayList<Card> getAll() {
-        return hand;
-    }
-
-    /**
      * Get the number of cards in the hand.
      *
      * @return The number of cards in the hand.
@@ -80,6 +72,16 @@ public class Hand {
      */
     @Override
     public String toString() {
+        // override the toString to print out the hand in a new string format
+
+        /* 
+        EXAMPLE OUTPUT:
+            [0] Color: Red, Type: WILDTWO
+            [1] Color: Yellow, Type: THREE
+            [2] Color: Red, Type: WILDTWO
+            [3] Color: Yellow, Type: FOUR
+            [4] Color: Yellow, Type: REVERSE
+         */
         StringBuilder sb = new StringBuilder();
         for (Card card : hand) {
             sb.append(" [" + hand.indexOf(card) + "] ");
@@ -88,6 +90,7 @@ public class Hand {
         return sb.toString();
     }
 
+    /*
     public static void main(String args[]){
         Deck deck = new Deck();
         Hand hand = new Hand();
@@ -98,4 +101,5 @@ public class Hand {
         hand.addCard(deck.pop());
         System.out.println(hand);        
     }
+    */
 }

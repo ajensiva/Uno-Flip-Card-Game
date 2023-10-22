@@ -9,8 +9,8 @@ import java.util.Stack;
  */
 public class Deck {
 
-    private Stack<Card> deck;
-    private int FULL_DECK = 112;
+    private Stack<Card> deck; // deck of all cards available
+    private final int FULL_DECK = 112; // max size of deck can only be 112
 
     /**
      * Deck constructor : Instatiates deck and generates cards
@@ -19,6 +19,7 @@ public class Deck {
             deck = new Stack<Card>();
             generateDeck();
     }
+
     /**
      * generateDeck : generates a Deck of 112 cards
      */
@@ -36,6 +37,7 @@ public class Deck {
             deck.add(newCard);
         }
     }
+
     /**
      * pop : returns the card at the top of the deck
      * @return Card
@@ -43,6 +45,7 @@ public class Deck {
     public Card pop() {
         return deck.pop();
     }
+    
     /**
      * toString : Provides a way to display teh deck of cards in String format
      * @return String

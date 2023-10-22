@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Stack;
+
+import javax.swing.text.StyledEditorKit;
+
 import java.util.Scanner;
 import java.util.Collections;
 
@@ -67,23 +70,32 @@ public class Round {
             currentPlayer = players.get(playerIndex);
             System.out.println("[" + currentPlayer.getName() + "] playing:");
 
+
             int cardToPlay = 0; // index of the card that's going to be played
             // loop until a valid card has been played
             while(true){
                 cardToPlay = askUser(currentPlayer);
-                System.out.println("Top of discard stack: " + discard.peek());
                 // card index must be greater than 0 and less than length of hand to move on
-                if((0 <= cardToPlay && cardToPlay < currentPlayer.getHand().getSize())){
+                if((0 <= cardToPlay && cardToPlay <= currentPlayer.getHand().getSize())){
                     break;
                 }
             }
 
+            cardToPlay -= 1;
             // the card that's going to be played
             Card playCard;
             playCard = currentPlayer.getHand().getCard(cardToPlay); // retrieve from hand
 
+            // draw one card from the deck and reset loop if index == size of deck
+            if (cardToPlay == currentPlayer.getHand().getSize()){
+                // take 1 from the deck and add to player's hand
+                currentPlayer.getHand().addCard(deck.pop());
+                continue; // go back to top
+            }
+
             // check to see if the card can be played or not by checking the discard stack
             if ((checkCard(playCard, discard.peek()))) {
+                
                 playCard(cardToPlay);
                 System.out.println("Card has been played!");
                 // take the card from the player
@@ -95,7 +107,7 @@ public class Round {
                     /* 
                      Below are just checks to handle each type of 'special' card.
                      The effects they have on the game. A lot of repeat comments.
-                     */
+                    */
 
                     // handle wild 2 cards
                     if (playCard.getTypeLight() == (Card.TypeLight.WILDTWO)) {
@@ -154,7 +166,7 @@ public class Round {
         System.out.println("Top of discard stack: " + discard.peek());
         System.out.println("Input a card or draw a card (last index): ");
         int cardToPlay = userInput.nextInt(); // index of the card to play
-        myDraw(cardToPlay); // if they type the last index, then handle draw one
+        //myDraw(cardToPlay); // if they type the last index, then handle draw one
         return cardToPlay;
     }
 
