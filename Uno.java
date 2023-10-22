@@ -23,7 +23,6 @@ public class Uno{
             int num = num_of_players.nextInt();
 
             Scanner name = new Scanner(System.in);
-
             for (int i = 0; i < num; i++){
 
                 System.out.println("Enter player (" + (i + 1) + ") name: ");
