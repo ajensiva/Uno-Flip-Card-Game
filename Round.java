@@ -224,7 +224,7 @@ public class Round {
      * @return The card that was played.
      */
     public Card playCard(int cardToPlay){
-        // find the card thats about to be played in player's hand
+        // find the card that's about to be played in player's hand
         Card addCard = currentPlayer.getHand().getCard(cardToPlay);
         discard.push(addCard); // add the card to the discard stack
         return addCard;
@@ -307,32 +307,6 @@ public class Round {
         return totalPoint;
     }
 
-    /*
-   public static void main (String args[]){
 
-
-       Player AJ = new Player("AJ");
-       Player Jason = new Player("Jason");
-       Player Zarif = new Player("Zarif");
-       Player Arun = new Player("Arun");
-
-
-       // Arun
-       //Zarif (1)
-       //Jason
-       //AJ
-
-       ArrayList<Player> players1 = new ArrayList<>();
-       players1.add(AJ);
-       players1.add(Jason);
-       players1.add(Zarif);
-       players1.add(Arun);
-
-
-       Round round = new Round(players1);
-       round.distributeHand();
-       round.playRound();
-   }
-   */
 
 }

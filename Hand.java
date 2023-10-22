@@ -97,16 +97,4 @@ public class Hand {
         return sb.toString();
     }
 
-    /*
-    public static void main(String args[]){
-        Deck deck = new Deck();
-        Hand hand = new Hand();
-        hand.addCard(deck.pop());
-        hand.addCard(deck.pop());
-        hand.addCard(deck.pop());
-        hand.addCard(deck.pop());
-        hand.addCard(deck.pop());
-        System.out.println(hand);        
-    }
-    */
 }
