@@ -7,10 +7,10 @@ implementation of Uno - Flip!
 
 ## How to Play!
 
-__Game start__
+__Game start__: 
 Press "Run" on the Uno.java file
 
-__Enter players__
+__Enter players__: 
 Now, you should be prompted with a message asking to input how many you want to play with.
 Enter player names. 
 
@@ -25,14 +25,14 @@ show you which side the game is being played on (light or dark).
 The index's of each card in the hand are provided to the left of each card. You can then select
 what card you would like to play! 
 
-__Remember__
+__Remember__: 
 you many only play a card that is the same colour, or type. Rememeber to look at which side is being played
 on currently!
 
 If you have no cards to play, then you can select the last index in your hand to draw from 
 the deck. 
 
-__Game end?__
+__Game end?__:
 A given round ends with a player has 0 cards, and the game ends when a given player meets the 
 requirment of 500 points
 
