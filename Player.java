@@ -6,7 +6,7 @@
  */
 public class Player {
 
-    // Variables
+    // attributes
     private Hand hand;        // The player's hand of Uno cards
     private String name;      // The name of the player
     private int playerScore;  // The player's score in the game
@@ -18,6 +18,7 @@ public class Player {
      */
     public Player(String name) {
         this.name = name;
+        this.playerScore = 0;
         this.hand = new Hand();
     }
 
@@ -26,6 +27,7 @@ public class Player {
      *
      * @return The player's score.
      */
+
     public int getScore() {
         return this.playerScore;
     }
@@ -35,23 +37,13 @@ public class Player {
      *
      * @param score The new score for the player.
      */
+
     public void setScore(int score) {
         if (score >= 0) {
             this.playerScore = score;
         }
     }
-
-    /**
-     * Play a card from the player's hand.
-     *
-     * @param user The index of the card to be played from the player's hand.
-     * @return The card that was played.
-     */
-    public Card playCard(int user) {
-        Card addCard = this.getHand().getCard(user);
-        return addCard;
-    }
-
+    
     /**
      * Get the player's hand.
      *

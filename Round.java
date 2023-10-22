@@ -37,15 +37,6 @@ public class Round {
     }
 
     /**
-     * Gets the deck of cards used in the round.
-     *
-     * @return The deck of cards.
-     */
-    public Deck getDeck() {
-        return deck;
-    }
-
-    /**
      * Distributes a fixed number of cards to each player's hand at the beginning of the round.
      */
     public void distributeHand(){
@@ -141,6 +132,7 @@ public class Round {
             // if player's hand is 0 then they won the round
             if (currentPlayer.getHand().getSize() == 0) {
                 System.out.println(currentPlayer + " won this round! They will receive " + getTotalPoints() + " points.");
+                currentPlayer.setScore(currentPlayer.getScore() + getTotalPoints()); // update player's score
             }
 
             // update to next player
