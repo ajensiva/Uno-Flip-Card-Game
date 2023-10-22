@@ -47,6 +47,13 @@ public class Hand {
     }
 
     /**
+     * Clears the hand
+     */
+    public void clearHand() {
+        this.hand.removeAll(hand);
+    }
+
+    /**
      * Get a specific card from the hand based on its index.
      *
      * @param card_num The index of the card to retrieve from the hand.
@@ -90,16 +97,4 @@ public class Hand {
         return sb.toString();
     }
 
-    /*
-    public static void main(String args[]){
-        Deck deck = new Deck();
-        Hand hand = new Hand();
-        hand.addCard(deck.pop());
-        hand.addCard(deck.pop());
-        hand.addCard(deck.pop());
-        hand.addCard(deck.pop());
-        hand.addCard(deck.pop());
-        System.out.println(hand);        
-    }
-    */
 }
