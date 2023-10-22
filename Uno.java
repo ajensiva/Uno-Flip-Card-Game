@@ -1,6 +1,13 @@
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Scanner;
+
+
+
+/**
+ * Uno Class : used to begin game, and provide players
+ * @author Jason, Arun, Zarif, Ajen
+ * @version 1.0
+ */
 
 // change by zarif
 public class Uno{
