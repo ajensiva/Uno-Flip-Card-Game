@@ -45,34 +45,29 @@ public class Round {
     public void playRound() {
         //Zarif and AJ
 
-
         int i = 0;
 
-        playcurrentPlayer = players.get(i);
-
-
-
-        Scanner user_card = new Scanner(System.in);
-        System.out.println(playcurrentPlayer.getHand().toString());
         discard.add(deck.pop());
-        System.out.println("Card at top of the pile:");
-        System.out.println(discard.peek());
-        System.out.println("Input a card: ");
-        int Card_to_play = user_card.nextInt();
 
-        discard.add(deck.pop());
-        System.out.println(discard.peek());
+        while (!(checkWinner())) {
 
 
-        if (!(0 < Card_to_play & Card_to_play < playcurrentPlayer.getHand().getSize() - 1)) {
 
-            System.out.println("You are stupid");
 
-        }
+            playcurrentPlayer = players.get(i);
 
-        boolean flag = true;
+            int Card_to_play = askUser(playcurrentPlayer);
+            System.out.println(discard.peek());
 
-        while (flag) {
+
+
+            if (!(0 < Card_to_play & Card_to_play < playcurrentPlayer.getHand().getSize() - 1)) {
+
+                System.out.println("You are stupid");
+
+            }
+
+
             // check can you even play that card, or in fact, any card!
             int keep_check = 0;
 
@@ -99,8 +94,12 @@ public class Round {
 
             if (checkCard(PlayCard, discard.peek())) {
 
+
+
+
                 playCard(Card_to_play);
                 System.out.println("Card has been played!");
+
 
 
                 if (!(darkmode)) {
@@ -145,6 +144,8 @@ public class Round {
 
                 System.out.println("That card cannot be played");
 
+                checkWinner();
+
 
 
                 }
@@ -155,7 +156,6 @@ public class Round {
 
                     System.out.println(getTotalPoints());
 
-                    flag = false;
 
                 }
 
@@ -172,6 +172,21 @@ public class Round {
 
         }
 
+
+        public int askUser(Player playcurrentPlayer){
+
+            Scanner user_card = new Scanner(System.in);
+            System.out.println(playcurrentPlayer.getHand().toString());
+            discard.add(deck.pop());
+            System.out.println("Card at top of the pile:");
+            System.out.println(discard.peek());
+            System.out.println("Input a card: ");
+            int Card_to_play = user_card.nextInt();
+
+            return Card_to_play;
+
+
+        }
 
     public void Draw(int n){
 
@@ -201,8 +216,12 @@ public class Round {
 
 
     public boolean checkCard(Card card1, Card card2){
+        System.out.println(card1);
+        System.out.println(card2);
 
         if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+
+
             wildCard(card1);
             return true;
         }
@@ -247,7 +266,7 @@ public class Round {
         System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (0), Blue (1), Yellow (2), Green (3): ");
         int colour = scanner.nextInt();
         Boolean valid = false;
-        while (colour < 0 | colour < 3 ) {
+        while (colour < 0 || colour > 3 ) {
             System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (0), Blue (1), Yellow (2), Green (3): ");
             colour = scanner.nextInt();
             if (colour == 0) {card.setColorLight("Red");return;}
