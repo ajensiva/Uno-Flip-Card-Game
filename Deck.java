@@ -10,7 +10,7 @@ import java.util.Stack;
 public class Deck {
 
     private Stack<Card> deck; // deck of all cards available
-    private final int FULL_DECK = 112; // max size of deck can only be 112
+    public static final int FULL_DECK = 112; // max size of deck can only be 112
 
     /**
      * Deck constructor : Instatiates deck and generates cards
@@ -44,6 +44,10 @@ public class Deck {
      */
     public Card pop() {
         return deck.pop();
+    }
+
+    public int getSize() {
+        return this.deck.size();
     }
     
     /**

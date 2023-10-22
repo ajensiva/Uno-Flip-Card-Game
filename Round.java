@@ -51,6 +51,14 @@ public class Round {
         }
     }
 
+
+    /**
+     * @return ArrayList<Player>
+     */
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
     /**
      * Plays a round of the Uno game.
      * Manages player turns, card plays, special card effects, and checks for a winner.
