@@ -43,16 +43,18 @@ public class Deck {
         return deck.size();
 
     }
-
-    public void printDeck() {
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         for (Card card : deck) {
-            System.out.println(card); // This calls the `toString` method of the `Card` object
+            sb.append(card.toString()).append("\n");
         }
+        return sb.toString();
     }
 
     public static void main(String args[]){
         Deck deck = new Deck();
-        deck.printDeck();
+        System.out.println(deck);
     }
 }
 
