@@ -82,8 +82,7 @@ public class Round {
             while(true){
                 Card_to_play = askUser(playcurrentPlayer);
                 System.out.println(discard.peek());
-                System.out.println("Card_to_play: " + Card_to_play);
-                if((0 < Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize())){
+                if((0 <= Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize())){
                     System.out.println("done");
                     break;
                 }
@@ -220,6 +219,8 @@ public class Round {
 
         return false;
     }
+
+
 
     public void reverse(){
         Collections.reverse(players);
