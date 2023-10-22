@@ -84,7 +84,7 @@ public class Round {
             while(true){
                 Card_to_play = askUser(playcurrentPlayer);
                 System.out.println(discard.peek());
-                if((0 < Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize())){
+                if((0 <= Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize())){
                     System.out.println("done");
                     break;
                 }
@@ -124,8 +124,8 @@ public class Round {
                     }
 
                     if (PlayCard.getTypeLight() == Card.TypeLight.SKIP) {
+                        i = (i + 1) % players.size();
 
-                        skipPlayer();
 
                     }
                     if (PlayCard.getTypeLight() == Card.TypeLight.FLIP) {
@@ -236,16 +236,7 @@ public class Round {
         return false;
     }
 
-    public void skipPlayer(){
-        // get current plr's index in the arraylist
-        int currentPlayerIndex = players.indexOf(playcurrentPlayer);
-        if(currentPlayerIndex >= (players.size()-1))
-            // reset to first player in list
-            playcurrentPlayer = players.get(0);
-        else
-            // move to next player
-            playcurrentPlayer = players.get(currentPlayerIndex+1);
-    }
+
 
     public void reverse(){
         Collections.reverse(players);
