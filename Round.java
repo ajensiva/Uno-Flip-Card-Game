@@ -3,12 +3,13 @@ import java.util.Stack;
 import java.util.Scanner;
 import java.util.Collections;
 
-
 /**
+ * The `Round` class represents a round of an Uno card game.
+ * It manages player actions, card interactions, and gameplay rules for a single round.
+ *
  * @author Ajen, Jason, Zarif, Arun
  * @version 1.0
  */
-
 public class Round {
 
     private static ArrayList<Player> players;
@@ -20,19 +21,31 @@ public class Round {
     private Player playcurrentPlayer;
     private final int DEALTCARDS = 7;
 
+    /**
+     * Constructor for the `Round` class.
+     * Initializes the round with a list of players, a deck, and a discard pile.
+     *
+     * @param players The list of players participating in the round.
+     */
     Round(ArrayList<Player> players){
         this.players = players;
         deck = new Deck();
         discard = new Stack<Card>();
         distributeHand();
-
-
     }
 
+    /**
+     * Gets the deck of cards used in the round.
+     *
+     * @return The deck of cards.
+     */
     public Deck getDeck() {
         return deck;
     }
 
+    /**
+     * Distributes a fixed number of cards to each player's hand at the beginning of the round.
+     */
     public void distributeHand(){
         int i = 0;
         while (i < DEALTCARDS) {
@@ -43,24 +56,17 @@ public class Round {
         }
     }
 
-    public Card getDiscardStack(){
-
-        return discard.pop();
-    }
-
+    /**
+     * Plays a round of the Uno game.
+     * Manages player turns, card plays, special card effects, and checks for a winner.
+     */
     public void playRound() {
-
-
         playcurrentPlayer = players.get(0);
-        //Zarif and AJ
-
-        int i = 0; // keep track of current player
+        int i = 0;
 
         discard.add(deck.pop());
-        //
+
         while (!(checkWinner())) {
-
-
             if (darkmode) {
                 System.out.println("on dark side!\n");
             } else {
@@ -71,19 +77,8 @@ public class Round {
             playcurrentPlayer = players.get(i);
 
             System.out.println(playcurrentPlayer.getName());
-            /* 
-            int Card_to_play = askUser(playcurrentPlayer);
-            System.out.println(discard.peek());
 
-            while (!(0 <= Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize())) {
-
-                System.out.println("You are stupid");
-                Card_to_play = askUser(playcurrentPlayer);
-
-            }
-            */
-            //////
-            int Card_to_play = 0;//askUser(playcurrentPlayer);
+            int Card_to_play = 0;
             while(true){
                 Card_to_play = askUser(playcurrentPlayer);
                 System.out.println(discard.peek());
@@ -92,127 +87,90 @@ public class Round {
                     break;
                 }
             }
-            /////
-
-
-            // check can you even play that card, or in fact, any card!
 
             Card PlayCard;
-
             PlayCard = playcurrentPlayer.getHand().getCard(Card_to_play);
 
-            //if you have cards to play, move on to play and card!
-
-
             if ((checkCard(PlayCard, discard.peek()))) {
-
-
                 playCard(Card_to_play);
                 System.out.println("Card has been played!");
                 playcurrentPlayer.getHand().removeCard(PlayCard);
 
-
                 if (!(darkmode)) {
-
                     if (PlayCard.getTypeLight() == (Card.TypeLight.WILDTWO)) {
-
                         wildCard(PlayCard);
                         Draw(2);
                         i = (i + 1) % players.size();
-
-
                     }
-
-
                     if (PlayCard.getTypeLight() == Card.TypeLight.REVERSE) {
                         i -= 1;
                         reverse();
                     }
-
                     if (PlayCard.getTypeLight() == Card.TypeLight.SKIP) {
                         i = (i + 1) % players.size();
-
-
                     }
                     if (PlayCard.getTypeLight() == Card.TypeLight.FLIP) {
-
                         darkmode = !(darkmode);
                     }
                     if (PlayCard.getTypeLight() == Card.TypeLight.DRAW_TWO) {
-
                         Draw(2);
-
                     }
-
                     if (PlayCard.getTypeLight() == Card.TypeLight.WILD_DRAW_FOUR) {
-
                         wildCard(PlayCard);
                         Draw(4);
                         i = (i + 1) % players.size();
-
-
                     }
-
                 }
             }
 
-
             if (playcurrentPlayer.getHand().getSize() == 0) {
-
                 System.out.println(playcurrentPlayer + " Won this round!");
-
                 System.out.println(getTotalPoints());
-
-
             }
 
             i = (i + 1) % players.size();
-
-
         }
     }
 
-
-
-
+    /**
+     * Asks the current player for a card to play.
+     *
+     * @param playcurrentPlayer The player whose turn it is.
+     * @return The index of the selected card to play or draw (last index).
+     */
     public int askUser(Player playcurrentPlayer){
-
         Scanner user_card = new Scanner(System.in);
-
         System.out.println(playcurrentPlayer.getHand().toString());
-
-        System.out.println(" [" + playcurrentPlayer.getHand().getSize() + "] draw one card! " );
-        System.out.println("Card at top of the pile:");
+        System.out.println(" [" + playcurrentPlayer.getHand().getSize() + "] draw one card! ");
+        System.out.println("Card at the top of the pile:");
         System.out.println(discard.peek());
         System.out.println("Input a card or draw a card (last index): ");
         int Card_to_play = user_card.nextInt();
-
         myDraw(Card_to_play);
-
         return Card_to_play;
-
-
     }
 
-
+    /**
+     * Handles drawing a card from the deck based on the player's choice.
+     *
+     * @param Card_to_play The player's choice for playing or drawing a card.
+     */
     public void myDraw(int Card_to_play){
-
         if (Card_to_play == playcurrentPlayer.getHand().getSize()){
-
             playcurrentPlayer.getHand().addCard(deck.pop());
         }
-
-
     }
-    public void Draw(int n){
 
+    /**
+     * Handles drawing a specified number of cards for a player.
+     *
+     * @param n The number of cards to draw.
+     */
+    public void Draw(int n){
         int i = 0;
         while (i < n+1) {
-
             players.get((players.indexOf(playcurrentPlayer)+1) % players.size()).getHand().addCard(deck.pop());
-
             i++;
-
         }
     }
 
