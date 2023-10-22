@@ -21,6 +21,9 @@ public class Round {
         this.players = players;
         deck = new Deck();
         discard = new Stack<Card>();
+        distributeHand();
+
+
     }
 
     public Deck getDeck() {
@@ -116,6 +119,7 @@ public class Round {
 
 
                     if (PlayCard.getTypeLight() == Card.TypeLight.REVERSE) {
+                        i -= 1;
                         reverse();
                     }
 
@@ -255,10 +259,12 @@ public class Round {
         while (colour < 0 || colour > 3 ) {
             System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (0), Blue (1), Yellow (2), Green (3): ");
             colour = scanner.nextInt();
-            if (colour == 0) {card.setColorLight("Red");return;}
-            if (colour == 1) {card.setColorLight("Blue");return;}
-            if (colour == 2) {card.setColorLight("Yellow");return;}
-            if (colour == 3) {card.setColorLight("Green");return;}
+
+        }
+        if (colour == 0) {card.setColorLight("Red");}
+        if (colour == 1) {card.setColorLight("Blue");}
+        if (colour == 2) {card.setColorLight("Yellow");}
+        if (colour == 3) {card.setColorLight("Green");
         }
     }
 
@@ -293,6 +299,12 @@ public class Round {
         Player Jason = new Player("Jason");
         Player Zarif = new Player("Zarif");
         Player Arun = new Player("Arun");
+
+
+        // Arun
+        //Zarif (1)
+        //Jason
+        //AJ
 
         ArrayList<Player> players1 = new ArrayList<>();
         players1.add(AJ);
