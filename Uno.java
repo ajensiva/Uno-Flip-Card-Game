@@ -4,7 +4,7 @@ import java.util.Scanner;
 /**
  * Uno Class: Used to start and manage an Uno card game.
  * This class initializes the game, allows players to enter their names, and manages rounds.
- *
+ * @author Jason, Ajen, Arun, Zarif
  * @version 1.0
  */
 public class Uno {
