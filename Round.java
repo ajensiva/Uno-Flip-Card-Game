@@ -52,13 +52,13 @@ public class Round {
 
         discard.add(deck.pop());
 
+
         while (!(checkWinner())) {
 
 
-            if (darkmode){
+            if (darkmode) {
                 System.out.println("on dark side!\n");
-            }
-            else{
+            } else {
                 System.out.println("on light side!\n");
             }
 
@@ -71,8 +71,7 @@ public class Round {
             System.out.println(discard.peek());
 
 
-
-            while (!(0 <= Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize() - 1)) {
+            while (!(0 <= Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize())) {
 
                 System.out.println("You are stupid");
                 Card_to_play = askUser(playcurrentPlayer);
@@ -88,14 +87,13 @@ public class Round {
 
             //if you have cards to play, move on to play an card!
 
-            if (checkCard(PlayCard, discard.peek())) {
 
-
+            if ((checkCard(PlayCard, discard.peek()))) {
 
 
                 playCard(Card_to_play);
                 System.out.println("Card has been played!");
-
+                playcurrentPlayer.getHand().removeCard(PlayCard);
 
 
                 if (!(darkmode)) {
@@ -130,21 +128,10 @@ public class Round {
 
                         wildCard(PlayCard);
                     }
+
                 }
-
-
-                // Darkside implementation
-
-
-            } else {
-
-                System.out.println("That card cannot be played");
-
-                checkWinner();
-
-
-
             }
+
 
             if (playcurrentPlayer.getHand().getSize() == 0) {
 
@@ -159,9 +146,9 @@ public class Round {
 
 
         }
-
-
     }
+
+
 
 
     public int askUser(Player playcurrentPlayer){
@@ -182,8 +169,11 @@ public class Round {
 
         int i = 0;
         while (i < n+1) {
-            playcurrentPlayer.getHand().addCard(deck.pop());
+
+            players.get((players.indexOf(playcurrentPlayer)+1) % players.size()).getHand().addCard(discard.pop());
+
             i++;
+
         }
     }
 
@@ -206,8 +196,7 @@ public class Round {
 
 
     public boolean checkCard(Card card1, Card card2){
-        System.out.println(card1);
-        System.out.println(card2);
+
 
         if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
 
