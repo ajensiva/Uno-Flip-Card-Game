@@ -120,7 +120,7 @@ public class Card {
     
     /**
      * SetColorLight : Allow's the card to be modified in case of Wild Card
-     * @param user
+     * @param newColor
      * @return boolean
      */
     public boolean setColorLight(String newColor) {
