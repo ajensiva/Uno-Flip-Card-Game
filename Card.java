@@ -7,11 +7,9 @@ import java.util.Objects;
  * @version 1.0
  */
 public class Card {
-
     /**
      * enum TypeLight : provides all the possible types for a Card when the Card is being played on the light side
      */
-
     enum TypeLight{
         ONE(1),
         TWO(2),
@@ -30,7 +28,6 @@ public class Card {
         FLIP(20);
 
         private final int value;
-
         /**
          * TypeLight : set's the current value to value passed in for a TypeLight
          * @param value
@@ -47,11 +44,9 @@ public class Card {
             return this.value;
         }
     }
-
     /**
      * enum TypeDark: provides all the possible types for a Card when the Card is being played on the dark side
      */
-
     enum TypeDark{
         ONE(1),
         TWO(2),
@@ -68,9 +63,7 @@ public class Card {
         DRAW_TWO(10),
         WILD_DRAW_FOUR(60),
         FLIP(20);
-
         private final int value;
-
         /**
          * TypeDark : set's the current value to value passed in for a TypeDark
          * @param value
@@ -78,7 +71,6 @@ public class Card {
         TypeDark(int value) {
             this.value = value;
         }
-
         /**
          * getValue : return's the value associated for a given TypeDark
          * @return int
@@ -87,8 +79,6 @@ public class Card {
             return this.value;
         }
       }
-
-
     /**
      * enum ColorLight : Provides the possible Colors on a given Card's light side
      */
@@ -98,7 +88,6 @@ public class Card {
     /**
      * enum ColorDark : Provides the possible Colors on a given Card's dark side
      */
-
     enum ColorDark {
         Pink, Teal, Purple, Orange
     }
@@ -121,36 +110,27 @@ public class Card {
         this.colorDark = colorDark;
         this.typeDark = typeDark;
     }
-
     /**
      * ColorLight : return's the Card's color on the light side
      * @return ColorLight
      */
-
     public ColorLight getColorLight() {
         return this.colorLight;
     }
-
     /**
      * SetColorLight : Allow's the card to be modified in case of Wild Card
      * @param user
      * @return boolean
      */
     public boolean setColorLight(String user) {
-
        for (ColorLight colors : ColorLight.values()){
            if ((Objects.equals(user, colors.toString()))){
                this.colorLight = colors;
-
                return true;
-
            }
-
        }
-
        return false;
     }
-
     /**
      * TypeLight : return's the type on the light side of the card
      * @return TypeLight
@@ -167,7 +147,6 @@ public class Card {
     public ColorDark getColorDark() {
         return this.colorDark;
     }
-
     /**
      * TypeDark : return's the type on the dark side of a card
      * @return TypeDark
@@ -175,19 +154,16 @@ public class Card {
     public TypeDark getTypeDark() {
         return this.typeDark;
     }
-
     /**
      * getValue : return's the value depending on which side of the card the current round is being played on
      * @return
      */
-
     public int getValue(){
         if(Round.darkmode)
             return this.getTypeDark().getValue();
         else
             return this.getTypeLight().getValue();
     }
-
     /**
      * toString : method to represent a given card in String format
      * @return String

@@ -19,51 +19,30 @@ public class Deck {
             deck = new Stack<Card>();
             generateDeck();
     }
-
     /**
      * generateDeck : generates a Deck of 112 cards
      */
-
     private void generateDeck() {
         Random random = new Random();
-
         while (deck.size() < FULL_DECK) {
             //Generate random enums for ColorLight, ColorDark, TypeLight, and TypeDark.
             Card.ColorLight colorLight = Card.ColorLight.values()[random.nextInt(Card.ColorLight.values().length)];
             Card.TypeLight typeLight = Card.TypeLight.values()[random.nextInt(Card.TypeLight.values().length)];
             Card.ColorDark colorDark = Card.ColorDark.values()[random.nextInt(Card.ColorDark.values().length)];
             Card.TypeDark typeDark = Card.TypeDark.values()[random.nextInt(Card.TypeDark.values().length)];
-
             // Create a new card with the generated values.
             Card newCard = new Card(colorLight, typeLight, colorDark, typeDark);
-
             // Add the card to the deck.
             deck.add(newCard);
         }
     }
-
     /**
      * pop : returns the card at the top of the deck
      * @return Card
      */
-
     public Card pop() {
-
         return deck.pop();
-
     }
-
-    /**
-     * getSize : Returns the size of the deck
-     * @return int
-     */
-
-    public int getSize(){
-
-        return deck.size();
-
-    }
-
     /**
      * toString : Provides a way to display teh deck of cards in String format
      * @return String
