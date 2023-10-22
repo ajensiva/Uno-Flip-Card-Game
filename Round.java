@@ -81,64 +81,66 @@ public class Round {
                 }
             }
 
-            cardToPlay -= 1;
-            // the card that's going to be played
-            Card playCard;
-            playCard = currentPlayer.getHand().getCard(cardToPlay); // retrieve from hand
+             // retrieve from hand
 
             // draw one card from the deck and reset loop if index == size of deck
             if (cardToPlay == currentPlayer.getHand().getSize()){
                 // take 1 from the deck and add to player's hand
                 currentPlayer.getHand().addCard(deck.pop());
-                continue; // go back to top
-            }
 
-            // check to see if the card can be played or not by checking the discard stack
-            if ((checkCard(playCard, discard.peek()))) {
-                
-                playCard(cardToPlay);
-                System.out.println("Card has been played!");
-                // take the card from the player
-                currentPlayer.getHand().removeCard(playCard);
+            } else {
 
-                // light type cards only
-                if (!(darkmode)) {
+                // the card that's going to be played
+                Card playCard;
+                playCard = currentPlayer.getHand().getCard(cardToPlay);
+                // check to see if the card can be played or not by checking the discard stack
+                if ((checkCard(playCard, discard.peek()))) {
 
-                    /* 
+                    playCard(cardToPlay);
+                    System.out.println("Card has been played!");
+                    // take the card from the player
+                    currentPlayer.getHand().removeCard(playCard);
+
+                    // light type cards only
+                    if (!(darkmode)) {
+
+                    /*
                      Below are just checks to handle each type of 'special' card.
                      The effects they have on the game. A lot of repeat comments.
                     */
 
-                    // handle wild 2 cards
-                    if (playCard.getTypeLight() == (Card.TypeLight.WILDTWO)) {
-                        wildCard(playCard); // call function to handle wild cards
-                        drawCard(2); // give 2 new cards
-                        playerIndex = (playerIndex + 1) % players.size(); // move to the next player
+                        // handle wild 2 cards
+                        if (playCard.getTypeLight() == (Card.TypeLight.WILDTWO)) {
+                            wildCard(playCard); // call function to handle wild cards
+                            drawCard(2); // give 2 new cards
+                            playerIndex = (playerIndex + 1) % players.size(); // move to the next player
+                        }
+                        if (playCard.getTypeLight() == Card.TypeLight.REVERSE) {
+                            // reverse collection and decrement player index to get player before
+                            playerIndex -= 1;
+                            reverse();
+                        }
+                        if (playCard.getTypeLight() == Card.TypeLight.SKIP) {
+                            // move to the next player
+                            playerIndex = (playerIndex + 1) % players.size();
+                        }
+                        if (playCard.getTypeLight() == Card.TypeLight.FLIP) {
+                            // if on light then go dark, vice versa
+                            darkmode = !(darkmode);
+                        }
+                        if (playCard.getTypeLight() == Card.TypeLight.DRAW_TWO) {
+                            // give 2 cards to the next player
+                            drawCard(2);
+                        }
+                        // same as WILD2 but draw 2 more
+                        if (playCard.getTypeLight() == Card.TypeLight.WILD_DRAW_FOUR) {
+                            wildCard(playCard);
+                            drawCard(4);
+                            playerIndex = (playerIndex + 1) % players.size();
+                        }
                     }
-                    if (playCard.getTypeLight() == Card.TypeLight.REVERSE) {
-                        // reverse collection and decrement player index to get player before
-                        playerIndex -= 1;
-                        reverse();
-                    }
-                    if (playCard.getTypeLight() == Card.TypeLight.SKIP) {
-                        // move to the next player
-                        playerIndex = (playerIndex + 1) % players.size();
-                    }
-                    if (playCard.getTypeLight() == Card.TypeLight.FLIP) {
-                        // if on light then go dark, vice versa
-                        darkmode = !(darkmode);
-                    }
-                    if (playCard.getTypeLight() == Card.TypeLight.DRAW_TWO) {
-                        // give 2 cards to the next player
-                        drawCard(2);
-                    }
-                    // same as WILD2 but draw 2 more
-                    if (playCard.getTypeLight() == Card.TypeLight.WILD_DRAW_FOUR) {
-                        wildCard(playCard);
-                        drawCard(4);
-                        playerIndex = (playerIndex + 1) % players.size();
-                    }
-                }
+            }
+
             }
 
             // if player's hand is 0 then they won the round
