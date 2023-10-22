@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.Collections;
 
 /**
- * The `Round` class represents a round of an Uno card game.
+ * The `Round` class represents a round of Uno card game.
  * It manages player actions, card interactions, and gameplay rules for a single round.
  *
  * @author Ajen, Jason, Zarif, Arun
