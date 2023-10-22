@@ -1,5 +1,7 @@
-// working on it: karki
-
+/**
+ * @author Arun, Jason, Ajen, Zarif
+ * @version 1.0
+ */
 public class Player {
     
     // variables

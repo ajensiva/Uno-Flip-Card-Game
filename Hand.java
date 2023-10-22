@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+
+/**
+ * @author Zarif, Arun, Ajen, Jason
+ * @version 1.0
+ */
 public class Hand {
 
     private ArrayList<Card> hand;

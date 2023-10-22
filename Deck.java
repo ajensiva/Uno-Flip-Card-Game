@@ -1,18 +1,28 @@
-// working on it: karki
+
 import java.util.Random;
 import java.util.Stack;
 
+/**
+ * Deck class : Generates 112 cards to be used to during play
+ * @author Arun Ajen Zarif
+ * @version 1.0
+ */
 public class Deck {
 
-    //private Stack<Card> deck;
     private Stack<Card> deck;
     private int FULL_DECK = 112;
 
-    // constructor
+    /**
+     * Deck constructor : Instatiates deck and generates cards
+     */
     public Deck() {
             deck = new Stack<Card>();
             generateDeck();
     }
+
+    /**
+     * generateDeck : generates a Deck of 112 cards
+     */
 
     private void generateDeck() {
         Random random = new Random();
@@ -32,17 +42,32 @@ public class Deck {
         }
     }
 
+    /**
+     * pop : returns the card at the top of the deck
+     * @return Card
+     */
+
     public Card pop() {
 
         return deck.pop();
 
     }
 
+    /**
+     * getSize : Returns the size of the deck
+     * @return int
+     */
+
     public int getSize(){
 
         return deck.size();
 
     }
+
+    /**
+     * toString : Provides a way to display teh deck of cards in String format
+     * @return String
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -52,10 +77,6 @@ public class Deck {
         return sb.toString();
     }
 
-    public static void main(String args[]){
-        Deck deck = new Deck();
-        System.out.println(deck);
-    }
 }
 
 
