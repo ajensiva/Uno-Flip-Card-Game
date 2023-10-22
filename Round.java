@@ -90,7 +90,7 @@ public class Round {
             if (cardToPlay == currentPlayer.getHand().getSize()){
                 // take 1 from the deck and add to player's hand
                 currentPlayer.getHand().addCard(deck.pop());
-                continue; // go back to top
+                break; // go back to top
             }
 
             // check to see if the card can be played or not by checking the discard stack
