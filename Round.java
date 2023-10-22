@@ -54,7 +54,6 @@ public class Round {
 
         while (!(checkWinner())) {
 
-            System.out.println(playcurrentPlayer.getName());
 
             if (darkmode){
                 System.out.println("on dark side!\n");
@@ -66,14 +65,17 @@ public class Round {
             System.out.println();
             playcurrentPlayer = players.get(i);
 
+            System.out.println(playcurrentPlayer.getName());
+
             int Card_to_play = askUser(playcurrentPlayer);
             System.out.println(discard.peek());
 
 
 
-            if (!(0 < Card_to_play & Card_to_play < playcurrentPlayer.getHand().getSize() - 1)) {
+            while (!(0 <= Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize() - 1)) {
 
                 System.out.println("You are stupid");
+                Card_to_play = askUser(playcurrentPlayer);
 
             }
 
@@ -153,12 +155,7 @@ public class Round {
 
                 }
 
-                i++;
-
-                if (i == players.size()){
-
-                    i = players.size() % 4;
-                }
+                i = i + 1 % players.size();
 
 
             }
@@ -214,8 +211,6 @@ public class Round {
 
         if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
 
-
-            wildCard(card1);
             return true;
         }
         return card1.getColorLight().equals(card2.getColorLight()) || card1.getTypeLight().equals(card2.getTypeLight());
