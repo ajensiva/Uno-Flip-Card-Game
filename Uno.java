@@ -8,8 +8,9 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class Uno {
-    private final int MAXSCORE = 500;
-    private static ArrayList<Player> players;
+
+    private final int MAXSCORE = 500; // max score to win game
+    private static ArrayList<Player> players; // store all players in an array
 
     /**
      * Constructor for the Uno class.
@@ -19,20 +20,23 @@ public class Uno {
         // Initialize the list of players
         players = new ArrayList<Player>();
 
-        boolean flag = true;
-
-        // Obtain the number of players
-        Scanner num_of_players = new Scanner(System.in);
+        // scanner to get userinput (# players and player names)
+        Scanner userInput = new Scanner(System.in);
         System.out.println("Enter the number of players (2-4): ");
-        int num = num_of_players.nextInt();
+        int num = userInput.nextInt();
 
-        Scanner name = new Scanner(System.in);
+        userInput.nextLine(); // consume the newline left by nextInt()
+
+        // loop for # of players
         for (int i = 0; i < num; i++) {
+            // get plr name and create new player instance and add to array
             System.out.println("Enter player " + (i + 1) + "'s name: ");
-            String name_player = name.nextLine();
+            String name_player = userInput.nextLine();
             Player newPlayer = new Player(name_player);
             players.add(newPlayer);
         }
+
+        userInput.close(); // release resources
     }
 
     /**
