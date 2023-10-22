@@ -7,9 +7,10 @@ implementation of Uno - Flip!
 
 ## How to Play!
 
-_Game start_
+__Game start__
 Press "Run" on the Uno.java file
-_Enter players_
+
+__Enter players__
 Now, you should be prompted with a message asking to input how many you want to play with.
 Enter player names. 
 
