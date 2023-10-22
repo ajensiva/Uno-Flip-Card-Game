@@ -36,6 +36,7 @@ public class Uno{
     public boolean winner(){
         for(Player plr : players){
             if(plr.getScore() >= MAXSCORE){
+                System.out.println("winner is: " + plr  + "!");
                 return true;
             }
         }

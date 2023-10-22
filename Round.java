@@ -206,7 +206,7 @@ public class Round {
         int i = 0;
         while (i < n+1) {
 
-            players.get((players.indexOf(playcurrentPlayer)+1) % players.size()).getHand().addCard(discard.pop());
+            players.get((players.indexOf(playcurrentPlayer)+1) % players.size()).getHand().addCard(deck.pop());
 
             i++;
 
@@ -306,34 +306,34 @@ public class Round {
     }
 
 
-    public static void main (String args[]){
-
-
-        Player AJ = new Player("AJ");
-        Player Jason = new Player("Jason");
-        Player Zarif = new Player("Zarif");
-        Player Arun = new Player("Arun");
-
-
-        // Arun
-        //Zarif (1)
-        //Jason
-        //AJ
-
-        ArrayList<Player> players1 = new ArrayList<>();
-        players1.add(AJ);
-        players1.add(Jason);
-        players1.add(Zarif);
-        players1.add(Arun);
-
-
-        Round round = new Round(players1);
-        round.distributeHand();
-        round.playRound();
-
-
-
-    }
+//    public static void main (String args[]){
+//
+//
+//        Player AJ = new Player("AJ");
+//        Player Jason = new Player("Jason");
+//        Player Zarif = new Player("Zarif");
+//        Player Arun = new Player("Arun");
+//
+//
+//        // Arun
+//        //Zarif (1)
+//        //Jason
+//        //AJ
+//
+//        ArrayList<Player> players1 = new ArrayList<>();
+//        players1.add(AJ);
+//        players1.add(Jason);
+//        players1.add(Zarif);
+//        players1.add(Arun);
+//
+//
+//        Round round = new Round(players1);
+//        round.distributeHand();
+//        round.playRound();
+//
+//
+//
+//    }
 
 
 
