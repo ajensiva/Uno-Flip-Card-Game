@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Stack;
+
+import javax.swing.text.StyledEditorKit;
+
 import java.util.Scanner;
 import java.util.Collections;
 
@@ -67,66 +70,77 @@ public class Round {
             currentPlayer = players.get(playerIndex);
             System.out.println("[" + currentPlayer.getName() + "] playing:");
 
+
             int cardToPlay = 0; // index of the card that's going to be played
             // loop until a valid card has been played
             while(true){
                 cardToPlay = askUser(currentPlayer);
-                System.out.println("Top of discard stack: " + discard.peek());
                 // card index must be greater than 0 and less than length of hand to move on
-                if((0 <= cardToPlay && cardToPlay < currentPlayer.getHand().getSize())){
+                if((0 <= cardToPlay && cardToPlay <= currentPlayer.getHand().getSize())){
                     break;
                 }
             }
 
-            // the card that's going to be played
-            Card playCard;
-            playCard = currentPlayer.getHand().getCard(cardToPlay); // retrieve from hand
+             // retrieve from hand
 
-            // check to see if the card can be played or not by checking the discard stack
-            if ((checkCard(playCard, discard.peek()))) {
-                playCard(cardToPlay);
-                System.out.println("Card has been played!");
-                // take the card from the player
-                currentPlayer.getHand().removeCard(playCard);
+            // draw one card from the deck and reset loop if index == size of deck
+            if (cardToPlay == currentPlayer.getHand().getSize()){
+                // take 1 from the deck and add to player's hand
+                currentPlayer.getHand().addCard(deck.pop());
 
-                // light type cards only
-                if (!(darkmode)) {
+            } else {
 
-                    /* 
+                // the card that's going to be played
+                Card playCard;
+                playCard = currentPlayer.getHand().getCard(cardToPlay);
+                // check to see if the card can be played or not by checking the discard stack
+                if ((checkCard(playCard, discard.peek()))) {
+
+                    playCard(cardToPlay);
+                    System.out.println("Card has been played!");
+                    // take the card from the player
+                    currentPlayer.getHand().removeCard(playCard);
+
+                    // light type cards only
+                    if (!(darkmode)) {
+
+                    /*
                      Below are just checks to handle each type of 'special' card.
                      The effects they have on the game. A lot of repeat comments.
-                     */
+                    */
 
-                    // handle wild 2 cards
-                    if (playCard.getTypeLight() == (Card.TypeLight.WILDTWO)) {
-                        wildCard(playCard); // call function to handle wild cards
-                        drawCard(2); // give 2 new cards
-                        playerIndex = (playerIndex + 1) % players.size(); // move to the next player
+                        // handle wild 2 cards
+                        if (playCard.getTypeLight() == (Card.TypeLight.WILDTWO)) {
+                            wildCard(playCard); // call function to handle wild cards
+                            drawCard(2); // give 2 new cards
+                            playerIndex = (playerIndex + 1) % players.size(); // move to the next player
+                        }
+                        if (playCard.getTypeLight() == Card.TypeLight.REVERSE) {
+                            // reverse collection and decrement player index to get player before
+                            playerIndex -= 1;
+                            reverse();
+                        }
+                        if (playCard.getTypeLight() == Card.TypeLight.SKIP) {
+                            // move to the next player
+                            playerIndex = (playerIndex + 1) % players.size();
+                        }
+                        if (playCard.getTypeLight() == Card.TypeLight.FLIP) {
+                            // if on light then go dark, vice versa
+                            darkmode = !(darkmode);
+                        }
+                        if (playCard.getTypeLight() == Card.TypeLight.DRAW_TWO) {
+                            // give 2 cards to the next player
+                            drawCard(2);
+                        }
+                        // same as WILD2 but draw 2 more
+                        if (playCard.getTypeLight() == Card.TypeLight.WILD_DRAW_FOUR) {
+                            wildCard(playCard);
+                            drawCard(4);
+                            playerIndex = (playerIndex + 1) % players.size();
+                        }
                     }
-                    if (playCard.getTypeLight() == Card.TypeLight.REVERSE) {
-                        // reverse collection and decrement player index to get player before
-                        playerIndex -= 1;
-                        reverse();
-                    }
-                    if (playCard.getTypeLight() == Card.TypeLight.SKIP) {
-                        // move to the next player
-                        playerIndex = (playerIndex + 1) % players.size();
-                    }
-                    if (playCard.getTypeLight() == Card.TypeLight.FLIP) {
-                        // if on light then go dark, vice versa
-                        darkmode = !(darkmode);
-                    }
-                    if (playCard.getTypeLight() == Card.TypeLight.DRAW_TWO) {
-                        // give 2 cards to the next player
-                        drawCard(2);
-                    }
-                    // same as WILD2 but draw 2 more
-                    if (playCard.getTypeLight() == Card.TypeLight.WILD_DRAW_FOUR) {
-                        wildCard(playCard);
-                        drawCard(4);
-                        playerIndex = (playerIndex + 1) % players.size();
-                    }
-                }
+            }
+
             }
 
             // if player's hand is 0 then they won the round
@@ -154,7 +168,7 @@ public class Round {
         System.out.println("Top of discard stack: " + discard.peek());
         System.out.println("Input a card or draw a card (last index): ");
         int cardToPlay = userInput.nextInt(); // index of the card to play
-        myDraw(cardToPlay); // if they type the last index, then handle draw one
+        //myDraw(cardToPlay); // if they type the last index, then handle draw one
         return cardToPlay;
     }
 

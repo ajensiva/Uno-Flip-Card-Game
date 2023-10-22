@@ -1,6 +1,5 @@
 import java.util.Objects;
 
-
 /**
  * Card class : Provides methods and attributes for each individual Card
  * @author Jason, Ajen, Arun, Zarif
@@ -104,12 +103,13 @@ public class Card {
      * @param colorDark
      * @param typeDark
      */
-    Card(ColorLight colorLight, TypeLight typeLight, ColorDark colorDark, TypeDark typeDark){
+    public Card(ColorLight colorLight, TypeLight typeLight, ColorDark colorDark, TypeDark typeDark){
         this.colorLight = colorLight;
         this.typeLight = typeLight;
         this.colorDark = colorDark;
         this.typeDark = typeDark;
     }
+
     /**
      * ColorLight : return's the Card's color on the light side
      * @return ColorLight
@@ -117,14 +117,16 @@ public class Card {
     public ColorLight getColorLight() {
         return this.colorLight;
     }
+    
     /**
      * SetColorLight : Allow's the card to be modified in case of Wild Card
      * @param user
      * @return boolean
      */
-    public boolean setColorLight(String user) {
+    public boolean setColorLight(String newColor) {
        for (ColorLight colors : ColorLight.values()){
-           if ((Objects.equals(user, colors.toString()))){
+           // found the colour im looking for to set
+           if ((Objects.equals(newColor, colors.toString()))){
                this.colorLight = colors;
                return true;
            }
@@ -143,10 +145,10 @@ public class Card {
      * ColorDark : return's the color on the dark side of a card
      * @return ColorDark
      */
-
     public ColorDark getColorDark() {
         return this.colorDark;
     }
+    
     /**
      * TypeDark : return's the type on the dark side of a card
      * @return TypeDark
@@ -154,16 +156,19 @@ public class Card {
     public TypeDark getTypeDark() {
         return this.typeDark;
     }
+    
     /**
      * getValue : return's the value depending on which side of the card the current round is being played on
      * @return
      */
     public int getValue(){
+        // return the card's associated value
         if(Round.darkmode)
             return this.getTypeDark().getValue();
         else
             return this.getTypeLight().getValue();
     }
+
     /**
      * toString : method to represent a given card in String format
      * @return String
