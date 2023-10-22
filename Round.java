@@ -152,17 +152,17 @@ public class Round {
             System.out.println();
             currentPlayer = players.get(i);
           
-            System.out.println(playcurrentPlayer.getName());
+            System.out.println(currentPlayer.getName());
 
-            int Card_to_play = askUser(playcurrentPlayer);
+            int Card_to_play = askUser(currentPlayer);
 
             System.out.println(discard.peek());
 
-            while (!(0 <= Card_to_play && Card_to_play < playcurrentPlayer.getHand().getSize() - 1)) {
+            while (!(0 <= Card_to_play && Card_to_play < currentPlayer.getHand().getSize() - 1)) {
 
 
                 System.out.println("You are stupid");
-                Card_to_play = askUser(playcurrentPlayer);
+                Card_to_play = askUser(currentPlayer);
 
             }
 
@@ -231,9 +231,9 @@ public class Round {
 
                 }
 
-                if (playcurrentPlayer.getHand().getSize() == 0) {
+                if (currentPlayer.getHand().getSize() == 0) {
 
-                    System.out.println(playcurrentPlayer + " Won this round!");
+                    System.out.println(currentPlayer + " Won this round!");
 
                     System.out.println(getTotalPoints());
 
@@ -255,53 +255,15 @@ public class Round {
 
             i++;
 
-            if (i == players.size()){
+            if (i == players.size()) {
 
-        Card addCard;
-
-        addCard = playcurrentPlayer.getHand().getCard(user);
-
-        discard.push(addCard);
-
-
-        return addCard;
+            }
     }
 
 
 
     public void displayCard(){}
-
-
-    public boolean checkCard(Card card1, Card card2){
-        System.out.println(card1);
-        System.out.println(card2);
-
-        if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
-
-            return true;
-        }
-        return card1.getColorLight().equals(card2.getColorLight()) || card1.getTypeLight().equals(card2.getTypeLight());
-    }
-
-    public boolean takeCardFromDeck(Player player, int n){
-
-        int i = 0;
-
-        if (n > 0) {
-
-            while (i <= n) {
-
-                player.getHand().addCard(deck.pop());
-
-                i++;
-
-            }
-
-
-        }
-
-
-    }
+    
 
     public static void main (String args[]){
         
