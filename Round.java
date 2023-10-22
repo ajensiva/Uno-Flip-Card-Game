@@ -175,74 +175,88 @@ public class Round {
     }
 
 
+    /**
+     * Plays a card from the player's hand and adds it to the discard pile.
+     *
+     * @param user The index of the card to be played from the player's hand.
+     * @return The card that was played.
+     */
     public Card playCard(int user){
-
-
         Card addCard;
-
         addCard = playcurrentPlayer.getHand().getCard(user);
-
         discard.push(addCard);
-
-
         return addCard;
     }
 
-
-
+    /**
+     * Placeholder method for displaying cards (no implementation provided).
+     */
     public void displayCard(){}
 
+    /**
+     * Checks if a card can be played based on Uno card game rules.
+     *
+     * @param card1 The card to be checked for playability.
+     * @param card2 The card at the top of the discard pile.
+     * @return True if the card can be played, false otherwise.
+     */
     public boolean checkCard(Card card1, Card card2){
-
-
         if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
-
             return true;
         }
         return card1.getColorLight().equals(card2.getColorLight()) || card1.getTypeLight().equals(card2.getTypeLight());
     }
 
+    /**
+     * Attempts to take a specified number of cards from the deck and add them to a player's hand.
+     *
+     * @param player The player who is taking the cards.
+     * @param n The number of cards to take from the deck.
+     * @return True if the cards were successfully taken, false otherwise.
+     */
     public boolean takeCardFromDeck(Player player, int n){
-
         int i = 0;
-
         if (n > 0) {
-
             while (i <= n) {
-
                 player.getHand().addCard(deck.pop());
-
                 i++;
             }
             return true;
         }
-
         return false;
     }
 
-
-
+    /**
+     * Reverses the order of players in the game.
+     */
     public void reverse(){
         Collections.reverse(players);
     }
 
+    /**
+     * Handles the selection of a color for a Wild card.
+     *
+     * @param card The Wild card for which the color is selected.
+     */
     public void wildCard(Card card){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (0), Blue (1), Yellow (2), Green (3): ");
-        int colour = scanner.nextInt();
-        Boolean valid = false;
-        while (colour < 0 || colour > 3 ) {
-            System.out.println("What colour would you like? (enter an integer) \nAvailable Colours, Red (0), Blue (1), Yellow (2), Green (3): ");
-            colour = scanner.nextInt();
-
+        System.out.println("What color would you like? (enter an integer)\nAvailable Colors: Red (0), Blue (1), Yellow (2), Green (3): ");
+        int color = scanner.nextInt();
+        while (color < 0 || color > 3) {
+            System.out.println("Invalid color choice. Enter an integer (0-3) to choose a color: ");
+            color = scanner.nextInt();
         }
-        if (colour == 0) {card.setColorLight("Red");}
-        if (colour == 1) {card.setColorLight("Blue");}
-        if (colour == 2) {card.setColorLight("Yellow");}
-        if (colour == 3) {card.setColorLight("Green");
-        }
+        if (color == 0) {card.setColorLight("Red");}
+        if (color == 1) {card.setColorLight("Blue");}
+        if (color == 2) {card.setColorLight("Yellow");}
+        if (color == 3) {card.setColorLight("Green");}
     }
 
+    /**
+     * Checks if any player has won the round by emptying their hand.
+     *
+     * @return True if a player has won, false otherwise.
+     */
     public boolean checkWinner(){
         for (Player player: players) {
             if(player.getHand().getSize() == 0) {
@@ -252,6 +266,11 @@ public class Round {
         return false;
     }
 
+    /**
+     * Calculates the total points for the round based on the remaining cards in players' hands.
+     *
+     * @return The total points for the round.
+     */
     public int getTotalPoints(){
         int totalPoint = 0;
         for(Player plr : players){
