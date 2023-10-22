@@ -47,6 +47,13 @@ public class Hand {
     }
 
     /**
+     * Clears the hand
+     */
+    public void clearHand() {
+        this.hand.removeAll(hand);
+    }
+
+    /**
      * Get a specific card from the hand based on its index.
      *
      * @param card_num The index of the card to retrieve from the hand.
