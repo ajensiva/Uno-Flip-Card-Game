@@ -7,18 +7,31 @@ public class Uno{
     // working: Jason
 
     private final int MAXSCORE = 500;
-    private Player winner;
+
     private static ArrayList<Player> players;
 
-    public Uno(String playerList) {
+    public Uno() {
         // init list of players
         players = new ArrayList<Player>();
-        
-        // split by space and create new player
-        String[] names = playerList.split(" ");
-        for (String name : names) {
-            Player newPlayer = new Player(name);
-            players.add(newPlayer);
+
+        boolean flag = true;
+
+
+            // split by space and create new player
+            Scanner num_of_players = new Scanner(System.in);
+            System.out.println("Enter number of players (2-4): ");
+            int num = num_of_players.nextInt();
+
+            Scanner name = new Scanner(System.in);
+
+            for (int i = 0; i < num; i++){
+
+                System.out.println("Enter player (" + (i + 1) + ") name: ");
+
+                String name_player = name.nextLine();
+                Player newPlayer = new Player(name_player);
+                players.add(newPlayer);
+
         }
     }
 
@@ -51,10 +64,8 @@ public class Uno{
 
 
     public static void main(String args[]) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter all players: ");
-        String userInput = scanner.nextLine();
-        Uno newGame = new Uno(userInput);
+
+        Uno newGame = new Uno();
 
         newGame.printPlayers();
 
