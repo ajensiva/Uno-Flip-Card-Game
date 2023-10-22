@@ -35,8 +35,6 @@ public class Uno {
             Player newPlayer = new Player(name_player);
             players.add(newPlayer);
         }
-
-        userInput.close(); // release resources
     }
 
     /**
