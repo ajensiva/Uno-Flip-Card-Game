@@ -5,7 +5,7 @@
 Welcome to the Uno Flip Game! Deliverable one includes a simple text-based
 implementation of Uno - Flip!
 
-## How to Play!
+## Start the Game!
 
 __Game start__: 
 Press "Run" on the Uno.java file
