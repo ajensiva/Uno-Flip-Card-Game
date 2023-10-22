@@ -221,8 +221,6 @@ public class Round {
         return false;
     }
 
-
-
     public void reverse(){
         Collections.reverse(players);
     }
