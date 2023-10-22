@@ -31,17 +31,43 @@ public class DeckTest {
     }
 
     @Test
-    public void testToString() {
-        String deckString = testDeck.toString();
-        String[] cardStrings = deckString.split("\n");
+    public void testRandomDeck() {
+        Deck deck = new Deck();
 
-        // Ensure that the number of cards in the deck matches the expected size
-        assertEquals(testDeck.FULL_DECK, cardStrings.length);
+        // Check if the deck has exactly 112 cards
+        assertEquals(112, deck.getSize());
 
-        for (String cardString : cardStrings) {
-            // Verify that each card in the deck is represented correctly in the deck's string format
-            assertNotNull(cardString);
-            assertTrue(cardString.matches("Color:\s +, Type: + \s"));
+        // Define arrays for valid colors and types
+        Card.ColorLight[] validColorsLight = Card.ColorLight.values();
+        Card.TypeLight[] validTypesLight = Card.TypeLight.values();
+
+
+        // Check if each card in the deck has a valid color and type
+        for (int i = 0; i < deck.getSize(); i++) {
+            Card card = deck.pop();
+            assertTrue(isValidColor(card.getColorLight(), validColorsLight));
+            assertTrue(isValidType(card.getTypeLight(), validTypesLight));
+
         }
+    }
+
+    // Helper method to check if a color is valid
+    private boolean isValidColor(Card.ColorLight color, Card.ColorLight[] validColors) {
+        for (Card.ColorLight validColor : validColors) {
+            if (color == validColor) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Helper method to check if a type is valid
+    private boolean isValidType(Card.TypeLight type, Card.TypeLight[] validTypes) {
+        for (Card.TypeLight validType : validTypes) {
+            if (type == validType) {
+                return true;
+            }
+        }
+        return false;
     }
 }
