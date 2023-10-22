@@ -1,60 +1,85 @@
-// working on it: karki
-
+/**
+ * Player class represents a player in the Uno game.
+ *
+ * @author Arun, Jason, Ajen, Zarif
+ * @version 1.0
+ */
 public class Player {
-    
-    // variables
-    private Hand hand;
-    private String name;
-    private int playerScore;
 
-    // constructor
-    public Player(String name){
+    // Variables
+    private Hand hand;        // The player's hand of Uno cards
+    private String name;      // The name of the player
+    private int playerScore;  // The player's score in the game
 
+    /**
+     * Constructor to create a new player with the given name.
+     *
+     * @param name The name of the player.
+     */
+    public Player(String name) {
         this.name = name;
         this.hand = new Hand();
     }
 
-    // getScore()
-    public int getScore(){
+    /**
+     * Get the player's score.
+     *
+     * @return The player's score.
+     */
+    public int getScore() {
         return this.playerScore;
     }
 
-    // setScore()
-    public void setScore(int score){
-        if(score >= 0){
+    /**
+     * Set the player's score to the specified value.
+     *
+     * @param score The new score for the player.
+     */
+    public void setScore(int score) {
+        if (score >= 0) {
             this.playerScore = score;
         }
     }
 
-
-    public Card playCard(int user){
-
-
-        Card addCard;
-
-        addCard = this.getHand().getCard(user);
-
-
+    /**
+     * Play a card from the player's hand.
+     *
+     * @param user The index of the card to be played from the player's hand.
+     * @return The card that was played.
+     */
+    public Card playCard(int user) {
+        Card addCard = this.getHand().getCard(user);
         return addCard;
     }
 
-
-
-    // getHand()
-    public Hand getHand(){
+    /**
+     * Get the player's hand.
+     *
+     * @return The player's hand of Uno cards.
+     */
+    public Hand getHand() {
         return this.hand;
     }
 
-    // getName()
-    public String getName(){
+    /**
+     * Get the name of the player.
+     *
+     * @return The name of the player.
+     */
+    public String getName() {
         return this.name;
     }
 
-    // equals override
+    /**
+     * Override the equals method to compare players based on name and score.
+     *
+     * @param obj The object to compare with this player.
+     * @return True if the objects are equal, false otherwise.
+     */
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         Player plr = (Player) obj;
-        if(this.getName() == plr.getName() && this.getScore() == plr.getScore()){
+        if (this.getName().equals(plr.getName()) && this.getScore() == plr.getScore()) {
             return true;
         }
         return false;
