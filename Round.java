@@ -43,6 +43,9 @@ public class Round {
     }
 
     public void playRound() {
+
+
+        playcurrentPlayer = players.get(0);
         //Zarif and AJ
 
         int i = 0;
@@ -51,9 +54,16 @@ public class Round {
 
         while (!(checkWinner())) {
 
+            System.out.println(playcurrentPlayer.getName());
 
+            if (darkmode){
+                System.out.println("on dark side!\n");
+            }
+            else{
+                System.out.println("on light side!\n");
+            }
 
-
+            System.out.println();
             playcurrentPlayer = players.get(i);
 
             int Card_to_play = askUser(playcurrentPlayer);
@@ -69,22 +79,6 @@ public class Round {
 
 
             // check can you even play that card, or in fact, any card!
-            int keep_check = 0;
-
-            for (Card card : playcurrentPlayer.getHand().getAll()) {
-
-                if (!(checkCard(card, discard.peek()))) {
-                    keep_check += 1;
-                }
-
-            }
-
-            if (keep_check == playcurrentPlayer.getHand().getSize()){
-
-                Draw(1);
-
-            }
-
 
             Card PlayCard;
 
@@ -177,7 +171,6 @@ public class Round {
 
             Scanner user_card = new Scanner(System.in);
             System.out.println(playcurrentPlayer.getHand().toString());
-            discard.add(deck.pop());
             System.out.println("Card at top of the pile:");
             System.out.println(discard.peek());
             System.out.println("Input a card: ");
@@ -204,7 +197,7 @@ public class Round {
 
         addCard = playcurrentPlayer.getHand().getCard(user);
 
-        discard.add(addCard);
+        discard.push(addCard);
 
 
         return addCard;
