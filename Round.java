@@ -70,18 +70,21 @@ public class Round {
             currentPlayer = players.get(playerIndex);
             boolean validInput = false;
             while (!(validInput)) {
-            System.out.println("[" + currentPlayer.getName() + "] playing:");
+                System.out.println("------------------------------");
+                System.out.println("[" + currentPlayer.getName() + "] playing:\n");
+                System.out.println("------------------------------");
+                System.out.println("Cards you can play:");
 
 
-            int cardToPlay = 0; // index of the card that's going to be played
-            // loop until a valid card has been played
-            while(true){
-                cardToPlay = askUser(currentPlayer);
-                // card index must be greater than 0 and less than length of hand to move on
-                if((0 <= cardToPlay && cardToPlay <= currentPlayer.getHand().getSize())){
-                    break;
+                int cardToPlay = 0; // index of the card that's going to be played
+                // loop until a valid card has been played
+                while(true){
+                    cardToPlay = askUser(currentPlayer);
+                    // card index must be greater than 0 and less than length of hand to move on
+                    if((0 <= cardToPlay && cardToPlay <= currentPlayer.getHand().getSize())){
+                        break;
+                    }
                 }
-            }
 
              // retrieve from hand
 
@@ -144,7 +147,7 @@ public class Round {
                 }
             }
             if (!validInput) {
-                System.out.println("Invalid card choice!");
+                System.out.println("Invalid card choice please enter a valid card index or draw card!\n");
             }
             }
 
@@ -169,8 +172,10 @@ public class Round {
         Scanner userInput = new Scanner(System.in);
         // print the player's current hand to see
         System.out.println(currentPlayer.getHand().toString());
-        System.out.println(" [" + currentPlayer.getHand().getSize() + "] draw one card! ");
-        System.out.println("Top of discard stack: " + discard.peek());
+        System.out.println(" [" + currentPlayer.getHand().getSize() + "] Draw one card!\n");
+        System.out.println("---------------------------------------------- \n");
+        System.out.println("Top of discard pile: " + discard.peek() + "\n");
+        System.out.println("----------------------------------------------");
         System.out.println("Input a card or draw a card (last index): ");
         int cardToPlay = userInput.nextInt(); // index of the card to play
         //myDraw(cardToPlay); // if they type the last index, then handle draw one
