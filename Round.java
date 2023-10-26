@@ -20,7 +20,7 @@ public class Round {
     private Deck deck; // main deck of the game
     private Stack<Card> discard; // discard cards stack
 
-    public static boolean darkmode = false; // if true then we're playing dark sides of card
+    public static boolean darkmode = true; // if true then we're playing dark sides of card
 
     private Player currentPlayer; // current player thats playing
     private final int DEALTCARDS = 7; // max number of cards to be delt
@@ -157,10 +157,8 @@ public class Round {
                             drawCard(4);
                             playerIndex = (playerIndex + 1) % players.size();
                         }
-
-
-                        /*DarkSide implementation*/
-
+                    }
+                    if (darkmode){
 
                         if (playCard.getTypeDark() == Card.TypeDark.DRAW_FIVE) {
 
@@ -282,11 +280,12 @@ public class Round {
      */
     public boolean checkCard(Card card1, Card card2){
         // let wild cards be played regardless
-        if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
-            return true;
-        }
-        // if the color or the number/type matches
-        return card1.getColorLight().equals(card2.getColorLight()) || card1.getTypeLight().equals(card2.getTypeLight());
+        boolean check1 = card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO);
+        boolean check2 = card2.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR) || card1.getTypeLight().equals(Card.TypeDark.WILD_CARD);
+
+
+                // if the color or the number/type matches
+        return (card1.getColorLight().equals(card2.getColorLight()) || card1.getTypeLight().equals(card2.getTypeLight())) || (card1.getColorDark().equals(card2.getColorDark()) || card1.getTypeDark().equals(card2.getTypeDark())) ;
     }
 
     /**
