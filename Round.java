@@ -78,6 +78,7 @@ public class Round {
             currentPlayer = players.get(playerIndex);
             boolean validInput = false;
             while (!(validInput)) {
+                System.out.println("The mode being played on: " + darkmode(darkmode));
                 System.out.println("------------------------------");
                 System.out.println("[" + currentPlayer.getName() + "] playing:");
                 System.out.println("------------------------------");
@@ -100,6 +101,11 @@ public class Round {
             if (cardToPlay == currentPlayer.getHand().getSize()){
                 // take 1 from the deck and add to player's hand
                 currentPlayer.getHand().addCard(deck.pop());
+                int nextPlayerIndex = (players.indexOf(currentPlayer)+1) % players.size(); // player that will draw cards
+                currentPlayer = players.get(nextPlayerIndex);
+
+                validInput = true;
+
 
             } else {
 
@@ -221,6 +227,15 @@ public class Round {
         int cardToPlay = userInput.nextInt(); // index of the card to play
         //myDraw(cardToPlay); // if they type the last index, then handle draw one
         return cardToPlay;
+    }
+
+    public String darkmode(boolean darkmode){
+        if (darkmode){
+            return "Darkmode!";
+        }
+        else{
+            return  "Lightmode!";
+        }
     }
 
     /**
