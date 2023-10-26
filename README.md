@@ -1,52 +1,47 @@
-# Uno-Flip-Card-Game
+# Uno-Flip-Card
+## Development Team
+- __Zarif Khan__ : _101224172_
+- __Arun Kharki__ : _101248498_
+- __Jason Kia__ : _101233435_
+- __Ajen Srisivapalan__ : _101224172_
 
-## Deliverable One 
+### Milestone 1:
+- Implemented short text based UI of the classic Uno-Flip Card game
+- Includes implementation of Lightside cards
+- Allows anywhere from 2-4 players
+- Includes Java Unit Testing of each class
 
-Welcome to the Uno Flip Game! Deliverable one includes a simple text-based
-implementation of Uno - Flip!
+### Known issues:
+- Darkside is not implemented 
+- UI is only available through the terminal
+- The user plays as every player (does not include AI compatability)
+- In the case that a user does not input an index to play a Card (if they put a String) then there is no catch for this case
 
-## Start the Game!
+#### MIT License
 
-__Game start__: 
-Press "Run" on the Uno.java file
+_Copyright (c) 2023 [Ajen Srisivapalan, Jason Keah, Zarif Khan, Arun Karki]_
 
-__Enter players__: 
-Now, you should be prompted with a message asking to input how many you want to play with.
-Enter player names. 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-## Playing the game
-
-Once the game begins, each player will be given a hand of 7 cards, and 1 card will be placed in the
-discrad pile. 
-
-The terminal will show you who's turn it currently is as well as the current player's hand. It will also
-show you which side the game is being played on (light or dark).
-The index's of each card in the hand are provided to the left of each card. You can then select
-what card you would like to play! 
-
-__Remember__: 
-you many only play a card that is the same colour, or type. Rememeber, to look at which side is being played
-on currently!
-
-If you have no cards to play, then you can select the last index in your hand to draw from 
-the deck. 
-
-__Game end?__:
-A given round ends with a player has 0 cards, and the game ends when a given player meets the 
-requirment of 500 points
-
-Scoring System:
-Number cards : Face value
-Draw One : 10 points
-Draw Five, Reverse, Skip, Flip : 20 points
-Skip Everyone : 30 points
-Wild : 40 points
-Wild Draw Two : 50 points
-Wild Draw Color: 60 points
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 
-Carleton University 2023/10/22
+
+
 
 
 
