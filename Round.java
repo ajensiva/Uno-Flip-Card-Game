@@ -97,9 +97,11 @@ public class Round {
 
              // retrieve from hand
 
+
+
             // draw one card from the deck and reset loop if index == size of deck
             if (cardToPlay == currentPlayer.getHand().getSize()){
-                // take 1 from the deck and add to player's hand
+
                 currentPlayer.getHand().addCard(deck.pop());
                 break;
 
