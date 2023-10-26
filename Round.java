@@ -101,10 +101,7 @@ public class Round {
             if (cardToPlay == currentPlayer.getHand().getSize()){
                 // take 1 from the deck and add to player's hand
                 currentPlayer.getHand().addCard(deck.pop());
-                int nextPlayerIndex = (players.indexOf(currentPlayer)+1) % players.size(); // player that will draw cards
-                currentPlayer = players.get(nextPlayerIndex);
-
-                validInput = true;
+                break;
 
 
             } else {
