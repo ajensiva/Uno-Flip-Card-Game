@@ -78,8 +78,9 @@ public class Round {
             currentPlayer = players.get(playerIndex);
             boolean validInput = false;
             while (!(validInput)) {
+                System.out.println("The mode being played on: " + darkmode(darkmode));
                 System.out.println("------------------------------");
-                System.out.println("[" + currentPlayer.getName() + "] playing:\n");
+                System.out.println("[" + currentPlayer.getName() + "] playing:");
                 System.out.println("------------------------------");
                 System.out.println("Cards you can play:");
 
@@ -100,6 +101,8 @@ public class Round {
             if (cardToPlay == currentPlayer.getHand().getSize()){
                 // take 1 from the deck and add to player's hand
                 currentPlayer.getHand().addCard(deck.pop());
+                break;
+
 
             } else {
 
@@ -109,7 +112,8 @@ public class Round {
                 // check to see if the card can be played or not by checking the discard stack
                 if ((checkCard(playCard, discard.peek()))) {
                     validInput = true;
-                    playCard(cardToPlay);
+                    System.out.println(playCard(cardToPlay));
+
                     System.out.println("Card has been played!");
                     // take the card from the player
                     currentPlayer.getHand().removeCard(playCard);
@@ -151,6 +155,38 @@ public class Round {
                             drawCard(4);
                             playerIndex = (playerIndex + 1) % players.size();
                         }
+
+
+                        /*DarkSide implementation*/
+
+
+                        if (playCard.getTypeDark() == Card.TypeDark.DRAW_FIVE) {
+
+                            drawCard(5); // give 2 new cards
+                        }
+                        if (playCard.getTypeDark() == Card.TypeDark.SKIP_EVERYONE) {
+                            playerIndex -= 1;
+                        }
+                        if (playCard.getTypeDark() == Card.TypeDark.REVERSE) {
+                            // reverse collection and decrement player index to get player before
+                            playerIndex -= 1;
+                            reverse();
+                        }
+
+                        if (playCard.getTypeDark() == Card.TypeDark.WILD_CARD){
+                            wildCard(playCard);
+                        }
+                        if (playCard.getTypeDark() == Card.TypeDark.WILD_DRAW_COLOR) {
+                            wildDrawColor(currentPlayer);
+                        }
+
+                        if (playCard.getTypeDark() == Card.TypeDark.FLIP) {
+
+                            darkmode = !(darkmode);
+
+                        }
+
+
                     }
                 }
             }
@@ -190,16 +226,12 @@ public class Round {
         return cardToPlay;
     }
 
-    /**
-     * Handles drawing a card from the deck based on the player's choice.
-     *
-     * @param cardToPlay The player's choice for playing or drawing a card.
-     */
-    public void myDraw(int cardToPlay){
-        // player typed last index so draw 1 card
-        if (cardToPlay == currentPlayer.getHand().getSize()){
-            // take 1 from the deck and add to player's hand
-            currentPlayer.getHand().addCard(deck.pop());
+    public String darkmode(boolean darkmode){
+        if (darkmode){
+            return "Darkmode!";
+        }
+        else{
+            return  "Lightmode!";
         }
     }
 
@@ -215,6 +247,15 @@ public class Round {
             // give cards to the next player
             players.get(nextPlayerIndex).getHand().addCard(deck.pop());
         }
+    }
+
+    public void wildDrawColor(Player currentPlayer){
+        int nextPlayerIndex = (players.indexOf(currentPlayer)+1) % players.size(); // player that will draw cards
+
+        while ((players.get(nextPlayerIndex).getHand().getCard(players.get(nextPlayerIndex).getHand().getSize()-1)) != discard.peek()) {
+            players.get(nextPlayerIndex).getHand().addCard(deck.pop());
+        }
+
     }
 
     /**
