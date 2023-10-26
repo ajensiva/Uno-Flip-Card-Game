@@ -176,7 +176,8 @@ public class Card {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Color: ").append(colorLight).append(", Type: ").append(typeLight);
+        sb.append("Light Color: ").append(colorLight).append(", Light Type: ").append(typeLight);
+        sb.append("\n     Dark Color: ").append(colorDark).append(", Dark Type: ").append(typeDark);
         return sb.toString();
     }
 }
