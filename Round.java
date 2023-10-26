@@ -100,6 +100,7 @@ public class Round {
             if (cardToPlay == currentPlayer.getHand().getSize()){
                 // take 1 from the deck and add to player's hand
                 currentPlayer.getHand().addCard(deck.pop());
+                break;
 
             } else {
 
