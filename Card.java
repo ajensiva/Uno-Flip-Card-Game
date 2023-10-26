@@ -56,11 +56,11 @@ public class Card {
         SEVEN(7),
         EIGHT(8),
         NINE(9),
-        WILDTWO (50),
-        SKIP(30),
+        DRAW_FIVE (50),
+        SKIP_EVERYONE(30),
         REVERSE(20),
-        DRAW_TWO(10),
-        WILD_DRAW_FOUR(60),
+        WILD_CARD( 20),
+        WILD_DRAW_COLOR(60),
         FLIP(20);
         private final int value;
         /**

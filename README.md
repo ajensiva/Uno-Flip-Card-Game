@@ -3,7 +3,7 @@
 - __Zarif Khan__ : _101224172_
 - __Arun Kharki__ : _101248498_
 - __Jason Kia__ : _101233435_
-- __Ajen Srisivapalan__ : _101224172_
+- __Ajen Srisivapalan__ : _101248498_
 
 ### Milestone 1:
 - Implemented short text based UI of the classic Uno-Flip Card game
