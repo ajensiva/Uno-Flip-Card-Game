@@ -176,8 +176,11 @@ public class Card {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Light Color: ").append(colorLight).append(", Light Type: ").append(typeLight);
-        sb.append("\n     Dark Color: ").append(colorDark).append(", Dark Type: ").append(typeDark);
+        if(Round.darkmode){
+            sb.append("Dark Color: ").append(colorDark).append(", Dark Type: ").append(typeDark);
+        }else{
+            sb.append("Light Color: ").append(colorLight).append(", Light Type: ").append(typeLight);
+        }
         return sb.toString();
     }
 }
