@@ -19,8 +19,8 @@ public class Controller {
 
         uno.playGame();
 
-        view.addUpdateHandListener(new UpdateHandListener);
-        view.addupdateDeckListener(new UpdateDeckListener);
+//        view.addUpdateHandListener(new UpdateHandListener);
+//        view.addupdateDeckListener(new UpdateDeckListener);
     }
 
     private class UpdateHandListener implements ActionListener {
