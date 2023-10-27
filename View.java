@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class View {
 
-    private final int FRAME_SIZE_WIDTH = 500;
-    private final int FRAME_SIZE_HEIGHT = 500;
+    private final int FRAME_SIZE_WIDTH = 600;
+    private final int FRAME_SIZE_HEIGHT = 600;
 
     private JFrame rootFrame;
     private JPanel mainPanel, handPanel;
 
-
     private JButton deckButton, discardButton;
+    private ArrayList<JButton> playerCards; // holds player's hand; array of cards
 
     public View() {
+
+        playerCards = new ArrayList<JButton>();
 
         // root frame
         rootFrame = new JFrame();
@@ -31,50 +33,53 @@ public class View {
         buildDeck();
         buildDiscard();
 
-
-        //if card cannot be played call this function
-//        buildLabelField();
-
         // clean up root frame
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         rootFrame.setVisible(true);
     }
 
-    public void buildLabelField(){
-
-        JLabel LabelField = new JLabel("Error");
-        LabelField.setBounds(220,100,80,25);
-        mainPanel.add(LabelField);
+    // 
+    public void addCard(){
+        JButton card = new JButton();
+        card.setName("[ CARD TEST ]");
+        handPanel.add(card);
+        playerCards.add(card);
     }
 
     public void buildDeck() {
         JButton button = new JButton("Deck");
         button.setSize(100, 50);
-        button.setLocation(50,100);
+        button.setLocation(100,100);
 
         mainPanel.add(button);
     }
 
-
-    // make this into an image textlabel
     public void buildDiscard() {
-        JLabel label = new JLabel("Discard");
-        label.setSize(100, 50);
-        label.setLocation(330,100);
+        JButton button = new JButton("Discard");
+        button.setSize(100, 50);
+        button.setLocation(250,100);
 
-        mainPanel.add(label);
+        mainPanel.add(button);
     }
+
+    public static int numCards = 5;
 
     public void buildHand() {
         handPanel = new JPanel();
-        handPanel.setBackground(Color.DARK_GRAY);
+        handPanel.setBackground(Color.BLACK);
         handPanel.setSize(FRAME_SIZE_WIDTH, 125);
         handPanel.setLocation(0,275);
         mainPanel.add(handPanel);
+
+        handPanel.setLayout(new GridLayout(0, 7));        
     }
     
     public static void main(String args[]) {
         View view = new View();
+
+        for(int i = 0; i < numCards; i++){
+            view.addCard();
+        }
     }
 }
