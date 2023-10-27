@@ -7,10 +7,9 @@ public class View {
     private final int FRAME_SIZE_HEIGHT = 500;
 
     private JFrame rootFrame;
-    private JPanel mainPanel;
-    private JPanel handPanel;
+    private JPanel mainPanel, handPanel;
 
-    private Container contentPanel;
+    private JButton deckButton, discardButton;
 
     public View() {
 
@@ -21,24 +20,34 @@ public class View {
 
         // main panel
         mainPanel = new JPanel();
-        mainPanel.setLayout(null); // Consider using LayoutManager for more complex layouts
-        mainPanel.setPreferredSize(new Dimension(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT)); // Set preferred size
+        mainPanel.setLayout(null); 
+        mainPanel.setPreferredSize(new Dimension(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT)); 
         rootFrame.add(mainPanel);
 
+        // build hand ui and add cards
         buildHand();
+        buildDeck();
+        buildDiscard();
 
+        // clean up root frame
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
-        rootFrame.setVisible(true); // Should be called at the end
+        rootFrame.setVisible(true);
     }
 
     public void buildDeck() {
-        Button button = new Button("Deck");
+        JButton button = new JButton("Deck");
+        button.setSize(100, 50);
+        button.setLocation(100,100);
+
         mainPanel.add(button);
     }
 
     public void buildDiscard() {
-        Button button = new Button("Discard");
+        JButton button = new JButton("Discard");
+        button.setSize(100, 50);
+        button.setLocation(250,100);
+
         mainPanel.add(button);
     }
 
@@ -47,10 +56,9 @@ public class View {
         handPanel.setBackground(Color.BLACK);
         handPanel.setSize(FRAME_SIZE_WIDTH, 125);
         handPanel.setLocation(0,275);
-        mainPanel.add(handPanel); // Placing the handPanel at the center
+        mainPanel.add(handPanel);
     }
-
-
+    
     public static void main(String args[]) {
         View view = new View();
     }
