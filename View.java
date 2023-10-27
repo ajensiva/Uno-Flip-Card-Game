@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class View {
 
-    private final int FRAME_SIZE_WIDTH = 600;
-    private final int FRAME_SIZE_HEIGHT = 600;
+    private final int FRAME_SIZE_WIDTH = 500;
+    private final int FRAME_SIZE_HEIGHT = 500;
 
     private JFrame rootFrame;
     private JPanel mainPanel, handPanel;
@@ -63,11 +63,11 @@ public class View {
         mainPanel.add(button);
     }
 
-    public static int numCards = 5;
+    public static int numCards = 17;
 
     public void buildHand() {
         handPanel = new JPanel();
-        handPanel.setBackground(Color.BLACK);
+        //handPanel.setBackground(Color.BLACK);
         handPanel.setSize(FRAME_SIZE_WIDTH, 125);
         handPanel.setLocation(0,275);
         mainPanel.add(handPanel);
