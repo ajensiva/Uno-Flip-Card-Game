@@ -1,17 +1,21 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class View {
 
-    private final int FRAME_SIZE_WIDTH = 500;
-    private final int FRAME_SIZE_HEIGHT = 500;
+    private final int FRAME_SIZE_WIDTH = 600;
+    private final int FRAME_SIZE_HEIGHT = 600;
 
     private JFrame rootFrame;
     private JPanel mainPanel, handPanel;
 
     private JButton deckButton, discardButton;
+    private ArrayList<JButton> playerCards; // holds player's hand; array of cards
 
     public View() {
+
+        playerCards = new ArrayList<JButton>();
 
         // root frame
         rootFrame = new JFrame();
@@ -35,6 +39,14 @@ public class View {
         rootFrame.setVisible(true);
     }
 
+    // 
+    public void addCard(){
+        JButton card = new JButton();
+        card.setName("[ CARD TEST ]");
+        handPanel.add(card);
+        playerCards.add(card);
+    }
+
     public void buildDeck() {
         JButton button = new JButton("Deck");
         button.setSize(100, 50);
@@ -51,15 +63,23 @@ public class View {
         mainPanel.add(button);
     }
 
+    public static int numCards = 5;
+
     public void buildHand() {
         handPanel = new JPanel();
         handPanel.setBackground(Color.BLACK);
         handPanel.setSize(FRAME_SIZE_WIDTH, 125);
         handPanel.setLocation(0,275);
         mainPanel.add(handPanel);
+
+        handPanel.setLayout(new GridLayout(0, 7));        
     }
     
     public static void main(String args[]) {
         View view = new View();
+
+        for(int i = 0; i < numCards; i++){
+            view.addCard();
+        }
     }
 }
