@@ -1,3 +1,5 @@
+package UnoModel;
+
 /**
  * Player class represents a player in the Uno game.
  *

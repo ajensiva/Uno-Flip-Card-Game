@@ -1,3 +1,5 @@
+package UnoModel;
+
 import java.util.ArrayList;
 /**
  * Hand class represents a player's hand of Uno cards.

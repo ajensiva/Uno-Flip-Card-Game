@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class View {
 
@@ -8,6 +9,7 @@ public class View {
 
     private JFrame rootFrame;
     private JPanel mainPanel, handPanel;
+
 
     private JButton deckButton, discardButton;
 
@@ -29,31 +31,44 @@ public class View {
         buildDeck();
         buildDiscard();
 
+
+        //if card cannot be played call this function
+//        buildLabelField();
+
         // clean up root frame
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         rootFrame.setVisible(true);
     }
 
+    public void buildLabelField(){
+
+        JLabel LabelField = new JLabel("Error");
+        LabelField.setBounds(220,100,80,25);
+        mainPanel.add(LabelField);
+    }
+
     public void buildDeck() {
         JButton button = new JButton("Deck");
         button.setSize(100, 50);
-        button.setLocation(100,100);
+        button.setLocation(50,100);
 
         mainPanel.add(button);
     }
 
-    public void buildDiscard() {
-        JButton button = new JButton("Discard");
-        button.setSize(100, 50);
-        button.setLocation(250,100);
 
-        mainPanel.add(button);
+    // make this into an image textlabel
+    public void buildDiscard() {
+        JLabel label = new JLabel("Discard");
+        label.setSize(100, 50);
+        label.setLocation(330,100);
+
+        mainPanel.add(label);
     }
 
     public void buildHand() {
         handPanel = new JPanel();
-        handPanel.setBackground(Color.BLACK);
+        handPanel.setBackground(Color.DARK_GRAY);
         handPanel.setSize(FRAME_SIZE_WIDTH, 125);
         handPanel.setLocation(0,275);
         mainPanel.add(handPanel);
