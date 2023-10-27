@@ -49,7 +49,7 @@ public class View {
 
     public void buildDeck() {
         JButton button = new JButton("Deck");
-        button.setSize(100, 50);
+        button.setSize(100, 100);
         button.setLocation(100,100);
 
         mainPanel.add(button);
@@ -57,13 +57,13 @@ public class View {
 
     public void buildDiscard() {
         JButton button = new JButton("Discard");
-        button.setSize(100, 50);
-        button.setLocation(250,100);
+        button.setSize(100, 100);
+        button.setLocation(380,100);
 
         mainPanel.add(button);
     }
 
-    public static int numCards = 5;
+    public static int numCards = 17;
 
     public void buildHand() {
         handPanel = new JPanel();
@@ -72,7 +72,9 @@ public class View {
         handPanel.setLocation(0,275);
         mainPanel.add(handPanel);
 
-        handPanel.setLayout(new GridLayout(0, 7));        
+        handPanel.setLayout(new GridLayout(0, 7));
+
+
     }
     
     public static void main(String args[]) {
