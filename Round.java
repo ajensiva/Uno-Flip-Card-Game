@@ -105,7 +105,6 @@ public class Round {
                 currentPlayer.getHand().addCard(deck.pop());
                 break;
 
-
             } else {
 
                 // the card that's going to be played
