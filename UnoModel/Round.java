@@ -1,7 +1,7 @@
+package UnoModel;
+
 import java.util.ArrayList;
 import java.util.Stack;
-
-import javax.swing.text.StyledEditorKit;
 
 import java.util.Scanner;
 import java.util.Collections;

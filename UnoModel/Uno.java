@@ -1,3 +1,5 @@
+package UnoModel;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,6 +10,9 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class Uno {
+
+
+    private static int count = 0;
 
     private final int MAXSCORE = 500; // max score to win game
     private static ArrayList<Player> players; // store all players in an array
@@ -62,6 +67,7 @@ public class Uno {
     public void playGame() {
         // start a new round, first round
         Round newRound = new Round(players);
+        count ++;
         while (!this.winner()) {
             // repeat rounds until a winner is found
             newRound.playRound();
