@@ -20,7 +20,7 @@ public class Round {
     private Deck deck; // main deck of the game
     private Stack<Card> discard; // discard cards stack
 
-    public static boolean darkmode = false; // if true then we're playing dark sides of card
+    public static boolean darkmode = true; // if true then we're playing dark sides of card
 
     private Player currentPlayer; // current player thats playing
     private final int DEALTCARDS = 7; // max number of cards to be delt
@@ -78,8 +78,9 @@ public class Round {
             currentPlayer = players.get(playerIndex);
             boolean validInput = false;
             while (!(validInput)) {
+                System.out.println("The mode being played on: " + darkmode(darkmode));
                 System.out.println("------------------------------");
-                System.out.println("[" + currentPlayer.getName() + "] playing:\n");
+                System.out.println("[" + currentPlayer.getName() + "] playing:");
                 System.out.println("------------------------------");
                 System.out.println("Cards you can play:");
 
@@ -96,9 +97,11 @@ public class Round {
 
              // retrieve from hand
 
+
+
             // draw one card from the deck and reset loop if index == size of deck
             if (cardToPlay == currentPlayer.getHand().getSize()){
-                // take 1 from the deck and add to player's hand
+
                 currentPlayer.getHand().addCard(deck.pop());
                 break;
 
@@ -110,7 +113,8 @@ public class Round {
                 // check to see if the card can be played or not by checking the discard stack
                 if ((checkCard(playCard, discard.peek()))) {
                     validInput = true;
-                    playCard(cardToPlay);
+                    System.out.println(playCard(cardToPlay));
+
                     System.out.println("Card has been played!");
                     // take the card from the player
                     currentPlayer.getHand().removeCard(playCard);
@@ -153,6 +157,36 @@ public class Round {
                             playerIndex = (playerIndex + 1) % players.size();
                         }
                     }
+                    if (darkmode){
+
+                        if (playCard.getTypeDark() == Card.TypeDark.DRAW_FIVE) {
+
+                            drawCard(5); // give 2 new cards
+                        }
+                        if (playCard.getTypeDark() == Card.TypeDark.SKIP_EVERYONE) {
+                            playerIndex -= 1;
+                        }
+                        if (playCard.getTypeDark() == Card.TypeDark.REVERSE) {
+                            // reverse collection and decrement player index to get player before
+                            playerIndex -= 1;
+                            reverse();
+                        }
+
+                        if (playCard.getTypeDark() == Card.TypeDark.WILD_CARD){
+                            wildCard(playCard);
+                        }
+                        if (playCard.getTypeDark() == Card.TypeDark.WILD_DRAW_COLOR) {
+                            wildDrawColor(currentPlayer);
+                        }
+
+                        if (playCard.getTypeDark() == Card.TypeDark.FLIP) {
+
+                            darkmode = !(darkmode);
+
+                        }
+
+
+                    }
                 }
             }
             if (!validInput) {
@@ -191,16 +225,12 @@ public class Round {
         return cardToPlay;
     }
 
-    /**
-     * Handles drawing a card from the deck based on the player's choice.
-     *
-     * @param cardToPlay The player's choice for playing or drawing a card.
-     */
-    public void myDraw(int cardToPlay){
-        // player typed last index so draw 1 card
-        if (cardToPlay == currentPlayer.getHand().getSize()){
-            // take 1 from the deck and add to player's hand
-            currentPlayer.getHand().addCard(deck.pop());
+    public String darkmode(boolean darkmode){
+        if (darkmode){
+            return "Darkmode!";
+        }
+        else{
+            return  "Lightmode!";
         }
     }
 
@@ -216,6 +246,15 @@ public class Round {
             // give cards to the next player
             players.get(nextPlayerIndex).getHand().addCard(deck.pop());
         }
+    }
+
+    public void wildDrawColor(Player currentPlayer){
+        int nextPlayerIndex = (players.indexOf(currentPlayer)+1) % players.size(); // player that will draw cards
+
+        while ((players.get(nextPlayerIndex).getHand().getCard(players.get(nextPlayerIndex).getHand().getSize()-1)) != discard.peek()) {
+            players.get(nextPlayerIndex).getHand().addCard(deck.pop());
+        }
+
     }
 
     /**
@@ -240,11 +279,12 @@ public class Round {
      */
     public boolean checkCard(Card card1, Card card2){
         // let wild cards be played regardless
-        if (card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
-            return true;
-        }
-        // if the color or the number/type matches
-        return card1.getColorLight().equals(card2.getColorLight()) || card1.getTypeLight().equals(card2.getTypeLight());
+        boolean check1 = card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO);
+        boolean check2 = card2.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR) || card1.getTypeLight().equals(Card.TypeDark.WILD_CARD);
+
+
+                // if the color or the number/type matches
+        return (card1.getColorLight().equals(card2.getColorLight()) || card1.getTypeLight().equals(card2.getTypeLight())) || (card1.getColorDark().equals(card2.getColorDark()) || card1.getTypeDark().equals(card2.getTypeDark())) ;
     }
 
     /**
