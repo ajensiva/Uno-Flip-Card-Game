@@ -1,10 +1,6 @@
 package UnoModel;
 
-import UnoModel.Uno;
-
 import javax.swing.*;
-import javax.swing.text.Document;
-import javax.swing.text.DocumentFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -136,7 +132,7 @@ public class View {
 
         // build hand ui and add cards
         buildHand();
-        buildDeck();
+        //buildDeck();
         buildDiscard();
 
         // clean up root frame
@@ -164,22 +160,13 @@ public class View {
         playerCards.add(card);
     }
 
-    public void buildDeck() {
+    public void buildDeck(ActionListener action) {
         JButton button = new JButton("Deck");
         button.setSize(100, 100);
         button.setLocation(100,100);
 
+        button.addActionListener(action);
         mainPanel.add(button);
-
-
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                drewCard = 1;
-
-            }
-        });
     }
 
 
