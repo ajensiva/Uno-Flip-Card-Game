@@ -15,6 +15,7 @@ public class Controller {
         // testing area
         this.unoGUI.buildDeck(new updateDeckListener());
         this.unoModel.playGame();
+
     }
 
     private class updateDeckListener implements ActionListener {
