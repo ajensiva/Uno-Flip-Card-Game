@@ -46,6 +46,10 @@ public class Deck {
         return deck.pop();
     }
 
+    public Card peek(){
+        return deck.peek();
+    }
+
     public int getSize() {
         return this.deck.size();
     }

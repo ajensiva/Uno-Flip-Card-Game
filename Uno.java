@@ -23,40 +23,47 @@ public class Uno {
     public Uno() {
         // Initialize the list of players
         players = new ArrayList<Player>();
-        boolean flag = true;
 
-        while (flag) {
+        Player jeff = new Player("Jeff");
+        Player bob = new Player("Bob");
+
+
+        players.add(jeff);
+        players.add(bob);
+//        boolean flag = true;
+
+//        while (flag) {
             // scanner to get userinput (# players and player names)
-            Scanner userInput = new Scanner(System.in);
-            System.out.println("Enter the number of players (2-4): ");
-
-            if (userInput.hasNextInt()) {
-
-                int num = userInput.nextInt();
-                userInput.nextLine(); // consume the newline left by nextInt()
-
-                if (num < 2 || num > 4) {
-                    System.out.println("Enter a number between 2 or 4 please!");
-
-                } else {
-                    // loop for # of players
-                    for (int i = 0; i < num; i++) {
-                        // get plr name and create new player instance and add to array
-                        System.out.println("Enter player " + (i + 1) + "'s name: ");
-                        String name_player = userInput.nextLine();
-                        Player newPlayer = new Player(name_player);
-                        players.add(newPlayer);
-                    }
-
-                    flag = false;
-                }
-            } else {
-
-                String input = userInput.next(); // Read the non-integer input as a string
-                System.out.println("Invalid input: " + input + " is not an integer.");
-            }
-
-        }
+//            Scanner userInput = new Scanner(System.in);
+//            System.out.println("Enter the number of players (2-4): ");
+//
+//            if (userInput.hasNextInt()) {
+//
+//                int num = userInput.nextInt();
+//                userInput.nextLine(); // consume the newline left by nextInt()
+//
+//                if (num < 2 || num > 4) {
+//                    System.out.println("Enter a number between 2 or 4 please!");
+//
+//                } else {
+//                    // loop for # of players
+//                    for (int i = 0; i < num; i++) {
+//                        // get plr name and create new player instance and add to array
+//                        System.out.println("Enter player " + (i + 1) + "'s name: ");
+//                        String name_player = userInput.nextLine();
+//                        Player newPlayer = new Player(name_player);
+//                        players.add(newPlayer);
+//                    }
+//
+//                    flag = false;
+//                }
+//            } else {
+//
+//                String input = userInput.next(); // Read the non-integer input as a string
+//                System.out.println("Invalid input: " + input + " is not an integer.");
+//            }
+//
+//        }
     }
 
     /**

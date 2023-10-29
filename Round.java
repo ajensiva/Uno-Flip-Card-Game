@@ -15,12 +15,12 @@ import java.util.Collections;
 public class Round {
 
     private static ArrayList<Player> players; // array to hold players
-    private Deck deck; // main deck of the game
+    protected Deck deck; // main deck of the game
     private Stack<Card> discard; // discard cards stack
 
     public static boolean darkmode = true; // if true then we're playing dark sides of card
 
-    private Player currentPlayer; // current player thats playing
+    protected Player currentPlayer; // current player thats playing
     private final int DEALTCARDS = 7; // max number of cards to be delt
 
     /**
@@ -103,7 +103,8 @@ public class Round {
                 currentPlayer.getHand().addCard(deck.pop());
                 break;
 
-            } else {
+            }
+            else {
 
                 // the card that's going to be played
                 Card playCard;
@@ -201,6 +202,11 @@ public class Round {
             // update to next player
             playerIndex = (playerIndex + 1) % players.size();
         }
+    }
+
+    public void myHand(){
+
+
     }
 
     /**

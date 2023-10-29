@@ -11,15 +11,18 @@ public class Controller {
     public Controller(UnoGUI view, Uno uno) {
         this.view = view;
         this.unoModel = uno;
-        view.buildDeck(new updateDeckListener());        
+        view.buildDeck(new updateDeckListener());
+        uno.playGame();
     }
 
     private class updateDeckListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
             //handle playing card
-            System.out.println("Something happened");
-            unoModel.currentRound.drawCard(1);
+            System.out.println("Removes Card");
+
+
+            System.out.println(unoModel.currentRound.deck.peek());
         }
 
     }
@@ -34,7 +37,7 @@ public class Controller {
 
     // asdasdas
     public static void main(String args[]) {
-        Controller controller = new Controller(new UnoGUI(), null);
+        Controller controller = new Controller(new UnoGUI(), new Uno());
 
     }
 }
