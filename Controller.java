@@ -1,38 +1,40 @@
+import UnoModel.Uno;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Action;
-
-import UnoModel.Uno;
 
 public class Controller {
 
-    private Uno unoModel;
+
     private View view;
+    private Uno unoModel;
 
-    public Controller(Uno uno, View view){
-        this.unoModel = uno;
+    public Controller(View view, Uno uno) {
         this.view = view;
+        this.unoModel = uno;
+
+        view.buildDeck(new updateDeckListener());
     }
 
-    // updateDeckListener
-    private class updateDeckListener implements ActionListener{
+    private class updateDeckListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent event){
-            System.out.println();
+        public void actionPerformed(ActionEvent e){
+            //handle playing card
+            System.out.println("ok something happened");
         }
-    }
 
-    // updateHandListener
-    private class updateHandListener implements ActionListener{
+    }
+    private class updateHandListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent event){
+        public void actionPerformed(ActionEvent e){
 
+            //Handle adding Card to deck
         }
+
     }
 
+    // asdasdas
     public static void main(String args[]) {
-        Controller controller = new Controller(new Uno(), new View());
-        System.out.println("poggers");
+        Controller controller = new Controller(new View(), new Uno());
     }
 }

@@ -1,4 +1,6 @@
 package UnoModel;
+
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,6 +17,7 @@ public class Uno {
 
     private final int MAXSCORE = 500; // max score to win game
     private static ArrayList<Player> players; // store all players in an array
+
 
     /**
      * Constructor for the Uno class.
@@ -98,6 +101,7 @@ public class Uno {
             System.out.println(player.getName());
         }
     }
+
 
     public static void main(String args[]) {
 
