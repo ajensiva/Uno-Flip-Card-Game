@@ -23,6 +23,10 @@ public class Uno {
     public Uno() {
         // Initialize the list of players
         players = new ArrayList<Player>();
+
+        players.add(new Player("arun"));
+        players.add(new Player("marwa"));
+        /*
         boolean flag = true;
 
         while (flag) {
@@ -57,6 +61,8 @@ public class Uno {
             }
 
         }
+    */
+
     }
 
     /**
@@ -99,7 +105,7 @@ public class Uno {
         }
     }
 
-
+    /*
     public static void main(String args[]) {
         Uno newGame = new Uno();
 
@@ -108,4 +114,5 @@ public class Uno {
         newGame.playGame();
 
     }
+    */
 }

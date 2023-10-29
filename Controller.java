@@ -19,7 +19,8 @@ public class Controller {
         public void actionPerformed(ActionEvent e){
             //handle playing card
             System.out.println("Something happened");
-            unoModel.currentRound.drawCard(1);
+            //System.out.println(unoModel.currentRound.currentPlayer.getHand());
+            System.out.println(unoModel.currentRound.deck);
         }
 
     }
