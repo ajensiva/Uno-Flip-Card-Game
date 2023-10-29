@@ -185,9 +185,6 @@ public class UnoGUI {
         mainPanel.add(handPanel);
 
         handPanel.setLayout(new GridLayout(0, 7));
-
-
-
     }
     
     public static void main(String args[]) {

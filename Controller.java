@@ -9,9 +9,10 @@ public class Controller {
     private Uno unoModel;
 
     public Controller(UnoGUI gui, Uno uno) {
-        this.unoGUI = unoGUI;
+        this.unoGUI = gui;
         this.unoModel = uno;
 
+        // testing area
         this.unoGUI.buildDeck(new updateDeckListener());
         this.unoModel.playGame();
     }
