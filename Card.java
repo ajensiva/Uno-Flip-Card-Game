@@ -1,5 +1,3 @@
-package UnoModel;
-
 import java.util.Objects;
 
 /**

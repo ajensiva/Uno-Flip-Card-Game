@@ -1,3 +1,4 @@
+import javax.swing.text.View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,7 +13,8 @@ public class Controller {
         this.view = view;
         this.unoModel = uno;
 
-        view.buildDeck(new updateDeckListener());
+
+        
     }
 
     private class updateDeckListener implements ActionListener {
