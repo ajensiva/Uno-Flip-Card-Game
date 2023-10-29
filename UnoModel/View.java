@@ -4,6 +4,7 @@ import UnoModel.Uno;
 
 import javax.swing.*;
 import javax.swing.text.Document;
+import javax.swing.text.DocumentFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,7 @@ public class View {
 
     private ArrayList<JTextField> inputFields; // Array to store user inputs
 
+    private int drewCard;
 
     private final int FRAME_SIZE_WIDTH = 600;
     private final int FRAME_SIZE_HEIGHT = 600;
@@ -58,12 +60,8 @@ public class View {
         constraints.anchor = GridBagConstraints.CENTER;
 
         //JTextField to ask for how many players want to play?
-        JTextField num_play = new JTextField();
-
+        JTextField num_play = new JTextField(10);
         panel.add(num_play, constraints);
-
-
-
 
 
         // Reset constraints for the input label
@@ -158,7 +156,6 @@ public class View {
     }
 
 
-
     // 
     public void addCard(){
         JButton card = new JButton();
@@ -173,7 +170,18 @@ public class View {
         button.setLocation(100,100);
 
         mainPanel.add(button);
+
+
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                drewCard = 1;
+
+            }
+        });
     }
+
 
     public void buildDiscard() {
         JButton button = new JButton("Discard");
