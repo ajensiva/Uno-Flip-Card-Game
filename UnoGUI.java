@@ -27,7 +27,7 @@ public class UnoGUI {
     public void startMenu(){
 
 
-        int numFields = 0;
+        int numFields = 2;
 
         JFrame frame = new JFrame();
         frame.setSize(500, 500);
