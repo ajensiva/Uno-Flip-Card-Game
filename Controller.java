@@ -11,10 +11,7 @@ public class Controller {
     public Controller(UnoGUI view, Uno uno) {
         this.view = view;
         this.unoModel = uno;
-
-        view.buildDeck(new updateDeckListener());
-        
-        
+        view.buildDeck(new updateDeckListener());        
     }
 
     private class updateDeckListener implements ActionListener {
@@ -22,6 +19,7 @@ public class Controller {
         public void actionPerformed(ActionEvent e){
             //handle playing card
             System.out.println("Something happened");
+            unoModel.currentRound.drawCard(1);
         }
 
     }
