@@ -5,14 +5,15 @@ import java.awt.event.ActionListener;
 public class Controller {
 
 
-    private UnoGUI view;
+    private UnoGUI unoGUI;
     private Uno unoModel;
 
-    public Controller(UnoGUI view, Uno uno) {
-        this.view = view;
+    public Controller(UnoGUI gui, Uno uno) {
+        this.unoGUI = unoGUI;
         this.unoModel = uno;
-        view.buildDeck(new updateDeckListener());
-        uno.playGame();
+
+        this.unoGUI.buildDeck(new updateDeckListener());
+        this.unoModel.playGame();
     }
 
     private class updateDeckListener implements ActionListener {
@@ -20,12 +21,10 @@ public class Controller {
         public void actionPerformed(ActionEvent e){
             //handle playing card
             System.out.println("Removes Card");
-
-
             System.out.println(unoModel.currentRound.deck.peek());
         }
-
     }
+
     private class updateHandListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){

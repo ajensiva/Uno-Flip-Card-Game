@@ -106,7 +106,7 @@ public class Uno {
         }
     }
 
-
+    /*
     public static void main(String args[]) {
         Uno newGame = new Uno();
 
@@ -115,4 +115,5 @@ public class Uno {
         newGame.playGame();
 
     }
+    */
 }

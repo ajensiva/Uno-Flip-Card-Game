@@ -49,7 +49,6 @@ public class Round {
         }
     }
 
-
     /**
      * @return ArrayList<Player>
      */
@@ -94,8 +93,6 @@ public class Round {
                 }
 
              // retrieve from hand
-
-
 
             // draw one card from the deck and reset loop if index == size of deck
             if (cardToPlay == currentPlayer.getHand().getSize()){
