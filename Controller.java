@@ -6,14 +6,14 @@ import java.awt.event.ActionListener;
 public class Controller {
 
 
-    private View view;
+    private Uno_View view;
     private Uno unoModel;
 
-    public Controller(View view, Uno uno) {
+    public Controller(Uno_View view, Uno uno) {
         this.view = view;
         this.unoModel = uno;
 
-
+        view.buildDeck(new updateDeckListener());
         
     }
 
@@ -36,7 +36,7 @@ public class Controller {
 
     // asdasdas
     public static void main(String args[]) {
-        Controller controller = new Controller(new View(), null);
+        Controller controller = new Controller(new Uno_View(), null);
 
     }
 }
