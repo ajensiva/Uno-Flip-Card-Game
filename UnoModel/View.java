@@ -1,5 +1,3 @@
-import UnoModel.Uno;
-
 import javax.swing.*;
 import javax.swing.text.Document;
 import javax.swing.text.DocumentFilter;
@@ -25,7 +23,7 @@ public class View {
     private ArrayList<JButton> playerCards; // holds player's hand; array of cards
 
     public View() {
-
+        startGame();
     }
 
     public void startMenu(){
@@ -149,8 +147,6 @@ public class View {
 
         addCard();
         addCard();
-
-
     }
 
 
@@ -163,6 +159,7 @@ public class View {
     }
 
     public void buildDeck(ActionListener action) {
+        System.out.println("test");
         JButton button = new JButton("Deck");
         button.setSize(100, 100);
         button.setLocation(100,100);
@@ -197,6 +194,6 @@ public class View {
     
     public static void main(String args[]) {
         View view = new View();
-        view.startMenu();
+        //view.startMenu();
     }
 }
