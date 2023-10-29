@@ -15,7 +15,6 @@ import java.util.Collections;
 public class Round {
 
     private static ArrayList<Player> players; // array to hold players
-    
     protected Deck deck; // main deck of the game
     private Stack<Card> discard; // discard cards stack
 
@@ -102,7 +101,8 @@ public class Round {
                 currentPlayer.getHand().addCard(deck.pop());
                 break;
 
-            } else {
+            }
+            else {
 
                 // the card that's going to be played
                 Card playCard;
@@ -200,6 +200,11 @@ public class Round {
             // update to next player
             playerIndex = (playerIndex + 1) % players.size();
         }
+    }
+
+    public void myHand(){
+
+
     }
 
     /**
