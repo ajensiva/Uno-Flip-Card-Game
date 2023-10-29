@@ -1,11 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class View {
 
-    private final int FRAME_SIZE_WIDTH = 500;
-    private final int FRAME_SIZE_HEIGHT = 500;
+    private final int FRAME_SIZE_WIDTH = 600;
+    private final int FRAME_SIZE_HEIGHT = 600;
 
     private JFrame rootFrame;
     private JPanel mainPanel, handPanel;
@@ -51,7 +52,6 @@ public class View {
         JButton button = new JButton("Deck");
         button.setSize(100, 100);
         button.setLocation(100,100);
-
         mainPanel.add(button);
     }
 
@@ -67,7 +67,7 @@ public class View {
 
     public void buildHand() {
         handPanel = new JPanel();
-        //handPanel.setBackground(Color.BLACK);
+        handPanel.setBackground(Color.BLACK);
         handPanel.setSize(FRAME_SIZE_WIDTH, 125);
         handPanel.setLocation(0,275);
         mainPanel.add(handPanel);

@@ -1,5 +1,4 @@
 package UnoModel;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -99,7 +98,6 @@ public class Uno {
             System.out.println(player.getName());
         }
     }
-
 
     public static void main(String args[]) {
 
