@@ -175,7 +175,7 @@ public class UnoGUI {
         mainPanel.add(button);
     }
 
-    public static int numCards = 7;
+
 
     public void buildHand() {
         handPanel = new JPanel();
