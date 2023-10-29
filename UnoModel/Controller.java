@@ -1,6 +1,3 @@
-package UnoModel;
-
-import UnoModel.Uno;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -37,6 +34,7 @@ public class Controller {
 
     // asdasdas
     public static void main(String args[]) {
-        Controller controller = new Controller(new View(), new Uno());
+        Controller controller = new Controller(new View(), null);
+
     }
 }

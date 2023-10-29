@@ -1,6 +1,3 @@
-package UnoModel;
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -104,7 +101,6 @@ public class Uno {
 
 
     public static void main(String args[]) {
-
         Uno newGame = new Uno();
 
         newGame.printPlayers();
