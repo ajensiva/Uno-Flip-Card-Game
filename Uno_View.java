@@ -1,12 +1,10 @@
 import javax.swing.*;
-import javax.swing.text.Document;
-import javax.swing.text.DocumentFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class View {
+public class Uno_View {
 
 
     private ArrayList<JTextField> inputFields; // Array to store user inputs
@@ -22,7 +20,7 @@ public class View {
     private JButton deckButton, discardButton;
     private ArrayList<JButton> playerCards; // holds player's hand; array of cards
 
-    public View() {
+    public Uno_View() {
         startGame();
     }
 
@@ -193,7 +191,7 @@ public class View {
     }
     
     public static void main(String args[]) {
-        View view = new View();
+        Uno_View view = new Uno_View();
         //view.startMenu();
     }
 }
