@@ -1,5 +1,4 @@
-package UnoModel;
-
+import UnoModel.Uno;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,35 +7,34 @@ public class Controller {
 
 
     private View view;
+    private Uno unoModel;
 
-    private Round round;
-
-    Controller(View view, Round round) {
-
+    public Controller(View view, Uno uno) {
         this.view = view;
-        this.round = round;
+        this.unoModel = uno;
 
-
-//        view.addUpdateHandListener(new UpdateHandListener);
-//        view.addupdateDeckListener(new UpdateDeckListener);
+        view.buildDeck(new updateDeckListener());
     }
 
-    private class UpdateHandListener implements ActionListener {
+    private class updateDeckListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
-
-
-
             //handle playing card
+            System.out.println("ok something happened");
         }
 
     }
-    private class UpdateDeckListener implements ActionListener {
+    private class updateHandListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
 
             //Handle adding Card to deck
         }
 
+    }
+
+    // asdasdas
+    public static void main(String args[]) {
+        Controller controller = new Controller(new View(), new Uno());
     }
 }
