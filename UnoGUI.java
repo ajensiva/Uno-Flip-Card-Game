@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Uno_View {
+public class UnoGUI {
 
 
     private ArrayList<JTextField> inputFields; // Array to store user inputs
@@ -20,7 +20,7 @@ public class Uno_View {
     private JButton deckButton, discardButton;
     private ArrayList<JButton> playerCards; // holds player's hand; array of cards
 
-    public Uno_View() {
+    public UnoGUI() {
         startGame();
     }
 
@@ -191,7 +191,7 @@ public class Uno_View {
     }
     
     public static void main(String args[]) {
-        Uno_View view = new Uno_View();
+        UnoGUI view = new UnoGUI();
         //view.startMenu();
     }
 }

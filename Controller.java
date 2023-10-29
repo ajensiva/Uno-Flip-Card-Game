@@ -1,4 +1,3 @@
-import javax.swing.text.View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -6,14 +5,15 @@ import java.awt.event.ActionListener;
 public class Controller {
 
 
-    private Uno_View view;
+    private UnoGUI view;
     private Uno unoModel;
 
-    public Controller(Uno_View view, Uno uno) {
+    public Controller(UnoGUI view, Uno uno) {
         this.view = view;
         this.unoModel = uno;
 
         view.buildDeck(new updateDeckListener());
+        
         
     }
 
@@ -21,7 +21,7 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e){
             //handle playing card
-            System.out.println("ok something happened");
+            System.out.println("Something happened");
         }
 
     }
@@ -36,7 +36,7 @@ public class Controller {
 
     // asdasdas
     public static void main(String args[]) {
-        Controller controller = new Controller(new Uno_View(), null);
+        Controller controller = new Controller(new UnoGUI(), null);
 
     }
 }
