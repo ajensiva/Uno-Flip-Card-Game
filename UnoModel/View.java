@@ -1,7 +1,3 @@
-package UnoModel;
-
-import UnoModel.Uno;
-
 import javax.swing.*;
 import javax.swing.text.Document;
 import javax.swing.text.DocumentFilter;
@@ -27,7 +23,7 @@ public class View {
     private ArrayList<JButton> playerCards; // holds player's hand; array of cards
 
     public View() {
-
+        startGame();
     }
 
     public void startMenu(){
@@ -136,7 +132,7 @@ public class View {
 
         // build hand ui and add cards
         buildHand();
-        buildDeck();
+        //buildDeck();
         buildDiscard();
 
         // clean up root frame
@@ -151,8 +147,6 @@ public class View {
 
         addCard();
         addCard();
-
-
     }
 
 
@@ -164,22 +158,14 @@ public class View {
         playerCards.add(card);
     }
 
-    public void buildDeck() {
+    public void buildDeck(ActionListener action) {
+        System.out.println("test");
         JButton button = new JButton("Deck");
         button.setSize(100, 100);
         button.setLocation(100,100);
 
+        button.addActionListener(action);
         mainPanel.add(button);
-
-
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                drewCard = 1;
-
-            }
-        });
     }
 
 
@@ -208,6 +194,6 @@ public class View {
     
     public static void main(String args[]) {
         View view = new View();
-        view.startMenu();
+        //view.startMenu();
     }
 }
