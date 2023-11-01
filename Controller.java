@@ -19,7 +19,7 @@ public class Controller {
 
         this.unoGUI.addStartGameListener(new playGameButtonListener());
         this.unoGUI.addPlayers(new addPlayersListener());
-        this.unoGUI.addPlayCardListener(new listenForCardPlayed);
+        this.unoGUI.addPlayCardListener(new listenForCardPlayed());
 
 
     }
