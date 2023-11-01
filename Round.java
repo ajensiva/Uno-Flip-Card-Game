@@ -15,13 +15,16 @@ import java.util.Collections;
 public class Round {
 
     private static ArrayList<Player> players; // array to hold players
+
     protected Deck deck; // main deck of the game
     private Stack<Card> discard; // discard cards stack
 
     public static boolean darkmode = true; // if true then we're playing dark sides of card
 
-    protected Player currentPlayer; // current player thats playing
+    protected Player currentPlayer; // current player that's playing
     private final int DEALTCARDS = 7; // max number of cards to be delt
+
+    protected int playCardIndex;
 
     /**
      * Constructor for the `Round` class.
@@ -35,6 +38,7 @@ public class Round {
         deck = new Deck();
         discard = new Stack<Card>();
         distributeHand();
+        makeDiscard();
     }
 
     /**
@@ -56,6 +60,19 @@ public class Round {
         return players;
     }
 
+    public void setPlayCardIndex(int PlayCardIndex){
+
+        this.playCardIndex = playCardIndex;
+
+    }
+
+    public void makeDiscard(){
+        discard.add(deck.pop());
+    }
+
+
+
+
     /**
      * Plays a round of the Uno game.
      * Manages player turns, card plays, special card effects, and checks for a winner.
@@ -65,8 +82,6 @@ public class Round {
         int playerIndex = 0;
         currentPlayer = players.get(playerIndex);
 
-        // at the start of the round take 1 card from deck and place on discard stack
-        discard.add(deck.pop());
 
         // loop until a winner for the round has been found
         while (!(checkWinner())) {
@@ -75,17 +90,12 @@ public class Round {
             currentPlayer = players.get(playerIndex);
             boolean validInput = false;
             while (!(validInput)) {
-                System.out.println("The mode being played on: " + darkmode(darkmode));
-                System.out.println("------------------------------");
-                System.out.println("[" + currentPlayer.getName() + "] playing:");
-                System.out.println("------------------------------");
-                System.out.println("Cards you can play:");
+
 
 
                 int cardToPlay = 0; // index of the card that's going to be played
                 // loop until a valid card has been played
                 while(true){
-                    cardToPlay = askUser(currentPlayer);
                     // card index must be greater than 0 and less than length of hand to move on
                     if((0 <= cardToPlay && cardToPlay <= currentPlayer.getHand().getSize())){
                         break;
@@ -201,30 +211,6 @@ public class Round {
         }
     }
 
-    public void myHand(){
-
-
-    }
-
-    /**
-     * Asks the current player for a card to play.
-     *
-     * @param currentPlayer The player whose turn it is.
-     * @return The index of the selected card to play or draw (last index).
-     */
-    public int askUser(Player currentPlayer){
-        Scanner userInput = new Scanner(System.in);
-        // print the player's current hand to see
-        System.out.println(currentPlayer.getHand().toString());
-        System.out.println(" [" + currentPlayer.getHand().getSize() + "] Draw one card!\n");
-        System.out.println("---------------------------------------------- \n");
-        System.out.println("Top of discard pile: " + discard.peek() + "\n");
-        System.out.println("----------------------------------------------");
-        System.out.println("Input a card or draw a card (last index): ");
-        int cardToPlay = userInput.nextInt(); // index of the card to play
-        //myDraw(cardToPlay); // if they type the last index, then handle draw one
-        return cardToPlay;
-    }
 
     public String darkmode(boolean darkmode){
         if (darkmode){
