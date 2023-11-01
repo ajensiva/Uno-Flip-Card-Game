@@ -201,10 +201,6 @@ public class Round {
         }
     }
 
-    public void myHand(){
-
-
-    }
 
     /**
      * Asks the current player for a card to play.

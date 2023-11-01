@@ -12,10 +12,43 @@ public class Controller {
         this.unoGUI = gui;
         this.unoModel = uno;
 
+
         this.unoGUI.buildDeck(new updateDeckListener());
-        this.unoModel.playGame();
+
+        this.unoModel.testRound();
+
+        this.unoGUI.addStartGameListener(new playGameButtonListener());
+        this.unoGUI.addPlayers(new addPlayersListener());
+
 
     }
+
+    public class addPlayersListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            String[] userInputs = new String[unoGUI.numFields];
+            for (int i = 0; i < unoGUI.numFields; i++) {
+                userInputs[i] = unoGUI.inputFields.get(i).getText();
+            }
+
+            // Display the collected inputs (you can change this to your desired action)
+            for (int i = 0; i < unoGUI.numFields; i++) {
+                System.out.println("Player " + (i + 1) + ": " + userInputs[i]);
+
+            }
+        }
+    }
+
+    public class playGameButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) { unoGUI.startGame();
+        }
+    }
+
+
+
 
     private class updateDeckListener implements ActionListener {
         @Override
@@ -23,6 +56,8 @@ public class Controller {
             //handle playing card
             System.out.println("Removes Card");
             System.out.println(unoModel.currentRound.deck.peek());
+            unoModel.currentRound.currentPlayer.getHand();
+
         }
     }
 
@@ -35,7 +70,7 @@ public class Controller {
 
     }
 
-    // asdasdas
+
     public static void main(String args[]) {
         Controller controller = new Controller(new UnoGUI(), new Uno());
 

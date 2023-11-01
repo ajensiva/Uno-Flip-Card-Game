@@ -6,8 +6,14 @@ import java.util.ArrayList;
 
 public class UnoGUI {
 
+    protected int numFields;
 
-    private ArrayList<JTextField> inputFields; // Array to store user inputs
+    protected String userInputs[];
+
+    protected JButton playGame;
+    protected ArrayList<JTextField> inputFields; // Array to store user inputs
+
+    protected JButton collectButton;
 
     private int drewCard;
 
@@ -21,13 +27,13 @@ public class UnoGUI {
     private ArrayList<JButton> playerCards; // holds player's hand; array of cards
 
     public UnoGUI() {
-        startGame();
+        startMenu();
     }
 
     public void startMenu(){
 
 
-        int numFields = 2;
+        numFields = 2;
 
         JFrame frame = new JFrame();
         frame.setSize(500, 500);
@@ -78,34 +84,11 @@ public class UnoGUI {
         constraints.gridy = numFields + 2;
         panel.add(collectButton, constraints);
 
-        collectButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Retrieve user inputs from text fields
-                String[] userInputs = new String[numFields];
-                for (int i = 0; i < numFields; i++) {
-                    userInputs[i] = inputFields.get(i).getText();
-                }
-
-                // Display the collected inputs (you can change this to your desired action)
-                for (int i = 0; i < numFields; i++) {
-                    System.out.println("Player " + (i + 1) + ": " + userInputs[i]);
-                }
-            }
-        });
 
         constraints.gridy = numFields + 3;
-        JButton playGame = new JButton("PLAY GAME");
+        playGame = new JButton("PLAY GAME");
         panel.add(playGame, constraints);
 
-        playGame.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                startGame();
-
-            }
-        });
 
 
         frame.setVisible(true);
@@ -175,8 +158,6 @@ public class UnoGUI {
         mainPanel.add(button);
     }
 
-
-
     public void buildHand() {
         handPanel = new JPanel();
 //        handPanel.setBackground(Color.WHITE);
@@ -186,10 +167,45 @@ public class UnoGUI {
 
         handPanel.setLayout(new GridLayout(0, 7));
 
+    }
 
+    public void startMenu(boolean start){
+
+        if (start){
+            startMenu();
+        }
+        else{
+            System.out.println("Why don't you wanna start :(");
+        }
+    }
+
+    //Button press calls function in Controller to handle logic
+
+
+    public void addPlayers(ActionListener listenforPlayersAdded){
+
+        collectButton.addActionListener(listenforPlayersAdded);
 
     }
-    
+    public void addStartGameListener(ActionListener listenforStartGame){
+
+        playGame.addActionListener(listenforStartGame);
+
+    }
+
+
+    public void addPlayCardListener(ActionListener listenforCardtoPlay){
+        for (JButton button : playerCards){
+            button.addActionListener(listenforCardtoPlay);
+        }
+    }
+
+    public void addDrawCardListener(ActionListener listenforCardtoDraw){
+        deckButton.addActionListener(listenforCardtoDraw);
+    }
+
+
+
     public static void main(String args[]) {
         UnoGUI view = new UnoGUI();
         //view.startMenu();
