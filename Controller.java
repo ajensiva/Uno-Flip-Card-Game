@@ -19,6 +19,7 @@ public class Controller {
 
         this.unoGUI.addStartGameListener(new playGameButtonListener());
         this.unoGUI.addPlayers(new addPlayersListener());
+        this.unoGUI.addPlayCardListener(new listenForCardPlayed);
 
 
     }
@@ -58,6 +59,16 @@ public class Controller {
             System.out.println(unoModel.currentRound.deck.peek());
             unoModel.currentRound.currentPlayer.getHand();
 
+        }
+    }
+
+    public class listenForCardPlayed implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String actionCommand = e.getActionCommand();
+            int buttonIndex = Integer.parseInt(actionCommand);
+            unoModel.currentRound.setPlayCardIndex(buttonIndex);
         }
     }
 
