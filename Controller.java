@@ -13,7 +13,7 @@ public class Controller {
         this.unoModel = uno;
 
 
-        this.unoGUI.buildDeck(new updateDeckListener());
+        this.unoGUI.addBuildDeckListener(new updateDeckListener());
 
         this.unoModel.testRound();
 
@@ -44,7 +44,11 @@ public class Controller {
 
     public class playGameButtonListener implements ActionListener{
         @Override
-        public void actionPerformed(ActionEvent e) { unoGUI.startGame();
+        public void actionPerformed(ActionEvent e) {
+
+            unoGUI.startGame();
+
+
         }
     }
 

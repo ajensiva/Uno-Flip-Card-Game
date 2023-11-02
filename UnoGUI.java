@@ -10,7 +10,15 @@ public class UnoGUI {
 
     protected int numFields;
 
+    protected JButton nextPlayer = new JButton("next Player");
+
+    protected JButton UnoButton = new JButton("UNO!!");
+
     protected String userInputs[];
+
+    protected JButton buildDeckbutton = new JButton("Deck");
+
+    protected JLabel darkside = new JLabel();
 
     protected JButton playGame;
     protected ArrayList<JTextField> inputFields; // Array to store user inputs
@@ -22,7 +30,7 @@ public class UnoGUI {
     private final int FRAME_SIZE_WIDTH = 600;
     private final int FRAME_SIZE_HEIGHT = 600;
 
-    private JFrame rootFrame;
+    private JFrame startMenuFrame, rootFrame;
     private JPanel mainPanel, handPanel;
 
     private JButton deckButton, discardButton;
@@ -30,6 +38,7 @@ public class UnoGUI {
 
     public UnoGUI() {
         startMenu();
+        setStartMenuVisible(true);
     }
 
     public void startMenu(){
@@ -37,10 +46,10 @@ public class UnoGUI {
 
         numFields = 2;
 
-        JFrame frame = new JFrame();
-        frame.setSize(500, 500);
+        startMenuFrame = new JFrame();
+        startMenuFrame.setSize(500, 500);
         JPanel panel = new JPanel();
-        frame.add(panel);
+        startMenuFrame.add(panel);
 
         // Create a GridBagLayout for the panel
         panel.setLayout(new GridBagLayout());
@@ -93,8 +102,13 @@ public class UnoGUI {
 
 
 
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        startMenuFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    public void setStartMenuVisible(boolean flag){
+
+        startMenuFrame.setVisible(flag);
+
     }
 
     public void startGame(){
@@ -115,9 +129,10 @@ public class UnoGUI {
 
         // build hand ui and add cards
         buildHand();
-        //buildDeck();
+        buildDeck();
         buildDiscard();
 
+
         // clean up root frame
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
@@ -130,6 +145,25 @@ public class UnoGUI {
 
         addCard();
         addCard();
+    }
+
+
+    public void currPlaySide(){
+
+        mainPanel.add(darkside);
+    }
+
+
+    public void nextPlayer(){
+
+        mainPanel.add(nextPlayer);
+
+    }
+
+    public void unoPressed(){
+
+        mainPanel.add(UnoButton);
+
     }
 
 
@@ -141,14 +175,13 @@ public class UnoGUI {
         playerCards.add(card);
     }
 
-    public void buildDeck(ActionListener action) {
+    public void buildDeck() {
         System.out.println("test");
-        JButton button = new JButton("Deck");
-        button.setSize(100, 100);
-        button.setLocation(100,100);
+        buildDeckbutton.setSize(100, 100);
+        buildDeckbutton.setLocation(100,100);
 
-        button.addActionListener(action);
-        mainPanel.add(button);
+
+        mainPanel.add(buildDeckbutton);
     }
 
 
@@ -170,18 +203,31 @@ public class UnoGUI {
         handPanel.setLayout(new GridLayout(0, 7));
 
     }
+    /*Button press calls function in Controller to handle logic for that button
+    currently we have buttons for:
 
-    public void startMenu(boolean start){
+    if someone presses Uno
+    if someone presses nextPlayer
+    if someone is finshed inputting players, and presses "collect players"
+    if someone presses "PlayGame" which starts the game
+    if someone plays a card
+    if someone draws a card from the deck
 
-        if (start){
-            startMenu();
-        }
-        else{
-            System.out.println("Why don't you wanna start :(");
-        }
+     */
+
+
+    public void addUnoButtonListener(ActionListener listenforUnoPressed){
+        UnoButton.addActionListener(listenforUnoPressed);
     }
 
-    //Button press calls function in Controller to handle logic
+    public void addNextPlayerListener(ActionListener listenforNextPlayer){
+        nextPlayer.addActionListener(listenforNextPlayer);
+    }
+
+    public void addBuildDeckListener(ActionListener listenforBuildDeck){
+
+        buildDeckbutton.addActionListener(listenforBuildDeck);
+    }
 
 
     public void addPlayers(ActionListener listenforPlayersAdded){
