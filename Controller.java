@@ -73,16 +73,20 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             JButton button = (JButton) e.getSource();
+            int buttonIndex = Integer.parseInt(button.getName());
             System.out.println("Card clicked: " + button.getName());
+
+            unoModel.currentRound.setPlayCardIndex(buttonIndex);
+            unoModel.currentRound.cardPlayedLogic();
+            /*
             for (int i = 0; i < unoGUI.playerCards.size(); i++){
                 if (button == unoGUI.playerCards.get(i)){
-
                     unoModel.currentRound.setPlayCardIndex(i);
-                    unoModel.currentRound.getPlayCard();
                     unoModel.currentRound.cardPlayedLogic();
 
                 }
             }
+            */
         }
     }
 
