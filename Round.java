@@ -186,9 +186,7 @@ public class Round {
 
 
     public void playRound() {
-
-
-
+        currentPlayer = players.get(0);
     }
 
 
@@ -199,6 +197,12 @@ public class Round {
         else{
             return  "Lightmode!";
         }
+    }
+
+    // draws one card from the deck and gives to current player!
+    public void drawCurrPlayer(){
+        //
+        currentPlayer.getHand().addCard(deck.pop());
     }
 
     /**

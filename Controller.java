@@ -16,12 +16,11 @@ public class Controller {
         this.unoGUI.addBuildDeckListener(new updateDeckListener());
 
         this.unoModel.testRound();
+        
 
         this.unoGUI.addStartGameListener(new playGameButtonListener());
         this.unoGUI.addPlayers(new addPlayersListener());
         this.unoGUI.addPlayCardListener(new listenForCardPlayed());
-
-
     }
 
     public class addPlayersListener implements ActionListener {
@@ -57,9 +56,12 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e){
             //handle playing card
-            System.out.println("Removes Card");
             System.out.println(unoModel.currentRound.deck.peek());
-            unoModel.currentRound.currentPlayer.getHand();
+            System.out.println("Removes Card From Deck");
+            unoModel.currentRound.drawCurrPlayer();
+            System.out.println(unoModel.currentRound.deck.peek());
+
+            //unoModel.currentRound.currentPlayer.getHand();
 
         }
     }
