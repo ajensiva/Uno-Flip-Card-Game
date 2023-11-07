@@ -249,7 +249,8 @@ public class UnoGUI {
         for(int i = 0; i < hand.getSize(); i++){
             Card card = hand.getCard(i);
             JButton button = playerCards.get(i);
-            button.setName("card" + i);
+            //button.setName("card" + i);
+            button.setName(Integer.toString(i));
             button.addActionListener(listenforCardtoPlay);
         }
     }
