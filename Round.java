@@ -78,6 +78,8 @@ public class Round {
 
     public Card getPlayCard(){
 
+        System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
+
         return currentPlayer.getHand().getCard(getCardtoPlayIndex());
 
     }
