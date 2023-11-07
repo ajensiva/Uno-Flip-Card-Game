@@ -20,10 +20,10 @@ public class UnoGUI {
 
     protected JLabel darkside = new JLabel();
 
-    protected JButton playGame;
+    protected JButton playGame = new JButton("PLAY GAME");
     protected ArrayList<JTextField> inputFields; // Array to store user inputs
 
-    protected JButton collectButton;
+    protected JButton collectButton = new JButton();
 
     private int drewCard;
 
@@ -37,8 +37,9 @@ public class UnoGUI {
     private ArrayList<JButton> playerCards; // holds player's hand; array of cards
 
     public UnoGUI() {
-        startMenu();
-        setStartMenuVisible(true);
+//        startMenu();
+//        setStartMenuVisible(true);
+        startGame();
     }
 
     public void startMenu(){
@@ -91,13 +92,11 @@ public class UnoGUI {
         }
 
         // Create a button to collect user inputs
-        JButton collectButton = new JButton("Collect Inputs");
         constraints.gridy = numFields + 2;
         panel.add(collectButton, constraints);
 
 
         constraints.gridy = numFields + 3;
-        playGame = new JButton("PLAY GAME");
         panel.add(playGame, constraints);
 
 
