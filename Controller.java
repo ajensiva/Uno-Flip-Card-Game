@@ -1,6 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+
 
 public class Controller {
 
@@ -16,11 +18,11 @@ public class Controller {
         this.unoGUI.addBuildDeckListener(new updateDeckListener());
 
         this.unoModel.testRound();
-        
+
 
         this.unoGUI.addStartGameListener(new playGameButtonListener());
         this.unoGUI.addPlayers(new addPlayersListener());
-        this.unoGUI.addPlayCardListener(new listenForCardPlayed());
+        this.unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
     }
 
     public class addPlayersListener implements ActionListener {
@@ -70,9 +72,11 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String actionCommand = e.getActionCommand();
-            int buttonIndex = Integer.parseInt(actionCommand);
-            unoModel.currentRound.setPlayCardIndex(buttonIndex);
+            JButton button = (JButton) e.getSource();
+            System.out.println("Card clicked: " + button.getName());
+            //String actionCommand = e.getActionCommand();
+            //int buttonIndex = Integer.parseInt(actionCommand);
+            //unoModel.currentRound.setPlayCardIndex(buttonIndex);
         }
     }
 

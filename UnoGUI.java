@@ -142,8 +142,9 @@ public class UnoGUI {
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         rootFrame.setVisible(true);
 
-        addCard();
-        addCard();
+        for(int i = 0; i < 7; i++){
+            addCard();
+        }
     }
 
 
@@ -241,8 +242,14 @@ public class UnoGUI {
     }
 
 
-    public void addPlayCardListener(ActionListener listenforCardtoPlay){
-        for (JButton button : playerCards){
+    public void addPlayCardListener(Hand hand, ActionListener listenforCardtoPlay){
+        //private ArrayList<JButton> playerCards; // holds player's hand; array of cards
+        System.out.println("handSize: " + hand.getSize());
+        System.out.println("JButtonCards: " + playerCards.size());
+        for(int i = 0; i < hand.getSize()-1; i++){
+            Card card = hand.getCard(i);
+            JButton button = playerCards.get(i);
+            button.setName("card" + i);
             button.addActionListener(listenforCardtoPlay);
         }
     }
