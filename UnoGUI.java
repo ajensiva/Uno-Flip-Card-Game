@@ -34,7 +34,7 @@ public class UnoGUI {
     private JPanel mainPanel, handPanel;
 
     private JButton deckButton, discardButton;
-    private ArrayList<JButton> playerCards; // holds player's hand; array of cards
+    protected ArrayList<JButton> playerCards; // holds player's hand; array of cards
 
     public UnoGUI() {
 //        startMenu();
@@ -246,7 +246,7 @@ public class UnoGUI {
         //private ArrayList<JButton> playerCards; // holds player's hand; array of cards
         System.out.println("handSize: " + hand.getSize());
         System.out.println("JButtonCards: " + playerCards.size());
-        for(int i = 0; i < hand.getSize()-1; i++){
+        for(int i = 0; i < hand.getSize(); i++){
             Card card = hand.getCard(i);
             JButton button = playerCards.get(i);
             button.setName("card" + i);

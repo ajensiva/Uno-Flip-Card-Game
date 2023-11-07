@@ -4,7 +4,7 @@
 - __Arun Kharki__ : _101248498_
 - __Jason Kia__ : _101233435_
 - __Ajen Srisivapalan__ : _101248498_
-
+-------------------------------------------------------------------
 ### Milestone 1:
 - Implemented short text based UI of the classic Uno-Flip Card game
 - Includes implementation of Lightside cards
@@ -16,6 +16,10 @@
 - UI is only available through the terminal
 - The user plays as every player (does not include AI compatability)
 - In the case that a user does not input an index to play a Card (if they put a String) then there is no catch for this case
+--------------------------------------------------------------------
+### Milestone 2:
+- Implemented MVC pattern  
+- Implemented GUI
 
 #### MIT License
 
