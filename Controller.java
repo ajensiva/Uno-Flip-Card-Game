@@ -53,7 +53,6 @@ public class Controller {
         }
     }
 
-
     private class updateDeckListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
@@ -78,7 +77,6 @@ public class Controller {
                 if (button == unoGUI.playerCards.get(i)){
 
                     unoModel.currentRound.setPlayCardIndex(i);
-                    unoModel.currentRound.getPlayCard();
                     unoModel.currentRound.cardPlayedLogic();
 
                 }
