@@ -64,7 +64,9 @@ public class Round {
 
     public void setPlayCardIndex(int PlayCardIndex){
 
-        this.playCardIndex = playCardIndex;
+        System.out.println(PlayCardIndex);
+
+        this.playCardIndex = PlayCardIndex;
 
     }
 

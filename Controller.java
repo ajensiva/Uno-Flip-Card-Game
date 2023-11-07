@@ -74,9 +74,13 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             JButton button = (JButton) e.getSource();
             System.out.println("Card clicked: " + button.getName());
-            //String actionCommand = e.getActionCommand();
-            //int buttonIndex = Integer.parseInt(actionCommand);
-            //unoModel.currentRound.setPlayCardIndex(buttonIndex);
+            for (int i = 0; i < unoGUI.playerCards.size(); i++){
+                if (button == unoGUI.playerCards.get(i)){
+
+                    unoModel.currentRound.setPlayCardIndex(i);
+
+                }
+            }
         }
     }
 
