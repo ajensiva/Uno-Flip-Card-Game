@@ -106,6 +106,10 @@ public class Uno {
         }
     }
 
+    public void testRound(){
+        currentRound = new Round(players);
+        currentRound.playRound();
+    }
     /*
     public static void main(String args[]) {
         Uno newGame = new Uno();
