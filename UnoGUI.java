@@ -168,11 +168,12 @@ public class UnoGUI {
 
 
     // 
-    public void addCard(){
+    public JButton addCard(){
         JButton card = new JButton();
         card.setText("[ CARD TEST ]");
         handPanel.add(card);
         playerCards.add(card);
+        return card;
     }
 
     public void buildDeck() {
@@ -254,16 +255,20 @@ public class UnoGUI {
         }
     }
 
-    public void updatePlayerCards(JButton buttonClicked, Hand hand){
-        //System.out.println("Index of Card: " + playerCards.indexOf(buttonClicked));
+    public void updatePlayerCardsAdd(){
+        JButton card = addCard();
+        System.out.println("new card added to hand");
+    }
+
+    public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand){
+
         System.out.println("IM IN THIS FUNCTION");
         buttonClicked.setText("");
 
         playerCards.remove(playerCards.indexOf(buttonClicked));
-
-        System.out.println("BEFORE: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
+        //System.out.println("BEFORE: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
         handPanel.remove(buttonClicked);
-        System.out.println("AFTER: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
+        //System.out.println("AFTER: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
 
         //System.out.println("Hand Size: " + hand.getSize());
         //System.out.println("# Buttons: " + playerCards.size());
@@ -275,11 +280,6 @@ public class UnoGUI {
         }
 
         //
-    }
-
-
-    public void test(){
-
     }
 
     public void addDrawCardListener(ActionListener listenforCardtoDraw){
