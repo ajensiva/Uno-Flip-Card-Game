@@ -255,18 +255,31 @@ public class UnoGUI {
     }
 
     public void updatePlayerCards(JButton buttonClicked, Hand hand){
-        System.out.println("Index of Card: " + playerCards.indexOf(buttonClicked));
+        //System.out.println("Index of Card: " + playerCards.indexOf(buttonClicked));
+        System.out.println("IM IN THIS FUNCTION");
         buttonClicked.setText("");
+
         playerCards.remove(playerCards.indexOf(buttonClicked));
-        System.out.println("Hand Size: " + hand.getSize());
-        System.out.println("# Buttons: " + playerCards.size());
+
+        System.out.println("BEFORE: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
+        handPanel.remove(buttonClicked);
+        System.out.println("AFTER: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
+
+        //System.out.println("Hand Size: " + hand.getSize());
+        //System.out.println("# Buttons: " + playerCards.size());
         for(int i = 0; i < hand.getSize(); i++){
             JButton button = playerCards.get(i);
             //button.setName("card" + i);
             button.setName(Integer.toString(i));
             button.setText(button.getName());
         }
-        System.out.println("update complete");
+
+        //
+    }
+
+
+    public void test(){
+
     }
 
     public void addDrawCardListener(ActionListener listenforCardtoDraw){
