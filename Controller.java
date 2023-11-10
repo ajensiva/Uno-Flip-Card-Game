@@ -53,7 +53,6 @@ public class Controller {
         }
     }
 
-
     private class updateDeckListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
