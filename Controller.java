@@ -54,12 +54,14 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e){
             //handle playing card
-            System.out.println(unoModel.currentRound.deck.peek());
             System.out.println("Removes Card From Deck");
             unoModel.currentRound.drawCurrPlayer();
-            System.out.println(unoModel.currentRound.deck.peek());
+            System.out.println("Deck Size: " + unoModel.currentRound.deck.getSize());
+            System.out.println("HandSize: " + unoModel.currentRound.currentPlayer.getHand().getSize());
 
             //unoModel.currentRound.currentPlayer.getHand();
+            unoGUI.updatePlayerCardsAdd();
+            unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
 
         }
     }
@@ -68,14 +70,14 @@ public class Controller {
 
         @Override 
         public void actionPerformed(ActionEvent e) {
-            
+
             JButton button = (JButton) e.getSource();
             int buttonIndex = Integer.parseInt(button.getName());
             System.out.println("Card Clicked: " + button.getName());
 
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
             if(unoModel.currentRound.cardPlayedLogic()){
-                unoGUI.updatePlayerCards(button, unoModel.currentRound.currentPlayer.getHand());
+                unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
             }
             /*
             for (int i = 0; i < unoGUI.playerCards.size(); i++){
