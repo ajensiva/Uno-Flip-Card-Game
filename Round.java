@@ -63,25 +63,19 @@ public class Round {
     }
 
     public void setPlayCardIndex(int PlayCardIndex){
-
-        System.out.println("IN ROUND:" + PlayCardIndex);
-
+        //System.out.println("IN ROUND:" + PlayCardIndex);
         this.playCardIndex = PlayCardIndex;
 
     }
 
     public int getCardtoPlayIndex() {
-
         return playCardIndex;
-
     }
 
     public Card getPlayCard(){
-
-        System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
+        //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
 
         return currentPlayer.getHand().getCard(getCardtoPlayIndex());
-
     }
 
     public void makeDiscard(){
@@ -95,25 +89,23 @@ public class Round {
 
 
     public void nextPlayer(){
-
         currentPlayer = players.get(players.indexOf(currentPlayer)+1);
     }
 
 
     public void unoFunction(){
-
         checkWinner();
-
-
     }
 
-    public void cardPlayedLogic() {
+    public boolean cardPlayedLogic() {
         if ((checkCard(getPlayCard(), discard.peek()))) {
-            System.out.println(playCard(getCardtoPlayIndex()));
+            //System.out.println(playCard(getCardtoPlayIndex()));
 
             System.out.println("Card has been played!");
+
             // take the card from the player
             currentPlayer.getHand().removeCard(getPlayCard());
+
 
             // light type cards only
             if (!(darkmode)) {
@@ -183,9 +175,10 @@ public class Round {
 
 
             }
+            return true;
         }
-
-    }
+    return false;
+}
 
 
 

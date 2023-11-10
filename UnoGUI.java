@@ -170,7 +170,7 @@ public class UnoGUI {
     // 
     public void addCard(){
         JButton card = new JButton();
-        card.setName("[ CARD TEST ]");
+        card.setText("[ CARD TEST ]");
         handPanel.add(card);
         playerCards.add(card);
     }
@@ -243,16 +243,30 @@ public class UnoGUI {
 
 
     public void addPlayCardListener(Hand hand, ActionListener listenforCardtoPlay){
-        //private ArrayList<JButton> playerCards; // holds player's hand; array of cards
-        System.out.println("handSize: " + hand.getSize());
-        System.out.println("JButtonCards: " + playerCards.size());
+        System.out.println("Hand Size: " + hand.getSize());
+        System.out.println("# Buttons: " + playerCards.size());
         for(int i = 0; i < hand.getSize(); i++){
-            Card card = hand.getCard(i);
             JButton button = playerCards.get(i);
             //button.setName("card" + i);
             button.setName(Integer.toString(i));
+            button.setText(button.getName());
             button.addActionListener(listenforCardtoPlay);
         }
+    }
+
+    public void updatePlayerCards(JButton buttonClicked, Hand hand){
+        System.out.println("Index of Card: " + playerCards.indexOf(buttonClicked));
+        buttonClicked.setText("");
+        playerCards.remove(playerCards.indexOf(buttonClicked));
+        System.out.println("Hand Size: " + hand.getSize());
+        System.out.println("# Buttons: " + playerCards.size());
+        for(int i = 0; i < hand.getSize(); i++){
+            JButton button = playerCards.get(i);
+            //button.setName("card" + i);
+            button.setName(Integer.toString(i));
+            button.setText(button.getName());
+        }
+        System.out.println("update complete");
     }
 
     public void addDrawCardListener(ActionListener listenforCardtoDraw){

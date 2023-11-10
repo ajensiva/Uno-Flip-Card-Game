@@ -46,10 +46,7 @@ public class Controller {
     public class playGameButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-
             unoGUI.startGame();
-
-
         }
     }
 
@@ -69,14 +66,15 @@ public class Controller {
 
     public class listenForCardPlayed implements ActionListener{
 
-        @Override
+        @Override 
         public void actionPerformed(ActionEvent e) {
             JButton button = (JButton) e.getSource();
             int buttonIndex = Integer.parseInt(button.getName());
-            System.out.println("Card clicked: " + button.getName());
-
+            System.out.println("Card Clicked: " + button.getName());
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
-            unoModel.currentRound.cardPlayedLogic();
+            if(unoModel.currentRound.cardPlayedLogic()){
+                unoGUI.updatePlayerCards(button, unoModel.currentRound.currentPlayer.getHand());
+            }
             /*
             for (int i = 0; i < unoGUI.playerCards.size(); i++){
                 if (button == unoGUI.playerCards.get(i)){
