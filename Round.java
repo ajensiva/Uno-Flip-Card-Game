@@ -196,10 +196,12 @@ public class Round {
         }
     }
 
-    // draws one card from the deck and gives to current player!
-    public void drawCurrPlayer(){
+    // draws one card from the deck and gives to current player! and RETURN the card that was just popped
+    public Card drawCurrPlayer(){
         //
         currentPlayer.getHand().addCard(deck.pop());
+
+        return currentPlayer.getHand().getCard(currentPlayer.getHand().getSize()-1);
     }
 
     /**
@@ -303,6 +305,7 @@ public class Round {
      * @return The total points for the round.
      */
     public int getTotalPoints(){
+
         int totalPoint = 0; //  sum of all player's cards' values
         for(Player plr : players){
             if(plr != currentPlayer){ // skip winner as a safe measure
