@@ -11,21 +11,20 @@ public class UnoGUI {
     protected int numFields;
 
     protected JButton nextPlayer = new JButton("next Player");
-
     protected JButton UnoButton = new JButton("UNO!!");
+    protected JButton buildDeckbutton = new JButton("Deck");
+    protected JButton playGame = new JButton("PLAY GAME");
+    protected JButton collectButton = new JButton();
 
     protected String userInputs[];
 
-    protected JButton buildDeckbutton = new JButton("Deck");
+
 
     protected JLabel darkside = new JLabel();
 
-    protected JButton playGame = new JButton("PLAY GAME");
-    protected ArrayList<JTextField> inputFields; // Array to store user inputs
 
-    protected JButton collectButton = new JButton();
 
-    private int drewCard;
+
 
     private final int FRAME_SIZE_WIDTH = 600;
     private final int FRAME_SIZE_HEIGHT = 600;
@@ -34,6 +33,7 @@ public class UnoGUI {
     private JPanel mainPanel, handPanel = new JPanel();
 
     private JButton deckButton, discardButton;
+    protected ArrayList<JTextField> inputFields; // Array to store user inputs
 
     protected ArrayList<JButton> playerCards = new ArrayList<>(); // holds player's hand; array of cards
 
@@ -148,10 +148,6 @@ public class UnoGUI {
 
 
 
-//
-//        for(int i = 0; i < 7; i++){
-//            addCard();
-//        }
     }
 
     public void clearPlayerCards() {
@@ -208,15 +204,14 @@ public class UnoGUI {
 
     }
 
-    public JButton addCard(Card card, int i){
+    public JButton addCard(Card card){
 
-        ImageIcon cardImage = new ImageIcon("images/" + card.getImageFileName());
-//        ImageIcon cardImage = new ImageIcon("\"C:\\Users\\Zarif\\Desktop\\images\"" + card.getImageFileName()); // Replace with the actual path to your card images
+        ImageIcon image = new ImageIcon("images/" + card.getImageFileName());
+        System.out.println("images/" + card.getImageFileName());
+//        String imagePath = "" + card.getImageFileName(); // Replace with the actual path to your card images
 
-        String string = String.valueOf(i);
 
         JButton card_button = new JButton();
-        card_button.setText(string);
         handPanel.add(card_button);
         playerCards.add(card_button);
         return card_button;
@@ -224,8 +219,8 @@ public class UnoGUI {
 
 
 
-    public void updatePlayerCardsAdd(Card card, int i){
-        JButton card_button = addCard(card, i);
+    public void updatePlayerCardsAdd(Card card){
+        JButton card_button = addCard(card);
 
         System.out.println("new card added to hand");
     }
@@ -254,7 +249,7 @@ public class UnoGUI {
 
 
 
-    //-----------------------------------ACTION LISTENERS------------------------------------------------------------------
+    //-----------------------------------ACTION LISTENERS---------------------------------------------------------------
 
 
     public void addUnoButtonListener(ActionListener listenforUnoPressed){

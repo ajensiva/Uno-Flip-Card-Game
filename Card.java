@@ -7,6 +7,8 @@ import java.util.Objects;
  */
 public class Card {
     public String getImageFileName() {
+        if(this.colorLight == null)
+            return (this.typeLight + ".jpg");
         return (this.colorLight + "_" + this.typeLight + ".jpg");
     }
 
@@ -189,11 +191,11 @@ public class Card {
     }
     // test
     public static void main(String[] args) {
-        Card.ColorLight colorLight = Card.ColorLight.values()[3];
-        Card.TypeLight typeLight = Card.TypeLight.values()[1];
+        //Card.ColorLight colorLight = Card.ColorLight.values()[3];
+        Card.TypeLight typeLight = Card.TypeLight.values()[12];
         // Create a new card with the generated values.
 
-        Card card = new Card(colorLight, typeLight, null, null);
+        Card card = new Card(null, typeLight, null, null);
         System.out.println(card.getImageFileName());
     }
 }
