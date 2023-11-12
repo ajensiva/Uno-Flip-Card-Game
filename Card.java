@@ -7,7 +7,7 @@ import java.util.Objects;
  */
 public class Card {
     public String getImageFileName() {
-        return (this.colorLight + "_" + this.typeLight);
+        return (this.colorLight + "_" + this.typeLight + ".jpg");
     }
 
     /**
