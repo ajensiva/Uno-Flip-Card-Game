@@ -197,11 +197,11 @@ public class Round {
     }
 
     // draws one card from the deck and gives to current player! and RETURN the card that was just popped
-    public Card drawCurrPlayer(){
+    public void drawCurrPlayer(){
         //
         currentPlayer.getHand().addCard(deck.pop());
 
-        return currentPlayer.getHand().getCard(currentPlayer.getHand().getSize()-1);
+
     }
 
     /**

@@ -78,7 +78,7 @@ public class Controller {
             System.out.println("HandSize: " + unoModel.currentRound.currentPlayer.getHand().getSize());
 
             //unoModel.currentRound.currentPlayer.getHand();
-            unoGUI.addCard(unoModel.currentRound.drawCurrPlayer(), unoModel.currentRound.currentPlayer.getHand().getSize());
+            unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize()-1), unoModel.currentRound.currentPlayer.getHand().getSize());
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
 
         }
