@@ -210,6 +210,7 @@ public class UnoGUI {
 
     public JButton addCard(Card card, int i){
 
+        ImageIcon cardImage = new ImageIcon("images/" + card.getImageFileName());
 //        ImageIcon cardImage = new ImageIcon("\"C:\\Users\\Zarif\\Desktop\\images\"" + card.getImageFileName()); // Replace with the actual path to your card images
 
         String string = String.valueOf(i);
