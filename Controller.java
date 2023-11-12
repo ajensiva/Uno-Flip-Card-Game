@@ -49,7 +49,6 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-
             // Start the game
             unoGUI.startGame();
 
@@ -58,13 +57,10 @@ public class Controller {
 
             // Add new cards to the GUI
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
-                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i), i);
+                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
 
             }
-
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
-
-
 
         }
     }
@@ -80,7 +76,7 @@ public class Controller {
             System.out.println("HandSize: " + unoModel.currentRound.currentPlayer.getHand().getSize());
 
             //unoModel.currentRound.currentPlayer.getHand();
-            unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize()-1), unoModel.currentRound.currentPlayer.getHand().getSize());
+            unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize()-1));
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
 
         }
@@ -100,19 +96,11 @@ public class Controller {
 
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
             if(unoModel.currentRound.cardPlayedLogic()){
+
                 unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
             }
 
         }
-    }
-
-    private class updateHandListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e){
-
-            //Handle adding Card to deck
-        }
-
     }
 
 
