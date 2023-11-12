@@ -7,8 +7,7 @@ import java.util.Objects;
  */
 public class Card {
     public String getImageFileName() {
-
-        return "";
+        return (this.colorLight + "_" + this.typeLight);
     }
 
     /**
@@ -195,12 +194,6 @@ public class Card {
         // Create a new card with the generated values.
 
         Card card = new Card(colorLight, typeLight, null, null);
-        System.out.println();
-        System.out.println();
-        System.out.println(card);
-        System.out.println(colorLight);
-        System.out.println(typeLight);
-
-        System.out.println(colorLight + "_" + typeLight + ".jpg");
+        System.out.println(card.getImageFileName());
     }
 }
