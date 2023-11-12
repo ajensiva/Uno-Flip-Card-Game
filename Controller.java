@@ -23,7 +23,6 @@ public class Controller {
         this.unoGUI.addStartGameListener(new playGameButtonListener());
         this.unoGUI.addPlayers(new addPlayersListener());
 
-        unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
 
 
     }
@@ -62,6 +61,9 @@ public class Controller {
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i), i);
 
             }
+
+            unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
+
 
 
         }
