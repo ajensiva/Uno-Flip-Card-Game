@@ -22,7 +22,10 @@ public class Controller {
 
         this.unoGUI.addStartGameListener(new playGameButtonListener());
         this.unoGUI.addPlayers(new addPlayersListener());
-        this.unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
+
+        unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
+
+
     }
 
     public class addPlayersListener implements ActionListener {
@@ -43,12 +46,27 @@ public class Controller {
         }
     }
 
-    public class playGameButtonListener implements ActionListener{
+    public class playGameButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+
+
+            // Start the game
             unoGUI.startGame();
+
+            // Clear existing cards/buttons from the GUI
+            unoGUI.clearPlayerCards();
+
+            // Add new cards to the GUI
+            for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
+                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i), i);
+
+            }
+
+
         }
     }
+
 
     private class updateDeckListener implements ActionListener {
         @Override
@@ -60,7 +78,7 @@ public class Controller {
             System.out.println("HandSize: " + unoModel.currentRound.currentPlayer.getHand().getSize());
 
             //unoModel.currentRound.currentPlayer.getHand();
-            unoGUI.updatePlayerCardsAdd();
+            unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize()-1), unoModel.currentRound.currentPlayer.getHand().getSize());
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
 
         }
@@ -75,19 +93,14 @@ public class Controller {
             int buttonIndex = Integer.parseInt(button.getName());
             System.out.println("Card Clicked: " + button.getName());
 
+            System.out.println(unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex));
+            System.out.println(unoModel.currentRound.deck.peek());
+
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
             if(unoModel.currentRound.cardPlayedLogic()){
                 unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
             }
-            /*
-            for (int i = 0; i < unoGUI.playerCards.size(); i++){
-                if (button == unoGUI.playerCards.get(i)){
-                    unoModel.currentRound.setPlayCardIndex(i);
-                    unoModel.currentRound.cardPlayedLogic();
 
-                }
-            }
-            */
         }
     }
 

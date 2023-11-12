@@ -31,15 +31,19 @@ public class UnoGUI {
     private final int FRAME_SIZE_HEIGHT = 600;
 
     private JFrame startMenuFrame, rootFrame;
-    private JPanel mainPanel, handPanel;
+    private JPanel mainPanel, handPanel = new JPanel();
 
     private JButton deckButton, discardButton;
-    protected ArrayList<JButton> playerCards; // holds player's hand; array of cards
+
+    protected ArrayList<JButton> playerCards = new ArrayList<>(); // holds player's hand; array of cards
+
+
+    protected boolean addingbuttons = true;
 
     public UnoGUI() {
-//        startMenu();
-//        setStartMenuVisible(true);
-        startGame();
+        startMenu();
+        setStartMenuVisible(true);
+//        startGame();
     }
 
     public void startMenu(){
@@ -142,9 +146,19 @@ public class UnoGUI {
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         rootFrame.setVisible(true);
 
-        for(int i = 0; i < 7; i++){
-            addCard();
-        }
+
+
+//
+//        for(int i = 0; i < 7; i++){
+//            addCard();
+//        }
+    }
+
+    public void clearPlayerCards() {
+        handPanel.removeAll();
+        handPanel.revalidate();
+        handPanel.repaint();
+        playerCards.clear();
     }
 
 
@@ -165,17 +179,6 @@ public class UnoGUI {
         mainPanel.add(UnoButton);
 
     }
-
-
-    // 
-    public JButton addCard(){
-        JButton card = new JButton();
-        card.setText("[ CARD TEST ]");
-        handPanel.add(card);
-        playerCards.add(card);
-        return card;
-    }
-
     public void buildDeck() {
         System.out.println("test");
         buildDeckbutton.setSize(100, 100);
@@ -204,17 +207,53 @@ public class UnoGUI {
         handPanel.setLayout(new GridLayout(0, 7));
 
     }
-    /*Button press calls function in Controller to handle logic for that button
-    currently we have buttons for:
 
-    if someone presses Uno
-    if someone presses nextPlayer
-    if someone is finshed inputting players, and presses "collect players"
-    if someone presses "PlayGame" which starts the game
-    if someone plays a card
-    if someone draws a card from the deck
+    public JButton addCard(Card card, int i){
 
-     */
+//        ImageIcon cardImage = new ImageIcon("\"C:\\Users\\Zarif\\Desktop\\images\"" + card.getImageFileName()); // Replace with the actual path to your card images
+
+        String string = String.valueOf(i);
+
+        JButton card_button = new JButton();
+        card_button.setText(string);
+        handPanel.add(card_button);
+        playerCards.add(card_button);
+        return card_button;
+    }
+
+
+
+    public void updatePlayerCardsAdd(Card card, int i){
+        JButton card_button = addCard(card, i);
+
+        System.out.println("new card added to hand");
+    }
+
+    public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand){
+
+
+        buttonClicked.setText("");
+
+        playerCards.remove(playerCards.indexOf(buttonClicked));
+        System.out.println("BEFORE: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
+        handPanel.remove(buttonClicked);
+        System.out.println("AFTER: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
+
+        //System.out.println("Hand Size: " + hand.getSize());
+        //System.out.println("# Buttons: " + playerCards.size());
+        for(int i = 0; i < hand.getSize(); i++){
+            JButton button = playerCards.get(i);
+            //button.setName("card" + i);
+            button.setName(Integer.toString(i));
+            button.setText(button.getName());
+        }
+
+        //
+    }
+
+
+
+    //-----------------------------------ACTION LISTENERS------------------------------------------------------------------
 
 
     public void addUnoButtonListener(ActionListener listenforUnoPressed){
@@ -240,8 +279,9 @@ public class UnoGUI {
 
         playGame.addActionListener(listenforStartGame);
 
-    }
 
+
+    }
 
     public void addPlayCardListener(Hand hand, ActionListener listenforCardtoPlay){
         System.out.println("Hand Size: " + hand.getSize());
@@ -254,39 +294,6 @@ public class UnoGUI {
             button.addActionListener(listenforCardtoPlay);
         }
     }
-
-    public void updatePlayerCardsAdd(){
-        JButton card = addCard();
-        System.out.println("new card added to hand");
-    }
-
-    public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand){
-
-        System.out.println("IM IN THIS FUNCTION");
-        buttonClicked.setText("");
-
-        playerCards.remove(playerCards.indexOf(buttonClicked));
-        //System.out.println("BEFORE: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
-        handPanel.remove(buttonClicked);
-        //System.out.println("AFTER: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
-
-        //System.out.println("Hand Size: " + hand.getSize());
-        //System.out.println("# Buttons: " + playerCards.size());
-        for(int i = 0; i < hand.getSize(); i++){
-            JButton button = playerCards.get(i);
-            //button.setName("card" + i);
-            button.setName(Integer.toString(i));
-            button.setText(button.getName());
-        }
-
-        //
-    }
-
-    public void addDrawCardListener(ActionListener listenforCardtoDraw){
-        deckButton.addActionListener(listenforCardtoDraw);
-    }
-
-
 
     public static void main(String args[]) {
         UnoGUI view = new UnoGUI();
