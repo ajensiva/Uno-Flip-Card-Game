@@ -304,20 +304,7 @@ public class Round {
      *
      * @return The total points for the round.
      */
-    public int getTotalPoints(){
 
-        int totalPoint = 0; //  sum of all player's cards' values
-        for(Player plr : players){
-            if(plr != currentPlayer){ // skip winner as a safe measure
-                Hand hand = plr.getHand();
-                // get each invidiual card's value and add to sum
-                for(Card card : hand.getHandList()){
-                    totalPoint += card.getValue();
-                }
-            }
-        }
-        return totalPoint;
-    }
 
 
 
