@@ -188,4 +188,19 @@ public class Card {
         }
         return sb.toString();
     }
+    // test
+    public static void main(String[] args) {
+        Card.ColorLight colorLight = Card.ColorLight.values()[3];
+        Card.TypeLight typeLight = Card.TypeLight.values()[1];
+        // Create a new card with the generated values.
+
+        Card card = new Card(colorLight, typeLight, null, null);
+        System.out.println();
+        System.out.println();
+        System.out.println(card);
+        System.out.println(colorLight);
+        System.out.println(typeLight);
+
+        System.out.println(colorLight + "_" + typeLight + ".jpg");
+    }
 }
