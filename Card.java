@@ -6,6 +6,11 @@ import java.util.Objects;
  * @version 1.0
  */
 public class Card {
+    public String getImageFileName() {
+
+        return "";
+    }
+
     /**
      * enum TypeLight : provides all the possible types for a Card when the Card is being played on the light side
      */
