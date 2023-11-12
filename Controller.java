@@ -11,6 +11,7 @@ public class Controller {
     private Uno unoModel;
 
     public Controller(UnoGUI gui, Uno uno) {
+
         this.unoGUI = gui;
         this.unoModel = uno;
 
