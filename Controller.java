@@ -32,16 +32,11 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
-            String[] userInputs = new String[unoGUI.numFields];
-            for (int i = 0; i < unoGUI.numFields; i++) {
-                userInputs[i] = unoGUI.inputFields.get(i).getText();
+            if (unoGUI.numFields < 4) {
+                unoGUI.addPlayerField();
             }
-
-            // Display the collected inputs (you can change this to your desired action)
-            for (int i = 0; i < unoGUI.numFields; i++) {
-                System.out.println("Player " + (i + 1) + ": " + userInputs[i]);
-
+            if (unoGUI.numFields >= 4) {
+                unoGUI.addPlayer.setEnabled(false); // Disable the add player button
             }
         }
     }
