@@ -75,6 +75,7 @@ public class Round {
     public Card getPlayCard(){
         //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
 
+        System.out.println("getPlayCard: " + currentPlayer.getHand().getCard(getCardtoPlayIndex()));
         return currentPlayer.getHand().getCard(getCardtoPlayIndex());
     }
 
@@ -245,13 +246,21 @@ public class Round {
      * @return True if the card can be played, false otherwise.
      */
     public boolean checkCard(Card card1, Card card2){
-        // let wild cards be played regardless
-        boolean check1 = card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO);
-        boolean check2 = card2.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR) || card1.getTypeLight().equals(Card.TypeDark.WILD_CARD);
 
+        boolean check_colour_light = card1.getColorLight().equals(card2.getColorLight()); // false
+        boolean check_colour_dark = card1.getColorDark().equals(card2.getColorDark()); // false 
 
-                // if the color or the number/type matches
-        return (card1.getColorLight().equals(card2.getColorLight()) || card1.getTypeLight().equals(card2.getTypeLight())) || (card1.getColorDark().equals(card2.getColorDark()) || card1.getTypeDark().equals(card2.getTypeDark())) ;
+        boolean check_type_light = card1.getTypeLight().equals(card2.getTypeLight());
+        boolean check_type_dark = card1.getTypeDark().equals(card2.getTypeDark());
+
+        boolean check_wild_card_light = card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO);
+        boolean check_wild_card_dark = card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR) || card1.getTypeDark().equals(Card.TypeDark.WILD_CARD);
+
+        // for light side checks
+        if(darkmode == false)
+            return check_colour_light || check_type_light || check_wild_card_light;
+        else
+            return check_colour_dark || check_type_dark || check_wild_card_dark;
     }
 
     /**
