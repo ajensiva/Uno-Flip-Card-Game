@@ -117,8 +117,8 @@ public class Round {
 
                 // handle wild 2 cards
                 if (getPlayCard().getTypeLight() == (Card.TypeLight.WILDTWO)) {
-                    wildCard(getPlayCard()); // call function to handle wild cards
-                    drawCard(2); // give 2 new cards
+//                    wildCard(getPlayCard()); // call function to handle wild cards
+//                    drawCard(2); // give 2 new cards
                     playerIndex = (playerIndex + 1) % players.size(); // move to the next player
                 }
                 if (getPlayCard().getTypeLight() == Card.TypeLight.REVERSE) {
@@ -140,8 +140,8 @@ public class Round {
                 }
                 // same as WILD2 but draw 2 more
                 if (getPlayCard().getTypeLight() == Card.TypeLight.WILD_DRAW_FOUR) {
-                    wildCard(getPlayCard());
-                    drawCard(4);
+//                    wildCard(getPlayCard());
+//                    drawCard(4);
                     playerIndex = (playerIndex + 1) % players.size();
                 }
             }
@@ -160,9 +160,7 @@ public class Round {
                     reverse();
                 }
 
-                if (getPlayCard().getTypeDark() == Card.TypeDark.WILD_CARD){
-                    wildCard(getPlayCard());
-                }
+
                 if (getPlayCard().getTypeDark() == Card.TypeDark.WILD_DRAW_COLOR) {
                     wildDrawColor(currentPlayer);
                 }
@@ -269,20 +267,7 @@ public class Round {
      *
      * @param card The Wild card for which the color is selected.
      */
-    public void wildCard(Card card){
-        // wild card will change the colour of the cards that can be played
-        Scanner userInput = new Scanner(System.in);
-        System.out.println("What color would you like? (enter an integer)\nAvailable Colors: Red (0), Blue (1), Yellow (2), Green (3): ");
-        int color = userInput.nextInt();
-        while (color < 0 || color > 3){
-            System.out.println("Invalid color choice. Enter an integer (0-3) to choose a color: ");
-            color = userInput.nextInt();
-        }
-        if (color == 0) {card.setColorLight("Red");}
-        if (color == 1) {card.setColorLight("Blue");}
-        if (color == 2) {card.setColorLight("Yellow");}
-        if (color == 3) {card.setColorLight("Green");}
-    }
+
 
     /**
      * Checks if any player has won the round by emptying their hand.

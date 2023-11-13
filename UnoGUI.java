@@ -17,12 +17,23 @@ public class UnoGUI {
     protected JLabel darkside = new JLabel();
     private final int FRAME_SIZE_WIDTH = 600;
     private final int FRAME_SIZE_HEIGHT = 600;
-    private JFrame startMenuFrame, rootFrame;
+    protected JFrame startMenuFrame;
+    private JFrame rootFrame;
     private JPanel mainPanel, handPanel = new JPanel();
     private JButton deckButton, discardButton;
     protected ArrayList<JTextField> inputFields; // Array to store user inputs
     protected ArrayList<JButton> playerCards = new ArrayList<>(); // holds player's hand; array of cards
     protected boolean addingbuttons = true;
+
+    //---------------WILD CARD GUI-----------------
+    protected ArrayList<JButton> wildColours = new ArrayList<JButton>();
+
+    private JFrame wildCardFrame;
+
+    private JPanel wildPanel = new JPanel();
+
+    private JButton blue, red, yellow, green;
+
 
     public UnoGUI() {
         startMenu();
@@ -71,14 +82,14 @@ public class UnoGUI {
         }
 
         // Play game button
-        constraints.gridy = numFields+2;
+        constraints.gridy = numFields + 2;
         constraints.gridwidth = 2;
         playGame.setPreferredSize(new Dimension(200, 40)); // Make the play button wider and taller
         playGame.setFont(new Font("Arial", Font.BOLD, 16)); // Larger font for the button
         startMenuPanel.add(playGame, constraints);
 
         // Add player button
-        constraints.gridy = numFields+3;
+        constraints.gridy = numFields + 3;
         constraints.gridwidth = 2;
         addPlayer.setPreferredSize(new Dimension(200, 40)); // Make the play button wider and taller
         addPlayer.setFont(new Font("Arial", Font.BOLD, 16)); // Larger font for the button
@@ -125,13 +136,13 @@ public class UnoGUI {
         }
     }
 
-    public void setStartMenuVisible(boolean flag){
+    public void setStartMenuVisible(boolean flag) {
 
         startMenuFrame.setVisible(flag);
 
     }
 
-    public void startGame(){
+    public void startGame() {
         playerCards = new ArrayList<JButton>();
 
 
@@ -158,6 +169,43 @@ public class UnoGUI {
         rootFrame.setVisible(true);
     }
 
+    public void wildCardGui() {
+        // test create wildcard pane
+        wildCardFrame = new JFrame();
+        wildCardFrame.setSize(100, 100);
+
+        wildCardFrame.add(wildPanel);
+
+        wildPanel.setLayout(new GridBagLayout());
+
+        JLabel wild_label = new JLabel("Pick a color?");
+        wildPanel.add(wild_label);
+
+        red = new JButton("Red");
+        blue = new JButton("Blue");
+        yellow = new JButton("Yellow");
+        green = new JButton("Green");
+
+        wildPanel.add(red);
+        wildPanel.add(blue);
+        wildPanel.add(yellow);
+        wildPanel.add(green);
+
+        wildCardFrame.pack();
+        wildCardFrame.setVisible(true);
+
+        wildColours.add(blue);
+        wildColours.add(red);
+        wildColours.add(yellow);
+        wildColours.add(green);
+
+    }
+
+
+    public void WildCardClose() {
+        wildCardFrame.setVisible(false);
+    }
+
     public void clearPlayerCards() {
         handPanel.removeAll();
         handPanel.revalidate();
@@ -166,27 +214,28 @@ public class UnoGUI {
     }
 
 
-    public void currPlaySide(){
+    public void currPlaySide() {
 
         mainPanel.add(darkside);
     }
 
 
-    public void nextPlayer(){
+    public void nextPlayer() {
 
         mainPanel.add(nextPlayer);
 
     }
 
-    public void unoPressed(){
+    public void unoPressed() {
 
         mainPanel.add(UnoButton);
 
     }
+
     public void buildDeck() {
         System.out.println("test");
         buildDeckbutton.setSize(100, 100);
-        buildDeckbutton.setLocation(100,100);
+        buildDeckbutton.setLocation(100, 100);
 
 
         mainPanel.add(buildDeckbutton);
@@ -196,7 +245,7 @@ public class UnoGUI {
     public void buildDiscard() {
         JButton button = new JButton("Discard");
         button.setSize(100, 100);
-        button.setLocation(380,100);
+        button.setLocation(380, 100);
 
         mainPanel.add(button);
     }
@@ -205,31 +254,34 @@ public class UnoGUI {
         handPanel = new JPanel();
 //        handPanel.setBackground(Color.WHITE);
         handPanel.setSize(FRAME_SIZE_WIDTH, 125);
-        handPanel.setLocation(0,275);
+        handPanel.setLocation(0, 275);
         mainPanel.add(handPanel);
 
         handPanel.setLayout(new GridLayout(0, 7));
     }
 
-    public JButton addCard(Card card){
+    public JButton addCard(Card card) {
 
         ImageIcon image = new ImageIcon(card.getImageFilePath());
         JButton cardButton = new JButton(image);
 
-        handPanel.add(cardButton);
-        playerCards.add(cardButton);
-    
-        return cardButton;
+
+        JButton card_button = new JButton();
+
+        handPanel.add(card_button);
+        playerCards.add(card_button);
+
+        return card_button;
     }
 
 
-    public void updatePlayerCardsAdd(Card card){
+    public void updatePlayerCardsAdd(Card card) {
         JButton card_button = addCard(card);
 
         System.out.println("new card added to hand");
     }
 
-    public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand){
+    public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand) {
 
 
         System.out.println(buttonClicked.getWidth());
@@ -243,7 +295,7 @@ public class UnoGUI {
 
         //System.out.println("Hand Size: " + hand.getSize());
         //System.out.println("# Buttons: " + playerCards.size());
-        for(int i = 0; i < hand.getSize(); i++){
+        for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
             //button.setName("card" + i);
             button.setName(Integer.toString(i));
@@ -254,51 +306,62 @@ public class UnoGUI {
     }
 
 
-
     //-----------------------------------ACTION LISTENERS---------------------------------------------------------------
 
 
-    public void addUnoButtonListener(ActionListener listenforUnoPressed){
+    public void addUnoButtonListener(ActionListener listenforUnoPressed) {
         UnoButton.addActionListener(listenforUnoPressed);
     }
 
-    public void addNextPlayerListener(ActionListener listenforNextPlayer){
+    public void addNextPlayerListener(ActionListener listenforNextPlayer) {
         nextPlayer.addActionListener(listenforNextPlayer);
     }
 
-    public void addBuildDeckListener(ActionListener listenforBuildDeck){
+    public void redWildCardButtonListener(ActionListener listenforPlayColourRed) {
+        red.addActionListener(listenforPlayColourRed);
+
+    }
+
+    public void blueWildCardButtonListener(ActionListener listenforPlayColourBlue) {
+        blue.addActionListener(listenforPlayColourBlue);
+    }
+
+    public void yellowWildCardButtonListener(ActionListener listenforPlayColourYellow) {
+        yellow.addActionListener(listenforPlayColourYellow);
+    }
+
+    public void greenWildCardButtonListener(ActionListener listenforPlayColourGreen) {
+        green.addActionListener(listenforPlayColourGreen);
+    }
+
+    public void addBuildDeckListener(ActionListener listenforBuildDeck) {
 
         buildDeckbutton.addActionListener(listenforBuildDeck);
     }
 
 
-    public void addPlayers(ActionListener listenforPlayersAdded){
+    public void addPlayers(ActionListener listenforPlayersAdded) {
 
         addPlayer.addActionListener(listenforPlayersAdded);
 
     }
-    public void addStartGameListener(ActionListener listenforStartGame){
+
+    public void addStartGameListener(ActionListener listenforStartGame) {
 
         playGame.addActionListener(listenforStartGame);
 
 
-
     }
 
-    public void addPlayCardListener(Hand hand, ActionListener listenforCardtoPlay){
+    public void addPlayCardListener(Hand hand, ActionListener listenforCardtoPlay) {
         System.out.println("Hand Size: " + hand.getSize());
         System.out.println("# Buttons: " + playerCards.size());
-        for(int i = 0; i < hand.getSize(); i++){
+        for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
             //button.setName("card" + i);
             button.setName(Integer.toString(i));
             button.setText(button.getName());
             button.addActionListener(listenforCardtoPlay);
         }
-    }
-
-    public static void main(String args[]) {
-        UnoGUI view = new UnoGUI();
-        //view.startMenu();
     }
 }
