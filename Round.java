@@ -253,14 +253,33 @@ public class Round {
         boolean check_type_light = card1.getTypeLight().equals(card2.getTypeLight());
         boolean check_type_dark = card1.getTypeDark().equals(card2.getTypeDark());
 
-        boolean check_wild_card_light = card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO);
-        boolean check_wild_card_dark = card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR) || card1.getTypeDark().equals(Card.TypeDark.WILD_CARD);
+        //boolean check_wild_card_light = card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) && card2.getTypeLight().equals(Card.TypeLight.WILDTWO);
+        //boolean check_wild_card_dark = card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR) && card2.getTypeDark().equals(Card.TypeDark.WILD_CARD);
+
+        // check to see if its a wild card that was played
+        boolean is_light_wildcard = card1.getTypeLight().equals(Card.TypeLight.WILDTWO) || card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR);
+        boolean is_dark_wildcard = card1.getTypeDark().equals(Card.TypeDark.WILD_CARD) || card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR);
+
 
         // for light side checks
-        if(darkmode == false)
-            return check_colour_light || check_type_light || check_wild_card_light;
-        else
-            return check_colour_dark || check_type_dark || check_wild_card_dark;
+        if(darkmode == false){
+            System.out.println("She's my light");
+            // if its a normal card, do a normal OR check; else check for wild card logic
+            if(is_light_wildcard){
+                return check_colour_light && check_type_light;
+            }else{
+                return check_colour_light || check_type_light;
+            }
+        }
+        else{
+            System.out.println("Dark Mode like her hair <3");
+            // if its a normal card, do a normal OR check; else check for wild card logic
+            if(is_dark_wildcard){
+                return check_colour_dark && check_type_dark;
+            }else{
+                return check_colour_dark || check_type_dark;
+            }
+        }
     }
 
     /**
