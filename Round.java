@@ -104,8 +104,7 @@ public class Round {
             System.out.println("Card has been played!");
 
             // take the card from the player
-            currentPlayer.getHand().removeCard(getPlayCard());
-
+            discard.add(currentPlayer.getHand().removeCard(getPlayCard()));
 
             // light type cards only
             if (!(darkmode)) {
