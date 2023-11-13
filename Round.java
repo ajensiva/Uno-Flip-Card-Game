@@ -17,7 +17,7 @@ public class Round {
     private static ArrayList<Player> players; // array to hold players
 
     protected Deck deck; // main deck of the game
-    private Stack<Card> discard; // discard cards stack
+    protected Stack<Card> discard; // discard cards stack
 
     public static boolean darkmode = false; // if true then we're playing dark sides of card
 
