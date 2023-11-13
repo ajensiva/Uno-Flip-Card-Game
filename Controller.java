@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 
@@ -26,13 +28,12 @@ public class Controller {
 
         this.unoGUI.addStartGameListener(new playGameButtonListener());
         this.unoGUI.addPlayers(new addPlayersListener());
-//
-
 
 
 
         
     }
+
     public class addPlayersListener implements ActionListener {
 
         @Override
@@ -49,36 +50,39 @@ public class Controller {
     public class playGameButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            /*
-            // Check if all player fields have been filled out
-            boolean allFieldsFilled = true;
-            for (JTextField textField : unoGUI.inputFields) {
-                if (textField.getText().trim().isEmpty()) {
-                    allFieldsFilled = false;
-                    break;
-                }
-            }
 
-            if (!allFieldsFilled) {
-                // Show error alert
-                JOptionPane.showMessageDialog(unoGUI.startMenuFrame,
-                        "Please enter names for all players.",
-                        "Missing Player Names",
-                        JOptionPane.ERROR_MESSAGE);
-            } else {*/
-                // All fields are filled, proceed with starting the game
-                unoGUI.startGame();
+            // Start the game
+            unoGUI.startGame();
 
-                // Clear existing cards/buttons from the GUI
-                unoGUI.clearPlayerCards();
+            // Clear existing cards/buttons from the GUI
+            unoGUI.clearPlayerCards();
 
             // Add new cards to the GUI
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
-                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
 
+                JButton cardButton = unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                ImageIcon image = (ImageIcon) cardButton.getIcon();
+
+                // Add a ComponentListener to scale the image when the button's size changes
+                cardButton.addComponentListener(new ComponentAdapter() {
+                    @Override
+                    public void componentResized(ComponentEvent e) {
+                        int width = cardButton.getWidth();
+                        int height = cardButton.getHeight();
+
+                        // Scale the image to fit the button
+                        ImageIcon resizedIcon = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
+                        cardButton.setIcon(resizedIcon);
+
+                        // Remove the listener after setting the icon if you don't need it anymore
+                        //cardButton.removeComponentListener(this);
+                    }
+                });
             }
+            unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
+
         }
-    //}
+    }
 
 
     private class updateDeckListener implements ActionListener {
@@ -112,69 +116,8 @@ public class Controller {
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
             if(unoModel.currentRound.cardPlayedLogic()){
 
-                if (unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).equals(Card.TypeLight.WILD_DRAW_FOUR) || unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).equals(Card.TypeLight.WILDTWO)){
-
-                    if (unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).equals(Card.TypeLight.WILDTWO)){
-                        unoModel.currentRound.drawCard(2);
-                        unoGUI.wildCardGui();
-                        unoGUI.redWildCardButtonListener(new playRedWildCard());
-                        unoGUI.blueWildCardButtonListener(new playBlueWildCard());
-                        unoGUI.yellowWildCardButtonListener(new playYellowWildCard());
-                        unoGUI.greenWildCardButtonListener(new playGreenWildCard());
-                    }
-                    if(unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).equals(Card.TypeLight.WILD_DRAW_FOUR)){
-                        unoModel.currentRound.drawCard(4);
-                        unoGUI.wildCardGui();
-                        unoGUI.redWildCardButtonListener(new playRedWildCard());
-                        unoGUI.blueWildCardButtonListener(new playBlueWildCard());
-                        unoGUI.yellowWildCardButtonListener(new playYellowWildCard());
-                        unoGUI.greenWildCardButtonListener(new playGreenWildCard());
-                    }
-
-
-
-                }
                 unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
             }
-
-        }
-    }
-
-
-    public class playRedWildCard implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            unoModel.currentRound.getPlayCard().setColorLight("Red");
-
-        }
-    }
-    public class playBlueWildCard implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            unoModel.currentRound.getPlayCard().setColorLight("Blue");
-
-
-        }
-    }
-    public class playYellowWildCard implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            unoModel.currentRound.getPlayCard().setColorLight("Yellow");
-
-        }
-    }
-    public class playGreenWildCard implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            unoModel.currentRound.getPlayCard().setColorLight("Green");
 
         }
     }

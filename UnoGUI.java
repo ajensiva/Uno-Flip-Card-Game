@@ -36,6 +36,7 @@ public class UnoGUI {
 
 
     public UnoGUI() {
+
         startMenu();
         setStartMenuVisible(true);
 //        startGame();
@@ -167,6 +168,8 @@ public class UnoGUI {
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         rootFrame.setVisible(true);
+
+
     }
 
     public void wildCardGui() {
@@ -258,6 +261,7 @@ public class UnoGUI {
         mainPanel.add(handPanel);
 
         handPanel.setLayout(new GridLayout(0, 7));
+
     }
 
     public JButton addCard(Card card) {
@@ -265,26 +269,15 @@ public class UnoGUI {
         ImageIcon image = new ImageIcon(card.getImageFilePath());
         JButton cardButton = new JButton(image);
 
+        handPanel.add(cardButton);
+        playerCards.add(cardButton);
 
-        JButton card_button = new JButton();
-
-        handPanel.add(card_button);
-        playerCards.add(card_button);
-
-        return card_button;
+        return cardButton;
     }
 
-
-    public void updatePlayerCardsAdd(Card card) {
-        JButton card_button = addCard(card);
-
-        System.out.println("new card added to hand");
-    }
 
     public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand) {
 
-
-        System.out.println(buttonClicked.getWidth());
 
         buttonClicked.setText("");
 
