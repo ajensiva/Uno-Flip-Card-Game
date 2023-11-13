@@ -108,7 +108,7 @@ public class Controller {
 
                 JButton button = (JButton) e.getSource();
                 int buttonIndex = Integer.parseInt(button.getName());
-                System.out.println("Card Clicked: " + unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex));
+                //System.out.println("Card Clicked: " + unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex));
                 unoModel.currentRound.setPlayCardIndex(buttonIndex);
                 if (unoModel.currentRound.cardPlayedLogic()) {
 
@@ -133,7 +133,7 @@ public class Controller {
 
 
                     }
-                    
+
                     unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
                     // update discard ui
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
