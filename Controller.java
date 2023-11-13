@@ -1,10 +1,12 @@
 import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 
 public class Controller {
@@ -26,9 +28,10 @@ public class Controller {
 
         this.unoGUI.addStartGameListener(new playGameButtonListener());
         this.unoGUI.addPlayers(new addPlayersListener());
-//
 
 
+        // initially update discard
+        //this.unoGUI.updateDiscard(unoModel.currentRound.discard.peek());
     }
 
     public class addPlayersListener implements ActionListener {
@@ -55,7 +58,6 @@ public class Controller {
             unoGUI.clearPlayerCards();
 
             // Add new cards to the GUI
-            // Add new cards to the GUI
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
 
                 JButton cardButton = unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
@@ -75,8 +77,11 @@ public class Controller {
                         // Remove the listener after setting the icon if you don't need it anymore
                         //cardButton.removeComponentListener(this);
                     }
-                });}
-                unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
+                });
+            }
+            unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
+            // update discard ui
+            unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
         }
     }
 
@@ -93,7 +98,6 @@ public class Controller {
                 //unoModel.currentRound.currentPlayer.getHand();
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
                 unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
-
             }
         }
 
@@ -134,6 +138,8 @@ public class Controller {
 
                     }
                     unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
+                    // update discard ui
+                    unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                 }
 
             }
