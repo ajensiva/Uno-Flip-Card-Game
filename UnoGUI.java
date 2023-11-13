@@ -272,6 +272,11 @@ public class UnoGUI {
         handPanel.add(cardButton);
         playerCards.add(cardButton);
 
+        // make only images visible
+        cardButton.setOpaque(false);
+        cardButton.setContentAreaFilled(false);
+        cardButton.setBorderPainted(false);
+        
         return cardButton;
     }
 
