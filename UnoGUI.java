@@ -17,7 +17,8 @@ public class UnoGUI {
     protected JLabel darkside = new JLabel();
     private final int FRAME_SIZE_WIDTH = 600;
     private final int FRAME_SIZE_HEIGHT = 600;
-    private JFrame startMenuFrame, rootFrame;
+    protected JFrame startMenuFrame;
+    private JFrame rootFrame;
     private JPanel mainPanel, handPanel = new JPanel();
     private JButton deckButton, discardButton;
     protected ArrayList<JTextField> inputFields; // Array to store user inputs

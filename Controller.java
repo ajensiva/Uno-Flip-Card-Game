@@ -55,7 +55,6 @@ public class Controller {
             unoGUI.clearPlayerCards();
 
             // Add new cards to the GUI
-            // Add new cards to the GUI
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
 
                 JButton cardButton = unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
@@ -75,8 +74,10 @@ public class Controller {
                         // Remove the listener after setting the icon if you don't need it anymore
                         //cardButton.removeComponentListener(this);
                     }
-                });}
-                unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
+                });
+            }
+            unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
+
         }
     }
 
