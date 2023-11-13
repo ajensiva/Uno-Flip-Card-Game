@@ -6,6 +6,12 @@ import java.util.Objects;
  * @version 1.0
  */
 public class Card {
+    public String getImageFileName() {
+        if(this.colorLight == null)
+            return (this.typeLight + ".jpg");
+        return (this.colorLight + "_" + this.typeLight + ".jpg");
+    }
+
     /**
      * enum TypeLight : provides all the possible types for a Card when the Card is being played on the light side
      */
@@ -182,5 +188,14 @@ public class Card {
             sb.append("Light Color: ").append(colorLight).append(", Light Type: ").append(typeLight);
         }
         return sb.toString();
+    }
+    // test
+    public static void main(String[] args) {
+        //Card.ColorLight colorLight = Card.ColorLight.values()[3];
+        Card.TypeLight typeLight = Card.TypeLight.values()[12];
+        // Create a new card with the generated values.
+
+        Card card = new Card(null, typeLight, null, null);
+        System.out.println(card.getImageFileName());
     }
 }

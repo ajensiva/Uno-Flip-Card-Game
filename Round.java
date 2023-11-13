@@ -19,7 +19,7 @@ public class Round {
     protected Deck deck; // main deck of the game
     private Stack<Card> discard; // discard cards stack
 
-    public static boolean darkmode = true; // if true then we're playing dark sides of card
+    public static boolean darkmode = false; // if true then we're playing dark sides of card
 
     protected Player currentPlayer; // current player that's playing
     private final int DEALTCARDS = 7; // max number of cards to be delt
@@ -63,25 +63,19 @@ public class Round {
     }
 
     public void setPlayCardIndex(int PlayCardIndex){
-
-        System.out.println("IN ROUND:" + PlayCardIndex);
-
+        //System.out.println("IN ROUND:" + PlayCardIndex);
         this.playCardIndex = PlayCardIndex;
 
     }
 
     public int getCardtoPlayIndex() {
-
         return playCardIndex;
-
     }
 
     public Card getPlayCard(){
-
-        System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
+        //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
 
         return currentPlayer.getHand().getCard(getCardtoPlayIndex());
-
     }
 
     public void makeDiscard(){
@@ -95,25 +89,23 @@ public class Round {
 
 
     public void nextPlayer(){
-
         currentPlayer = players.get(players.indexOf(currentPlayer)+1);
     }
 
 
     public void unoFunction(){
-
         checkWinner();
-
-
     }
 
-    public void cardPlayedLogic() {
+    public boolean cardPlayedLogic() {
         if ((checkCard(getPlayCard(), discard.peek()))) {
-            System.out.println(playCard(getCardtoPlayIndex()));
+            //System.out.println(playCard(getCardtoPlayIndex()));
 
             System.out.println("Card has been played!");
+
             // take the card from the player
             currentPlayer.getHand().removeCard(getPlayCard());
+
 
             // light type cards only
             if (!(darkmode)) {
@@ -183,9 +175,10 @@ public class Round {
 
 
             }
+            return true;
         }
-
-    }
+    return false;
+}
 
 
 
@@ -203,10 +196,12 @@ public class Round {
         }
     }
 
-    // draws one card from the deck and gives to current player!
+    // draws one card from the deck and gives to current player! and RETURN the card that was just popped
     public void drawCurrPlayer(){
         //
         currentPlayer.getHand().addCard(deck.pop());
+
+
     }
 
     /**
@@ -309,19 +304,7 @@ public class Round {
      *
      * @return The total points for the round.
      */
-    public int getTotalPoints(){
-        int totalPoint = 0; //  sum of all player's cards' values
-        for(Player plr : players){
-            if(plr != currentPlayer){ // skip winner as a safe measure
-                Hand hand = plr.getHand();
-                // get each invidiual card's value and add to sum
-                for(Card card : hand.getHandList()){
-                    totalPoint += card.getValue();
-                }
-            }
-        }
-        return totalPoint;
-    }
+
 
 
 

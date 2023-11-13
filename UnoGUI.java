@@ -6,102 +6,123 @@ import java.util.ArrayList;
 
 public class UnoGUI {
 
-
-
     protected int numFields;
-
     protected JButton nextPlayer = new JButton("next Player");
-
     protected JButton UnoButton = new JButton("UNO!!");
-
-    protected String userInputs[];
-
     protected JButton buildDeckbutton = new JButton("Deck");
-
-    protected JLabel darkside = new JLabel();
-
     protected JButton playGame = new JButton("PLAY GAME");
-    protected ArrayList<JTextField> inputFields; // Array to store user inputs
-
-    protected JButton collectButton = new JButton();
-
-    private int drewCard;
-
+    protected JButton addPlayer = new JButton("ADD PLAYER");
+    protected String userInputs[];
+    protected JPanel startMenuPanel = new JPanel();
+    protected JLabel darkside = new JLabel();
     private final int FRAME_SIZE_WIDTH = 600;
     private final int FRAME_SIZE_HEIGHT = 600;
-
     private JFrame startMenuFrame, rootFrame;
-    private JPanel mainPanel, handPanel;
-
+    private JPanel mainPanel, handPanel = new JPanel();
     private JButton deckButton, discardButton;
-    protected ArrayList<JButton> playerCards; // holds player's hand; array of cards
+    protected ArrayList<JTextField> inputFields; // Array to store user inputs
+    protected ArrayList<JButton> playerCards = new ArrayList<>(); // holds player's hand; array of cards
+    protected boolean addingbuttons = true;
 
     public UnoGUI() {
-//        startMenu();
-//        setStartMenuVisible(true);
-        startGame();
+        startMenu();
+        setStartMenuVisible(true);
+//        startGame();
     }
 
-    public void startMenu(){
-
+    public void startMenu() {
 
         numFields = 2;
-
-        startMenuFrame = new JFrame();
+        startMenuFrame = new JFrame("UNO Game Start Menu");
         startMenuFrame.setSize(500, 500);
-        JPanel panel = new JPanel();
-        startMenuFrame.add(panel);
+        startMenuFrame.setLocationRelativeTo(null); // Center the frame
+        startMenuFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        // Create a GridBagLayout for the panel
-        panel.setLayout(new GridBagLayout());
+        startMenuPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        startMenuPanel.setLayout(new GridBagLayout());
 
-        // Create constraints for centering
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
+        constraints.gridwidth = 2;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.insets = new Insets(10, 10, 10, 10);
+
+        // Title label
+        JLabel title_label = new JLabel("UNO", SwingConstants.CENTER);
+        title_label.setFont(new Font("Arial", Font.BOLD, 36));
         constraints.gridy = 0;
-        constraints.anchor = GridBagConstraints.CENTER;
+        startMenuPanel.add(title_label, constraints);
 
-        // Create a title label
-        JLabel title_label = new JLabel("UNO");
-        Font title_font = new Font("Arial", Font.PLAIN, 24); // You can adjust the font size (24 in this example)
-        title_label.setFont(title_font); // Set the font
-        panel.add(title_label, constraints);
-
-
-        constraints.gridy = 2;
-        constraints.anchor = GridBagConstraints.CENTER;
-
-        //JTextField to ask for how many players want to play?
-        JTextField num_play = new JTextField(10);
-        panel.add(num_play, constraints);
-
-
-        // Reset constraints for the input label
-        constraints.gridy = 2;
-        constraints.anchor = GridBagConstraints.CENTER;
-
+        // Initial 2 player fields
         inputFields = new ArrayList<>();
-
-        // Create input labels and text fields
         for (int i = 0; i < numFields; i++) {
             constraints.gridy = i + 1;
+            constraints.gridwidth = 1;
 
+            JLabel label = new JLabel("Player " + (i + 1) + ": ", SwingConstants.RIGHT);
+            startMenuPanel.add(label, constraints);
 
-            inputFields.add(i, new JTextField("enter user " + (i + 1)));
-            panel.add(inputFields.get(i), constraints);
+            JTextField textField = new JTextField(10);
+            constraints.gridx = 1;
+            startMenuPanel.add(textField, constraints);
+            inputFields.add(textField);
+
+            constraints.gridx = 0;
         }
 
-        // Create a button to collect user inputs
-        constraints.gridy = numFields + 2;
-        panel.add(collectButton, constraints);
+        // Play game button
+        constraints.gridy = numFields+2;
+        constraints.gridwidth = 2;
+        playGame.setPreferredSize(new Dimension(200, 40)); // Make the play button wider and taller
+        playGame.setFont(new Font("Arial", Font.BOLD, 16)); // Larger font for the button
+        startMenuPanel.add(playGame, constraints);
 
+        // Add player button
+        constraints.gridy = numFields+3;
+        constraints.gridwidth = 2;
+        addPlayer.setPreferredSize(new Dimension(200, 40)); // Make the play button wider and taller
+        addPlayer.setFont(new Font("Arial", Font.BOLD, 16)); // Larger font for the button
+        startMenuPanel.add(addPlayer, constraints);
 
-        constraints.gridy = numFields + 3;
-        panel.add(playGame, constraints);
+        startMenuFrame.add(startMenuPanel);
+        System.out.println(startMenuFrame.getContentPane());
+    }
 
+    public void addPlayerField() {
+        if (numFields < 4) {
+            GridBagConstraints constraints = new GridBagConstraints();
+            constraints.fill = GridBagConstraints.HORIZONTAL;
+            constraints.insets = new Insets(10, 10, 10, 10);
 
+            // Add the label
+            constraints.gridx = 0;
+            constraints.gridy = numFields + 1; // Set the y position for the new label
+            constraints.gridwidth = 1;
+            JLabel label = new JLabel("Player " + (numFields + 1) + ":", SwingConstants.RIGHT);
+            startMenuPanel.add(label, constraints);
 
-        startMenuFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            // Add the text field
+            JTextField textField = new JTextField(10);
+            constraints.gridx = 1;
+            startMenuPanel.add(textField, constraints);
+            inputFields.add(textField);
+
+            // Increment the number of fields to account for the new player
+            numFields++;
+
+            // Update the y position for "Play Game" button
+            constraints.gridx = 0;
+            constraints.gridy = numFields + 1;
+            constraints.gridwidth = 2;
+            startMenuPanel.add(playGame, constraints);
+
+            // Update the y position for "Add Player" button
+            constraints.gridy = numFields + 2;
+            startMenuPanel.add(addPlayer, constraints);
+
+            startMenuPanel.revalidate();
+            startMenuPanel.repaint();
+        }
     }
 
     public void setStartMenuVisible(boolean flag){
@@ -131,15 +152,19 @@ public class UnoGUI {
         buildDeck();
         buildDiscard();
 
-
         // clean up root frame
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         rootFrame.setVisible(true);
 
-        for(int i = 0; i < 7; i++){
-            addCard();
-        }
+
+    }
+
+    public void clearPlayerCards() {
+        handPanel.removeAll();
+        handPanel.revalidate();
+        handPanel.repaint();
+        playerCards.clear();
     }
 
 
@@ -160,16 +185,6 @@ public class UnoGUI {
         mainPanel.add(UnoButton);
 
     }
-
-
-    // 
-    public void addCard(){
-        JButton card = new JButton();
-        card.setName("[ CARD TEST ]");
-        handPanel.add(card);
-        playerCards.add(card);
-    }
-
     public void buildDeck() {
         System.out.println("test");
         buildDeckbutton.setSize(100, 100);
@@ -198,17 +213,54 @@ public class UnoGUI {
         handPanel.setLayout(new GridLayout(0, 7));
 
     }
-    /*Button press calls function in Controller to handle logic for that button
-    currently we have buttons for:
 
-    if someone presses Uno
-    if someone presses nextPlayer
-    if someone is finshed inputting players, and presses "collect players"
-    if someone presses "PlayGame" which starts the game
-    if someone plays a card
-    if someone draws a card from the deck
+    public JButton addCard(Card card){
 
-     */
+        ImageIcon image = new ImageIcon("images/" + card.getImageFileName());
+        System.out.println("images/" + card.getImageFileName());
+//        String imagePath = "" + card.getImageFileName(); // Replace with the actual path to your card images
+
+
+        JButton card_button = new JButton();
+
+        handPanel.add(card_button);
+        playerCards.add(card_button);
+        return card_button;
+    }
+
+
+
+    public void updatePlayerCardsAdd(Card card){
+        JButton card_button = addCard(card);
+
+        System.out.println("new card added to hand");
+    }
+
+    public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand){
+
+
+        buttonClicked.setText("");
+
+        playerCards.remove(playerCards.indexOf(buttonClicked));
+        System.out.println("BEFORE: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
+        handPanel.remove(buttonClicked);
+        System.out.println("AFTER: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
+
+        //System.out.println("Hand Size: " + hand.getSize());
+        //System.out.println("# Buttons: " + playerCards.size());
+        for(int i = 0; i < hand.getSize(); i++){
+            JButton button = playerCards.get(i);
+            //button.setName("card" + i);
+            button.setName(Integer.toString(i));
+            button.setText(button.getName());
+        }
+
+        //
+    }
+
+
+
+    //-----------------------------------ACTION LISTENERS---------------------------------------------------------------
 
 
     public void addUnoButtonListener(ActionListener listenforUnoPressed){
@@ -227,34 +279,28 @@ public class UnoGUI {
 
     public void addPlayers(ActionListener listenforPlayersAdded){
 
-        collectButton.addActionListener(listenforPlayersAdded);
+        addPlayer.addActionListener(listenforPlayersAdded);
 
     }
     public void addStartGameListener(ActionListener listenforStartGame){
 
         playGame.addActionListener(listenforStartGame);
 
+
+
     }
 
-
     public void addPlayCardListener(Hand hand, ActionListener listenforCardtoPlay){
-        //private ArrayList<JButton> playerCards; // holds player's hand; array of cards
-        System.out.println("handSize: " + hand.getSize());
-        System.out.println("JButtonCards: " + playerCards.size());
+        System.out.println("Hand Size: " + hand.getSize());
+        System.out.println("# Buttons: " + playerCards.size());
         for(int i = 0; i < hand.getSize(); i++){
-            Card card = hand.getCard(i);
             JButton button = playerCards.get(i);
             //button.setName("card" + i);
             button.setName(Integer.toString(i));
+            button.setText(button.getName());
             button.addActionListener(listenforCardtoPlay);
         }
     }
-
-    public void addDrawCardListener(ActionListener listenforCardtoDraw){
-        deckButton.addActionListener(listenforCardtoDraw);
-    }
-
-
 
     public static void main(String args[]) {
         UnoGUI view = new UnoGUI();
