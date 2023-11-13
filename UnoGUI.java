@@ -10,6 +10,7 @@ public class UnoGUI {
     protected JButton nextPlayer = new JButton("next Player");
     protected JButton UnoButton = new JButton("UNO!!");
     protected JButton buildDeckbutton = new JButton("Deck");
+    protected JButton buildDiscardbutton = new JButton("Discard");
     protected JButton playGame = new JButton("PLAY GAME");
     protected JButton addPlayer = new JButton("ADD PLAYER");
     protected String userInputs[];
@@ -20,7 +21,6 @@ public class UnoGUI {
     protected JFrame startMenuFrame;
     private JFrame rootFrame;
     private JPanel mainPanel, handPanel = new JPanel();
-    private JButton deckButton, discardButton;
     protected ArrayList<JTextField> inputFields; // Array to store user inputs
     protected ArrayList<JButton> playerCards = new ArrayList<>(); // holds player's hand; array of cards
     protected boolean addingbuttons = true;
@@ -236,21 +236,52 @@ public class UnoGUI {
     }
 
     public void buildDeck() {
-        System.out.println("test");
-        buildDeckbutton.setSize(100, 100);
+
+        buildDeckbutton.setSize(100, 125);
         buildDeckbutton.setLocation(100, 100);
-
-
         mainPanel.add(buildDeckbutton);
+        
+        ImageIcon image = new ImageIcon(Card.DECK_FILE_NAME);
+        buildDeckbutton.setIcon(image);
+
+        // Scale the image to fit the button
+        int width = buildDeckbutton.getWidth();
+        int height = buildDeckbutton.getHeight();
+        ImageIcon resizedIcon = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
+        buildDeckbutton.setIcon(resizedIcon);
+
+        // make only images visible
+        buildDeckbutton.setOpaque(false);
+        buildDeckbutton.setContentAreaFilled(false);
+        buildDeckbutton.setBorderPainted(false);
     }
 
 
     public void buildDiscard() {
-        JButton button = new JButton("Discard");
-        button.setSize(100, 100);
-        button.setLocation(380, 100);
+        buildDiscardbutton.setSize(100, 125);
+        buildDiscardbutton.setLocation(380, 100);
 
-        mainPanel.add(button);
+        mainPanel.add(buildDiscardbutton);
+
+        updateDiscard(Card.DECK_FILE_NAME);
+    }
+
+    public void updateDiscard(String file_path){
+        System.out.println("update deck ui called");
+
+        ImageIcon image = new ImageIcon(file_path);
+        buildDiscardbutton.setIcon(image);
+        
+        // Scale the image to fit the button
+        int width = buildDiscardbutton.getWidth();
+        int height = buildDeckbutton.getHeight();
+        ImageIcon resizedIcon = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
+        buildDiscardbutton.setIcon(resizedIcon);
+
+        // make only images visible
+        buildDiscardbutton.setOpaque(false);
+        buildDiscardbutton.setContentAreaFilled(false);
+        buildDiscardbutton.setBorderPainted(false);
     }
 
     public void buildHand() {
@@ -336,7 +367,6 @@ public class UnoGUI {
 
         buildDeckbutton.addActionListener(listenforBuildDeck);
     }
-
 
     public void addPlayers(ActionListener listenforPlayersAdded) {
 

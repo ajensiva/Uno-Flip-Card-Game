@@ -29,6 +29,9 @@ public class Controller {
         this.unoGUI.addStartGameListener(new playGameButtonListener());
         this.unoGUI.addPlayers(new addPlayersListener());
 
+
+        // initially update discard
+        //this.unoGUI.updateDiscard(unoModel.currentRound.discard.peek());
     }
 
     public class addPlayersListener implements ActionListener {
@@ -77,7 +80,8 @@ public class Controller {
                 });
             }
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
-
+            // update discard ui
+            unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
         }
     }
 
@@ -94,7 +98,6 @@ public class Controller {
                 //unoModel.currentRound.currentPlayer.getHand();
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
                 unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
-
             }
         }
 
@@ -135,6 +138,8 @@ public class Controller {
 
                     }
                     unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
+                    // update discard ui
+                    unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                 }
 
             }

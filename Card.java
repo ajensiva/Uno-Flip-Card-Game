@@ -6,10 +6,14 @@ import java.util.Objects;
  * @version 1.0
  */
 public class Card {
+
+    public static final String RELATIVE_IMAGE_DIRECTORY = "images/";
+    public static final String DECK_FILE_NAME = RELATIVE_IMAGE_DIRECTORY + "Top_CARD.jpg";
+
     public String getImageFilePath() {
         if(this.colorLight == null)
-            return ("images/" + this.typeLight + ".jpg");
-        return ("images/" + this.colorLight + "_" + this.typeLight + ".jpg");
+            return (RELATIVE_IMAGE_DIRECTORY + this.typeLight + ".jpg");
+        return (RELATIVE_IMAGE_DIRECTORY + this.colorLight + "_" + this.typeLight + ".jpg");
     }
 
     /**
