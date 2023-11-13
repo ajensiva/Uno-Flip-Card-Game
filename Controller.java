@@ -1,7 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+import javax.swing.*;
 
 
 public class Controller {
@@ -44,22 +44,38 @@ public class Controller {
     public class playGameButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
-            // Start the game
-            unoGUI.startGame();
-
-            // Clear existing cards/buttons from the GUI
-            unoGUI.clearPlayerCards();
-
-            // Add new cards to the GUI
-            for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
-                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
-
+            /*
+            // Check if all player fields have been filled out
+            boolean allFieldsFilled = true;
+            for (JTextField textField : unoGUI.inputFields) {
+                if (textField.getText().trim().isEmpty()) {
+                    allFieldsFilled = false;
+                    break;
+                }
             }
-            unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
 
+            if (!allFieldsFilled) {
+                // Show error alert
+                JOptionPane.showMessageDialog(unoGUI.startMenuFrame,
+                        "Please enter names for all players.",
+                        "Missing Player Names",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {*/
+                // All fields are filled, proceed with starting the game
+                unoGUI.startGame();
+
+                // Clear existing cards/buttons from the GUI
+                unoGUI.clearPlayerCards();
+
+                // Add new cards to the GUI
+                for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
+                    unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                }
+
+                unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
+            }
         }
-    }
+    //}
 
 
     private class updateDeckListener implements ActionListener {
