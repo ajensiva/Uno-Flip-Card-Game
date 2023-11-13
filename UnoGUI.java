@@ -36,6 +36,7 @@ public class UnoGUI {
 
 
     public UnoGUI() {
+
         startMenu();
         setStartMenuVisible(true);
 //        startGame();
@@ -265,25 +266,15 @@ public class UnoGUI {
 
     public JButton addCard(Card card) {
 
-        ImageIcon image = new ImageIcon("images/" + card.getImageFileName());
-        System.out.println("images/" + card.getImageFileName());
-//        String imagePath = "" + card.getImageFileName(); // Replace with the actual path to your card images
+        ImageIcon image = new ImageIcon(card.getImageFilePath());
+        JButton cardButton = new JButton(image);
 
+        handPanel.add(cardButton);
+        playerCards.add(cardButton);
 
-        JButton card_button = new JButton();
-
-        handPanel.add(card_button);
-        playerCards.add(card_button);
-
-        return card_button;
+        return cardButton;
     }
 
-
-    public void updatePlayerCardsAdd(Card card) {
-        JButton card_button = addCard(card);
-
-        System.out.println("new card added to hand");
-    }
 
     public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand) {
 

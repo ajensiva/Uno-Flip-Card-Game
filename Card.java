@@ -6,10 +6,10 @@ import java.util.Objects;
  * @version 1.0
  */
 public class Card {
-    public String getImageFileName() {
+    public String getImageFilePath() {
         if(this.colorLight == null)
-            return (this.typeLight + ".jpg");
-        return (this.colorLight + "_" + this.typeLight + ".jpg");
+            return ("images/" + this.typeLight + ".jpg");
+        return ("images/" + this.colorLight + "_" + this.typeLight + ".jpg");
     }
 
     /**
@@ -196,6 +196,6 @@ public class Card {
         // Create a new card with the generated values.
 
         Card card = new Card(null, typeLight, null, null);
-        System.out.println(card.getImageFileName());
+        System.out.println(card.getImageFilePath());
     }
 }
