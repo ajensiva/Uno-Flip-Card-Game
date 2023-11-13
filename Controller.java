@@ -23,11 +23,12 @@ public class Controller {
 
         this.unoGUI.addStartGameListener(new playGameButtonListener());
         this.unoGUI.addPlayers(new addPlayersListener());
+//
+
 
 
 
     }
-
     public class addPlayersListener implements ActionListener {
 
         @Override
@@ -109,8 +110,69 @@ public class Controller {
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
             if(unoModel.currentRound.cardPlayedLogic()){
 
+                if (unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).equals(Card.TypeLight.WILD_DRAW_FOUR) || unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).equals(Card.TypeLight.WILDTWO)){
+
+                    if (unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).equals(Card.TypeLight.WILDTWO)){
+                        unoModel.currentRound.drawCard(2);
+                        unoGUI.wildCardGui();
+                        unoGUI.redWildCardButtonListener(new playRedWildCard());
+                        unoGUI.blueWildCardButtonListener(new playBlueWildCard());
+                        unoGUI.yellowWildCardButtonListener(new playYellowWildCard());
+                        unoGUI.greenWildCardButtonListener(new playGreenWildCard());
+                    }
+                    if(unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).equals(Card.TypeLight.WILD_DRAW_FOUR)){
+                        unoModel.currentRound.drawCard(4);
+                        unoGUI.wildCardGui();
+                        unoGUI.redWildCardButtonListener(new playRedWildCard());
+                        unoGUI.blueWildCardButtonListener(new playBlueWildCard());
+                        unoGUI.yellowWildCardButtonListener(new playYellowWildCard());
+                        unoGUI.greenWildCardButtonListener(new playGreenWildCard());
+                    }
+
+
+
+                }
                 unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
             }
+
+        }
+    }
+
+
+    public class playRedWildCard implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            unoModel.currentRound.getPlayCard().setColorLight("Red");
+
+        }
+    }
+    public class playBlueWildCard implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            unoModel.currentRound.getPlayCard().setColorLight("Blue");
+
+
+        }
+    }
+    public class playYellowWildCard implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            unoModel.currentRound.getPlayCard().setColorLight("Yellow");
+
+        }
+    }
+    public class playGreenWildCard implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            unoModel.currentRound.getPlayCard().setColorLight("Green");
 
         }
     }
