@@ -1,6 +1,11 @@
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 
@@ -26,6 +31,7 @@ public class Controller {
 
 
 
+        
     }
 
     public class addPlayersListener implements ActionListener {
@@ -53,8 +59,25 @@ public class Controller {
 
             // Add new cards to the GUI
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
-                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                
+                JButton cardButton = unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                ImageIcon image = (ImageIcon) cardButton.getIcon();
 
+                // Add a ComponentListener to scale the image when the button's size changes
+                cardButton.addComponentListener(new ComponentAdapter() {
+                    @Override
+                    public void componentResized(ComponentEvent e) {
+                        int width = cardButton.getWidth();
+                        int height = cardButton.getHeight();
+
+                        // Scale the image to fit the button
+                        ImageIcon resizedIcon = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
+                        cardButton.setIcon(resizedIcon);
+
+                        // Remove the listener after setting the icon if you don't need it anymore
+                        cardButton.removeComponentListener(this);
+                    }
+                });
             }
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
 

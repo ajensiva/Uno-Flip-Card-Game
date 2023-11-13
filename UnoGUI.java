@@ -156,8 +156,6 @@ public class UnoGUI {
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         rootFrame.setVisible(true);
-
-
     }
 
     public void clearPlayerCards() {
@@ -211,23 +209,18 @@ public class UnoGUI {
         mainPanel.add(handPanel);
 
         handPanel.setLayout(new GridLayout(0, 7));
-
     }
 
     public JButton addCard(Card card){
 
-        ImageIcon image = new ImageIcon("images/" + card.getImageFileName());
-        System.out.println("images/" + card.getImageFileName());
-//        String imagePath = "" + card.getImageFileName(); // Replace with the actual path to your card images
+        ImageIcon image = new ImageIcon(card.getImageFilePath());
+        JButton cardButton = new JButton(image);
 
-
-        JButton card_button = new JButton();
-
-        handPanel.add(card_button);
-        playerCards.add(card_button);
-        return card_button;
+        handPanel.add(cardButton);
+        playerCards.add(cardButton);
+    
+        return cardButton;
     }
-
 
 
     public void updatePlayerCardsAdd(Card card){
@@ -238,6 +231,8 @@ public class UnoGUI {
 
     public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand){
 
+
+        System.out.println(buttonClicked.getWidth());
 
         buttonClicked.setText("");
 
