@@ -245,7 +245,7 @@ public class Round {
      * @param card2 The card at the top of the discard pile.
      * @return True if the card can be played, false otherwise.
      */
-    public boolean checkCard(Card card1, Card card2){
+    public boolean checkCard(Card card1, Card card2) {
 
         boolean check_colour_light = card1.getColorLight().equals(card2.getColorLight()); // false
         boolean check_colour_dark = card1.getColorDark().equals(card2.getColorDark()); // false 
@@ -262,31 +262,35 @@ public class Round {
 
 
         // for light side checks
-        if(darkmode == false){
+        if (darkmode == false) {
             System.out.println("She's my light");
             // if its a normal card, do a normal OR check; else check for wild card logic
-            if(is_light_wildcard){
-                if(card2.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+            if (is_light_wildcard) {
+                if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO) || card2.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
                     return check_colour_light && check_type_light;
-                }else{
-                        return check_colour_light || check_type_light;
+                } else {
+                    return check_colour_light || check_type_light;
 
                 }
 
-            }else{
+            } else {
                 return check_colour_light || check_type_light;
             }
-        }
-        else{
+        } else {
             System.out.println("Dark Mode like her hair <3");
             // if its a normal card, do a normal OR check; else check for wild card logic
-            if(is_dark_wildcard){
-                return check_colour_dark && check_type_dark;
-            }else{
-                return check_colour_dark || check_type_dark;
+            if (is_dark_wildcard) {
+                if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO) || card2.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                    return check_colour_dark && check_type_dark;
+                } else {
+                    return check_colour_dark || check_type_dark;
+                }
             }
         }
+
+        return false;
     }
+
 
     /**
      * Reverses the order of players in the game.
