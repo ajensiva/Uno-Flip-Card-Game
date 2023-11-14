@@ -177,7 +177,7 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 unoModel.currentRound.nextPlayer();
                 unoGUI.displayCurrentPlayer(unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
-           
+
             }
         }
 
