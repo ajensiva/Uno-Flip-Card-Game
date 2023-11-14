@@ -28,10 +28,6 @@ public class Controller {
 
         this.unoGUI.addStartGameListener(new playGameButtonListener());
         this.unoGUI.addPlayers(new addPlayersListener());
-
-
-        // initially update discard
-        //this.unoGUI.updateDiscard(unoModel.currentRound.discard.peek());
     }
 
     public class addPlayersListener implements ActionListener {
@@ -72,10 +68,9 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //handle playing card
-                System.out.println("Removes Card From Deck");
                 unoModel.currentRound.drawCurrPlayer();
-                System.out.println("Deck Size: " + unoModel.currentRound.deck.getSize());
-                System.out.println("HandSize: " + unoModel.currentRound.currentPlayer.getHand().getSize());
+                //System.out.println("Deck Size: " + unoModel.currentRound.deck.getSize());
+                //System.out.println("HandSize: " + unoModel.currentRound.currentPlayer.getHand().getSize());
 
                 //unoModel.currentRound.currentPlayer.getHand();
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
@@ -112,15 +107,13 @@ public class Controller {
                             unoGUI.yellowWildCardButtonListener(new playYellowWildCard());
                             unoGUI.greenWildCardButtonListener(new playGreenWildCard());
                         }
-
-
                     }
 
                     unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
                     // update discard ui
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                 }
-                System.out.println("Top of Discard " + unoModel.currentRound.discard.peek());
+                //System.out.println("Top of Discard " + unoModel.currentRound.discard.peek());
             }
 
         }
