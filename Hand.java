@@ -60,6 +60,8 @@ public class Hand {
      * @return The card at the specified index.
      */
     public Card getCard(int card_num) {
+
+
         return this.hand.get(card_num);
     }
 
