@@ -129,13 +129,15 @@ public class Controller {
                     unoGUI.nextPlayer.setEnabled(true);
                     if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
 
-                        if (unoModel.currentRound.Remove_card.equals(Card.TypeLight.WILDTWO)) {
+                        if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
                             unoModel.currentRound.drawCard(1);
                             unoGUI.wildCardGui();
                             unoGUI.redWildCardButtonListener(new playRedWildCard());
                             unoGUI.blueWildCardButtonListener(new playBlueWildCard());
                             unoGUI.yellowWildCardButtonListener(new playYellowWildCard());
                             unoGUI.greenWildCardButtonListener(new playGreenWildCard());
+
+                            unoGUI.discardLabel.setVisible(false);
                         }
                         else if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
                             unoModel.currentRound.drawCard(3);
@@ -144,6 +146,10 @@ public class Controller {
                             unoGUI.blueWildCardButtonListener(new playBlueWildCard());
                             unoGUI.yellowWildCardButtonListener(new playYellowWildCard());
                             unoGUI.greenWildCardButtonListener(new playGreenWildCard());
+
+
+                            unoGUI.discardLabel.setVisible(false);
+
                         }
                     }
 
@@ -171,6 +177,8 @@ public class Controller {
                 unoGUI.wildCardFrame.setVisible(false);
 
                 unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.discardLabel.setVisible(true);
+
 
 
 
@@ -187,6 +195,8 @@ public class Controller {
                 unoGUI.wildCardFrame.setVisible(false);
 
                 unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.discardLabel.setVisible(true);
+
             }
         }
 
@@ -200,6 +210,8 @@ public class Controller {
                 unoGUI.wildCardFrame.setVisible(false);
 
                 unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.discardLabel.setVisible(true);
+
             }
         }
 
@@ -213,6 +225,9 @@ public class Controller {
                 unoGUI.wildCardFrame.setVisible(false);
 
                 unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+
+                unoGUI.discardLabel.setVisible(true);
+
             }
         }
 
