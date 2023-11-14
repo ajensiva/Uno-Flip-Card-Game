@@ -17,8 +17,8 @@ public class UnoGUI {
     protected String userInputs[];
     protected JPanel startMenuPanel = new JPanel();
     protected JLabel darkside = new JLabel();
-    private final int FRAME_SIZE_WIDTH = 600;
-    private final int FRAME_SIZE_HEIGHT = 600;
+    private final int FRAME_SIZE_WIDTH = 1000;
+    private final int FRAME_SIZE_HEIGHT = 1000;
     protected JFrame startMenuFrame;
     private JFrame rootFrame;
     private JPanel mainPanel, handPanel = new JPanel();
@@ -290,22 +290,20 @@ public class UnoGUI {
     public void buildHand() {
         handPanel = new JPanel();
 //        handPanel.setBackground(Color.WHITE);
-        handPanel.setSize(FRAME_SIZE_WIDTH, 125);
+        handPanel.setSize(FRAME_SIZE_WIDTH, 10);
         handPanel.setLocation(0, 275);
         mainPanel.add(handPanel);
 
         handPanel.setLayout(new GridLayout(0, 7));
+
+
+
         Scrollpane = new JScrollPane(handPanel);
 
+        Scrollpane.setSize(new Dimension(1000, 10));
+        
         Scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
-        Container contentPane = rootFrame.getContentPane();
-        contentPane.setLayout(new BorderLayout());
-
-        contentPane.add(Scrollpane, BorderLayout.CENTER);
-
-
-
+        rootFrame.add(Scrollpane, BorderLayout.SOUTH);
 
 
     }
