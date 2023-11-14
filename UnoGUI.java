@@ -17,11 +17,19 @@ public class UnoGUI {
     protected String userInputs[];
     protected JPanel startMenuPanel = new JPanel();
     protected JLabel darkside = new JLabel();
-    private final int FRAME_SIZE_WIDTH = 600;
-    private final int FRAME_SIZE_HEIGHT = 600;
+    private final int FRAME_SIZE_WIDTH = 700;
+    private final int FRAME_SIZE_HEIGHT = 700;
     protected JFrame startMenuFrame;
     private JFrame rootFrame;
     private JPanel mainPanel, handPanel = new JPanel();
+
+    private JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+    private JPanel displayCurrentPlayerPanel = new JPanel();
+
+    private JPanel nextPlayerButtonPanel = new JPanel();
+
+
     protected ArrayList<JTextField> playerInputFields; // Array to store user inputs
     protected ArrayList<JButton> playerCards = new ArrayList<>(); // holds player's hand; array of cards
     protected boolean addingbuttons = true;
@@ -172,22 +180,14 @@ public class UnoGUI {
         buildDeck();
         displayCurrentPlayer(0);
         buildDiscard();
+        nextPlayer();
+
 
 
         // clean up root frame
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         rootFrame.setVisible(true);
-
-
-    }
-
-    public void displayCurrentPlayer(int currentPlayer){
-
-        display_current_player.setFont(new Font("Arial", Font.BOLD, 12));
-        display_current_player.setText(playerInputFields.get(currentPlayer).getText());
-        mainPanel.add(display_current_player);
-
 
 
     }
@@ -246,7 +246,11 @@ public class UnoGUI {
 
     public void nextPlayer() {
 
-        mainPanel.add(nextPlayer);
+        nextPlayer.setSize(100, 125);
+
+        nextPlayerButtonPanel.add(nextPlayer);
+
+        mainPanel.add(nextPlayerButtonPanel);
 
     }
 
@@ -256,11 +260,26 @@ public class UnoGUI {
 
     }
 
+
+    public void displayCurrentPlayer(int currentPlayer){
+
+
+        display_current_player.setFont(new Font("Arial", Font.BOLD, 12));
+        display_current_player.setText("The current player: " + playerInputFields.get(currentPlayer).getText());
+        displayCurrentPlayerPanel.add(display_current_player);
+        mainPanel.add(displayCurrentPlayerPanel);
+
+
+
+    }
+
     public void buildDeck() {
 
         buildDeckbutton.setSize(100, 125);
 
-        mainPanel.add(buildDeckbutton);
+        buttonPanel.add(buildDeckbutton);
+
+        mainPanel.add(buttonPanel);
         
         ImageIcon image = new ImageIcon(Card.DECK_FILE_NAME);
         buildDeckbutton.setIcon(image);
@@ -282,8 +301,9 @@ public class UnoGUI {
         buildDiscardbutton.setSize(100, 125);
 
 
-        mainPanel.add(buildDiscardbutton);
+        buttonPanel.add(buildDiscardbutton);
 
+        mainPanel.add(buttonPanel);
         updateDiscard(Card.DECK_FILE_NAME);
     }
 

@@ -95,7 +95,11 @@ public class Round {
 
 
     public void nextPlayer(){
-        currentPlayer = players.get(players.indexOf(currentPlayer)+1);
+
+            playerIndex = (playerIndex + 1) % players.size();
+            currentPlayer = players.get(playerIndex);
+
+
     }
 
 

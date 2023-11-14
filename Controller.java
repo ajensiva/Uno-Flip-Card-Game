@@ -31,6 +31,8 @@ public class Controller {
         this.unoGUI.addStartGameListener(new playGameButtonListener());
         this.unoGUI.addPlayers(new addPlayersListener());
 
+        this.unoGUI.addNextPlayerListener(new nextPlayerButtonListener());
+
 
         // initially update discard
         //this.unoGUI.updateDiscard(unoModel.currentRound.discard.peek());
@@ -165,6 +167,16 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
 
                 unoModel.currentRound.getPlayCard().setColorLight("Green");
+
+            }
+        }
+
+        public class nextPlayerButtonListener implements  ActionListener{
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                unoModel.currentRound.nextPlayer();
+                unoGUI.displayCurrentPlayer(unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
 
             }
         }
