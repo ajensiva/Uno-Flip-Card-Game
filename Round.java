@@ -222,14 +222,6 @@ public class Round {
         }
     }
 
-    public void wildDrawColor(Player currentPlayer){
-        int nextPlayerIndex = (players.indexOf(currentPlayer)+1) % players.size(); // player that will draw cards
-
-        while ((players.get(nextPlayerIndex).getHand().getCard(players.get(nextPlayerIndex).getHand().getSize()-1)) != discard.peek()) {
-            players.get(nextPlayerIndex).getHand().addCard(deck.pop());
-        }
-
-    }
 
     /**
      * Plays a card from the player's hand and adds it to the discard pile.
