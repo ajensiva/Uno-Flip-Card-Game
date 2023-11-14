@@ -5,8 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.*;
 
 
 public class Controller {
@@ -65,27 +64,37 @@ public class Controller {
 
             // Start the game
 
-            for (int i = 0; i < unoGUI.playerInputFields.size(); i++){
+            boolean hasEmptyPlayerName = false;
+            for (int i = 0; i < unoGUI.playerInputFields.size(); i++) {
+                String playerName = unoGUI.playerInputFields.get(i).getText().trim();
+                if (playerName.isEmpty()) {
+                    hasEmptyPlayerName = true;
+                    break;
+                }
+            }
+
+            if (hasEmptyPlayerName) {
+                // Display an alert
+                JOptionPane.showMessageDialog(null, "Please fill out all player names.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+                for (int i = 0; i < unoGUI.playerInputFields.size(); i++){
                 unoModel.addPlayer(unoGUI.playerInputFields.get(i).getText());
-            }
-            unoModel.round();
+                }
+                unoModel.round();
 
-            unoGUI.startGame();
+                unoGUI.startGame();
+                // Clear existing cards/buttons from the GUI
+                unoGUI.clearPlayerCards();
+                // Add new cards to the GUI
+                for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
+                    unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                }
+                unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
+                // update discard ui
+                unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+                unoGUI.setStartMenuVisible(false);
 
-
-            // Clear existing cards/buttons from the GUI
-            unoGUI.clearPlayerCards();
-
-            // Add new cards to the GUI
-            for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
-                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
-            }
-
-            unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
-            // update discard ui
-            unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
-
-            unoGUI.setStartMenuVisible(false);
         }
     }
 
