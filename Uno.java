@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ public class Uno {
     private static int count = 0;
 
     private final int MAXSCORE = 500; // max score to win game
-    protected static ArrayList<Player> players; // store all players in an array
+    protected static ArrayList<Player> players = new ArrayList<>(); // store all players in an array
 
     protected Round currentRound;
     /**
@@ -21,19 +22,7 @@ public class Uno {
      * Initializes the list of players by allowing them to enter their names.
      */
     public Uno() {
-        // Initialize the list of players
-        players = new ArrayList<Player>();
 
-        Player player1 = new Player("");
-        Player player2 = new Player("");
-        Player player3 = new Player("");
-        Player player4 = new Player("");
-
-
-        players.add(player1);
-        players.add(player2);
-        players.add(player3);
-        players.add(player4);
 
     }
 
@@ -77,7 +66,7 @@ public class Uno {
         }
     }
 
-    public void testRound(){
+    public void round(){
         currentRound = new Round(players);
         currentRound.playRound();
     }
