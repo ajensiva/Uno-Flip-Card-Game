@@ -388,8 +388,12 @@ public class UnoGUI {
             //button.setName("card" + i);
             button.setName(Integer.toString(i));
         }
-
         //
+    }
+
+    // invoked when 'next player' is called; update uis to match new player's things
+    public void updatePlayerHand(){
+        
     }
 
 

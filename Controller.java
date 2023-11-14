@@ -177,7 +177,12 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 unoModel.currentRound.nextPlayer();
                 unoGUI.displayCurrentPlayer(unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
-
+                unoGUI.clearPlayerCards();
+                // Add new cards to the GUI
+                for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
+                    unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                }
+                unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
             }
         }
 
