@@ -142,7 +142,7 @@ public class Controller {
 
                 unoGUI.wildCardFrame.setVisible(false);
 
-                unoGUI.discardInfo(unoModel.currentRound.deck.peek());
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
 
 
 
@@ -162,7 +162,7 @@ public class Controller {
 
                 unoGUI.wildCardFrame.setVisible(false);
 
-                unoGUI.discardInfo(unoModel.currentRound.deck.peek());
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
             }
         }
 
@@ -176,7 +176,7 @@ public class Controller {
 
                 unoGUI.wildCardFrame.setVisible(false);
 
-                unoGUI.discardInfo(unoModel.currentRound.deck.peek());
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
             }
         }
 
@@ -190,7 +190,7 @@ public class Controller {
 
                 unoGUI.wildCardFrame.setVisible(false);
 
-                unoGUI.discardInfo(unoModel.currentRound.deck.peek());
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
             }
         }
 
