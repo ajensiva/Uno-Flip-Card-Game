@@ -286,9 +286,10 @@ public class Round {
                     return check_colour_dark || check_type_dark;
                 }
             }
+            else{
+                return check_colour_light || check_type_light;
+            }
         }
-
-        return false;
     }
 
 
