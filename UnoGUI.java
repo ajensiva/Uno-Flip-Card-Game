@@ -41,12 +41,17 @@ public class UnoGUI {
     //---------------WILD CARD GUI-----------------
     protected ArrayList<JButton> wildColours = new ArrayList<JButton>();
 
-    private JFrame wildCardFrame;
+    protected JFrame wildCardFrame;
 
-    private JPanel wildPanel = new JPanel();
+    protected JPanel wildPanel;
 
     private JButton blue, red, yellow, green;
 
+//-------------------------------------------DISCARD INFO-----------------------------------------
+
+    JLabel discardLabel = new JLabel("GITTETWGERGWRHGWRHWRH");
+
+    JPanel discardPanel = new JPanel();
 
 
 
@@ -170,10 +175,10 @@ public class UnoGUI {
         rootFrame.setResizable(true);
 
         // main panel
-        mainPanel = new JPanel(new FlowLayout());
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         mainPanel.setPreferredSize(new Dimension(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT));
         rootFrame.add(mainPanel);
-
         // set up current player display
         displayCurrentPlayerPanel.add(display_current_player);
         mainPanel.add(displayCurrentPlayerPanel);
@@ -184,7 +189,6 @@ public class UnoGUI {
         displayCurrentPlayer(0);
         buildDiscard();
         nextPlayer();
-
 
 
         // clean up root frame
@@ -201,6 +205,10 @@ public class UnoGUI {
         wildCardFrame = new JFrame();
         wildCardFrame.setSize(100, 100);
 
+        wildCardFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        wildCardFrame.setResizable(false);
+
+        wildPanel = new JPanel();
         wildCardFrame.add(wildPanel);
 
         wildPanel.setLayout(new GridBagLayout());
@@ -221,17 +229,22 @@ public class UnoGUI {
         wildCardFrame.pack();
         wildCardFrame.setVisible(true);
 
-        wildColours.add(blue);
-        wildColours.add(red);
-        wildColours.add(yellow);
-        wildColours.add(green);
 
     }
 
+    public void discardInfo(Card card){
 
-    public void WildCardClose() {
-        wildCardFrame.setVisible(false);
+
+        discardLabel.setText("Colour at top of discard: " + card.getColorLight().toString());
+
+
+        discardPanel.add(discardLabel);
+
+        mainPanel.add(discardPanel);
+
+
     }
+
 
     public void clearPlayerCards() {
         handPanel.removeAll();
@@ -240,11 +253,6 @@ public class UnoGUI {
         playerCards.clear();
     }
 
-
-    public void currPlaySide() {
-
-        mainPanel.add(darkside);
-    }
 
 
     public void nextPlayer() {
@@ -295,10 +303,7 @@ public class UnoGUI {
 
     public void buildDiscard() {
         buildDiscardbutton.setSize(100, 125);
-
-
         buttonPanel.add(buildDiscardbutton);
-
         mainPanel.add(buttonPanel);
         updateDiscard(Card.DECK_FILE_NAME);
     }
