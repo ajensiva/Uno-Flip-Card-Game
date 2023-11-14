@@ -137,7 +137,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
+                System.out.println("playRedWildCard");
                 unoModel.currentRound.discard.peek().setColorLight("Red");
 
                 unoGUI.wildCardFrame.setVisible(false);
@@ -153,6 +153,10 @@ public class Controller {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("playBlueWildCard");
+                System.out.println("analysis discard peek: " + unoModel.currentRound.discard.peek());
+
+                unoModel.currentRound.discard
 
                 unoModel.currentRound.discard.peek().setColorLight("Blue");
 
@@ -166,6 +170,7 @@ public class Controller {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("playYellowWildCard");
 
                 unoModel.currentRound.discard.peek().setColorLight("Yellow");
 
@@ -179,6 +184,7 @@ public class Controller {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("playGreenWildCard");
 
                 unoModel.currentRound.discard.peek().setColorLight("Green");
 
