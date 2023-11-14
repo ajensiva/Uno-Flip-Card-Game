@@ -40,6 +40,12 @@ public class Controller {
         //this.unoGUI.updateDiscard(unoModel.currentRound.discard.peek());
     }
 
+    private void setHandPanelInteractable(boolean interactable) {
+        for (JButton button : unoGUI.playerCards) {
+            button.setEnabled(interactable);
+        }
+    }
+
     public class addPlayersListener implements ActionListener {
 
         @Override
@@ -99,6 +105,7 @@ public class Controller {
                     unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
 
                     isPlayerLocked = true;
+                    setHandPanelInteractable(false);
                     unoGUI.nextPlayer.setEnabled(true);
 
                 }
@@ -118,7 +125,7 @@ public class Controller {
 
 
                     isPlayerLocked = true;
-
+                    setHandPanelInteractable(false);
                     unoGUI.nextPlayer.setEnabled(true);
                     if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
 
@@ -214,6 +221,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 isPlayerLocked = false;
+                setHandPanelInteractable(true);
                 System.out.println("player turn changed");
                 unoModel.currentRound.nextPlayer();
                 unoGUI.displayCurrentPlayer(unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
