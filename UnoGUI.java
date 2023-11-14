@@ -22,11 +22,13 @@ public class UnoGUI {
     protected JFrame startMenuFrame;
     private JFrame rootFrame;
     private JPanel mainPanel, handPanel = new JPanel();
-    protected ArrayList<JTextField> inputFields; // Array to store user inputs
+    protected ArrayList<JTextField> playerInputFields; // Array to store user inputs
     protected ArrayList<JButton> playerCards = new ArrayList<>(); // holds player's hand; array of cards
     protected boolean addingbuttons = true;
 
     private JScrollPane Scrollpane;
+
+    private JLabel display_current_player = new JLabel("this is where the players should be displayed!");
 
     //---------------WILD CARD GUI-----------------
     protected ArrayList<JButton> wildColours = new ArrayList<JButton>();
@@ -36,6 +38,9 @@ public class UnoGUI {
     private JPanel wildPanel = new JPanel();
 
     private JButton blue, red, yellow, green;
+
+
+
 
 
     public UnoGUI() {
@@ -69,7 +74,7 @@ public class UnoGUI {
         startMenuPanel.add(title_label, constraints);
 
         // Initial 2 player fields
-        inputFields = new ArrayList<>();
+        playerInputFields = new ArrayList<>();
         for (int i = 0; i < numFields; i++) {
             constraints.gridy = i + 1;
             constraints.gridwidth = 1;
@@ -80,7 +85,7 @@ public class UnoGUI {
             JTextField textField = new JTextField(10);
             constraints.gridx = 1;
             startMenuPanel.add(textField, constraints);
-            inputFields.add(textField);
+            playerInputFields.add(textField);
 
             constraints.gridx = 0;
         }
@@ -120,7 +125,7 @@ public class UnoGUI {
             JTextField textField = new JTextField(10);
             constraints.gridx = 1;
             startMenuPanel.add(textField, constraints);
-            inputFields.add(textField);
+            playerInputFields.add(textField);
 
             // Increment the number of fields to account for the new player
             numFields++;
@@ -161,10 +166,13 @@ public class UnoGUI {
         mainPanel.setPreferredSize(new Dimension(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT));
         rootFrame.add(mainPanel);
 
+
         // build hand ui and add cards
         buildHand();
         buildDeck();
+        displayCurrentPlayer(0);
         buildDiscard();
+
 
         // clean up root frame
         rootFrame.pack();
@@ -173,6 +181,16 @@ public class UnoGUI {
 
 
     }
+
+    public void displayCurrentPlayer(int currentPlayer){
+
+        display_current_player.setText(playerInputFields.get(currentPlayer).getText());
+        mainPanel.add(display_current_player);
+
+
+
+    }
+
 
     public void wildCardGui() {
         // test create wildcard pane
@@ -241,8 +259,6 @@ public class UnoGUI {
 
         buildDeckbutton.setSize(100, 125);
 
-        buildDeckbutton.setLocation(600, 500);
-
         mainPanel.add(buildDeckbutton);
         
         ImageIcon image = new ImageIcon(Card.DECK_FILE_NAME);
@@ -264,7 +280,6 @@ public class UnoGUI {
     public void buildDiscard() {
         buildDiscardbutton.setSize(100, 125);
 
-        buildDiscardbutton.setLocation(400, 500);
 
         mainPanel.add(buildDiscardbutton);
 
