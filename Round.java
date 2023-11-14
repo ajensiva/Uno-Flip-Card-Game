@@ -28,6 +28,11 @@ public class Round {
 
     protected int playerIndex = 0;
 
+    protected Card Remove_card;
+
+
+
+
     /**
      * Constructor for the `Round` class.
      * Initializes the round with a list of players, a deck, and a discard pile.
@@ -105,7 +110,10 @@ public class Round {
             System.out.println("Card has been played!");
 
             // take the card from the player
-            discard.add(currentPlayer.getHand().removeCard(getPlayCard()));
+
+
+
+
 
             // light type cards only
             if (!(darkmode)) {
@@ -173,6 +181,11 @@ public class Round {
 
 
             }
+
+            Remove_card = currentPlayer.getHand().removeCard(getPlayCard());
+
+            discard.add(Remove_card);
+
             return true;
         }
     return false;

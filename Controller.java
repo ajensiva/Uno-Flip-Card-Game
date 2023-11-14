@@ -15,6 +15,8 @@ public class Controller {
     private UnoGUI unoGUI;
     private Uno unoModel;
 
+
+
     public Controller(UnoGUI gui, Uno uno) {
 
         this.unoGUI = gui;
@@ -94,9 +96,9 @@ public class Controller {
                 unoModel.currentRound.setPlayCardIndex(buttonIndex);
                 if (unoModel.currentRound.cardPlayedLogic()) {
 
-                    if (unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+                    if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
 
-                        if (unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).equals(Card.TypeLight.WILDTWO)) {
+                        if (unoModel.currentRound.Remove_card.equals(Card.TypeLight.WILDTWO)) {
                             unoModel.currentRound.drawCard(2);
                             unoGUI.wildCardGui();
                             unoGUI.redWildCardButtonListener(new playRedWildCard());
@@ -104,7 +106,7 @@ public class Controller {
                             unoGUI.yellowWildCardButtonListener(new playYellowWildCard());
                             unoGUI.greenWildCardButtonListener(new playGreenWildCard());
                         }
-                        if (unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                        if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
                             unoModel.currentRound.drawCard(4);
                             unoGUI.wildCardGui();
                             unoGUI.redWildCardButtonListener(new playRedWildCard());
