@@ -377,21 +377,23 @@ public class UnoGUI {
     public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand) {
         
         playerCards.remove(playerCards.indexOf(buttonClicked));
-        //System.out.println("BEFORE: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
+        System.out.println("BEFORE: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
         handPanel.remove(buttonClicked);
-        //System.out.println("AFTER: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
+        System.out.println("AFTER: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
 
         //System.out.println("Hand Size: " + hand.getSize());
         //System.out.println("# Buttons: " + playerCards.size());
-        int handSize = hand.getSize();
-        for (int i = 0; i < handSize; i++) {
-            System.out.println("index: " + i + ", HandSize: " + handSize);
+        for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
             //button.setName("card" + i);
             button.setName(Integer.toString(i));
         }
-
         //
+    }
+
+    // invoked when 'next player' is called; update uis to match new player's things
+    public void updatePlayerHand(){
+        
     }
 
 
