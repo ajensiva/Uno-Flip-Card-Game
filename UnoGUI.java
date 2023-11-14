@@ -1,6 +1,5 @@
 import javax.swing.*;
-import javax.swing.text.AbstractDocument.Content;
-
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,11 +21,12 @@ public class UnoGUI {
     private final int FRAME_SIZE_HEIGHT = 1000;
     protected JFrame startMenuFrame;
     private JFrame rootFrame;
-    private JPanel mainPanel = new JPanel();
-    private JScrollPane handPanel = new JScrollPane();
+    private JPanel mainPanel, handPanel = new JPanel();
     protected ArrayList<JTextField> inputFields; // Array to store user inputs
     protected ArrayList<JButton> playerCards = new ArrayList<>(); // holds player's hand; array of cards
     protected boolean addingbuttons = true;
+
+    private JScrollPane Scrollpane;
 
     //---------------WILD CARD GUI-----------------
     protected ArrayList<JButton> wildColours = new ArrayList<JButton>();
@@ -36,6 +36,7 @@ public class UnoGUI {
     private JPanel wildPanel = new JPanel();
 
     private JButton blue, red, yellow, green;
+
 
     public UnoGUI() {
 
@@ -167,10 +168,11 @@ public class UnoGUI {
         buildDiscard();
 
         // clean up root frame
-        rootFrame.getContentPane().add(mainPanel);
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         rootFrame.setVisible(true);
+
+
     }
 
     public void wildCardGui() {
@@ -286,43 +288,34 @@ public class UnoGUI {
     }
 
     public void buildHand() {
+
         handPanel = new JPanel();
-//        handPanel.setBackground(Color.WHITE);
         handPanel.setSize(FRAME_SIZE_WIDTH, 10);
         handPanel.setLocation(0, 275);
         mainPanel.add(handPanel);
-
         handPanel.setLayout(new GridLayout(0, 7));
 
-
-
         Scrollpane = new JScrollPane(handPanel);
-
-        Scrollpane.setSize(new Dimension(1000, 10));
-        
         Scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
         rootFrame.add(Scrollpane, BorderLayout.SOUTH);
 
 
-        mainPanel.add(handPanel, BorderLayout.SOUTH); // Add the JScrollPane to the SOUTH of the mainPanel
     }
 
     public JButton addCard(Card card) {
+
         ImageIcon image = new ImageIcon(card.getImageFilePath());
         JButton cardButton = new JButton(image);
 
-        // Retrieve the content panel from the JScrollPane
-        JPanel contentPanel = (JPanel) handPanel.getViewport().getView();
-
-        // Add the card button to the content panel
-        contentPanel.add(cardButton);
+        handPanel.add(cardButton);
         playerCards.add(cardButton);
 
         // make only images visible
         cardButton.setOpaque(false);
         cardButton.setContentAreaFilled(false);
         cardButton.setBorderPainted(false);
-
+        
         return cardButton;
     }
 
