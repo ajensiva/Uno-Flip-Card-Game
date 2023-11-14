@@ -241,7 +241,7 @@ public class UnoGUI {
     public void buildDeck() {
 
         buildDeckbutton.setSize(100, 125);
-        buildDeckbutton.setLocation(100, 100);
+        buildDeckbutton.setLocation(400, 400);
         mainPanel.add(buildDeckbutton);
         
         ImageIcon image = new ImageIcon(Card.DECK_FILE_NAME);
@@ -288,9 +288,10 @@ public class UnoGUI {
     }
 
     public void buildHand() {
+
         handPanel = new JPanel();
 //        handPanel.setBackground(Color.WHITE);
-        handPanel.setSize(FRAME_SIZE_WIDTH, 10);
+        handPanel.setSize(FRAME_SIZE_WIDTH, 100);
         handPanel.setLocation(0, 275);
         mainPanel.add(handPanel);
 
@@ -298,12 +299,12 @@ public class UnoGUI {
         handPanel.setLayout(new BoxLayout(handPanel, BoxLayout.X_AXIS));
 
 
-
         Scrollpane = new JScrollPane(handPanel);
 
-        Scrollpane.setSize(new Dimension(1000, 10));
+        Scrollpane.setSize(new Dimension(1000, 100));
         
         Scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
         rootFrame.add(Scrollpane, BorderLayout.SOUTH);
 
 
@@ -313,6 +314,13 @@ public class UnoGUI {
 
         ImageIcon image = new ImageIcon(card.getImageFilePath());
         JButton cardButton = new JButton(image);
+        cardButton.setPreferredSize(new Dimension(100, 125));
+        int width = cardButton.getWidth();
+        int height = cardButton.getHeight();
+        if (width == 0) {width = 100;}
+        if (height == 0) {height = 125;}
+        ImageIcon resizedIcon = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
+        cardButton.setIcon(resizedIcon);
 
         handPanel.add(cardButton);
         playerCards.add(cardButton);
@@ -327,10 +335,7 @@ public class UnoGUI {
 
 
     public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand) {
-
-
-        buttonClicked.setText("");
-
+        
         playerCards.remove(playerCards.indexOf(buttonClicked));
         System.out.println("BEFORE: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
         handPanel.remove(buttonClicked);
@@ -342,7 +347,6 @@ public class UnoGUI {
             JButton button = playerCards.get(i);
             //button.setName("card" + i);
             button.setName(Integer.toString(i));
-            button.setText(button.getName());
         }
 
         //
@@ -400,9 +404,7 @@ public class UnoGUI {
         System.out.println("# Buttons: " + playerCards.size());
         for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
-            //button.setName("card" + i);
             button.setName(Integer.toString(i));
-            button.setText(button.getName());
             button.addActionListener(listenforCardtoPlay);
         }
     }
