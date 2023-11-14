@@ -2,7 +2,7 @@
  * Player class represents a player in the Uno game.
  *
  * @author Arun, Jason, Ajen, Zarif
- * @version 1.0
+ * @version 2.0
  */
 public class Player {
 

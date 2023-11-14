@@ -3,7 +3,7 @@ import java.util.ArrayList;
  * Hand class represents a player's hand of Uno cards.
  *
  * @author Zarif, Arun, Ajen, Jason
- * @version 1.0
+ * @version 2.0
  */
 public class Hand {
 

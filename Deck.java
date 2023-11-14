@@ -5,7 +5,7 @@ import java.util.Stack;
 /**
  * Deck class : Generates 112 cards to be used to during play
  * @author Arun, Ajen, Zarif, Jason
- * @version 1.0
+ * @version 2.0
  */
 public class Deck {
 

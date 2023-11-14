@@ -10,6 +10,10 @@ public class Card {
     public static final String RELATIVE_IMAGE_DIRECTORY = "images/";
     public static final String DECK_FILE_NAME = RELATIVE_IMAGE_DIRECTORY + "Top_CARD.jpg";
 
+    /**
+     * Set's the appropriate image for the appropriate Card
+     * @return
+     */
     public String getImageFilePath() {
         if(this.colorLight == null)
             return (RELATIVE_IMAGE_DIRECTORY + this.typeLight + ".jpg");
