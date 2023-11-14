@@ -159,7 +159,7 @@ public class UnoGUI {
         // main panel
         mainPanel = new JPanel(new FlowLayout());
         mainPanel.setPreferredSize(new Dimension(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT));
-        rootFrame.add(mainPanel, BorderLayout.CENTER);
+        rootFrame.add(mainPanel);
 
         // build hand ui and add cards
         buildHand();
@@ -241,6 +241,8 @@ public class UnoGUI {
 
         buildDeckbutton.setSize(100, 125);
 
+        buildDeckbutton.setLocation(600, 500);
+
         mainPanel.add(buildDeckbutton);
         
         ImageIcon image = new ImageIcon(Card.DECK_FILE_NAME);
@@ -262,7 +264,7 @@ public class UnoGUI {
     public void buildDiscard() {
         buildDiscardbutton.setSize(100, 125);
 
-
+        buildDiscardbutton.setLocation(400, 500);
 
         mainPanel.add(buildDiscardbutton);
 
@@ -271,6 +273,8 @@ public class UnoGUI {
 
     public void updateDiscard(String file_path){
         System.out.println("update deck ui called");
+        buildDiscardbutton.setSize(100, 125); // Set a fixed size for the discard button
+
 
         ImageIcon image = new ImageIcon(file_path);
         buildDiscardbutton.setIcon(image);
