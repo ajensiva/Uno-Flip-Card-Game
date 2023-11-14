@@ -184,6 +184,7 @@ public class UnoGUI {
 
     public void displayCurrentPlayer(int currentPlayer){
 
+        display_current_player.setFont(new Font("Arial", Font.BOLD, 12));
         display_current_player.setText(playerInputFields.get(currentPlayer).getText());
         mainPanel.add(display_current_player);
 
