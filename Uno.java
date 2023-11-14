@@ -13,7 +13,7 @@ public class Uno {
     private static int count = 0;
 
     private final int MAXSCORE = 500; // max score to win game
-    private static ArrayList<Player> players; // store all players in an array
+    protected static ArrayList<Player> players; // store all players in an array
 
     protected Round currentRound;
     /**
@@ -24,46 +24,17 @@ public class Uno {
         // Initialize the list of players
         players = new ArrayList<Player>();
 
-        Player jeff = new Player("Jeff");
-        Player bob = new Player("Bob");
+        Player player1 = new Player("");
+        Player player2 = new Player("");
+        Player player3 = new Player("");
+        Player player4 = new Player("");
 
 
-        players.add(jeff);
-        players.add(bob);
-//        boolean flag = true;
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        players.add(player4);
 
-//        while (flag) {
-            // scanner to get userinput (# players and player names)
-//            Scanner userInput = new Scanner(System.in);
-//            System.out.println("Enter the number of players (2-4): ");
-//
-//            if (userInput.hasNextInt()) {
-//
-//                int num = userInput.nextInt();
-//                userInput.nextLine(); // consume the newline left by nextInt()
-//
-//                if (num < 2 || num > 4) {
-//                    System.out.println("Enter a number between 2 or 4 please!");
-//
-//                } else {
-//                    // loop for # of players
-//                    for (int i = 0; i < num; i++) {
-//                        // get plr name and create new player instance and add to array
-//                        System.out.println("Enter player " + (i + 1) + "'s name: ");
-//                        String name_player = userInput.nextLine();
-//                        Player newPlayer = new Player(name_player);
-//                        players.add(newPlayer);
-//                    }
-//
-//                    flag = false;
-//                }
-//            } else {
-//
-//                String input = userInput.next(); // Read the non-integer input as a string
-//                System.out.println("Invalid input: " + input + " is not an integer.");
-//            }
-//
-//        }
     }
 
     /**
@@ -109,6 +80,16 @@ public class Uno {
     public void testRound(){
         currentRound = new Round(players);
         currentRound.playRound();
+    }
+
+    public void addPlayer(String name){
+
+        Player player = new Player(name);
+
+        players.add(player);
+
+
+
     }
     /*
     public static void main(String args[]) {

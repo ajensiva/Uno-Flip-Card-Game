@@ -267,11 +267,6 @@ public class UnoGUI {
 
     }
 
-    public void unoPressed() {
-
-        mainPanel.add(UnoButton);
-
-    }
 
 
     public void displayCurrentPlayer(int currentPlayer){

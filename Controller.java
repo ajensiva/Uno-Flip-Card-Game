@@ -56,7 +56,13 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
 
             // Start the game
+
+            for (int i = 0; i < unoGUI.playerInputFields.size(); i++){
+                unoModel.addPlayer(unoGUI.playerInputFields.get(i).getText());
+            }
+
             unoGUI.startGame();
+
 
             // Clear existing cards/buttons from the GUI
             unoGUI.clearPlayerCards();
