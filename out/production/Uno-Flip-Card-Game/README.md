@@ -18,8 +18,19 @@
 - In the case that a user does not input an index to play a Card (if they put a String) then there is no catch for this case
 --------------------------------------------------------------------
 ### Milestone 2:
-- Implemented MVC pattern  
-- Implemented GUI
+- The code efficiently handles player turns, card plays, and special card effects, ensuring a seamless and engaging gaming experience, with the GUI initializing the game through the startGame() method and providing a "Next Player" button for user-controlled turn progression.
+- User interaction is a primary focus, prompting input through various buttons like "UNO!!," "Next Player," and color selection during wild card scenarios, enhancing interactivity through mouse-driven actions for active participation in card plays and game progression.
+- The code strictly enforces standard UNO game rules, validating card plays based on color or type, adding cards to a player's hand with the addCard() method, and incorporating a wild card GUI that aligns with the rule allowing players to choose a color in specific gameplay scenarios.
+- The code demonstrates modularity and readability with encapsulated functionalities in methods like startMenu(), startGame(), and wildCardGui(), promoting a clear separation of concerns for maintainability, future expansion, and ease of understanding for potential updates and enhancements.
+
+### Known issues:
+- Updating player's hand once a card has been removed may cause an error to occur. The game proceeds to function properly but the issue hasn't been addressed yet. The error doesn't inherently cause the game to break.
+--------------------------------------------------------------------
+### Milestone 3:
+- Emphasizes the necessity for all tests to pass, ensuring accurate card placement and scoring functionalities within the game.
+- This stage introduces Uno Flip cards, incorporating their specific rules and scoring mechanisms to enhance gameplay dynamics.
+- A notable enhancement is the incorporation of an arbitrary number of AI players with flexible behavior strategies, allowing for intelligent gameplay simulation. Options include generating all legal moves and selecting the highest-scoring move or using rules such as "The first valid card will be placed."
+
 
 #### MIT License
 
@@ -42,13 +53,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-
-
-
-
-
-
-
-
