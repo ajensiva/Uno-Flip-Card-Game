@@ -15,7 +15,7 @@ public class Controller {
     private UnoGUI unoGUI;
     private Uno unoModel;
 
-
+    private boolean nextPlayerLocked = false;
 
     public Controller(UnoGUI gui, Uno uno) {
 
@@ -75,15 +75,20 @@ public class Controller {
         private class updateDeckListener implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //handle playing card
-                System.out.println("Removes Card From Deck");
-                unoModel.currentRound.drawCurrPlayer();
-                System.out.println("Deck Size: " + unoModel.currentRound.deck.getSize());
-                System.out.println("HandSize: " + unoModel.currentRound.currentPlayer.getHand().getSize());
 
-                //unoModel.currentRound.currentPlayer.getHand();
-                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
-                unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
+                if(nextPlayerLocked == false){
+                    //handle playing card
+                    System.out.println("Removes Card From Deck");
+                    unoModel.currentRound.drawCurrPlayer();
+                    System.out.println("Deck Size: " + unoModel.currentRound.deck.getSize());
+                    System.out.println("HandSize: " + unoModel.currentRound.currentPlayer.getHand().getSize());
+
+                    //unoModel.currentRound.currentPlayer.getHand();
+                    unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
+                    unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
+
+                    nextPlayerLocked = !nextPlayerLocked;
+                }
             }
         }
 
@@ -92,6 +97,9 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                if(nextPlayerLocked == true){
+                    return;
+                }
                 JButton button = (JButton) e.getSource();
                 int buttonIndex = Integer.parseInt(button.getName());
                 System.out.println("Card Clicked: " + unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex));
@@ -175,6 +183,7 @@ public class Controller {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                nextPlayerLocked = false;
                 unoModel.currentRound.nextPlayer();
                 unoGUI.displayCurrentPlayer(unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
                 unoGUI.clearPlayerCards();
