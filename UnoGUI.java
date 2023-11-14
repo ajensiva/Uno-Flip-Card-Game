@@ -263,6 +263,8 @@ public class UnoGUI {
 
         mainPanel.add(nextPlayerButtonPanel);
 
+        nextPlayer.setEnabled(false);
+
     }
 
     public void unoPressed() {
