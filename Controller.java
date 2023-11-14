@@ -113,7 +113,7 @@ public class Controller {
                             unoGUI.yellowWildCardButtonListener(new playYellowWildCard());
                             unoGUI.greenWildCardButtonListener(new playGreenWildCard());
                         }
-                        if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                        else if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
                             unoModel.currentRound.drawCard(4);
                             unoGUI.wildCardGui();
                             unoGUI.redWildCardButtonListener(new playRedWildCard());
@@ -126,8 +126,6 @@ public class Controller {
                     unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
                     // update discard ui
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
-                }else{
-                    return;
                 }
             }
 
@@ -139,7 +137,14 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                unoModel.currentRound.getPlayCard().setColorLight("Red");
+
+                unoModel.currentRound.discard.peek().setColorLight("Red");
+
+                unoGUI.wildCardFrame.setVisible(false);
+
+                unoGUI.discardInfo(unoModel.currentRound.deck.peek());
+
+
 
             }
         }
@@ -149,9 +154,11 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                unoModel.currentRound.getPlayCard().setColorLight("Blue");
+                unoModel.currentRound.discard.peek().setColorLight("Blue");
 
+                unoGUI.wildCardFrame.setVisible(false);
 
+                unoGUI.discardInfo(unoModel.currentRound.deck.peek());
             }
         }
 
@@ -160,8 +167,11 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                unoModel.currentRound.getPlayCard().setColorLight("Yellow");
+                unoModel.currentRound.discard.peek().setColorLight("Yellow");
 
+                unoGUI.wildCardFrame.setVisible(false);
+
+                unoGUI.discardInfo(unoModel.currentRound.deck.peek());
             }
         }
 
@@ -170,8 +180,11 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                unoModel.currentRound.getPlayCard().setColorLight("Green");
+                unoModel.currentRound.discard.peek().setColorLight("Green");
 
+                unoGUI.wildCardFrame.setVisible(false);
+
+                unoGUI.discardInfo(unoModel.currentRound.deck.peek());
             }
         }
 

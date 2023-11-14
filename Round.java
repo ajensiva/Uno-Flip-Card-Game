@@ -85,7 +85,15 @@ public class Round {
     }
 
     public void makeDiscard(){
-        discard.add(deck.pop());
+        if (deck.peek().getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)){
+
+            deck = new Deck();
+            discard.add(deck.pop());
+        }
+        else{
+            discard.add(deck.pop());
+
+        }
     }
 
 
@@ -264,21 +272,23 @@ public class Round {
      */
     public boolean checkCard(Card card1, Card card2) {
         boolean check_colour_light;
-        if (card1.getColorLight() == null){
+        boolean check_colour_dark;
+        if (card1.getColorLight() == null || card1.getColorDark() == null){
             check_colour_light = true;
+            check_colour_dark = true;
 
-            return check_colour_light;
+            return check_colour_light || check_colour_dark;
         }
 
         else {
 
             check_colour_light = card1.getColorLight().equals(card2.getColorLight()); // false
-            boolean check_colour_dark = card1.getColorDark().equals(card2.getColorDark()); // false
+            check_colour_dark = card1.getColorDark().equals(card2.getColorDark()); // false
 
             boolean check_type_light = card1.getTypeLight().equals(card2.getTypeLight());
             boolean check_type_dark = card1.getTypeDark().equals(card2.getTypeDark());
 
-            // check to see if its a wild card that was played
+            // check to see if it's a wild card that was played
             boolean is_light_wildcard = card1.getTypeLight().equals(Card.TypeLight.WILDTWO) || card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR);
             boolean is_dark_wildcard = card1.getTypeDark().equals(Card.TypeDark.WILD_CARD) || card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR);
 
