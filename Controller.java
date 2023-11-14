@@ -108,15 +108,11 @@ public class Controller {
 
                 JButton button = (JButton) e.getSource();
                 int buttonIndex = Integer.parseInt(button.getName());
-                System.out.println("Card Clicked: " + button.getName());
-
-                System.out.println(unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex));
-                System.out.println(unoModel.currentRound.deck.peek());
-
+                //System.out.println("Card Clicked: " + unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex));
                 unoModel.currentRound.setPlayCardIndex(buttonIndex);
                 if (unoModel.currentRound.cardPlayedLogic()) {
 
-                    if (unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).equals(Card.TypeLight.WILD_DRAW_FOUR) || unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).equals(Card.TypeLight.WILDTWO)) {
+                    if (unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).getTypeLight().equals(Card.TypeLight.WILDTWO)) {
 
                         if (unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).equals(Card.TypeLight.WILDTWO)) {
                             unoModel.currentRound.drawCard(2);
@@ -126,7 +122,7 @@ public class Controller {
                             unoGUI.yellowWildCardButtonListener(new playYellowWildCard());
                             unoGUI.greenWildCardButtonListener(new playGreenWildCard());
                         }
-                        if (unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                        if (unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex).getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
                             unoModel.currentRound.drawCard(4);
                             unoGUI.wildCardGui();
                             unoGUI.redWildCardButtonListener(new playRedWildCard());
@@ -137,12 +133,14 @@ public class Controller {
 
 
                     }
+
                     unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
                     // update discard ui
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                 }
-
+                System.out.println("Top of Discard " + unoModel.currentRound.discard.peek());
             }
+
         }
 
 

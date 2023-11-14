@@ -75,6 +75,7 @@ public class Round {
     public Card getPlayCard(){
         //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
 
+        System.out.println("getPlayCard: " + currentPlayer.getHand().getCard(getCardtoPlayIndex()));
         return currentPlayer.getHand().getCard(getCardtoPlayIndex());
     }
 
@@ -104,8 +105,7 @@ public class Round {
             System.out.println("Card has been played!");
 
             // take the card from the player
-            currentPlayer.getHand().removeCard(getPlayCard());
-
+            discard.add(currentPlayer.getHand().removeCard(getPlayCard()));
 
             // light type cards only
             if (!(darkmode)) {
@@ -246,13 +246,40 @@ public class Round {
      * @return True if the card can be played, false otherwise.
      */
     public boolean checkCard(Card card1, Card card2){
-        // let wild cards be played regardless
-        boolean check1 = card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || card1.getTypeLight().equals(Card.TypeLight.WILDTWO);
-        boolean check2 = card2.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR) || card1.getTypeLight().equals(Card.TypeDark.WILD_CARD);
+
+        boolean check_colour_light = card1.getColorLight().equals(card2.getColorLight()); // false
+        boolean check_colour_dark = card1.getColorDark().equals(card2.getColorDark()); // false 
+
+        boolean check_type_light = card1.getTypeLight().equals(card2.getTypeLight());
+        boolean check_type_dark = card1.getTypeDark().equals(card2.getTypeDark());
+
+        //boolean check_wild_card_light = card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) && card2.getTypeLight().equals(Card.TypeLight.WILDTWO);
+        //boolean check_wild_card_dark = card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR) && card2.getTypeDark().equals(Card.TypeDark.WILD_CARD);
+
+        // check to see if its a wild card that was played
+        boolean is_light_wildcard = card1.getTypeLight().equals(Card.TypeLight.WILDTWO) || card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR);
+        boolean is_dark_wildcard = card1.getTypeDark().equals(Card.TypeDark.WILD_CARD) || card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR);
 
 
-                // if the color or the number/type matches
-        return (card1.getColorLight().equals(card2.getColorLight()) || card1.getTypeLight().equals(card2.getTypeLight())) || (card1.getColorDark().equals(card2.getColorDark()) || card1.getTypeDark().equals(card2.getTypeDark())) ;
+        // for light side checks
+        if(darkmode == false){
+            System.out.println("She's my light");
+            // if its a normal card, do a normal OR check; else check for wild card logic
+            if(is_light_wildcard){
+                return check_colour_light && check_type_light;
+            }else{
+                return check_colour_light || check_type_light;
+            }
+        }
+        else{
+            System.out.println("Dark Mode like her hair <3");
+            // if its a normal card, do a normal OR check; else check for wild card logic
+            if(is_dark_wildcard){
+                return check_colour_dark && check_type_dark;
+            }else{
+                return check_colour_dark || check_type_dark;
+            }
+        }
     }
 
     /**
