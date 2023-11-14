@@ -263,46 +263,59 @@ public class Round {
      * @return True if the card can be played, false otherwise.
      */
     public boolean checkCard(Card card1, Card card2) {
+        boolean check_colour_light;
+        if (card1.getColorLight() == null){
+            check_colour_light = true;
 
-        boolean check_colour_light = card1.getColorLight().equals(card2.getColorLight()); // false
-        boolean check_colour_dark = card1.getColorDark().equals(card2.getColorDark()); // false 
+            return check_colour_light;
+        }
 
-        boolean check_type_light = card1.getTypeLight().equals(card2.getTypeLight());
-        boolean check_type_dark = card1.getTypeDark().equals(card2.getTypeDark());
+        else {
 
-        // check to see if its a wild card that was played
-        boolean is_light_wildcard = card1.getTypeLight().equals(Card.TypeLight.WILDTWO) || card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR);
-        boolean is_dark_wildcard = card1.getTypeDark().equals(Card.TypeDark.WILD_CARD) || card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR);
+            check_colour_light = card1.getColorLight().equals(card2.getColorLight()); // false
+            boolean check_colour_dark = card1.getColorDark().equals(card2.getColorDark()); // false
 
-        // for light side checks
-        if (darkmode == false) {
-            System.out.println("She's my light");
-            // if its a normal card, do a normal OR check; else check for wild card logic
-            if (is_light_wildcard) {
-                if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO) || card2.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-                    return check_colour_light && check_type_light;
+            boolean check_type_light = card1.getTypeLight().equals(card2.getTypeLight());
+            boolean check_type_dark = card1.getTypeDark().equals(card2.getTypeDark());
+
+            // check to see if its a wild card that was played
+            boolean is_light_wildcard = card1.getTypeLight().equals(Card.TypeLight.WILDTWO) || card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR);
+            boolean is_dark_wildcard = card1.getTypeDark().equals(Card.TypeDark.WILD_CARD) || card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR);
+
+            // for light side checks
+            if (darkmode == false) {
+                System.out.println("She's my light");
+                // if its a normal card, do a normal OR check; else check for wild card logic
+                if (is_light_wildcard) {
+
+                    //WILDTWO
+                    if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+                        return check_colour_light && check_type_light;
+                    } else {
+                        return check_colour_light || check_type_light;
+
+                    }
+
                 } else {
                     return check_colour_light || check_type_light;
-
                 }
-
             } else {
-                return check_colour_light || check_type_light;
-            }
-        } else {
-            System.out.println("Dark Mode like her hair <3");
-            // if its a normal card, do a normal OR check; else check for wild card logic
-            if (is_dark_wildcard) {
-                if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO) || card2.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-                    return check_colour_dark && check_type_dark;
+                System.out.println("Dark Mode like her hair <3");
+                // if its a normal card, do a normal OR check; else check for wild card logic
+                if (is_dark_wildcard) {
+
+                    //WILD TWO LOGIC - ONLY PLAYABLE, IF SAME TYPE AND SAME COLOUR
+                    if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+                        return check_colour_dark && check_type_dark;
+                    } else {
+                        return check_colour_dark || check_type_dark;
+                    }
                 } else {
-                    return check_colour_dark || check_type_dark;
+                    return check_colour_light || check_type_light;
                 }
-            }
-            else{
-                return check_colour_light || check_type_light;
             }
         }
+
     }
 
 

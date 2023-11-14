@@ -21,7 +21,7 @@ public class UnoGUI {
     private final int FRAME_SIZE_HEIGHT = 700;
     protected JFrame startMenuFrame;
     private JFrame rootFrame;
-    private JPanel mainPanel, handPanel = new JPanel();
+    protected JPanel mainPanel, handPanel = new JPanel();
 
     private JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 

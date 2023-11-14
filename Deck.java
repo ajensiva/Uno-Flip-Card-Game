@@ -27,14 +27,25 @@ public class Deck {
         Random random = new Random();
         while (deck.size() < FULL_DECK) {
             //Generate random enums for ColorLight, ColorDark, TypeLight, and TypeDark.
-            Card.ColorLight colorLight = Card.ColorLight.values()[random.nextInt(Card.ColorLight.values().length)];
+
             Card.TypeLight typeLight = Card.TypeLight.values()[random.nextInt(Card.TypeLight.values().length)];
-            Card.ColorDark colorDark = Card.ColorDark.values()[random.nextInt(Card.ColorDark.values().length)];
             Card.TypeDark typeDark = Card.TypeDark.values()[random.nextInt(Card.TypeDark.values().length)];
-            // Create a new card with the generated values.
-            Card newCard = new Card(colorLight, typeLight, colorDark, typeDark);
-            // Add the card to the deck.
-            deck.add(newCard);
+
+
+            if (Card.TypeLight.WILD_DRAW_FOUR.equals(typeLight)) {
+                Card.ColorLight colorLight = null;
+                Card.ColorDark colorDark = null;
+                Card newCard = new Card(colorLight, typeLight, colorDark, typeDark);
+                deck.add(newCard);
+            } else {
+
+                Card.ColorLight colorLight = Card.ColorLight.values()[random.nextInt(Card.ColorLight.values().length)];
+                Card.ColorDark colorDark = Card.ColorDark.values()[random.nextInt(Card.ColorDark.values().length)];
+                // Create a new card with the generated values.
+                Card newCard = new Card(colorLight, typeLight, colorDark, typeDark);
+                // Add the card to the deck.
+                deck.add(newCard);
+            }
         }
     }
 
