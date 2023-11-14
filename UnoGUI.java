@@ -10,15 +10,15 @@ public class UnoGUI {
     protected int numFields;
     protected JButton nextPlayer = new JButton("next Player");
     protected JButton UnoButton = new JButton("UNO!!");
-    protected JButton buildDeckbutton = new JButton("Deck");
-    protected JButton buildDiscardbutton = new JButton("Discard");
+    protected JButton buildDeckbutton = new JButton();
+    protected JButton buildDiscardbutton = new JButton();
     protected JButton playGame = new JButton("PLAY GAME");
     protected JButton addPlayer = new JButton("ADD PLAYER");
     protected String userInputs[];
     protected JPanel startMenuPanel = new JPanel();
     protected JLabel darkside = new JLabel();
-    private final int FRAME_SIZE_WIDTH = 1000;
-    private final int FRAME_SIZE_HEIGHT = 1000;
+    private final int FRAME_SIZE_WIDTH = 600;
+    private final int FRAME_SIZE_HEIGHT = 600;
     protected JFrame startMenuFrame;
     private JFrame rootFrame;
     private JPanel mainPanel, handPanel = new JPanel();
@@ -158,9 +158,8 @@ public class UnoGUI {
 
         // main panel
         mainPanel = new JPanel(new FlowLayout());
-        mainPanel.setLayout(null);
         mainPanel.setPreferredSize(new Dimension(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT));
-        rootFrame.add(mainPanel);
+        rootFrame.add(mainPanel, BorderLayout.CENTER);
 
         // build hand ui and add cards
         buildHand();
@@ -241,7 +240,7 @@ public class UnoGUI {
     public void buildDeck() {
 
         buildDeckbutton.setSize(100, 125);
-        buildDeckbutton.setLocation(400, 400);
+
         mainPanel.add(buildDeckbutton);
         
         ImageIcon image = new ImageIcon(Card.DECK_FILE_NAME);
@@ -262,7 +261,8 @@ public class UnoGUI {
 
     public void buildDiscard() {
         buildDiscardbutton.setSize(100, 125);
-        buildDiscardbutton.setLocation(380, 100);
+
+
 
         mainPanel.add(buildDiscardbutton);
 
