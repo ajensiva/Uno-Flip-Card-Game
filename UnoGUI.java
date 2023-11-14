@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,8 @@ public class UnoGUI {
     protected ArrayList<JTextField> inputFields; // Array to store user inputs
     protected ArrayList<JButton> playerCards = new ArrayList<>(); // holds player's hand; array of cards
     protected boolean addingbuttons = true;
+
+    private JScrollPane Scrollpane;
 
     //---------------WILD CARD GUI-----------------
     protected ArrayList<JButton> wildColours = new ArrayList<JButton>();
@@ -292,6 +295,18 @@ public class UnoGUI {
         mainPanel.add(handPanel);
 
         handPanel.setLayout(new GridLayout(0, 7));
+        Scrollpane = new JScrollPane(handPanel);
+
+        Scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+        Container contentPane = rootFrame.getContentPane();
+        contentPane.setLayout(new BorderLayout());
+
+        contentPane.add(Scrollpane, BorderLayout.CENTER);
+
+
+
+
 
     }
 
