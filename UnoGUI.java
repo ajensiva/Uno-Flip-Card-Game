@@ -288,6 +288,7 @@ public class UnoGUI {
     }
 
     public void buildHand() {
+
         handPanel = new JPanel();
 //        handPanel.setBackground(Color.WHITE);
         handPanel.setSize(FRAME_SIZE_WIDTH, 100);
@@ -303,6 +304,7 @@ public class UnoGUI {
         Scrollpane.setSize(new Dimension(1000, 100));
         
         Scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
         rootFrame.add(Scrollpane, BorderLayout.SOUTH);
 
 
@@ -333,10 +335,7 @@ public class UnoGUI {
 
 
     public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand) {
-
-
-        buttonClicked.setText("");
-
+        
         playerCards.remove(playerCards.indexOf(buttonClicked));
         System.out.println("BEFORE: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
         handPanel.remove(buttonClicked);
@@ -348,7 +347,6 @@ public class UnoGUI {
             JButton button = playerCards.get(i);
             //button.setName("card" + i);
             button.setName(Integer.toString(i));
-            button.setText(button.getName());
         }
 
         //
@@ -406,9 +404,7 @@ public class UnoGUI {
         System.out.println("# Buttons: " + playerCards.size());
         for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
-            //button.setName("card" + i);
             button.setName(Integer.toString(i));
-            button.setText(button.getName());
             button.addActionListener(listenforCardtoPlay);
         }
     }
