@@ -68,9 +68,7 @@ public class Round {
     }
 
     public void setPlayCardIndex(int PlayCardIndex){
-        //System.out.println("IN ROUND:" + PlayCardIndex);
         this.playCardIndex = PlayCardIndex;
-
     }
 
     public int getCardtoPlayIndex() {
@@ -78,9 +76,6 @@ public class Round {
     }
 
     public Card getPlayCard(){
-        //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
-
-        System.out.println("getPlayCard: " + currentPlayer.getHand().getCard(getCardtoPlayIndex()));
         return currentPlayer.getHand().getCard(getCardtoPlayIndex());
     }
 
@@ -109,8 +104,7 @@ public class Round {
 
     public boolean cardPlayedLogic() {
         if ((checkCard(getPlayCard(), discard.peek()))) {
-            //System.out.println(playCard(getCardtoPlayIndex()));
-
+            
             System.out.println("Card has been played!");
 
             // take the card from the player
@@ -276,7 +270,6 @@ public class Round {
 
         // for light side checks
         if (darkmode == false) {
-            System.out.println("She's my light");
             // if its a normal card, do a normal OR check; else check for wild card logic
             if (is_light_wildcard) {
                 if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO) || card2.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
@@ -290,7 +283,6 @@ public class Round {
                 return check_colour_light || check_type_light;
             }
         } else {
-            System.out.println("Dark Mode like her hair <3");
             // if its a normal card, do a normal OR check; else check for wild card logic
             if (is_dark_wildcard) {
                 if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO) || card2.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
