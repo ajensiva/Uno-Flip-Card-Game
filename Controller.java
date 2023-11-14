@@ -60,6 +60,7 @@ public class Controller {
             // Add new cards to the GUI
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
 
+
                 JButton cardButton = unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
                 ImageIcon image = (ImageIcon) cardButton.getIcon();
 
@@ -79,11 +80,14 @@ public class Controller {
                     }
                 });
             }
+
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
             // update discard ui
             unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
         }
-    }
+
+        }
+
 
 
         private class updateDeckListener implements ActionListener {
