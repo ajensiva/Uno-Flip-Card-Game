@@ -279,7 +279,9 @@ public class Round {
             System.out.println("She's my light");
             // if its a normal card, do a normal OR check; else check for wild card logic
             if (is_light_wildcard) {
-                if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO) || card2.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+
+                //WILDTWO
+                if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
                     return check_colour_light && check_type_light;
                 } else {
                     return check_colour_light || check_type_light;
@@ -293,7 +295,9 @@ public class Round {
             System.out.println("Dark Mode like her hair <3");
             // if its a normal card, do a normal OR check; else check for wild card logic
             if (is_dark_wildcard) {
-                if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO) || card2.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+
+                //WILD TWO LOGIC - ONLY PLAYABLE, IF SAME TYPE AND SAME COLOUR
+                if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
                     return check_colour_dark && check_type_dark;
                 } else {
                     return check_colour_dark || check_type_dark;
