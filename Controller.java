@@ -153,13 +153,21 @@ public class Controller {
                         }
                     }
 
-                    System.out.println("IM HERE ");
 
-                    unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
 
-                    System.out.println("IM ALSO HERE");
-                    // update discard ui
-                    unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+                    try {
+                        unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
+
+                        // update discard ui
+                        unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+                    }
+                    catch (IndexOutOfBoundsException index){
+
+                        System.out.println("Warning index is volatile" + index);
+
+                    }
+
+
                 }
             }
 
