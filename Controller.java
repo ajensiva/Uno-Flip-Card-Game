@@ -65,20 +65,23 @@ public class Controller {
                 ImageIcon image = (ImageIcon) cardButton.getIcon();
 
                 // Add a ComponentListener to scale the image when the button's size changes
-                cardButton.addComponentListener(new ComponentAdapter() {
-                    @Override
-                    public void componentResized(ComponentEvent e) {
-                        int width = cardButton.getWidth();
-                        int height = cardButton.getHeight();
-
-                        // Scale the image to fit the button
-                        ImageIcon resizedIcon = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
-                        cardButton.setIcon(resizedIcon);
-
-                        // Remove the listener after setting the icon if you don't need it anymore
-                        //cardButton.removeComponentListener(this);
-                    }
-                });
+//                cardButton.addComponentListener(new ComponentAdapter() {
+//                    @Override
+//                    public void componentResized(ComponentEvent e) {
+//
+//
+//                        System.out.println("ARUN SAID TO PUT THIS HERE!!!!!!");
+//                        int width = cardButton.getWidth();
+//                        int height = cardButton.getHeight();
+//
+//                        // Scale the image to fit the button
+//                        ImageIcon resizedIcon = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
+//                        cardButton.setIcon(resizedIcon);
+//
+//                        // Remove the listener after setting the icon if you don't need it anymore
+//                        //cardButton.removeComponentListener(this);
+//                    }
+//                });
             }
 
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
