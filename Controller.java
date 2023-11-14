@@ -76,7 +76,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if(isPlayerLocked == false){
+                if(!isPlayerLocked){
                     //handle playing card
                     System.out.println("Removes Card From Deck");
                     unoModel.currentRound.drawCurrPlayer();
@@ -88,6 +88,8 @@ public class Controller {
                     unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
 
                     isPlayerLocked = true;
+                    unoGUI.nextPlayer.setEnabled(true);
+
                 }
             }
         }
@@ -101,12 +103,16 @@ public class Controller {
                 int buttonIndex = Integer.parseInt(button.getName());
                 System.out.println("Card Clicked: " + unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex));
                 unoModel.currentRound.setPlayCardIndex(buttonIndex);
-                if (unoModel.currentRound.cardPlayedLogic() && isPlayerLocked == false) {
+                if (unoModel.currentRound.cardPlayedLogic() && !isPlayerLocked) {
+
+
                     isPlayerLocked = true;
+
+                    unoGUI.nextPlayer.setEnabled(true);
                     if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
 
                         if (unoModel.currentRound.Remove_card.equals(Card.TypeLight.WILDTWO)) {
-                            unoModel.currentRound.drawCard(2);
+                            unoModel.currentRound.drawCard(1);
                             unoGUI.wildCardGui();
                             unoGUI.redWildCardButtonListener(new playRedWildCard());
                             unoGUI.blueWildCardButtonListener(new playBlueWildCard());
@@ -114,7 +120,7 @@ public class Controller {
                             unoGUI.greenWildCardButtonListener(new playGreenWildCard());
                         }
                         else if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-                            unoModel.currentRound.drawCard(4);
+                            unoModel.currentRound.drawCard(3);
                             unoGUI.wildCardGui();
                             unoGUI.redWildCardButtonListener(new playRedWildCard());
                             unoGUI.blueWildCardButtonListener(new playBlueWildCard());
@@ -123,7 +129,11 @@ public class Controller {
                         }
                     }
 
+                    System.out.println("IM HERE ");
+
                     unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
+
+                    System.out.println("IM ALSO HERE");
                     // update discard ui
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                 }
@@ -202,6 +212,8 @@ public class Controller {
                     unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
                 }
                 unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
+                unoGUI.nextPlayer.setEnabled(false);
+
             }
         }
 
