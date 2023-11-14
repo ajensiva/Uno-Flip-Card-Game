@@ -24,7 +24,7 @@
 - The code demonstrates modularity and readability with encapsulated functionalities in methods like startMenu(), startGame(), and wildCardGui(), promoting a clear separation of concerns for maintainability, future expansion, and ease of understanding for potential updates and enhancements.
 
 ### Known issues:
-- THE GAME DOENS'T WORK!
+- Updating player's hand once a card has been removed may cause an error to occur. The game proceeds to function properly but the issue hasn't been addressed yet. The error doesn't inherently cause the game to break.
 --------------------------------------------------------------------
 ### Milestone 3:
 - Emphasizes the necessity for all tests to pass, ensuring accurate card placement and scoring functionalities within the game.
