@@ -294,7 +294,8 @@ public class UnoGUI {
         handPanel.setLocation(0, 275);
         mainPanel.add(handPanel);
 
-        handPanel.setLayout(new GridLayout(0, 7));
+
+        handPanel.setLayout(new BoxLayout(handPanel, BoxLayout.X_AXIS));
 
 
 
