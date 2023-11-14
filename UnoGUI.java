@@ -174,6 +174,9 @@ public class UnoGUI {
         mainPanel.setPreferredSize(new Dimension(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT));
         rootFrame.add(mainPanel);
 
+        // set up current player display
+        displayCurrentPlayerPanel.add(display_current_player);
+        mainPanel.add(displayCurrentPlayerPanel);
 
         // build hand ui and add cards
         buildHand();
@@ -262,15 +265,8 @@ public class UnoGUI {
 
 
     public void displayCurrentPlayer(int currentPlayer){
-
-
         display_current_player.setFont(new Font("Arial", Font.BOLD, 12));
         display_current_player.setText("The current player: " + playerInputFields.get(currentPlayer).getText());
-        displayCurrentPlayerPanel.add(display_current_player);
-        mainPanel.add(displayCurrentPlayerPanel);
-
-
-
     }
 
     public void buildDeck() {
