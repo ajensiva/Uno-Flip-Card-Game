@@ -78,6 +78,8 @@ public class Controller {
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new listenForCardPlayed());
             // update discard ui
             unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+
+            unoGUI.setStartMenuVisible(false);
         }
     }
 
