@@ -18,8 +18,8 @@ public class UnoGUI {
     protected String userInputs[];
     protected JPanel startMenuPanel = new JPanel();
     protected JLabel darkside = new JLabel();
-    private final int FRAME_SIZE_WIDTH = 600;
-    private final int FRAME_SIZE_HEIGHT = 600;
+    private final int FRAME_SIZE_WIDTH = 1000;
+    private final int FRAME_SIZE_HEIGHT = 1000;
     protected JFrame startMenuFrame;
     private JFrame rootFrame;
     private JPanel mainPanel = new JPanel();
@@ -286,17 +286,23 @@ public class UnoGUI {
     }
 
     public void buildHand() {
-        handPanel = new JScrollPane();
+        handPanel = new JPanel();
+//        handPanel.setBackground(Color.WHITE);
+        handPanel.setSize(FRAME_SIZE_WIDTH, 10);
+        handPanel.setLocation(0, 275);
+        mainPanel.add(handPanel);
 
-        // Create a JPanel to act as the content panel
-        JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new FlowLayout()); // You can use another layout manager as needed
+        handPanel.setLayout(new GridLayout(0, 7));
 
-        // Set the content panel as the view for the JScrollPane
-        handPanel.setViewportView(contentPanel);
 
-        handPanel.setSize(FRAME_SIZE_WIDTH, 125);
-        handPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+        Scrollpane = new JScrollPane(handPanel);
+
+        Scrollpane.setSize(new Dimension(1000, 10));
+        
+        Scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        rootFrame.add(Scrollpane, BorderLayout.SOUTH);
+
 
         mainPanel.add(handPanel, BorderLayout.SOUTH); // Add the JScrollPane to the SOUTH of the mainPanel
     }
