@@ -25,10 +25,12 @@ public class Controller {
 
         this.unoGUI.addBuildDeckListener(new updateDeckListener());
 
-        this.unoModel.testRound();
+
 
 
         this.unoGUI.addStartGameListener(new playGameButtonListener());
+
+
         this.unoGUI.addPlayers(new addPlayersListener());
 
         this.unoGUI.addNextPlayerListener(new nextPlayerButtonListener());
@@ -60,6 +62,7 @@ public class Controller {
             for (int i = 0; i < unoGUI.playerInputFields.size(); i++){
                 unoModel.addPlayer(unoGUI.playerInputFields.get(i).getText());
             }
+            unoModel.round();
 
             unoGUI.startGame();
 
