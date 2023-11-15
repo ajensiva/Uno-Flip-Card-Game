@@ -9,7 +9,7 @@ import java.util.Collections;
  * It manages player actions, card interactions, and gameplay rules for a single round.
  *
  * @author Ajen, Jason, Zarif, Arun
- * @version 1.0
+ * @version 2.0
  */
 
 public class Round {
@@ -97,11 +97,6 @@ public class Round {
     }
 
 
-    public void currentPlayer(){
-        currentPlayer = players.get(playerIndex);
-    }
-
-
     public void nextPlayer(){
 
             playerIndex = (playerIndex + 1) % players.size();
@@ -121,26 +116,10 @@ public class Round {
 
             System.out.println("Card has been played!");
 
-            // take the card from the player
-
-
-
-
 
             // light type cards only
             if (!(darkmode)) {
 
-                    /*
-                     Below are just checks to handle each type of 'special' card.
-                     The effects they have on the game. A lot of repeat comments.
-                    */
-
-                // handle wild 2 cards
-                if (getPlayCard().getTypeLight() == (Card.TypeLight.WILDTWO)) {
-//                    wildCard(getPlayCard()); // call function to handle wild cards
-//                    drawCard(2); // give 2 new cards
-                    playerIndex = (playerIndex + 1) % players.size(); // move to the next player
-                }
                 if (getPlayCard().getTypeLight() == Card.TypeLight.REVERSE) {
                     // reverse collection and decrement player index to get player before
                     playerIndex -= 1;
@@ -159,11 +138,7 @@ public class Round {
                     drawCard(2);
                 }
                 // same as WILD2 but draw 2 more
-                if (getPlayCard().getTypeLight() == Card.TypeLight.WILD_DRAW_FOUR) {
-//                    wildCard(getPlayCard());
-//                    drawCard(4);
-                    playerIndex = (playerIndex + 1) % players.size();
-                }
+
             }
             if (darkmode){
 
@@ -181,10 +156,6 @@ public class Round {
                 }
 
 
-                if (getPlayCard().getTypeDark() == Card.TypeDark.WILD_DRAW_COLOR) {
-                    wildDrawColor(currentPlayer);
-                }
-
                 if (getPlayCard().getTypeDark() == Card.TypeDark.FLIP) {
 
                     darkmode = !(darkmode);
@@ -196,8 +167,11 @@ public class Round {
 
             Remove_card = currentPlayer.getHand().removeCard(getPlayCard());
 
+            System.out.println("REMOVED THE CARD");
+
             discard.add(Remove_card);
 
+            System.out.println("ADDED REMOVE CARD TO DISCARD");
             return true;
         }
     return false;
@@ -221,8 +195,10 @@ public class Round {
 
     // draws one card from the deck and gives to current player! and RETURN the card that was just popped
     public void drawCurrPlayer(){
-        //
+
         currentPlayer.getHand().addCard(deck.pop());
+
+
 
 
     }
@@ -241,14 +217,6 @@ public class Round {
         }
     }
 
-    public void wildDrawColor(Player currentPlayer){
-        int nextPlayerIndex = (players.indexOf(currentPlayer)+1) % players.size(); // player that will draw cards
-
-        while ((players.get(nextPlayerIndex).getHand().getCard(players.get(nextPlayerIndex).getHand().getSize()-1)) != discard.peek()) {
-            players.get(nextPlayerIndex).getHand().addCard(deck.pop());
-        }
-
-    }
 
     /**
      * Plays a card from the player's hand and adds it to the discard pile.
@@ -273,6 +241,7 @@ public class Round {
     public boolean checkCard(Card card1, Card card2) {
         boolean check_colour_light;
         boolean check_colour_dark;
+
         if (card1.getColorLight() == null || card1.getColorDark() == null){
             check_colour_light = true;
             check_colour_dark = true;
@@ -336,11 +305,6 @@ public class Round {
         Collections.reverse(players);
     }
 
-    /**
-     * Handles the selection of a color for a Wild card.
-     *
-     * @param card The Wild card for which the color is selected.
-     */
 
 
     /**
@@ -358,11 +322,6 @@ public class Round {
         return false;
     }
 
-    /**
-     * Calculates the total points for the round based on the remaining cards in players' hands.
-     *
-     * @return The total points for the round.
-     */
 
 
 

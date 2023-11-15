@@ -5,6 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * UnoGUI class represents the graphical user interface for the UNO game.
+ *
+ * @author Zarif, Ajen, Arun, Jason
+ * @version 2.0
+ */
 public class UnoGUI {
 
     protected int numFields;
@@ -14,15 +20,12 @@ public class UnoGUI {
     protected JButton buildDiscardbutton = new JButton();
     protected JButton playGame = new JButton("PLAY GAME");
     protected JButton addPlayer = new JButton("ADD PLAYER");
-    protected String userInputs[];
     protected JPanel startMenuPanel = new JPanel();
-    protected JLabel darkside = new JLabel();
     private final int FRAME_SIZE_WIDTH = 700;
     private final int FRAME_SIZE_HEIGHT = 700;
     protected JFrame startMenuFrame;
     private JFrame rootFrame;
     protected JPanel mainPanel, handPanel = new JPanel();
-
     private JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
     private JPanel displayCurrentPlayerPanel = new JPanel();
@@ -32,7 +35,6 @@ public class UnoGUI {
 
     protected ArrayList<JTextField> playerInputFields; // Array to store user inputs
     protected ArrayList<JButton> playerCards = new ArrayList<>(); // holds player's hand; array of cards
-    protected boolean addingbuttons = true;
 
     private JScrollPane Scrollpane;
 
@@ -54,7 +56,10 @@ public class UnoGUI {
     JPanel discardPanel = new JPanel();
 
 
-
+    /**
+     * Constructor for UnoGUI class.
+     * Initializes the start menu and makes it visible.
+     */
 
     public UnoGUI() {
 
@@ -62,7 +67,9 @@ public class UnoGUI {
         setStartMenuVisible(true);
 //        startGame();
     }
-
+    /**
+     * Sets up the start menu frame and components.
+     */
     public void startMenu() {
 
         numFields = 2;
@@ -121,6 +128,10 @@ public class UnoGUI {
         System.out.println(startMenuFrame.getContentPane());
     }
 
+    /**
+     * Adds a new player field to the start menu.
+     */
+
     public void addPlayerField() {
         if (numFields < 4) {
             GridBagConstraints constraints = new GridBagConstraints();
@@ -157,13 +168,20 @@ public class UnoGUI {
             startMenuPanel.repaint();
         }
     }
-
+    /**
+     * Sets the visibility of the start menu frame.
+     *
+     * @param flag true to make the start menu visible, false otherwise.
+     */
     public void setStartMenuVisible(boolean flag) {
 
         startMenuFrame.setVisible(flag);
 
     }
 
+    /**
+     * Starts the UNO game by initializing the game frame and components.
+     */
     public void startGame() {
         playerCards = new ArrayList<JButton>();
 
@@ -194,12 +212,14 @@ public class UnoGUI {
         // clean up root frame
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
-        rootFrame.setVisible(true);
+        setstartGameVisible(true);
 
 
     }
 
-
+    /**
+     * Creates a panel for the wild card selection.
+     */
     public void wildCardGui() {
         // test create wildcard pane
         wildCardFrame = new JFrame();
@@ -232,6 +252,19 @@ public class UnoGUI {
 
     }
 
+    public void setstartGameVisible(boolean flag){
+
+        rootFrame.setVisible(flag);
+
+
+    }
+
+    /**
+     * Updates the discard information panel with the specified card.
+     *
+     * @param card The card to display in the discard information panel.
+     */
+
     public void discardInfo(Card card){
 
 
@@ -245,7 +278,9 @@ public class UnoGUI {
 
     }
 
-
+    /**
+     * Clears the player cards from the hand panel.
+     */
     public void clearPlayerCards() {
         handPanel.removeAll();
         handPanel.revalidate();
@@ -254,6 +289,9 @@ public class UnoGUI {
     }
 
 
+    /**
+     * Adds the "Next Player" button to the user interface.
+     */
 
     public void nextPlayer() {
 
@@ -263,19 +301,24 @@ public class UnoGUI {
 
         mainPanel.add(nextPlayerButtonPanel);
 
-    }
-
-    public void unoPressed() {
-
-        mainPanel.add(UnoButton);
+        nextPlayer.setEnabled(false);
 
     }
 
 
+    /**
+     * Displays the name of the current player in the user interface.
+     *
+     * @param currentPlayer The index of the current player.
+     */
     public void displayCurrentPlayer(int currentPlayer){
         display_current_player.setFont(new Font("Arial", Font.BOLD, 12));
         display_current_player.setText("The current player: " + playerInputFields.get(currentPlayer).getText());
     }
+
+    /**
+     * Builds the deck button in the user interface.
+     */
 
     public void buildDeck() {
 
@@ -300,14 +343,20 @@ public class UnoGUI {
         buildDeckbutton.setBorderPainted(false);
     }
 
-
+    /**
+     * Builds the discard button in the user interface.
+     */
     public void buildDiscard() {
         buildDiscardbutton.setSize(100, 125);
         buttonPanel.add(buildDiscardbutton);
         mainPanel.add(buttonPanel);
         updateDiscard(Card.DECK_FILE_NAME);
     }
-
+    /**
+     * Updates the discard button with the specified file path.
+     *
+     * @param file_path The file path of the card to display on the discard button.
+     */
     public void updateDiscard(String file_path){
         System.out.println("update deck ui called");
         buildDiscardbutton.setSize(100, 125); // Set a fixed size for the discard button
@@ -327,11 +376,12 @@ public class UnoGUI {
         buildDiscardbutton.setContentAreaFilled(false);
         buildDiscardbutton.setBorderPainted(false);
     }
-
+    /**
+     * Builds the hand panel in the user interface.
+     */
     public void buildHand() {
 
         handPanel = new JPanel();
-//        handPanel.setBackground(Color.WHITE);
         handPanel.setSize(FRAME_SIZE_WIDTH, 100);
         handPanel.setLocation(0, 275);
         mainPanel.add(handPanel);
@@ -351,6 +401,12 @@ public class UnoGUI {
 
     }
 
+    /**
+     * Adds a card to the hand panel.
+     *
+     * @param card The card to add to the hand panel.
+     * @return The button representing the added card.
+     */
     public JButton addCard(Card card) {
 
         ImageIcon image = new ImageIcon(card.getImageFilePath());
@@ -374,27 +430,23 @@ public class UnoGUI {
         return cardButton;
     }
 
-
+    /**
+     * Removes the specified button representing a card from the user interface.
+     *
+     * @param buttonClicked The button representing the card to remove.
+     * @param hand          The hand from which the card is removed.
+     */
     public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand) {
         
         playerCards.remove(playerCards.indexOf(buttonClicked));
-        System.out.println("BEFORE: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
         handPanel.remove(buttonClicked);
-        System.out.println("AFTER: HandSize: " + hand.getSize() + " #Buttons: " + playerCards.size());
 
-        //System.out.println("Hand Size: " + hand.getSize());
-        //System.out.println("# Buttons: " + playerCards.size());
+
         for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
-            //button.setName("card" + i);
             button.setName(Integer.toString(i));
         }
-        //
-    }
 
-    // invoked when 'next player' is called; update uis to match new player's things
-    public void updatePlayerHand(){
-        
     }
 
 
