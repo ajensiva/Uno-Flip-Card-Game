@@ -80,7 +80,6 @@ public class Round {
     public Card getPlayCard(){
         //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
 
-        System.out.println("getPlayCard: " + currentPlayer.getHand().getCard(getCardtoPlayIndex()));
         return currentPlayer.getHand().getCard(getCardtoPlayIndex());
     }
 
@@ -114,7 +113,6 @@ public class Round {
         if ((checkCard(getPlayCard(), discard.peek()))) {
             //System.out.println(playCard(getCardtoPlayIndex()));
 
-            System.out.println("Card has been played!");
 
 
             // light type cards only
@@ -167,11 +165,11 @@ public class Round {
 
             Remove_card = currentPlayer.getHand().removeCard(getPlayCard());
 
-            System.out.println("REMOVED THE CARD");
+
 
             discard.add(Remove_card);
 
-            System.out.println("ADDED REMOVE CARD TO DISCARD");
+
             return true;
         }
     return false;
@@ -263,7 +261,6 @@ public class Round {
 
             // for light side checks
             if (darkmode == false) {
-                System.out.println("She's my light");
                 // if its a normal card, do a normal OR check; else check for wild card logic
                 if (is_light_wildcard) {
 
@@ -279,7 +276,6 @@ public class Round {
                     return check_colour_light || check_type_light;
                 }
             } else {
-                System.out.println("Dark Mode like her hair <3");
                 // if its a normal card, do a normal OR check; else check for wild card logic
                 if (is_dark_wildcard) {
 
@@ -321,8 +317,6 @@ public class Round {
         }
         return false;
     }
-
-
 
 
 

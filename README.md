@@ -26,6 +26,7 @@
 ### Known issues:
 - Updating player's hand once a card has been removed may cause an error to occur. The game proceeds to function properly but the issue hasn't been addressed yet. The error doesn't inherently cause the game to break.
 - In some instances, some cards may not be visibly removed from the Game, but they still play, and will not appear when the turn return's to the player who played said Card.
+- Reverse does not work
 --------------------------------------------------------------------
 ### Milestone 3:
 - Emphasizes the necessity for all tests to pass, ensuring accurate card placement and scoring functionalities within the game.
