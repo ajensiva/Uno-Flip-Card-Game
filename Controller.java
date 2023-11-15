@@ -8,6 +8,7 @@ import java.awt.event.ComponentEvent;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -106,8 +107,7 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             if (!isPlayerLocked) {
                 unoModel.currentRound.drawCurrPlayer();
-                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(
-                        unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
+                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
                 unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
 
                 isPlayerLocked = true;
@@ -132,7 +132,8 @@ public class Controller {
                 setHandPanelInteractable(false);
                 unoGUI.nextPlayer.setEnabled(true);
 
-                if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)
+
+                if(unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)
                         || unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
 
                     if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
@@ -230,6 +231,12 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             isPlayerLocked = false;
             setHandPanelInteractable(true);
+
+
+            if (unoModel.currentRound.Remove_card.getTypeLight() == Card.TypeLight.REVERSE) {
+                Collections.reverse(unoGUI.playerInputFields);
+            }
+
             unoModel.currentRound.nextPlayer();
             unoGUI.displayCurrentPlayer(unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
             unoGUI.clearPlayerCards();
