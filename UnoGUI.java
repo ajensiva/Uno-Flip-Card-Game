@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * UnoGUI class represents the graphical user interface for the UNO game.
@@ -41,7 +42,6 @@ public class UnoGUI {
     private JLabel display_current_player = new JLabel("this is where the players should be displayed!");
 
     //---------------WILD CARD GUI-----------------
-    protected ArrayList<JButton> wildColours = new ArrayList<JButton>();
 
     protected JFrame wildCardFrame;
 
@@ -51,7 +51,7 @@ public class UnoGUI {
 
 //-------------------------------------------DISCARD INFO-----------------------------------------
 
-    JLabel discardLabel = new JLabel("GITTETWGERGWRHGWRHWRH");
+    JLabel discardLabel = new JLabel();
 
     JPanel discardPanel = new JPanel();
 
@@ -289,6 +289,7 @@ public class UnoGUI {
     }
 
 
+
     /**
      * Adds the "Next Player" button to the user interface.
      */
@@ -358,7 +359,6 @@ public class UnoGUI {
      * @param file_path The file path of the card to display on the discard button.
      */
     public void updateDiscard(String file_path){
-        System.out.println("update deck ui called");
         buildDiscardbutton.setSize(100, 125); // Set a fixed size for the discard button
 
 
@@ -497,8 +497,6 @@ public class UnoGUI {
     }
 
     public void addPlayCardListener(Hand hand, ActionListener listenforCardtoPlay) {
-        System.out.println("Hand Size: " + hand.getSize());
-        System.out.println("# Buttons: " + playerCards.size());
         for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
             button.setName(Integer.toString(i));
