@@ -156,8 +156,6 @@ public class Controller {
                 System.out.println("playBlueWildCard");
                 System.out.println("analysis discard peek: " + unoModel.currentRound.discard.peek());
 
-                unoModel.currentRound.discard
-
                 unoModel.currentRound.discard.peek().setColorLight("Blue");
 
                 unoGUI.wildCardFrame.setVisible(false);
