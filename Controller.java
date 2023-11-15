@@ -106,8 +106,7 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             if (!isPlayerLocked) {
                 unoModel.currentRound.drawCurrPlayer();
-                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(
-                        unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
+                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
                 unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
 
                 isPlayerLocked = true;
