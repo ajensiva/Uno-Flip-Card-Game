@@ -31,8 +31,6 @@
 ### Milestone 3:
 - Emphasizes the necessity for all tests to pass, ensuring accurate card placement and scoring functionalities within the game.
 - This stage introduces Uno Flip cards, incorporating their specific rules and scoring mechanisms to enhance gameplay dynamics.
-- A notable enhancement is the incorporation of an arbitrary number of AI players with flexible behavior strategies, allowing for intelligent gameplay simulation. Options include generating all legal moves and selecting the highest-scoring move or using rules such as "The first valid card will be placed."
-
 
 #### MIT License
 
