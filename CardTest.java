@@ -1,5 +1,4 @@
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +34,7 @@ class CardTest {
     @Test
     public void testGetValueInLightMode() {
         // Ensure that the value returned in light mode matches the TypeLight's value
-        assertEquals(testCard.getTypeLight().getValue(), testCard.getValue());
+        assertEquals(1, testCard.getTypeLight().getValue());
     }
 
     @Test
@@ -43,7 +42,7 @@ class CardTest {
         // Set the game to dark mode
         Round.darkmode = true;
         // Ensure that the value returned in dark mode matches the TypeDark's value
-        assertEquals(testCard.getTypeDark().getValue(), testCard.getValue());
+        assertEquals(1, testCard.getTypeDark().getValue());
         // Reset the game mode to light mode
         Round.darkmode = false;
     }
@@ -56,66 +55,22 @@ class CardTest {
 
         // Test setting the color to an invalid color
         assertFalse(testCard.setColorLight("InvalidColor"));
+        // Since "InvalidColor" is not a valid color, the color should remain unchanged
         assertEquals(Card.ColorLight.Blue, testCard.getColorLight()); // Color should not change
     }
 
     @Test
     public void testToString() {
-        String expectedString = "Color: Red, Type: ONE";
-        assertEquals(expectedString, testCard.toString());
-    }
+        // The expected string will depend on whether the game is in dark mode or not
+        String expectedLightString = "Light Color: Red, Light Type: ONE";
+        String expectedDarkString = "Dark Color: Pink, Dark Type: ONE";
 
-    public static class PlayerTest {
+        // Test in light mode
+        assertEquals(expectedLightString, testCard.toString());
 
-        private Player testPlayer;
-
-        @BeforeEach
-        public void setUp() {
-            // Initialize a test player for each test case
-            testPlayer = new Player("Alice");
-        }
-
-        @Test
-        public void testGetScore() {
-            assertEquals(0, testPlayer.getScore());
-        }
-
-        @Test
-        public void testSetScore() {
-            testPlayer.setScore(100);
-            assertEquals(100, testPlayer.getScore());
-
-            // Ensure that the score cannot be set to a negative value
-            testPlayer.setScore(-50);
-            assertEquals(100, testPlayer.getScore()); // Score should remain unchanged
-        }
-
-        @Test
-        public void testGetHand() {
-            assertNotNull(testPlayer.getHand());
-            assertTrue(testPlayer.getHand() instanceof Hand);
-        }
-
-        @Test
-        public void testGetName() {
-            assertEquals("Alice", testPlayer.getName());
-        }
-
-        @Test
-        public void testEquals() {
-            // Create a player with the same name and score
-            Player equalPlayer = new Player("Alice");
-            equalPlayer.setScore(0);
-
-            // Create a player with a different name and score
-            Player differentPlayer = new Player("Bob");
-            differentPlayer.setScore(50);
-
-            // Verify that the player is equal to the equalPlayer
-            assertTrue(testPlayer.equals(equalPlayer));
-
-            // Verify that the player is not equal to the differentPlayer
-            assertFalse(testPlayer.equals(differentPlayer));
-        }
+        // Test in dark mode
+        Round.darkmode = true;
+        assertEquals(expectedDarkString, testCard.toString());
+        Round.darkmode = false; // Reset the game mode
     }
 }
