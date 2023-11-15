@@ -158,6 +158,11 @@ public class Controller {
                 try {
                     unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+                    if (unoModel.currentRound.checkWinner()){
+
+                        JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "WINNER!!!", JOptionPane.INFORMATION_MESSAGE);
+                        unoGUI.setstartGameVisible(false);
+                    }
                 } catch (IndexOutOfBoundsException index) {
                     System.out.println("Warning index is volatile" + index);
                 }

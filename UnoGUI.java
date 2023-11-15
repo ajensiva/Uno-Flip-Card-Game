@@ -212,7 +212,7 @@ public class UnoGUI {
         // clean up root frame
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
-        rootFrame.setVisible(true);
+        setstartGameVisible(true);
 
 
     }
@@ -248,6 +248,13 @@ public class UnoGUI {
 
         wildCardFrame.pack();
         wildCardFrame.setVisible(true);
+
+
+    }
+
+    public void setstartGameVisible(boolean flag){
+
+        rootFrame.setVisible(flag);
 
 
     }
