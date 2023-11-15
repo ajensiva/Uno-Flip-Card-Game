@@ -9,7 +9,7 @@ import java.util.Collections;
  * It manages player actions, card interactions, and gameplay rules for a single round.
  *
  * @author Ajen, Jason, Zarif, Arun
- * @version 1.0
+ * @version 2.0
  */
 
 public class Round {
@@ -94,11 +94,6 @@ public class Round {
             discard.add(deck.pop());
 
         }
-    }
-
-
-    public void currentPlayer(){
-        currentPlayer = players.get(playerIndex);
     }
 
 
@@ -310,11 +305,6 @@ public class Round {
         Collections.reverse(players);
     }
 
-    /**
-     * Handles the selection of a color for a Wild card.
-     *
-     * @param card The Wild card for which the color is selected.
-     */
 
 
     /**
@@ -332,11 +322,6 @@ public class Round {
         return false;
     }
 
-    /**
-     * Calculates the total points for the round based on the remaining cards in players' hands.
-     *
-     * @return The total points for the round.
-     */
 
 
 
