@@ -1,7 +1,7 @@
 # Uno-Flip-Card
 ## Development Team
 - __Zarif Khan__ : _101224172_
-- __Arun Kharki__ : _101248498_
+- __Arun Kharki__ : _101219923_
 - __Jason Kia__ : _101233435_
 - __Ajen Srisivapalan__ : _101248498_
 -------------------------------------------------------------------
