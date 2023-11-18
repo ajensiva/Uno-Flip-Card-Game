@@ -73,15 +73,28 @@ public class Round {
 
     }
 
+    /**
+     * Card to play index
+     * @return
+     */
+
     public int getCardtoPlayIndex() {
         return playCardIndex;
     }
 
+    /**
+     * Retreive the Card that was played
+     * @return
+     */
     public Card getPlayCard(){
         //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
 
         return currentPlayer.getHand().getCard(getCardtoPlayIndex());
     }
+
+    /**
+     * make discard stack
+     */
 
     public void makeDiscard(){
         if (deck.peek().getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)){
@@ -98,16 +111,11 @@ public class Round {
 
     public void nextPlayer(){
 
-            playerIndex = (playerIndex + 1) % players.size();
-            currentPlayer = players.get(playerIndex);
-
-
+        playerIndex = (playerIndex + 1) % players.size();
+        currentPlayer = players.get(playerIndex);
     }
 
 
-    public void unoFunction(){
-        checkWinner();
-    }
 
     public boolean cardPlayedLogic() {
         if ((checkCard(getPlayCard(), discard.peek()))) {
@@ -172,8 +180,8 @@ public class Round {
 
             return true;
         }
-    return false;
-}
+        return false;
+    }
 
 
 
