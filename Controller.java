@@ -125,8 +125,9 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             JButton button = (JButton) e.getSource();
             int buttonIndex = Integer.parseInt(button.getName());
-
+            
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
+
             if (unoModel.currentRound.cardPlayedLogic() && !isPlayerLocked) {
                 isPlayerLocked = true;
                 setHandPanelInteractable(false);

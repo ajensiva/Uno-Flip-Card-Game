@@ -15,9 +15,15 @@ public class Card {
      * @return
      */
     public String getImageFilePath() {
-        if(this.colorLight == null)
-            return (RELATIVE_IMAGE_DIRECTORY + this.typeLight + ".jpg");
-        return (RELATIVE_IMAGE_DIRECTORY + this.colorLight + "_" + this.typeLight + ".jpg");
+        if(Round.darkmode == false){
+            if(this.colorLight == null)
+                return (RELATIVE_IMAGE_DIRECTORY + this.typeLight + ".jpg");
+            return (RELATIVE_IMAGE_DIRECTORY + this.colorLight + "_" + this.typeLight + ".jpg");
+        }else{
+            if(this.colorDark == null)
+                return (RELATIVE_IMAGE_DIRECTORY + this.typeDark + ".jpg");
+            return (RELATIVE_IMAGE_DIRECTORY + this.colorDark + "_" + this.typeDark + ".jpg");
+        }
     }
 
     /**
