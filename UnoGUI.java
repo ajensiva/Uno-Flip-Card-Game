@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 /**
  * UnoGUI class represents the graphical user interface for the UNO game.
@@ -21,6 +22,12 @@ public class UnoGUI {
     protected JButton buildDiscardbutton = new JButton();
     protected JButton playGame = new JButton("PLAY GAME");
     protected JButton addPlayer = new JButton("ADD PLAYER");
+    protected JButton addBot = new JButton("ADD BOT");
+    private String[] botNames = {
+            "Malik", "Jasmine", "Jamal", "Keisha", "Marcus",
+            "LaToya", "Andre", "Aaliyah", "Tyrone", "Ebony","Emily", "Michael", "Emma", "Christopher", "Olivia",
+            "Jacob", "Ava", "Matthew", "Sophia", "Nicholas"
+    };
     protected JPanel startMenuPanel = new JPanel();
     private final int FRAME_SIZE_WIDTH = 700;
     private final int FRAME_SIZE_HEIGHT = 700;
@@ -123,6 +130,16 @@ public class UnoGUI {
         addPlayer.setFont(new Font("Arial", Font.BOLD, 16)); // Larger font for the button
         startMenuPanel.add(addPlayer, constraints);
 
+        // add bot player button
+
+        constraints.gridy = numFields + 4;
+        constraints.gridwidth = 2;
+        addBot.setPreferredSize(new Dimension(200, 40)); // Make the play button wider and taller
+        addBot.setFont(new Font("Arial", Font.BOLD, 16)); // Larger font for the button
+        startMenuPanel.add(addBot, constraints);
+
+
+
         startMenuFrame.add(startMenuPanel);
         System.out.println(startMenuFrame.getContentPane());
     }
@@ -132,7 +149,7 @@ public class UnoGUI {
      */
 
     public void addPlayerField() {
-        if (numFields < 4) {
+        if (numFields < 8) {
             GridBagConstraints constraints = new GridBagConstraints();
             constraints.fill = GridBagConstraints.HORIZONTAL;
             constraints.insets = new Insets(10, 10, 10, 10);
@@ -159,9 +176,64 @@ public class UnoGUI {
             constraints.gridwidth = 2;
             startMenuPanel.add(playGame, constraints);
 
+            // update y position for "add bot" button
+            constraints.gridy = numFields + 3;
+            startMenuPanel.add(addBot, constraints);
+
+
             // Update the y position for "Add Player" button
             constraints.gridy = numFields + 2;
             startMenuPanel.add(addPlayer, constraints);
+
+            startMenuPanel.revalidate();
+            startMenuPanel.repaint();
+        }
+    }
+
+    public void addBotField() {
+        if (numFields < 8) {
+            GridBagConstraints constraints = new GridBagConstraints();
+            constraints.fill = GridBagConstraints.HORIZONTAL;
+            constraints.insets = new Insets(10, 10, 10, 10);
+
+            // Add the label
+            constraints.gridx = 0;
+            constraints.gridy = numFields + 1; // Set the y position for the new label
+            constraints.gridwidth = 1;
+            JLabel label = new JLabel("Bot " + (numFields + 1) + ":", SwingConstants.RIGHT);
+            startMenuPanel.add(label, constraints);
+
+            // Add the text field
+            JTextField textField = new JTextField(10);
+            Random random = new Random();
+
+            // Define the range (e.g., between 1 and 100)
+            int minRange = 0;
+            int maxRange = botNames.length-1;
+
+            // Generate a random integer within the specified range
+            int randomInRange = random.nextInt(maxRange - minRange + 1) + minRange;
+            textField.setText(botNames[randomInRange]);
+            constraints.gridx = 1;
+            startMenuPanel.add(textField, constraints);
+            playerInputFields.add(textField);
+
+            // Increment the number of fields to account for the new player
+            numFields++;
+
+            // Update the y position for "Play Game" button
+            constraints.gridx = 0;
+            constraints.gridy = numFields + 1;
+            constraints.gridwidth = 2;
+            startMenuPanel.add(playGame, constraints);
+
+            // Update the y position for "Add Player" button
+            constraints.gridy = numFields + 2;
+            startMenuPanel.add(addPlayer, constraints);
+
+            // Update the y position for "Add Player" button
+            constraints.gridy = numFields + 3;
+            startMenuPanel.add(addBot, constraints);
 
             startMenuPanel.revalidate();
             startMenuPanel.repaint();
@@ -327,7 +399,7 @@ public class UnoGUI {
         buttonPanel.add(buildDeckbutton);
 
         mainPanel.add(buttonPanel);
-        
+
         ImageIcon image = new ImageIcon(Card.DECK_FILE_NAME);
         buildDeckbutton.setIcon(image);
 
@@ -363,7 +435,7 @@ public class UnoGUI {
 
         ImageIcon image = new ImageIcon(file_path);
         buildDiscardbutton.setIcon(image);
-        
+
         // Scale the image to fit the button
         int width = buildDiscardbutton.getWidth();
         int height = buildDeckbutton.getHeight();
@@ -392,7 +464,7 @@ public class UnoGUI {
         Scrollpane = new JScrollPane(handPanel);
 
         Scrollpane.setSize(new Dimension(1000, 100));
-        
+
         Scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         rootFrame.add(Scrollpane, BorderLayout.SOUTH);
@@ -425,7 +497,7 @@ public class UnoGUI {
         cardButton.setOpaque(false);
         cardButton.setContentAreaFilled(false);
         cardButton.setBorderPainted(false);
-        
+
         return cardButton;
     }
 
@@ -436,7 +508,7 @@ public class UnoGUI {
      * @param hand          The hand from which the card is removed.
      */
     public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand) {
-        
+
         playerCards.remove(playerCards.indexOf(buttonClicked));
         handPanel.remove(buttonClicked);
 
@@ -491,6 +563,14 @@ public class UnoGUI {
     public void addStartGameListener(ActionListener listenforStartGame) {
 
         playGame.addActionListener(listenforStartGame);
+
+
+    }
+
+
+    public void addBotListener(ActionListener listenforBot) {
+
+        addBot.addActionListener(listenforBot);
 
 
     }
