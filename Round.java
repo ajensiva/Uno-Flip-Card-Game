@@ -265,7 +265,7 @@ public class Round {
 
             // check to see if it's a wild card that was played
             boolean is_light_wildcard = card1.getTypeLight().equals(Card.TypeLight.WILDTWO) || card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR);
-            boolean is_dark_wildcard = card1.getTypeDark().equals(Card.TypeDark.WILD_CARD) || card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR);
+            boolean is_dark_wildcard = card1.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD) || card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR);
 
             // for light side checks
             if (darkmode == false) {
