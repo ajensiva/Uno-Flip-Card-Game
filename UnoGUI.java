@@ -65,7 +65,6 @@ public class UnoGUI {
 
         startMenu();
         setStartMenuVisible(true);
-//        startGame();
     }
     /**
      * Sets up the start menu frame and components.

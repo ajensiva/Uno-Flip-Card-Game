@@ -233,9 +233,11 @@ public class Controller {
             setHandPanelInteractable(true);
 
 
-            if (unoModel.currentRound.Remove_card.getTypeLight() == Card.TypeLight.REVERSE) {
-                Collections.reverse(unoGUI.playerInputFields);
-            }
+
+                if (unoModel.currentRound.Remove_card.getTypeLight() == Card.TypeLight.REVERSE) {
+                    Collections.reverse(unoGUI.playerInputFields);
+                }
+
 
             unoModel.currentRound.nextPlayer();
             unoGUI.displayCurrentPlayer(unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
