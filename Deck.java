@@ -32,7 +32,7 @@ public class Deck {
             Card.TypeDark typeDark = Card.TypeDark.values()[random.nextInt(Card.TypeDark.values().length)];
 
 
-            if (Card.TypeLight.WILD_DRAW_FOUR.equals(typeLight)) {
+            if (Card.TypeLight.WILD_DRAW_FOUR.equals(typeLight) || Card.TypeDark.DARK_WILD_CARD.equals(typeDark)) {
                 Card.ColorLight colorLight = null;
                 Card.ColorDark colorDark = null;
                 Card newCard = new Card(colorLight, typeLight, colorDark, typeDark);

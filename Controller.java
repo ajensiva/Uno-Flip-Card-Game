@@ -127,7 +127,7 @@ public class Controller {
             int buttonIndex = Integer.parseInt(button.getName());
             
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
-
+            System.out.println(unoModel.currentRound.getPlayCard());
             if (unoModel.currentRound.cardPlayedLogic() && !isPlayerLocked) {
                 isPlayerLocked = true;
                 setHandPanelInteractable(false);
@@ -233,10 +233,8 @@ public class Controller {
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
-
-
-                if (unoModel.currentRound.Remove_card.getTypeLight() == Card.TypeLight.REVERSE) {
-                    Collections.reverse(unoGUI.playerInputFields);
+                if ((unoModel.currentRound.Remove_card !=  null) && unoModel.currentRound.Remove_card.getTypeLight() == Card.TypeLight.REVERSE) {
+                     Collections.reverse(unoGUI.playerInputFields);
                 }
 
 
