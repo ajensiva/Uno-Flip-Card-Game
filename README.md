@@ -1,7 +1,7 @@
 # Uno-Flip-Card
 ## Development Team
 - __Zarif Khan__ : _101224172_
-- __Arun Kharki__ : _101219923_
+- __Arun Karki__ : _101219923_
 - __Jason Kia__ : _101233435_
 - __Ajen Srisivapalan__ : _101248498_
 -------------------------------------------------------------------
@@ -26,10 +26,13 @@
 ### Known issues:
 - Updating player's hand once a card has been removed may cause an error to occur. The game proceeds to function properly but the issue hasn't been addressed yet. The error doesn't inherently cause the game to break.
 - In some instances, some cards may not be visibly removed from the Game, but they still play, and will not appear when the turn return's to the player who played said Card.
+- Reverse does not work
 --------------------------------------------------------------------
 ### Milestone 3:
 - Emphasizes the necessity for all tests to pass, ensuring accurate card placement and scoring functionalities within the game.
 - This stage introduces Uno Flip cards, incorporating their specific rules and scoring mechanisms to enhance gameplay dynamics.
+- A notable enhancement is the incorporation of an arbitrary number of AI players with flexible behavior strategies, allowing for intelligent gameplay simulation. Options include generating all legal moves and selecting the highest-scoring move or using rules such as "The first valid card will be placed."
+
 
 #### MIT License
 
