@@ -38,6 +38,7 @@ public class Controller {
         this.unoGUI.addStartGameListener(new PlayGameButtonListener());
         this.unoGUI.addPlayers(new AddPlayersListener());
         this.unoGUI.addNextPlayerListener(new NextPlayerButtonListener());
+        this.unoGUI.addBot.addActionListener(new addbotListener());
     }
 
     private void setHandPanelInteractable(boolean interactable) {
@@ -52,12 +53,26 @@ public class Controller {
     public class AddPlayersListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (unoGUI.numFields < 4) {
+            if (unoGUI.numFields < 8) {
                 unoGUI.addPlayerField();
             }
-            if (unoGUI.numFields >= 4) {
+            if (unoGUI.numFields >= 8) {
                 unoGUI.addPlayer.setEnabled(false); // Disable the add player button
             }
+        }
+    }
+
+    public class addbotListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (unoGUI.numFields < 8) {
+                unoGUI.addBotField();
+            }
+            if (unoGUI.numFields >= 8) {
+                unoGUI.addBot.setEnabled(false); // Disable the add player button
+            }
+
         }
     }
 
@@ -125,7 +140,7 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             JButton button = (JButton) e.getSource();
             int buttonIndex = Integer.parseInt(button.getName());
-            
+
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
             System.out.println(unoModel.currentRound.getPlayCard());
             if (unoModel.currentRound.cardPlayedLogic() && !isPlayerLocked) {
@@ -233,9 +248,9 @@ public class Controller {
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
-                if ((unoModel.currentRound.Remove_card !=  null) && unoModel.currentRound.Remove_card.getTypeLight() == Card.TypeLight.REVERSE) {
-                     Collections.reverse(unoGUI.playerInputFields);
-                }
+            if ((unoModel.currentRound.Remove_card !=  null) && unoModel.currentRound.Remove_card.getTypeLight() == Card.TypeLight.REVERSE) {
+                Collections.reverse(unoGUI.playerInputFields);
+            }
 
 
             unoModel.currentRound.nextPlayer();
