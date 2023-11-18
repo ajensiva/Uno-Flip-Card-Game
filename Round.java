@@ -30,7 +30,7 @@ public class Round {
 
     protected Card Remove_card;
 
-
+    protected Player roundWinner;
 
 
     /**
@@ -320,12 +320,26 @@ public class Round {
         // loop all players and check hand size
         for (Player player: players) {
             if(player.getHand().getSize() == 0) {
+                roundWinner = player;
                 return true;
             }
         }
         return false;
     }
 
-
+    public int calculateRoundScore() {
+        int roundScore = 0;
+        if (roundWinner == null) {
+            return roundScore;
+        }
+        else {
+            for (Player player : players) {
+                player.calculateHandScore();
+                roundScore += player.getHandScore();
+            }
+            roundWinner.setScore(roundScore);
+            return roundScore;
+        }
+    }
 
 }
