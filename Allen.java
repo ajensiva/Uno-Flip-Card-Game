@@ -6,6 +6,7 @@ public class Allen extends Player{
      *
      * @param name The name of the player.
      */
+    
     public Allen(String name) {
         super(name);
     }
@@ -22,7 +23,7 @@ public class Allen extends Player{
         for(Card card : allenCards){
             boolean canPlay = currentRound.checkCard(card, currentRound.discard.peek());
             // playable
-            if(canPlay && (card.getValue() > allenCards.get(index).getValue())){ // if the value of current value > old then update new highest card
+            if(canPlay && (card.getValue() >= allenCards.get(index).getValue())){ // if the value of current value > old then update new highest card
                 index = allenCards.indexOf(card);
             }
         }

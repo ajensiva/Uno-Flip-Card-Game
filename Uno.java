@@ -58,11 +58,13 @@ public class Uno {
      * Adds a player to the game model
      * @param name
      */
-    public void addPlayer(String name){
-
-        Player player = new Player(name);
-
-        players.add(player);
-
+    public void addPlayer(String name, boolean isBot){
+        if(isBot){
+            Allen bot = new Allen(name);
+            players.add(bot);
+        }else{
+            Player player = new Player(name);
+            players.add(player);
+        }
     }
 }

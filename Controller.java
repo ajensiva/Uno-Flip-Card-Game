@@ -4,13 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.lang.reflect.Array;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collections;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 /**
  * The Controller class handles user input and manages interactions between the GUI and the Uno game model.
@@ -97,7 +97,12 @@ public class Controller {
             }
 
             for (int i = 0; i < unoGUI.playerInputFields.size(); i++) {
-                unoModel.addPlayer(unoGUI.playerInputFields.get(i).getText());
+                JTextField field = unoGUI.playerInputFields.get(i);
+                boolean isBot = false;
+                if(field.getName() != null && field.getName().substring(0, 3).equals("Bot")){
+                    isBot = true;
+                }
+                unoModel.addPlayer(unoGUI.playerInputFields.get(i).getText(), isBot);
             }
 
             unoModel.round();
@@ -120,6 +125,7 @@ public class Controller {
     private class UpdateDeckListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+
             if (!isPlayerLocked) {
                 unoModel.currentRound.drawCurrPlayer();
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
@@ -245,6 +251,23 @@ public class Controller {
     public class NextPlayerButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            ArrayList<Player> playersList = unoModel.currentRound.getPlayers();
+            int currentIndex = unoModel.currentRound.playerIndex;
+            int nextIndex = (currentIndex + 1) % playersList.size();
+
+            if(playersList.get(nextIndex) instanceof Allen){
+                unoModel.currentRound.nextPlayer();
+                currentIndex = unoModel.currentRound.playerIndex;
+                Allen bot = (Allen) playersList.get(unoModel.currentRound.playerIndex);
+                bot.allenPlayCard(unoModel.currentRound, bot.getHand());
+                System.out.println(unoModel.currentRound.currentPlayer.getName() + " has played " + unoModel.currentRound.discard.peek().getImageFilePath());
+
+                unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+                System.out.println("Discard: " + unoModel.currentRound.discard.peek());
+                return;
+            }
+
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 

@@ -205,6 +205,7 @@ public class UnoGUI {
 
             // Add the text field
             JTextField textField = new JTextField(10);
+            textField.setName(label.getText());
             Random random = new Random();
 
             // Define the range (e.g., between 1 and 100)
