@@ -262,7 +262,6 @@ public class Controller {
                 Allen bot = (Allen) playersList.get(unoModel.currentRound.playerIndex);
                 bot.allenPlayCard(unoModel.currentRound, bot.getHand());
                 System.out.println(unoModel.currentRound.currentPlayer.getName() + " has played " + unoModel.currentRound.discard.peek().getImageFilePath());
-
                 unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                 System.out.println("Discard: " + unoModel.currentRound.discard.peek());
                 return;
