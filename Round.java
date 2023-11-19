@@ -329,17 +329,22 @@ public class Round {
 
     public int calculateRoundScore() {
         int roundScore = 0;
+
+
+        for (Player player : players) {
+            player.calculateHandScore();
+            roundScore += player.getHandScore();
+        }
         if (roundWinner == null) {
             return roundScore;
         }
         else {
-            for (Player player : players) {
-                player.calculateHandScore();
-                roundScore += player.getHandScore();
-            }
             roundWinner.setScore(roundScore);
-            return roundScore;
         }
+        return roundScore;
+
+
+
     }
 
 }
