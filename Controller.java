@@ -274,6 +274,11 @@ public class Controller {
 
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
 
+                    if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                        unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                    }
+
+
 
                 }
                 else{
