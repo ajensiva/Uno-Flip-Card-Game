@@ -271,18 +271,15 @@ public class Controller {
                 Allen bot = (Allen) playersList.get(unoModel.currentRound.playerIndex);
                 unoGUI.displayCurrentPlayer(currentIndex);
                 if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())){
-
                     wildCardLogic();
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
-
-
+                    System.out.println(unoModel.currentRound.currentPlayer.getName() + " has played " + unoModel.currentRound.discard.peek().getImageFilePath());
                 }
                 else{
+                    System.out.println("allen drew a card");
                     unoModel.currentRound.drawCurrPlayer();
                     unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
                 }
-
-                System.out.println(unoModel.currentRound.currentPlayer.getName() + " has played " + unoModel.currentRound.discard.peek().getImageFilePath());
                 unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                 System.out.println("Discard: " + unoModel.currentRound.discard.peek());
                 return;
