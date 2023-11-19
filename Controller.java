@@ -41,9 +41,44 @@ public class Controller {
         this.unoGUI.addBot.addActionListener(new addbotListener());
     }
 
+
     private void setHandPanelInteractable(boolean interactable) {
         for (JButton button : unoGUI.playerCards) {
             button.setEnabled(interactable);
+        }
+    }
+
+
+    public void wildCardLogic() {
+
+        if (unoModel.currentRound.cardPlayedLogic() && !isPlayerLocked) {
+            isPlayerLocked = true;
+            setHandPanelInteractable(false);
+            unoGUI.nextPlayer.setEnabled(true);
+
+
+            if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)
+                    || unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+
+                if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+                    unoModel.currentRound.drawCard(1);
+                    unoGUI.wildCardGui();
+                    unoGUI.redWildCardButtonListener(new PlayRedWildCard());
+                    unoGUI.blueWildCardButtonListener(new PlayBlueWildCard());
+                    unoGUI.yellowWildCardButtonListener(new PlayYellowWildCard());
+                    unoGUI.greenWildCardButtonListener(new PlayGreenWildCard());
+                    unoGUI.discardLabel.setVisible(false);
+                } else if (unoModel.currentRound.Remove_card.getTypeLight()
+                        .equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                    unoModel.currentRound.drawCard(3);
+                    unoGUI.wildCardGui();
+                    unoGUI.redWildCardButtonListener(new PlayRedWildCard());
+                    unoGUI.blueWildCardButtonListener(new PlayBlueWildCard());
+                    unoGUI.yellowWildCardButtonListener(new PlayYellowWildCard());
+                    unoGUI.greenWildCardButtonListener(new PlayGreenWildCard());
+                    unoGUI.discardLabel.setVisible(false);
+                }
+            }
         }
     }
 
@@ -149,49 +184,23 @@ public class Controller {
 
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
             System.out.println(unoModel.currentRound.getPlayCard());
-            if (unoModel.currentRound.cardPlayedLogic() && !isPlayerLocked) {
-                isPlayerLocked = true;
-                setHandPanelInteractable(false);
-                unoGUI.nextPlayer.setEnabled(true);
 
+            wildCardLogic();
 
-                if(unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)
-                        || unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+//                try {
+                    unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
 
-                    if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
-                        unoModel.currentRound.drawCard(1);
-                        unoGUI.wildCardGui();
-                        unoGUI.redWildCardButtonListener(new PlayRedWildCard());
-                        unoGUI.blueWildCardButtonListener(new PlayBlueWildCard());
-                        unoGUI.yellowWildCardButtonListener(new PlayYellowWildCard());
-                        unoGUI.greenWildCardButtonListener(new PlayGreenWildCard());
-                        unoGUI.discardLabel.setVisible(false);
-                    } else if (unoModel.currentRound.Remove_card.getTypeLight()
-                            .equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-                        unoModel.currentRound.drawCard(3);
-                        unoGUI.wildCardGui();
-                        unoGUI.redWildCardButtonListener(new PlayRedWildCard());
-                        unoGUI.blueWildCardButtonListener(new PlayBlueWildCard());
-                        unoGUI.yellowWildCardButtonListener(new PlayYellowWildCard());
-                        unoGUI.greenWildCardButtonListener(new PlayGreenWildCard());
-                        unoGUI.discardLabel.setVisible(false);
-                    }
-                }
-
-                try {
-                    unoGUI.updatePlayerCardsRemove(button, unoModel.currentRound.currentPlayer.getHand());
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                     if (unoModel.currentRound.checkWinner()){
 
                         JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "WINNER!!!", JOptionPane.INFORMATION_MESSAGE);
                         unoGUI.setstartGameVisible(false);
                     }
-                } catch (IndexOutOfBoundsException index) {
-                    System.out.println("Warning index is volatile" + index);
-                }
+//                } catch (IndexOutOfBoundsException index) {
+//                    System.out.println("Warning index is volatile" + index);
+//                }
             }
         }
-    }
 
     /**
      * ActionListener for playing the red wild card.
@@ -260,7 +269,19 @@ public class Controller {
                 unoModel.currentRound.nextPlayer();
                 currentIndex = unoModel.currentRound.playerIndex;
                 Allen bot = (Allen) playersList.get(unoModel.currentRound.playerIndex);
-                bot.allenPlayCard(unoModel.currentRound, bot.getHand());
+                unoGUI.displayCurrentPlayer(currentIndex);
+                if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())){
+
+                    wildCardLogic();
+                    unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
+
+
+                }
+                else{
+                    unoModel.currentRound.drawCurrPlayer();
+                    unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
+                }
+
                 System.out.println(unoModel.currentRound.currentPlayer.getName() + " has played " + unoModel.currentRound.discard.peek().getImageFilePath());
 
                 unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
