@@ -48,6 +48,8 @@ public class UnoGUI {
 
     private JLabel display_current_player = new JLabel("this is where the players should be displayed!");
 
+    private JLabel roundPoints;
+
     //---------------WILD CARD GUI-----------------
 
     protected JFrame wildCardFrame;
@@ -273,6 +275,11 @@ public class UnoGUI {
         displayCurrentPlayerPanel.add(display_current_player);
         mainPanel.add(displayCurrentPlayerPanel);
 
+        // Calculate round points
+        roundPoints = new JLabel("Current Round points: 0");
+
+        mainPanel.add(roundPoints);
+
         // build hand ui and add cards
         buildHand();
         buildDeck();
@@ -375,6 +382,11 @@ public class UnoGUI {
         mainPanel.add(nextPlayerButtonPanel);
 
         nextPlayer.setEnabled(false);
+
+    }
+
+    public void updatePoints(int points) {
+        roundPoints.setText("Current Round points: " + points);
 
     }
 
