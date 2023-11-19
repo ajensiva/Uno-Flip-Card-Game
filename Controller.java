@@ -68,8 +68,8 @@ public class Controller {
                     unoGUI.yellowWildCardButtonListener(new PlayYellowWildCard());
                     unoGUI.greenWildCardButtonListener(new PlayGreenWildCard());
                     unoGUI.discardLabel.setVisible(false);
-                } else if (unoModel.currentRound.Remove_card.getTypeLight()
-                        .equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                } else if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                    System.out.println("IM GAY");
                     unoModel.currentRound.drawCard(3);
                     unoGUI.wildCardGui();
                     unoGUI.redWildCardButtonListener(new PlayRedWildCard());
@@ -272,7 +272,6 @@ public class Controller {
                 unoGUI.displayCurrentPlayer(currentIndex);
                 if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())){
 
-                    wildCardLogic();
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
 
 
