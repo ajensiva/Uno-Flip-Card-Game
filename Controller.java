@@ -272,7 +272,13 @@ public class Controller {
                 unoGUI.displayCurrentPlayer(currentIndex);
                 if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())){
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
-                    System.out.println(unoModel.currentRound.currentPlayer.getName() + " has played " + unoModel.currentRound.discard.peek().getImageFilePath());
+
+                    if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                        //unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                    }
+
+
+
                 }
                 else{
                     System.out.println("allen drew a card");

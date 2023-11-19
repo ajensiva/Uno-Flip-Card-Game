@@ -39,21 +39,23 @@ public class Allen extends Player{
 
             if (colour == 0){
                 allenCards.get(index).setColorLight("Red");
+                currentRound.discard.peek().setColorLight("Red");
 
-                unoModel.currentRound.discard.peek().setColorLight("Green");
-                unoGUI.wildCardFrame.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
-                unoGUI.discardLabel.setVisible(true);
-                
             }
             if(colour == 1){
                 allenCards.get(index).setColorLight("Blue");
+                currentRound.discard.peek().setColorLight("Blue");
+
             }
             if (colour == 2){
                 allenCards.get(index).setColorLight("Yellow");
+                currentRound.discard.peek().setColorLight("Yellow");
+
             }
             if (colour == 3){
                 allenCards.get(index).setColorLight("Green");
+                currentRound.discard.peek().setColorLight("Green");
+
             }
         }
         // play the card
