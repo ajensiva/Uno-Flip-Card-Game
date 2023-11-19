@@ -505,13 +505,16 @@ public class UnoGUI {
     /**
      * Removes the specified button representing a card from the user interface.
      *
-     * @param buttonClicked The button representing the card to remove.
+     * @param buttonToRemove The number representing the card to remove.
      * @param hand          The hand from which the card is removed.
      */
-    public void updatePlayerCardsRemove(JButton buttonClicked, Hand hand) {
+    public void updatePlayerCardsRemove(int buttonToRemove, Hand hand) {
 
-        playerCards.remove(playerCards.indexOf(buttonClicked));
-        handPanel.remove(buttonClicked);
+        System.out.println("Button Index: " + buttonToRemove);
+
+
+        playerCards.remove(buttonToRemove);
+        handPanel.remove(buttonToRemove);
 
 
         for (int i = 0; i < hand.getSize(); i++) {

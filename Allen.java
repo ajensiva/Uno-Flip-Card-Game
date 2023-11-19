@@ -6,13 +6,16 @@ public class Allen extends Player{
      *
      * @param name The name of the player.
      */
+
+
+    Card allenCardPlayed;
     
     public Allen(String name) {
         super(name);
     }
 
     // this will play the card with the highest value
-    public void allenPlayCard(Round currentRound, Hand hand){
+    public boolean allenPlayCard(Round currentRound, Hand hand){
         /*
             get the bot's hand to see all which cards are playable first
             play the card with the most value
@@ -29,6 +32,15 @@ public class Allen extends Player{
         }
         // play the card
         currentRound.setPlayCardIndex(index);
-        currentRound.cardPlayedLogic();
+        allenCardPlayed = currentRound.getPlayCard();
+        return currentRound.cardPlayedLogic();
+
+
     }
+
+    public Card getAllenPlayCard(){
+
+        return allenCardPlayed;
+    }
+
 }
