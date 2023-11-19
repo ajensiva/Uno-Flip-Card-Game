@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Allen extends Player{
     /**
@@ -28,6 +29,31 @@ public class Allen extends Player{
             // playable
             if(canPlay && (card.getValue() >= allenCards.get(index).getValue())){ // if the value of current value > old then update new highest card
                 index = allenCards.indexOf(card);
+            }
+
+        }
+
+        if (allenCards.get(index).getTypeLight().equals(Card.TypeLight.WILDTWO) || allenCards.get(index).getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)){
+            Random rand = new Random();
+            int colour = rand.nextInt(4);
+
+            if (colour == 0){
+                allenCards.get(index).setColorLight("Red");
+
+                unoModel.currentRound.discard.peek().setColorLight("Green");
+                unoGUI.wildCardFrame.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.discardLabel.setVisible(true);
+                
+            }
+            if(colour == 1){
+                allenCards.get(index).setColorLight("Blue");
+            }
+            if (colour == 2){
+                allenCards.get(index).setColorLight("Yellow");
+            }
+            if (colour == 3){
+                allenCards.get(index).setColorLight("Green");
             }
         }
         // play the card
