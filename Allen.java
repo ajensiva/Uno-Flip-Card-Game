@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Allen extends Player{
     /**
@@ -6,13 +7,16 @@ public class Allen extends Player{
      *
      * @param name The name of the player.
      */
+
+
+    Card allenCardPlayed;
     
     public Allen(String name) {
         super(name);
     }
 
     // this will play the card with the highest value
-    public void allenPlayCard(Round currentRound, Hand hand){
+    public boolean allenPlayCard(Round currentRound, Hand hand){
         /*
             get the bot's hand to see all which cards are playable first
             play the card with the most value
@@ -26,9 +30,45 @@ public class Allen extends Player{
             if(canPlay && (card.getValue() >= allenCards.get(index).getValue())){ // if the value of current value > old then update new highest card
                 index = allenCards.indexOf(card);
             }
+
+        }
+
+        if (allenCards.get(index).getTypeLight().equals(Card.TypeLight.WILDTWO) || allenCards.get(index).getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)){
+            Random rand = new Random();
+            int colour = rand.nextInt(4);
+
+            if (colour == 0){
+                allenCards.get(index).setColorLight("Red");
+                currentRound.discard.peek().setColorLight("Red");
+
+            }
+            if(colour == 1){
+                allenCards.get(index).setColorLight("Blue");
+                currentRound.discard.peek().setColorLight("Blue");
+
+            }
+            if (colour == 2){
+                allenCards.get(index).setColorLight("Yellow");
+                currentRound.discard.peek().setColorLight("Yellow");
+
+            }
+            if (colour == 3){
+                allenCards.get(index).setColorLight("Green");
+                currentRound.discard.peek().setColorLight("Green");
+
+            }
         }
         // play the card
         currentRound.setPlayCardIndex(index);
-        currentRound.cardPlayedLogic();
+        allenCardPlayed = currentRound.getPlayCard();
+        return currentRound.cardPlayedLogic();
+
+
     }
+
+    public Card getAllenPlayCard(){
+
+        return allenCardPlayed;
+    }
+
 }

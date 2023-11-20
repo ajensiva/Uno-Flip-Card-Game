@@ -29,8 +29,13 @@ public class UnoTest {
     public void testAddPlayer() {
         // Test adding a player
 //        unoGame.addPlayer("Alice");
+<<<<<<< HEAD
+        assertEquals(3, Uno.players.size());
+        assertEquals("Alice", Uno.players.get(0).getName());
+=======
 //        assertEquals(3, Uno.players.size());
 //        assertEquals("Alice", Uno.players.get(0).getName());
+>>>>>>> d7fdae19f32def45ed71961065b3b8aef113a5f0
     }
 
     @Test
@@ -48,8 +53,12 @@ public class UnoTest {
     @Test
     public void testRound() {
         // Add players
+<<<<<<< HEAD
+
+=======
 //        unoGame.addPlayer("Alice");
 //        unoGame.addPlayer("Bob");
+>>>>>>> d7fdae19f32def45ed71961065b3b8aef113a5f0
         // Start a round
         unoGame.round();
         assertNotNull(unoGame.currentRound);

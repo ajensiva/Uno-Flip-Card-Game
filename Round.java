@@ -73,6 +73,8 @@ public class Round {
 
     }
 
+
+
     /**
      * Card to play index
      * @return
@@ -89,6 +91,7 @@ public class Round {
     public Card getPlayCard(){
         //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
 
+//        System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
         return currentPlayer.getHand().getCard(getCardtoPlayIndex());
     }
 
@@ -119,13 +122,11 @@ public class Round {
 
     public boolean cardPlayedLogic() {
         if ((checkCard(getPlayCard(), discard.peek()))) {
-            //System.out.println(playCard(getCardtoPlayIndex()));
-
-
+            //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
 
             // light type cards only
             if (!(darkmode)) {
-
+                System.out.println("i said: " + getPlayCard().getTypeLight());
                 if (getPlayCard().getTypeLight() == Card.TypeLight.REVERSE) {
                     // reverse collection and decrement player index to get player before
                     playerIndex -= 1;
