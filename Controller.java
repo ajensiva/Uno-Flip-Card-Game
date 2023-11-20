@@ -287,6 +287,7 @@ public class Controller {
                 }
                 unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                 System.out.println("Discard: " + unoModel.currentRound.discard.peek());
+                unoGUI.updatePoints(unoModel.currentRound.calculateRoundScore());
                 return;
             }
 
@@ -308,6 +309,7 @@ public class Controller {
 
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
             unoGUI.nextPlayer.setEnabled(false);
+            unoGUI.updatePoints(unoModel.currentRound.calculateRoundScore());
         }
     }
 
