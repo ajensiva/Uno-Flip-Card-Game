@@ -16,7 +16,7 @@ public class Card {
      */
     public String getImageFilePath() {
         if(Round.darkmode == false){
-            if(this.colorLight == null)
+            if(this.colorLight == null || this.typeLight == this.getTypeLight().WILD_DRAW_FOUR)
                 return (RELATIVE_IMAGE_DIRECTORY + this.typeLight + ".jpg");
             return (RELATIVE_IMAGE_DIRECTORY + this.colorLight + "_" + this.typeLight + ".jpg");
         }else{
