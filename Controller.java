@@ -269,25 +269,20 @@ public class Controller {
                 unoModel.currentRound.nextPlayer();
                 currentIndex = unoModel.currentRound.playerIndex;
                 Allen bot = (Allen) playersList.get(unoModel.currentRound.playerIndex);
+                System.out.println(bot.getHand());
                 unoGUI.displayCurrentPlayer(currentIndex);
                 if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())){
-
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
 
                     if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-                        unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                        //unoGUI.discardInfo(unoModel.currentRound.discard.peek());
                     }
-
-
-
                 }
                 else{
+                    System.out.println("allen drew a card");
                     unoModel.currentRound.drawCurrPlayer();
                     unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
                 }
-
-                System.out.println(unoModel.currentRound.currentPlayer.getName() + " has played " + unoModel.currentRound.discard.peek().getImageFilePath());
-
                 unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                 System.out.println("Discard: " + unoModel.currentRound.discard.peek());
                 unoGUI.updatePoints(unoModel.currentRound.calculateRoundScore());
