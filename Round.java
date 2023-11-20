@@ -126,7 +126,7 @@ public class Round {
 
             // light type cards only
             if (!(darkmode)) {
-                System.out.println("marwa said: " + getPlayCard().getTypeLight());
+                System.out.println("i said: " + getPlayCard().getTypeLight());
                 if (getPlayCard().getTypeLight() == Card.TypeLight.REVERSE) {
                     // reverse collection and decrement player index to get player before
                     playerIndex -= 1;
