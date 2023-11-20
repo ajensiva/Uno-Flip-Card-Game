@@ -269,6 +269,7 @@ public class Controller {
                 unoModel.currentRound.nextPlayer();
                 currentIndex = unoModel.currentRound.playerIndex;
                 Allen bot = (Allen) playersList.get(unoModel.currentRound.playerIndex);
+                System.out.println(bot.getHand());
                 unoGUI.displayCurrentPlayer(currentIndex);
                 if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())){
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
@@ -276,9 +277,6 @@ public class Controller {
                     if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
                         //unoGUI.discardInfo(unoModel.currentRound.discard.peek());
                     }
-
-
-
                 }
                 else{
                     System.out.println("allen drew a card");
