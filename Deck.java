@@ -31,19 +31,29 @@ public class Deck {
             Card.TypeLight typeLight = Card.TypeLight.values()[random.nextInt(Card.TypeLight.values().length)];
             Card.TypeDark typeDark = Card.TypeDark.values()[random.nextInt(Card.TypeDark.values().length)];
 
+            Card.ColorLight colorLight = Card.ColorLight.values()[random.nextInt(Card.ColorLight.values().length)];
+            Card.ColorDark colorDark = Card.ColorDark.values()[random.nextInt(Card.ColorDark.values().length)];
+
 
             if (Card.TypeLight.WILD_DRAW_FOUR.equals(typeLight)) {
-                Card.ColorLight colorLight = null;
-                Card.ColorDark colorDark = null;
-                Card newCard = new Card(colorLight, typeLight, colorDark, typeDark);
-                deck.add(newCard);
-            } else {
+                Card.ColorLight colorLight_WILD_CARD_FOUR = null;
 
-                Card.ColorLight colorLight = Card.ColorLight.values()[random.nextInt(Card.ColorLight.values().length)];
-                Card.ColorDark colorDark = Card.ColorDark.values()[random.nextInt(Card.ColorDark.values().length)];
+                Card newCard = new Card(colorLight_WILD_CARD_FOUR, typeLight, colorDark, typeDark);
+
+                deck.add(newCard);
+            }
+            else if (Card.TypeDark.DARK_WILD_CARD.equals(typeDark)){
                 // Create a new card with the generated values.
-                Card newCard = new Card(colorLight, typeLight, colorDark, typeDark);
+                Card.ColorDark colorDark_DARK_WILD_CARD = null;
+
+                Card newCard = new Card(colorLight, typeLight, colorDark_DARK_WILD_CARD, typeDark);
+
                 // Add the card to the deck.
+                deck.add(newCard);
+            }
+            else {
+
+                Card newCard = new Card(colorLight, typeLight, colorDark, typeDark);
                 deck.add(newCard);
             }
         }

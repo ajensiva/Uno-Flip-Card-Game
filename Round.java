@@ -19,7 +19,7 @@ public class Round {
     protected Deck deck; // main deck of the game
     protected Stack<Card> discard; // discard cards stack
 
-    public static boolean darkmode = false; // if true then we're playing dark sides of card
+    public static boolean darkmode = true; // if true then we're playing dark sides of card
 
     protected Player currentPlayer; // current player that's playing
     private final int DEALTCARDS = 7; // max number of cards to be delt

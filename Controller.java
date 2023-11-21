@@ -78,6 +78,17 @@ public class Controller {
                     unoGUI.discardLabel.setVisible(false);
                 }
             }
+
+            if (unoModel.currentRound.Remove_card.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD)){
+                unoModel.currentRound.drawCard(1);
+                unoGUI.wildCardGui();
+                unoGUI.redWildCardButtonListener(new PlayRedWildCard());
+                unoGUI.blueWildCardButtonListener(new PlayBlueWildCard());
+                unoGUI.yellowWildCardButtonListener(new PlayYellowWildCard());
+                unoGUI.greenWildCardButtonListener(new PlayGreenWildCard());
+                unoGUI.discardLabel.setVisible(false);
+
+            }
             unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
             unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
         }
@@ -207,10 +218,23 @@ public class Controller {
     public class PlayRedWildCard implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            unoModel.currentRound.discard.peek().setColorLight("Red");
-            unoGUI.wildCardFrame.setVisible(false);
-            unoGUI.discardInfo(unoModel.currentRound.discard.peek());
-            unoGUI.discardLabel.setVisible(true);
+
+            if(unoModel.currentRound.darkmode){
+
+                unoGUI.red.setText("Orange");
+                unoModel.currentRound.discard.peek().setColorLight("Orange");
+                unoGUI.wildCardFrame.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.discardLabel.setVisible(true);
+
+            }
+            else{
+                unoModel.currentRound.discard.peek().setColorLight("Red");
+                unoGUI.wildCardFrame.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.discardLabel.setVisible(true);
+            }
+
         }
     }
 
@@ -220,10 +244,21 @@ public class Controller {
     public class PlayBlueWildCard implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            unoModel.currentRound.discard.peek().setColorLight("Blue");
-            unoGUI.wildCardFrame.setVisible(false);
-            unoGUI.discardInfo(unoModel.currentRound.discard.peek());
-            unoGUI.discardLabel.setVisible(true);
+
+            if (unoModel.currentRound.darkmode) {
+
+                unoGUI.red.setText("Teal");
+                unoModel.currentRound.discard.peek().setColorLight("Orange");
+                unoGUI.wildCardFrame.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.discardLabel.setVisible(true);
+
+            } else {
+                unoModel.currentRound.discard.peek().setColorLight("Blue");
+                unoGUI.wildCardFrame.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.discardLabel.setVisible(true);
+            }
         }
     }
 
@@ -233,10 +268,25 @@ public class Controller {
     public class PlayYellowWildCard implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            unoModel.currentRound.discard.peek().setColorLight("Yellow");
-            unoGUI.wildCardFrame.setVisible(false);
-            unoGUI.discardInfo(unoModel.currentRound.discard.peek());
-            unoGUI.discardLabel.setVisible(true);
+
+            if(unoModel.currentRound.darkmode){
+
+                unoGUI.red.setText("Purple");
+                unoModel.currentRound.discard.peek().setColorLight("Purple");
+                unoGUI.wildCardFrame.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.discardLabel.setVisible(true);
+
+            }
+            else{
+
+                unoModel.currentRound.discard.peek().setColorLight("Yellow");
+                unoGUI.wildCardFrame.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.discardLabel.setVisible(true);
+
+            }
+
         }
     }
 
@@ -246,10 +296,22 @@ public class Controller {
     public class PlayGreenWildCard implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            unoModel.currentRound.discard.peek().setColorLight("Green");
-            unoGUI.wildCardFrame.setVisible(false);
-            unoGUI.discardInfo(unoModel.currentRound.discard.peek());
-            unoGUI.discardLabel.setVisible(true);
+
+            if(unoModel.currentRound.darkmode){
+
+                unoGUI.red.setText("Purple");
+                unoModel.currentRound.discard.peek().setColorLight("Purple");
+                unoGUI.wildCardFrame.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.discardLabel.setVisible(true);
+
+            }else {
+
+                unoModel.currentRound.discard.peek().setColorLight("Green");
+                unoGUI.wildCardFrame.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.discardLabel.setVisible(true);
+            }
         }
     }
 
