@@ -10,7 +10,6 @@ public class Player {
     private Hand hand;        // The player's hand of Uno cards
     private String name;     // The name of the player
     private int playerScore;  // The player's score in the game
-    private int handScore;
 
     /**
      * Constructor to create a new player with the given name.
@@ -41,20 +40,6 @@ public class Player {
         if (score >= 0) {
             this.playerScore = score;
         }
-    }
-
-    public void calculateHandScore() {
-        handScore = 0;
-        if (this.getHand().getHandList().size() == 0) {
-            return;
-        }
-        for (Card card : this.getHand().getHandList()) {
-            handScore += card.getValue();
-        }
-    }
-
-    public int getHandScore() {
-        return handScore;
     }
 
     /**

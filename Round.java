@@ -32,7 +32,6 @@ public class Round {
 
     protected Player roundWinner;
 
-
     /**
      * Constructor for the `Round` class.
      * Initializes the round with a list of players, a deck, and a discard pile.
@@ -44,6 +43,7 @@ public class Round {
         this.players = players;
         deck = new Deck();
         discard = new Stack<Card>();
+        this.roundWinner = null;
         distributeHand();
         makeDiscard();
     }
@@ -311,7 +311,6 @@ public class Round {
     }
 
 
-
     /**
      * Checks if any player has won the round by emptying their hand.
      *
@@ -328,22 +327,6 @@ public class Round {
         return false;
     }
 
-    public int calculateRoundScore() {
-        int roundScore = 0;
-
-        if (roundWinner == null) {
-            return roundScore;
-        }
-
-        for (Player player : players) {
-            player.calculateHandScore();
-            roundScore += player.getHandScore();
-        }
-        roundWinner.setScore(roundScore);
-        return roundScore;
-    }
-
-    /** Arun NOTE: use this one to calculate the round's total pts */
     /**
      * Calculates the total points for the round based on the remaining cards in players' hands.
      *

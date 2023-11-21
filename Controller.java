@@ -203,9 +203,10 @@ public class Controller {
 
 //                try {
                     if (unoModel.currentRound.checkWinner()){
-
                         JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "WINNER!!!", JOptionPane.INFORMATION_MESSAGE);
                         unoGUI.setstartGameVisible(false);
+                        System.out.println(unoModel.currentRound.roundWinner.getName() + " won the round, awarding pts...");
+                        unoModel.currentRound.roundWinner.setScore(unoModel.currentRound.roundWinner.getScore() + unoModel.currentRound.getTotalPoints());
                     }
 //                } catch (IndexOutOfBoundsException index) {
 //                    System.out.println("Warning index is volatile" + index);
