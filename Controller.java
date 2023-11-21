@@ -78,6 +78,8 @@ public class Controller {
                     unoGUI.discardLabel.setVisible(false);
                 }
             }
+            unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
+            unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
         }
     }
 
@@ -182,13 +184,12 @@ public class Controller {
             int buttonIndex = Integer.parseInt(button.getName());
 
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
+            
             System.out.println(unoModel.currentRound.getPlayCard());
 
             wildCardLogic();
 
 //                try {
-                    unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
-                    unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                     if (unoModel.currentRound.checkWinner()){
 
                         JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "WINNER!!!", JOptionPane.INFORMATION_MESSAGE);
