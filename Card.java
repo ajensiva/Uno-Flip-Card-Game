@@ -20,7 +20,7 @@ public class Card {
                 return (RELATIVE_IMAGE_DIRECTORY + this.typeLight + ".jpg");
             return (RELATIVE_IMAGE_DIRECTORY + this.colorLight + "_" + this.typeLight + ".jpg");
         }else{
-            if(this.colorDark == null)
+            if(this.colorDark == null || this.typeDark == this.getTypeDark().DARK_WILD_CARD)
                 return (RELATIVE_IMAGE_DIRECTORY + this.typeDark + ".jpg");
             return (RELATIVE_IMAGE_DIRECTORY + this.colorDark + "_" + this.typeDark + ".jpg");
         }
