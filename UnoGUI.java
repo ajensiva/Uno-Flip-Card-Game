@@ -276,7 +276,7 @@ public class UnoGUI {
         mainPanel.add(displayCurrentPlayerPanel);
 
         // Calculate round points
-        roundPoints = new JLabel("Current Round points: 0");
+        roundPoints = new JLabel("Round Cumulative Points: 0");
 
         mainPanel.add(roundPoints);
 
@@ -386,7 +386,7 @@ public class UnoGUI {
     }
 
     public void updatePoints(int points) {
-        roundPoints.setText("Current Round points: " + points);
+        roundPoints.setText("Round Cumulative Points: " + points);
 
     }
 
@@ -521,7 +521,7 @@ public class UnoGUI {
      * @param hand          The hand from which the card is removed.
      */
     public void updatePlayerCardsRemove(int buttonToRemove, Hand hand) {
-        
+
         for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
             button.setName(Integer.toString(i));

@@ -19,7 +19,7 @@ public class Round {
     protected Deck deck; // main deck of the game
     protected Stack<Card> discard; // discard cards stack
 
-    public static boolean darkmode = true; // if true then we're playing dark sides of card
+    public static boolean darkmode = false; // if true then we're playing dark sides of card
 
     protected Player currentPlayer; // current player that's playing
     private final int DEALTCARDS = 7; // max number of cards to be delt
@@ -341,6 +341,24 @@ public class Round {
         }
         roundWinner.setScore(roundScore);
         return roundScore;
+    }
+
+    /** Arun NOTE: use this one to calculate the round's total pts */
+    /**
+     * Calculates the total points for the round based on the remaining cards in players' hands.
+     *
+     * @return The total points for the round.
+     */
+    public int getTotalPoints(){
+        int totalPoint = 0; //  sum of all player's cards' values
+        for(Player plr : players){
+            Hand hand = plr.getHand();
+            // get each invidiual card's value and add to sum
+            for(Card card : hand.getHandList()){
+                totalPoint += card.getValue();
+            }
+        }
+        return totalPoint;
     }
 
 }
