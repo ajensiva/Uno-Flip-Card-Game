@@ -122,6 +122,8 @@ public class Round {
 
     public boolean cardPlayedLogic() {
         if ((checkCard(getPlayCard(), discard.peek()))) {
+
+            System.out.println("test");
             //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
 
             // light type cards only
