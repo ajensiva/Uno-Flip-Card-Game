@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class Uno {
 
-    private final int MAXSCORE = 500; // max score to win game
+    private final int MAXSCORE = 100; // max score to win game
     protected static ArrayList<Player> players = new ArrayList<>(); // store all players in an array
     protected Round currentRound;
     
