@@ -36,17 +36,15 @@ public class Deck {
 
 
             if (Card.TypeLight.WILD_DRAW_FOUR.equals(typeLight)) {
-                Card.ColorLight colorLight_WILD_CARD_FOUR = null;
 
-                Card newCard = new Card(colorLight_WILD_CARD_FOUR, typeLight, colorDark, typeDark);
+                Card newCard = new Card(null, typeLight, colorDark, typeDark);
 
                 deck.add(newCard);
             }
             else if (Card.TypeDark.DARK_WILD_CARD.equals(typeDark)){
                 // Create a new card with the generated values.
-                Card.ColorDark colorDark_DARK_WILD_CARD = null;
 
-                Card newCard = new Card(colorLight, typeLight, colorDark_DARK_WILD_CARD, typeDark);
+                Card newCard = new Card(colorLight, typeLight, null, typeDark);
 
                 // Add the card to the deck.
                 deck.add(newCard);
