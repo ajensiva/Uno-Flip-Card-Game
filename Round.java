@@ -248,20 +248,18 @@ public class Round {
      * @return True if the card can be played, false otherwise.
      */
     public boolean checkCard(Card card1, Card card2) {
-        boolean check_colour_light;
-        boolean check_colour_dark;
 
+
+        //CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
         if (card1.getColorLight() == null || card1.getColorDark() == null){
-            check_colour_light = true;
-            check_colour_dark = true;
 
-            return check_colour_light || check_colour_dark;
+            return true;
         }
 
         else {
 
-            check_colour_light = card1.getColorLight().equals(card2.getColorLight()); // false
-            check_colour_dark = card1.getColorDark().equals(card2.getColorDark()); // false
+            boolean check_colour_light = card1.getColorLight().equals(card2.getColorLight());
+            boolean check_colour_dark = card1.getColorDark().equals(card2.getColorDark());
 
             boolean check_type_light = card1.getTypeLight().equals(card2.getTypeLight());
             boolean check_type_dark = card1.getTypeDark().equals(card2.getTypeDark());
@@ -283,7 +281,9 @@ public class Round {
 
                     }
 
-                } else {
+                }
+                //CHECKS NORMAL LIGHT MODE CARDS
+                else {
                     return check_colour_light || check_type_light;
                 }
             } else {
@@ -291,13 +291,15 @@ public class Round {
                 if (is_dark_wildcard) {
 
                     //WILD TWO LOGIC - ONLY PLAYABLE, IF SAME TYPE AND SAME COLOUR
-                    if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+                    if (card2.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR)) {
                         return check_colour_dark && check_type_dark;
                     } else {
                         return check_colour_dark || check_type_dark;
                     }
-                } else {
-                    return check_colour_light || check_type_light;
+                }
+                //CHECKS NORMAL DARK MODE CARDS
+                else {
+                    return check_colour_dark || check_type_dark;
                 }
             }
         }
