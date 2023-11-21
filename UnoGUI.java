@@ -56,7 +56,7 @@ public class UnoGUI {
 
     protected JPanel wildPanel;
 
-    private JButton blue, red, yellow, green;
+    protected JButton blue, red, yellow, green;
 
 //-------------------------------------------DISCARD INFO-----------------------------------------
 
