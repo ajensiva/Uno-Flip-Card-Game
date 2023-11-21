@@ -331,21 +331,16 @@ public class Round {
     public int calculateRoundScore() {
         int roundScore = 0;
 
+        if (roundWinner == null) {
+            return roundScore;
+        }
 
         for (Player player : players) {
             player.calculateHandScore();
             roundScore += player.getHandScore();
         }
-        if (roundWinner == null) {
-            return roundScore;
-        }
-        else {
-            roundWinner.setScore(roundScore);
-        }
+        roundWinner.setScore(roundScore);
         return roundScore;
-
-
-
     }
 
 }
