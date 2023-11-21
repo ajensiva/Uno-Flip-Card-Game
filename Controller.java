@@ -62,7 +62,14 @@ public class Controller {
 
                 if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
                     unoModel.currentRound.drawCard(1);
+
+
+
                     unoGUI.wildCardGui();
+                    unoGUI.red.setText("Red");
+                    unoGUI.blue.setText("Blue");
+                    unoGUI.yellow.setText("Yellow");
+                    unoGUI.green.setText("Green");
                     unoGUI.redWildCardButtonListener(new PlayRedWildCard());
                     unoGUI.blueWildCardButtonListener(new PlayBlueWildCard());
                     unoGUI.yellowWildCardButtonListener(new PlayYellowWildCard());
@@ -70,7 +77,14 @@ public class Controller {
                     unoGUI.discardLabel.setVisible(false);
                 } else if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
                     unoModel.currentRound.drawCard(3);
+
+
+
                     unoGUI.wildCardGui();
+                    unoGUI.red.setText("Red");
+                    unoGUI.blue.setText("Blue");
+                    unoGUI.yellow.setText("Yellow");
+                    unoGUI.green.setText("Green");
                     unoGUI.redWildCardButtonListener(new PlayRedWildCard());
                     unoGUI.blueWildCardButtonListener(new PlayBlueWildCard());
                     unoGUI.yellowWildCardButtonListener(new PlayYellowWildCard());
@@ -81,7 +95,14 @@ public class Controller {
 
             if (unoModel.currentRound.Remove_card.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD)){
                 unoModel.currentRound.drawCard(1);
+
+
                 unoGUI.wildCardGui();
+                unoGUI.red.setText("Orange");
+                unoGUI.blue.setText("Teal");
+                unoGUI.yellow.setText("Purple");
+                unoGUI.green.setText("Pink");
+
                 unoGUI.redWildCardButtonListener(new PlayRedWildCard());
                 unoGUI.blueWildCardButtonListener(new PlayBlueWildCard());
                 unoGUI.yellowWildCardButtonListener(new PlayYellowWildCard());
@@ -221,10 +242,10 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if(unoModel.currentRound.darkmode){
+            if(Round.darkmode){
 
-                unoGUI.red.setText("Orange");
-                unoModel.currentRound.discard.peek().setColorLight("Orange");
+
+                unoModel.currentRound.discard.peek().setColorDark("Orange");
                 unoGUI.wildCardFrame.setVisible(false);
                 unoGUI.discardInfo(unoModel.currentRound.discard.peek());
                 unoGUI.discardLabel.setVisible(true);
@@ -247,10 +268,10 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if (unoModel.currentRound.darkmode) {
+            if (Round.darkmode) {
 
-                unoGUI.red.setText("Teal");
-                unoModel.currentRound.discard.peek().setColorLight("Orange");
+
+                unoModel.currentRound.discard.peek().setColorDark("Teal");
                 unoGUI.wildCardFrame.setVisible(false);
                 unoGUI.discardInfo(unoModel.currentRound.discard.peek());
                 unoGUI.discardLabel.setVisible(true);
@@ -271,10 +292,10 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if(unoModel.currentRound.darkmode){
+            if(Round.darkmode){
 
-                unoGUI.red.setText("Purple");
-                unoModel.currentRound.discard.peek().setColorLight("Purple");
+
+                unoModel.currentRound.discard.peek().setColorDark("Purple");
                 unoGUI.wildCardFrame.setVisible(false);
                 unoGUI.discardInfo(unoModel.currentRound.discard.peek());
                 unoGUI.discardLabel.setVisible(true);
@@ -299,10 +320,10 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if(unoModel.currentRound.darkmode){
+            if(Round.darkmode){
 
-                unoGUI.red.setText("Purple");
-                unoModel.currentRound.discard.peek().setColorLight("Purple");
+
+                unoModel.currentRound.discard.peek().setColorDark("Pink");
                 unoGUI.wildCardFrame.setVisible(false);
                 unoGUI.discardInfo(unoModel.currentRound.discard.peek());
                 unoGUI.discardLabel.setVisible(true);
