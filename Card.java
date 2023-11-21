@@ -153,6 +153,17 @@ public class Card {
        }
        return false;
     }
+    public boolean setColorDark(String newColor) {
+        for (ColorDark colors : ColorDark.values()){
+            // found the colour im looking for to set
+            if ((Objects.equals(newColor, colors.toString()))){
+                this.colorDark = colors;
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * TypeLight : return's the type on the light side of the card
      * @return TypeLight
