@@ -69,7 +69,6 @@ public class Controller {
                     unoGUI.greenWildCardButtonListener(new PlayGreenWildCard());
                     unoGUI.discardLabel.setVisible(false);
                 } else if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-                    System.out.println("IM GAY");
                     unoModel.currentRound.drawCard(3);
                     unoGUI.wildCardGui();
                     unoGUI.redWildCardButtonListener(new PlayRedWildCard());
@@ -79,6 +78,9 @@ public class Controller {
                     unoGUI.discardLabel.setVisible(false);
                 }
             }
+
+            unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
+            unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
         }
     }
 
@@ -188,8 +190,7 @@ public class Controller {
             wildCardLogic();
 
 //                try {
-                    unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
-                    unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+
                     if (unoModel.currentRound.checkWinner()){
 
                         JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "WINNER!!!", JOptionPane.INFORMATION_MESSAGE);
