@@ -13,12 +13,15 @@ public class Uno {
     private final int MAXSCORE = 500; // max score to win game
     protected static ArrayList<Player> players = new ArrayList<>(); // store all players in an array
     protected Round currentRound;
+    
+    protected Player gameWinner;
 
     /**
      * Constructor for the Uno class.
      * Initializes the list of players by allowing them to enter their names.
      */
     public Uno() {
+        this.gameWinner = null;
     }
 
     /**
@@ -30,6 +33,7 @@ public class Uno {
         // loop all players and check their score and compare with maxscore
         for (Player plr : players) {
             if (plr.getScore() >= MAXSCORE) {
+                gameWinner = plr; // player that wong the game
                 return true;
             }
         }
@@ -50,14 +54,8 @@ public class Uno {
      * begins a round a Uno
      */
     public void round(){
-        while(true){
-            currentRound = new Round(players);
-            currentRound.playRound();
-            if(this.winner()){
-                System.out.println("game has ended");
-                break;
-            }
-        }
+        currentRound = new Round(players);
+        currentRound.playRound();
     }
 
     /**
