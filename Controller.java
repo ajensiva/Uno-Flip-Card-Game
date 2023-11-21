@@ -189,7 +189,6 @@ public class Controller {
 
 //                try {
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
-
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                     if (unoModel.currentRound.checkWinner()){
 
