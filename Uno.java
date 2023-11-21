@@ -29,7 +29,7 @@ public class Uno {
      *
      * @return True if a player has a score greater than or equal to the maximum score; otherwise, false.
      */
-    public boolean winner() {
+    public boolean checkGameWon() {
         // loop all players and check their score and compare with maxscore
         for (Player plr : players) {
             if (plr.getScore() >= MAXSCORE) {
