@@ -56,7 +56,12 @@ public class UnoGUI {
 
     protected JPanel wildPanel;
 
-    protected JButton blue, red, yellow, green;
+    protected JButton blue = new JButton();
+    protected JButton red = new JButton();
+
+    protected JButton yellow = new JButton();
+
+    protected JButton green = new JButton();
 
 //-------------------------------------------DISCARD INFO-----------------------------------------
 
@@ -315,10 +320,6 @@ public class UnoGUI {
         JLabel wild_label = new JLabel("Pick a color?");
         wildPanel.add(wild_label);
 
-        red = new JButton("Red");
-        blue = new JButton("Blue");
-        yellow = new JButton("Yellow");
-        green = new JButton("Green");
 
         wildPanel.add(red);
         wildPanel.add(blue);
@@ -347,7 +348,7 @@ public class UnoGUI {
     public void discardInfo(Card card){
 
 
-        discardLabel.setText("Colour at top of discard: " + card.getColorLight().toString());
+        discardLabel.setText("Colour at top of discard: Light: " + card.getColorLight().toString() + " Dark: " + card.getColorDark().toString() );
 
 
         discardPanel.add(discardLabel);
