@@ -50,7 +50,7 @@ public class Controller {
             unoGUI.nextPlayer.setEnabled(true);
 
             if (!Round.darkmode) {
-                System.out.println("light mode");
+
 
                 if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) 
                     || unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
@@ -103,7 +103,6 @@ public class Controller {
                 }
 
             }
-        System.out.println("index: " + unoModel.currentRound.getCardtoPlayIndex());
         unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
         unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
         }
@@ -216,9 +215,7 @@ public class Controller {
 
             wildCardLogic();
 
-//                try {
 
-            //PERSON WON ROUND
                     if (unoModel.currentRound.checkWinner()){
                         JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "Won Round! ", JOptionPane.INFORMATION_MESSAGE);
                         System.out.println(unoModel.currentRound.roundWinner.getName() + " won the round, awarding pts...");
@@ -231,7 +228,6 @@ public class Controller {
                             JOptionPane.showMessageDialog(null, unoModel.gameWinner.getName(), "Won The Game! ", JOptionPane.INFORMATION_MESSAGE);
                         }
                         else{
-                            System.out.println("Starting new round...");
 
                             System.out.println(unoGUI.wildCardFrame);
                             if(unoGUI.wildCardFrame != null) {
@@ -254,9 +250,7 @@ public class Controller {
                         }
 
                     }
-//                } catch (IndexOutOfBoundsException index) {
-//                    System.out.println("Warning index is volatile" + index);
-//                }
+
             }
         }
 
@@ -384,21 +378,18 @@ public class Controller {
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
 
                     if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-                        System.out.println("TEST THIS");
                         unoGUI.discardInfo(unoModel.currentRound.discard.peek());
-                        System.out.println("I LOVED HER");
                     }
                     if ((bot.allenCardPlayed !=  null) && bot.allenCardPlayed.getTypeLight() == Card.TypeLight.REVERSE || (bot.allenCardPlayed !=  null) && bot.allenCardPlayed.getTypeDark() == Card.TypeDark.REVERSE) {
+
                         Collections.reverse(unoGUI.playerInputFields);
                     }
 
-                    System.out.println("ALLEN PLAYED " + bot.getAllenPlayCard());
-                    System.out.println("Discard " + unoModel.currentRound.discard.peek());
+
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
 
                 }
                 else{
-                    System.out.println("allen drew a card: " + unoModel.currentRound.deck.peek());
                     unoModel.currentRound.drawCurrPlayer();
                     unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
                     setHandPanelInteractable(false);
@@ -406,7 +397,6 @@ public class Controller {
                 }
 
 
-//                unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                 unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
                 return;
             }

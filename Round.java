@@ -22,7 +22,7 @@ public class Round {
     public static boolean darkmode = false; // if true then we're playing dark sides of card
 
     protected Player currentPlayer; // current player that's playing
-    private final int DEALTCARDS = 1; // max number of cards to be delt
+    private final int DEALTCARDS = 20; // max number of cards to be delt
 
     protected int playCardIndex;
 
@@ -72,7 +72,7 @@ public class Round {
     }
 
     public void setPlayCardIndex(int PlayCardIndex) {
-        //System.out.println("IN ROUND:" + PlayCardIndex);
+
         this.playCardIndex = PlayCardIndex;
 
     }
@@ -94,9 +94,7 @@ public class Round {
      * @return
      */
     public Card getPlayCard() {
-        //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
 
-//        System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
         return currentPlayer.getHand().getCard(getCardtoPlayIndex());
     }
 
@@ -126,7 +124,6 @@ public class Round {
     public boolean cardPlayedLogic() {
         if ((checkCard(getPlayCard(), discard.peek()))) {
 
-            //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
 
             // light type cards only
             if (!(darkmode)) {
