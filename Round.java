@@ -48,7 +48,7 @@ public class Round {
         // clear old hand if it exists
         for (Player plr : players) {
             plr.getHand().clearHand();
-            ;
+
         }
         distributeHand();
         makeDiscard();
