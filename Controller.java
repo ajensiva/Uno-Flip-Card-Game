@@ -235,8 +235,6 @@ public class Controller {
 
                             System.out.println(unoGUI.wildCardFrame);
                             if(unoGUI.wildCardFrame != null) {
-
-                                System.out.println("I AM DISPOSING");
                                 unoGUI.wildCardFrame.dispose();
                             }
                             unoModel.round();
