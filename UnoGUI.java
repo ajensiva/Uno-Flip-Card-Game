@@ -523,13 +523,13 @@ public class UnoGUI {
      */
     public void updatePlayerCardsRemove(int buttonToRemove, Hand hand) {
 
+        handPanel.remove(playerCards.get(buttonToRemove));
+        playerCards.remove(buttonToRemove);
+
         for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
             button.setName(Integer.toString(i));
         }
-
-        playerCards.remove(buttonToRemove);
-        handPanel.remove(buttonToRemove);
     }
 
 

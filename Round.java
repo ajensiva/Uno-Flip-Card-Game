@@ -22,7 +22,7 @@ public class Round {
     public static boolean darkmode = false; // if true then we're playing dark sides of card
 
     protected Player currentPlayer; // current player that's playing
-    private final int DEALTCARDS = 2; // max number of cards to be delt
+    private final int DEALTCARDS = 7; // max number of cards to be delt
 
     protected int playCardIndex;
 
@@ -123,7 +123,6 @@ public class Round {
     public boolean cardPlayedLogic() {
         if ((checkCard(getPlayCard(), discard.peek()))) {
 
-            System.out.println("test");
             //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
 
             // light type cards only
@@ -175,8 +174,6 @@ public class Round {
             }
 
             Remove_card = currentPlayer.getHand().removeCard(getPlayCard());
-
-
 
             discard.add(Remove_card);
 
@@ -269,7 +266,7 @@ public class Round {
 
             // for light side checks
             if (darkmode == false) {
-                
+
                 // if its a normal card, do a normal OR check; else check for wild card logic
                 if (is_light_wildcard) {
                     //WILDTWO
@@ -277,17 +274,15 @@ public class Round {
                         return check_colour_light && check_type_light;
                     } else {
                         return check_colour_light || check_type_light;
-
                     }
 
                 }
                 //CHECKS NORMAL LIGHT MODE CARDS
                 else {
-                    System.out.println("test");
-                    System.out.println(check_colour_light || check_type_light);
                     return check_colour_light || check_type_light;
                 }
             } else {
+
                 // if its a normal card, do a normal OR check; else check for wild card logic
                 if (is_dark_wildcard) {
 
