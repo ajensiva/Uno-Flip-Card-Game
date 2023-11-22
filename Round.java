@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 import java.util.Stack;
-
-import java.util.Scanner;
 import java.util.Collections;
 
 /**
@@ -20,16 +18,16 @@ public class Round {
     protected Deck deck; // main deck of the game
     protected Stack<Card> discard; // discard cards stack
 
-    public static boolean darkmode = true; // if true then we're playing dark sides of card
+    public static boolean darkmode = false; // if true then we're playing dark sides of card
 
     protected Player currentPlayer; // current player that's playing
-    private final int DEALTCARDS = 20; // max number of cards to be delt
+    private final int DEALTCARDS = 7; // max number of cards to be delt
 
     protected int playCardIndex;
 
     protected int playerIndex = 0;
 
-    protected Card Remove_card;
+    protected Card removeCard;
 
     protected Player roundWinner;
 
@@ -42,6 +40,7 @@ public class Round {
     public Round(ArrayList<Player> players) {
         // set players, create a new deck and discard stack... then distribute the cards
         // to the players
+        this.playerIndex = 0;
         this.players = players;
         deck = new Deck();
         discard = new Stack<Card>();
@@ -76,9 +75,7 @@ public class Round {
     }
 
     public void setPlayCardIndex(int PlayCardIndex) {
-
         this.playCardIndex = PlayCardIndex;
-
     }
 
     /**
@@ -97,27 +94,22 @@ public class Round {
      * @return
      */
     public Card getPlayCard() {
-
         return currentPlayer.getHand().getCard(getCardtoPlayIndex());
     }
 
     /**
      * make discard stack
      */
-
     public void makeDiscard() {
         if (deck.peek().getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-
             deck = new Deck();
             discard.add(deck.pop());
         } else {
             discard.add(deck.pop());
-
         }
     }
 
     public void nextPlayer() {
-
         playerIndex = (playerIndex + 1) % players.size();
         currentPlayer = players.get(playerIndex);
     }
@@ -148,9 +140,7 @@ public class Round {
 
             }
             if (darkmode) {
-
                 if (getPlayCard().getTypeDark() == Card.TypeDark.DRAW_FIVE) {
-
                     drawCard(5); // give 2 new cards
                 }
                 if (getPlayCard().getTypeDark() == Card.TypeDark.SKIP_EVERYONE) {
@@ -161,36 +151,28 @@ public class Round {
                     playerIndex -= 1;
                     reverse();
                 }
-
                 if (getPlayCard().getTypeDark() == Card.TypeDark.FLIP) {
-
                     darkmode = !(darkmode);
-
                 }
                 if (getPlayCard().getTypeDark() == Card.TypeDark.WILD_DRAW_COLOR) {
-
                     boolean flag = true;
 
-                    while(flag){
-
+                    while (flag) {
                         if (deck.peek().getColorDark().equals(getPlayCard().getColorDark())) {
                             flag = false;
-                        }
-                        else {
+                        } else {
                             drawCard(1);
                         }
-
                     }
-
                 }
             }
 
-            Remove_card = currentPlayer.getHand().removeCard(getPlayCard());
-
-            discard.add(Remove_card);
+            removeCard = currentPlayer.getHand().removeCard(getPlayCard());
+            discard.add(removeCard);
 
             return true;
         }
+
         return false;
     }
 
@@ -209,9 +191,7 @@ public class Round {
     // draws one card from the deck and gives to current player! and RETURN the card
     // that was just popped
     public void drawCurrPlayer() {
-
         currentPlayer.getHand().addCard(deck.pop());
-
     }
 
     /**
@@ -258,13 +238,16 @@ public class Round {
         if (darkmode == false) {
 
             // CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
-            if(card1.getColorLight() == null || card2.getColorLight() == null) {return true;}
+            if (card1.getColorLight() == null || card2.getColorLight() == null) {
+                return true;
+            }
 
             // checks
             boolean check_colour_light = card1.getColorLight().equals(card2.getColorLight());
             boolean check_type_light = card1.getTypeLight().equals(card2.getTypeLight());
             // check to see if it's a wild card that was played
-            boolean is_light_wildcard = card1.getTypeLight().equals(Card.TypeLight.WILDTWO) || card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR);
+            boolean is_light_wildcard = card1.getTypeLight().equals(Card.TypeLight.WILDTWO)
+                    || card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR);
 
             // if its a normal card, do a normal OR check; else check for wild card logic
             if (is_light_wildcard) {
@@ -283,13 +266,16 @@ public class Round {
         } else {
 
             // CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
-            if(card1.getColorDark() == null || card2.getColorDark() == null) {return true;}
+            if (card1.getColorDark() == null || card2.getColorDark() == null) {
+                return true;
+            }
 
             // checks
             boolean check_colour_dark = card1.getColorDark().equals(card2.getColorDark());
             boolean check_type_dark = card1.getTypeDark().equals(card2.getTypeDark());
             // check to see if it's a wild card that was played
-            boolean is_dark_wildcard = card1.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD) || card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR);
+            boolean is_dark_wildcard = card1.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD)
+                    || card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR);
 
             // if its a normal card, do a normal OR check; else check for wild card logic
             if (is_dark_wildcard) {
