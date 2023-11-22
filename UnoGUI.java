@@ -26,7 +26,7 @@ public class UnoGUI {
     protected JButton addBot = new JButton("ADD BOT");
     private String[] botNames = {
             "Malik", "Jasmine", "Jamal", "Keisha", "Marcus",
-            "LaToya", "Andre", "Aaliyah", "Tyrone", "Ebony","Emily", "Michael", "Emma", "Christopher", "Olivia",
+            "LaToya", "Andre", "Aaliyah", "Tyrone", "Ebony", "Emily", "Michael", "Emma", "Christopher", "Olivia",
             "Jacob", "Ava", "Matthew", "Sophia", "Nicholas"
     };
     protected JPanel startMenuPanel = new JPanel();
@@ -55,7 +55,7 @@ public class UnoGUI {
 
     private JLabel roundPoints;
 
-    //---------------WILD CARD GUI-----------------
+    // ---------------WILD CARD GUI-----------------
 
     protected Dialog wildCardDialog;
 
@@ -68,12 +68,12 @@ public class UnoGUI {
 
     protected JButton green = new JButton();
 
-//-------------------------------------------DISCARD INFO-----------------------------------------
+    // -------------------------------------------DISCARD
+    // INFO-----------------------------------------
 
     JLabel discardLabel = new JLabel();
 
     JPanel discardPanel = new JPanel();
-
 
     /**
      * Constructor for UnoGUI class.
@@ -85,6 +85,7 @@ public class UnoGUI {
         startMenu();
         setStartMenuVisible(true);
     }
+
     /**
      * Sets up the start menu frame and components.
      */
@@ -150,8 +151,6 @@ public class UnoGUI {
         addBot.setFont(new Font("Arial", Font.BOLD, 16)); // Larger font for the button
         startMenuPanel.add(addBot, constraints);
 
-
-
         startMenuFrame.add(startMenuPanel);
     }
 
@@ -191,7 +190,6 @@ public class UnoGUI {
             constraints.gridy = numFields + 3;
             startMenuPanel.add(addBot, constraints);
 
-
             // Update the y position for "Add Player" button
             constraints.gridy = numFields + 2;
             startMenuPanel.add(addPlayer, constraints);
@@ -221,7 +219,7 @@ public class UnoGUI {
 
             // Define the range (e.g., between 1 and 100)
             int minRange = 0;
-            int maxRange = botNames.length-1;
+            int maxRange = botNames.length - 1;
 
             // Generate a random integer within the specified range
             int randomInRange = random.nextInt(maxRange - minRange + 1) + minRange;
@@ -252,11 +250,12 @@ public class UnoGUI {
         }
     }
 
-    public void reboot(){
+    public void reboot() {
         rootFrame.dispose();
 
         startGame();
     }
+
     /**
      * Sets the visibility of the start menu frame.
      *
@@ -273,7 +272,6 @@ public class UnoGUI {
      */
     public void startGame() {
         playerCards = new ArrayList<JButton>();
-
 
         // root frame
         rootFrame = new JFrame();
@@ -314,7 +312,6 @@ public class UnoGUI {
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         setstartGameVisible(true);
-
 
     }
 
@@ -362,10 +359,9 @@ public class UnoGUI {
 
     }
 
-    public void setstartGameVisible(boolean flag){
+    public void setstartGameVisible(boolean flag) {
 
         rootFrame.setVisible(flag);
-
 
     }
 
@@ -395,8 +391,6 @@ public class UnoGUI {
         playerCards.clear();
     }
 
-
-
     /**
      * Adds the "Next Player" button to the user interface.
      */
@@ -418,13 +412,12 @@ public class UnoGUI {
 
     }
 
-
     /**
      * Displays the name of the current player in the user interface.
      *
      * @param currentPlayer The index of the current player.
      */
-    public void displayCurrentPlayer(int currentPlayer){
+    public void displayCurrentPlayer(int currentPlayer) {
         display_current_player.setFont(new Font("Arial", Font.BOLD, 12));
         display_current_player.setText("The current player: " + playerInputFields.get(currentPlayer).getText());
     }
@@ -465,14 +458,14 @@ public class UnoGUI {
         mainPanel.add(buttonPanel);
         updateDiscard(Card.DECK_FILE_NAME);
     }
+
     /**
      * Updates the discard button with the specified file path.
      *
      * @param file_path The file path of the card to display on the discard button.
      */
-    public void updateDiscard(String file_path){
+    public void updateDiscard(String file_path) {
         buildDiscardbutton.setSize(100, 125); // Set a fixed size for the discard button
-
 
         ImageIcon image = new ImageIcon(file_path);
         buildDiscardbutton.setIcon(image);
@@ -488,6 +481,7 @@ public class UnoGUI {
         buildDiscardbutton.setContentAreaFilled(false);
         buildDiscardbutton.setBorderPainted(false);
     }
+
     /**
      * Builds the hand panel in the user interface.
      */
@@ -498,9 +492,7 @@ public class UnoGUI {
         handPanel.setLocation(0, 275);
         mainPanel.add(handPanel);
 
-
         handPanel.setLayout(new BoxLayout(handPanel, BoxLayout.X_AXIS));
-
 
         Scrollpane = new JScrollPane(handPanel);
 
@@ -508,9 +500,7 @@ public class UnoGUI {
 
         Scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
-
         rootFrame.add(Scrollpane, BorderLayout.SOUTH);
-
 
     }
 
@@ -527,8 +517,12 @@ public class UnoGUI {
         cardButton.setPreferredSize(new Dimension(100, 125));
         int width = cardButton.getWidth();
         int height = cardButton.getHeight();
-        if (width == 0) {width = 100;}
-        if (height == 0) {height = 125;}
+        if (width == 0) {
+            width = 100;
+        }
+        if (height == 0) {
+            height = 125;
+        }
         ImageIcon resizedIcon = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
         cardButton.setIcon(resizedIcon);
 
@@ -547,11 +541,9 @@ public class UnoGUI {
      * Removes the specified button representing a card from the user interface.
      *
      * @param buttonToRemove The number representing the card to remove.
-     * @param hand          The hand from which the card is removed.
+     * @param hand           The hand from which the card is removed.
      */
     public void updatePlayerCardsRemove(int buttonToRemove, Hand hand) {
-
-
 
         for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
@@ -562,9 +554,8 @@ public class UnoGUI {
         playerCards.remove(buttonToRemove);
     }
 
-
-    //-----------------------------------ACTION LISTENERS---------------------------------------------------------------
-
+    // -----------------------------------ACTION
+    // LISTENERS---------------------------------------------------------------
 
     public void addUnoButtonListener(ActionListener listenforUnoPressed) {
         UnoButton.addActionListener(listenforUnoPressed);
@@ -606,14 +597,11 @@ public class UnoGUI {
 
         playGame.addActionListener(listenforStartGame);
 
-
     }
-
 
     public void addBotListener(ActionListener listenforBot) {
 
         addBot.addActionListener(listenforBot);
-
 
     }
 

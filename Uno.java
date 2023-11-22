@@ -2,16 +2,19 @@ import java.util.ArrayList;
 
 /**
  * Uno Class: Used to start and manage Uno card game.
- * This class initializes the game, allows players to enter their names, and manages rounds.
+ * This class initializes the game, allows players to enter their names, and
+ * manages rounds.
+ * 
  * @author Jason, Ajen, Arun, Zarif
  * @version 2.0
  */
+
 public class Uno {
 
     private final int MAXSCORE = 500; // max score to win game
     protected static ArrayList<Player> players = new ArrayList<>(); // store all players in an array
     protected Round currentRound;
-    
+
     protected Player gameWinner;
 
     /**
@@ -25,7 +28,8 @@ public class Uno {
     /**
      * Checks if a player has won the game.
      *
-     * @return True if a player has a score greater than or equal to the maximum score; otherwise, false.
+     * @return True if a player has a score greater than or equal to the maximum
+     *         score; otherwise, false.
      */
     public boolean checkGameWon() {
         // loop all players and check their score and compare with maxscore
@@ -39,32 +43,23 @@ public class Uno {
     }
 
     /**
-     * Prints the names of the players in the game.
-     */
-    public void printPlayers() {
-        for (Player player : players) {
-            System.out.println(player.getName());
-        }
-    }
-
-
-    /**
      * begins a round a Uno
      */
-    public void round(){
+    public void round() {
         currentRound = new Round(players);
         currentRound.playRound();
     }
 
     /**
      * Adds a player to the game model
+     * 
      * @param name
      */
-    public void addPlayer(String name, boolean isBot){
-        if(isBot){
+    public void addPlayer(String name, boolean isBot) {
+        if (isBot) {
             AllenAI bot = new AllenAI(name);
             players.add(bot);
-        }else{
+        } else {
             Player player = new Player(name);
             players.add(player);
         }
