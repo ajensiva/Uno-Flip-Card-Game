@@ -231,28 +231,16 @@ public class Controller {
                         }
                         else{
                             System.out.println("Starting new round...");
-
-
                             unoModel.round();
-
-                            unoGUI.reboot();
-
                             unoGUI.clearPlayerCards();
-
                             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
                                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
                             }
-
                             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
                             unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+                            unoGUI.setStartMenuVisible(false);
                             unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
-
-                            unoGUI.addBuildDeckListener(new UpdateDeckListener());
-                            unoGUI.addNextPlayerListener(new NextPlayerButtonListener());
-
                         }
-
-
 
                     }
 //                } catch (IndexOutOfBoundsException index) {
