@@ -215,12 +215,5 @@ public class Card {
         return sb.toString();
     }
     // test
-    public static void main(String[] args) {
-        //Card.ColorLight colorLight = Card.ColorLight.values()[3];
-        Card.TypeLight typeLight = Card.TypeLight.values()[12];
-        // Create a new card with the generated values.
 
-        Card card = new Card(null, typeLight, null, null);
-        System.out.println(card.getImageFilePath());
-    }
 }
