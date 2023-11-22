@@ -111,9 +111,9 @@ public class Controller {
                 }
 
             }
-        }
         unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
         unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+        }
     }
 
     /**

@@ -252,12 +252,11 @@ public class Round {
 
         //CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
         if (card1.getColorLight() == null || card1.getColorDark() == null){
-
             return true;
         }
 
         else {
-
+            
             boolean check_colour_light = card1.getColorLight().equals(card2.getColorLight());
             boolean check_colour_dark = card1.getColorDark().equals(card2.getColorDark());
 
@@ -270,9 +269,9 @@ public class Round {
 
             // for light side checks
             if (darkmode == false) {
+                
                 // if its a normal card, do a normal OR check; else check for wild card logic
                 if (is_light_wildcard) {
-
                     //WILDTWO
                     if (card2.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
                         return check_colour_light && check_type_light;
@@ -284,6 +283,8 @@ public class Round {
                 }
                 //CHECKS NORMAL LIGHT MODE CARDS
                 else {
+                    System.out.println("test");
+                    System.out.println(check_colour_light || check_type_light);
                     return check_colour_light || check_type_light;
                 }
             } else {
