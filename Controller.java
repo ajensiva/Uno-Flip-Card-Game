@@ -85,7 +85,6 @@ public class Controller {
                 }
 
             } else{
-                System.out.println("dark mode");
                 if (unoModel.currentRound.Remove_card.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD)) {
                     unoModel.currentRound.drawCard(1);
                     unoGUI.wildCardGui();
@@ -211,14 +210,11 @@ public class Controller {
 
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
             
-            System.out.println(unoModel.currentRound.getPlayCard());
-
             wildCardLogic();
 
 
                     if (unoModel.currentRound.checkWinner()){
                         JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "Won Round! ", JOptionPane.INFORMATION_MESSAGE);
-                        System.out.println(unoModel.currentRound.roundWinner.getName() + " won the round, awarding pts...");
 
                         unoModel.currentRound.roundWinner.setScore(unoModel.currentRound.roundWinner.getScore() + unoModel.currentRound.getTotalPoints());
 
@@ -229,7 +225,6 @@ public class Controller {
                         }
                         else{
 
-                            System.out.println(unoGUI.wildCardFrame);
                             if(unoGUI.wildCardFrame != null) {
                                 unoGUI.wildCardFrame.dispose();
                             }
@@ -372,7 +367,6 @@ public class Controller {
                 unoModel.currentRound.nextPlayer();
                 currentIndex = unoModel.currentRound.playerIndex;
                 AllenAI bot = (AllenAI) playersList.get(unoModel.currentRound.playerIndex);
-                System.out.println(bot.getHand());
                 unoGUI.displayCurrentPlayer(currentIndex);
                 if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())){
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
