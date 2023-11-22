@@ -170,6 +170,7 @@ public class Controller {
             unoModel.round();
             unoGUI.startGame();
             unoGUI.clearPlayerCards();
+            unoGUI.updateLeaderboard(unoModel.currentRound.getPlayers());
 
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
@@ -225,9 +226,28 @@ public class Controller {
                 // PERSON WON GAME
                 if (unoModel.checkGameWon()) {
 
-                    JOptionPane.showMessageDialog(null, unoModel.gameWinner.getName(), "Won The Game! ",
-                            JOptionPane.INFORMATION_MESSAGE);
-                } else {
+                            JOptionPane.showMessageDialog(null, unoModel.gameWinner.getName(), "Won The Game! ", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        else{
+
+                            if(unoGUI.wildCardDialog != null) {
+                                unoGUI.wildCardDialog.dispose();
+                            }
+                            unoModel.round();
+                            unoGUI.clearPlayerCards();
+                            for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
+                                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                            }
+                            unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
+                            unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+                            unoGUI.setStartMenuVisible(false);
+                            unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
+
+
+                            unoGUI.nextPlayer.doClick();
+
+
+                        }
 
                     if (unoGUI.wildCardFrame != null) {
                         unoGUI.wildCardFrame.dispose();
@@ -262,14 +282,14 @@ public class Controller {
             if (Round.darkmode) {
 
                 unoModel.currentRound.discard.peek().setColorDark("Orange");
-                unoGUI.wildCardFrame.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.wildCardDialog.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
 
             } else {
                 unoModel.currentRound.discard.peek().setColorLight("Red");
-                unoGUI.wildCardFrame.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.wildCardDialog.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
             }
 
@@ -286,14 +306,14 @@ public class Controller {
             if (Round.darkmode) {
 
                 unoModel.currentRound.discard.peek().setColorDark("Teal");
-                unoGUI.wildCardFrame.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.wildCardDialog.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
 
             } else {
                 unoModel.currentRound.discard.peek().setColorLight("Blue");
-                unoGUI.wildCardFrame.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.wildCardDialog.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
             }
         }
@@ -309,15 +329,15 @@ public class Controller {
             if (Round.darkmode) {
 
                 unoModel.currentRound.discard.peek().setColorDark("Purple");
-                unoGUI.wildCardFrame.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.wildCardDialog.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
 
             } else {
 
                 unoModel.currentRound.discard.peek().setColorLight("Yellow");
-                unoGUI.wildCardFrame.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.wildCardDialog.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
 
             }
@@ -335,15 +355,15 @@ public class Controller {
             if (Round.darkmode) {
 
                 unoModel.currentRound.discard.peek().setColorDark("Pink");
-                unoGUI.wildCardFrame.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.wildCardDialog.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
 
             } else {
 
                 unoModel.currentRound.discard.peek().setColorLight("Green");
-                unoGUI.wildCardFrame.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                unoGUI.wildCardDialog.setVisible(false);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
             }
         }
@@ -369,9 +389,8 @@ public class Controller {
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(),
                             unoModel.currentRound.currentPlayer.getHand());
 
-                    if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO)
-                            || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-                        unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                    if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                        unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                     }
                     if ((bot.allenCardPlayed != null) && bot.allenCardPlayed.getTypeLight() == Card.TypeLight.REVERSE
                             || (bot.allenCardPlayed != null)
