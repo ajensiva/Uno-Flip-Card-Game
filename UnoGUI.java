@@ -346,16 +346,9 @@ public class UnoGUI {
      */
 
     public void discardInfo(Card card){
-
-
-        discardLabel.setText("Colour at top of discard: Light: " + card.getColorLight().toString() + " Dark: " + card.getColorDark().toString() );
-
-
+        discardLabel.setText("Colour at top of discard: Light: " + card.getColorLight().toString() + " Dark: " + card.getColorDark().toString());
         discardPanel.add(discardLabel);
-
         mainPanel.add(discardPanel);
-
-
     }
 
     /**
