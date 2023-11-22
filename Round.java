@@ -248,7 +248,7 @@ public class Round {
 
 
         //CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
-        if (card1.getColorLight() == null || card1.getColorDark() == null){
+        if (card1.getColorLight() == null || card1.getColorDark() == null || card2.getColorLight() == null || card2.getColorDark() == null){
             return true;
         }
 

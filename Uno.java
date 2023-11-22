@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Uno Class: Used to start and manage Uno card game.
@@ -64,7 +62,7 @@ public class Uno {
      */
     public void addPlayer(String name, boolean isBot){
         if(isBot){
-            Allen bot = new Allen(name);
+            AllenAI bot = new AllenAI(name);
             players.add(bot);
         }else{
             Player player = new Player(name);

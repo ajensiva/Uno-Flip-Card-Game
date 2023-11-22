@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Allen extends Player{
+public class AllenAI extends Player{
     /**
      * Constructor to create a new player with the given name.
      *
@@ -11,7 +11,7 @@ public class Allen extends Player{
 
     Card allenCardPlayed;
     
-    public Allen(String name) {
+    public AllenAI(String name) {
         super(name);
     }
 
@@ -55,6 +55,34 @@ public class Allen extends Player{
             if (colour == 3){
                 allenCards.get(index).setColorLight("Green");
                 currentRound.discard.peek().setColorLight("Green");
+
+            }
+
+
+        }
+
+        if (allenCards.get(index).getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD) || allenCards.get(index).getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR)) {
+            Random rand = new Random();
+            int colour = rand.nextInt(4);
+
+            if (colour == 0) {
+                allenCards.get(index).setColorLight("Orange");
+                currentRound.discard.peek().setColorLight("Orange");
+
+            }
+            if (colour == 1) {
+                allenCards.get(index).setColorLight("Teal");
+                currentRound.discard.peek().setColorLight("Teal");
+
+            }
+            if (colour == 2) {
+                allenCards.get(index).setColorLight("Purple");
+                currentRound.discard.peek().setColorLight("Purple");
+
+            }
+            if (colour == 3) {
+                allenCards.get(index).setColorLight("Pink");
+                currentRound.discard.peek().setColorLight("Pink");
 
             }
         }

@@ -1,14 +1,7 @@
-import java.awt.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.lang.reflect.Array;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -365,26 +358,28 @@ public class Controller {
             int currentIndex = unoModel.currentRound.playerIndex;
             int nextIndex = (currentIndex + 1) % playersList.size();
 
-            if(playersList.get(nextIndex) instanceof Allen){
+            if(playersList.get(nextIndex) instanceof AllenAI){
                 unoModel.currentRound.nextPlayer();
                 currentIndex = unoModel.currentRound.playerIndex;
-                Allen bot = (Allen) playersList.get(unoModel.currentRound.playerIndex);
+                AllenAI bot = (AllenAI) playersList.get(unoModel.currentRound.playerIndex);
                 System.out.println(bot.getHand());
                 unoGUI.displayCurrentPlayer(currentIndex);
                 if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())){
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
 
                     if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-                        //unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                       unoGUI.discardInfo(unoModel.currentRound.discard.peek());
                     }
+                    if ((bot.allenCardPlayed !=  null) && bot.allenCardPlayed.getTypeLight() == Card.TypeLight.REVERSE || (bot.allenCardPlayed !=  null) && bot.allenCardPlayed.getTypeDark() == Card.TypeDark.REVERSE) {
+                        Collections.reverse(unoGUI.playerInputFields);
+                    }
+
                 }
                 else{
-                    System.out.println("allen drew a card");
                     unoModel.currentRound.drawCurrPlayer();
                     unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
                 }
                 unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
-                System.out.println("Discard: " + unoModel.currentRound.discard.peek());
                 unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
                 return;
             }
@@ -392,7 +387,7 @@ public class Controller {
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
-            if ((unoModel.currentRound.Remove_card !=  null) && unoModel.currentRound.Remove_card.getTypeLight() == Card.TypeLight.REVERSE) {
+            if ((unoModel.currentRound.Remove_card !=  null) && unoModel.currentRound.Remove_card.getTypeLight() == Card.TypeLight.REVERSE || (unoModel.currentRound.Remove_card !=  null) && unoModel.currentRound.Remove_card.getTypeDark() == Card.TypeDark.REVERSE) {
                 Collections.reverse(unoGUI.playerInputFields);
             }
 
