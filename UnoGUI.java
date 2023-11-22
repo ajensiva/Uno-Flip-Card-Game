@@ -247,6 +247,12 @@ public class UnoGUI {
             startMenuPanel.repaint();
         }
     }
+
+    public void reboot(){
+        rootFrame.dispose();
+
+        startGame();
+    }
     /**
      * Sets the visibility of the start menu frame.
      *

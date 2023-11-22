@@ -22,7 +22,7 @@ public class Round {
     public static boolean darkmode = false; // if true then we're playing dark sides of card
 
     protected Player currentPlayer; // current player that's playing
-    private final int DEALTCARDS = 7; // max number of cards to be delt
+    private final int DEALTCARDS = 1; // max number of cards to be delt
 
     protected int playCardIndex;
 
