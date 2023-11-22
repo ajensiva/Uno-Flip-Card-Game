@@ -222,6 +222,7 @@ public class Controller {
                     if (unoModel.currentRound.checkWinner()){
                         JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "Won Round! ", JOptionPane.INFORMATION_MESSAGE);
                         System.out.println(unoModel.currentRound.roundWinner.getName() + " won the round, awarding pts...");
+
                         unoModel.currentRound.roundWinner.setScore(unoModel.currentRound.roundWinner.getScore() + unoModel.currentRound.getTotalPoints());
 
                         //PERSON WON GAME
@@ -240,6 +241,7 @@ public class Controller {
                             unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                             unoGUI.setStartMenuVisible(false);
                             unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
+                            unoGUI.nextPlayer.doClick();
                         }
 
                     }
