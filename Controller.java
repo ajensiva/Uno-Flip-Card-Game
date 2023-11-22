@@ -228,11 +228,28 @@ public class Controller {
                         if(unoModel.checkGameWon()){
 
                             JOptionPane.showMessageDialog(null, unoModel.gameWinner.getName(), "Won The Game! ", JOptionPane.INFORMATION_MESSAGE);
-                            unoGUI.setstartGameVisible(false);
                         }
                         else{
                             System.out.println("Starting new round...");
+
+
                             unoModel.round();
+
+                            unoGUI.reboot();
+
+                            unoGUI.clearPlayerCards();
+
+                            for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
+                                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                            }
+
+                            unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
+                            unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+                            unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
+
+                            unoGUI.addBuildDeckListener(new UpdateDeckListener());
+                            unoGUI.addNextPlayerListener(new NextPlayerButtonListener());
+
                         }
 
 
@@ -368,18 +385,29 @@ public class Controller {
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
 
                     if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-                       unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                        System.out.println("TEST THIS");
+                        unoGUI.discardInfo(unoModel.currentRound.discard.peek());
+                        System.out.println("I LOVED HER");
                     }
                     if ((bot.allenCardPlayed !=  null) && bot.allenCardPlayed.getTypeLight() == Card.TypeLight.REVERSE || (bot.allenCardPlayed !=  null) && bot.allenCardPlayed.getTypeDark() == Card.TypeDark.REVERSE) {
                         Collections.reverse(unoGUI.playerInputFields);
                     }
 
+                    System.out.println("ALLEN PLAYED " + bot.getAllenPlayCard());
+                    System.out.println("Discard " + unoModel.currentRound.discard.peek());
+                    unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+
                 }
                 else{
+                    System.out.println("allen drew a card: " + unoModel.currentRound.deck.peek());
                     unoModel.currentRound.drawCurrPlayer();
                     unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
+                    setHandPanelInteractable(false);
+                    unoGUI.nextPlayer.setEnabled(true);
                 }
-                unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+
+
+//                unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                 unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
                 return;
             }

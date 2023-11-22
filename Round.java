@@ -22,7 +22,7 @@ public class Round {
     public static boolean darkmode = false; // if true then we're playing dark sides of card
 
     protected Player currentPlayer; // current player that's playing
-    private final int DEALTCARDS = 7; // max number of cards to be delt
+    private final int DEALTCARDS = 1; // max number of cards to be delt
 
     protected int playCardIndex;
 
@@ -38,7 +38,7 @@ public class Round {
      *
      * @param players The list of players participating in the round.
      */
-    public Round(ArrayList<Player> players){
+    public Round(ArrayList<Player> players) {
         // set players, create a new deck and discard stack... then distribute the cards to the players
         this.players = players;
         deck = new Deck();
@@ -51,10 +51,10 @@ public class Round {
     /**
      * Distributes a fixed number of cards to each player's hand at the beginning of the round.
      */
-    public void distributeHand(){
+    public void distributeHand() {
         // loop for all "DELTCARDS" # of cards and give each player that many cards
-        for(int i = 0; i < DEALTCARDS; i++){
-            for (Player player : players){
+        for (int i = 0; i < DEALTCARDS; i++) {
+            for (Player player : players) {
                 player.getHand().addCard(deck.pop());
             }
         }
@@ -67,16 +67,16 @@ public class Round {
         return players;
     }
 
-    public void setPlayCardIndex(int PlayCardIndex){
+    public void setPlayCardIndex(int PlayCardIndex) {
         //System.out.println("IN ROUND:" + PlayCardIndex);
         this.playCardIndex = PlayCardIndex;
 
     }
 
 
-
     /**
      * Card to play index
+     *
      * @return
      */
 
@@ -86,9 +86,10 @@ public class Round {
 
     /**
      * Retreive the Card that was played
+     *
      * @return
      */
-    public Card getPlayCard(){
+    public Card getPlayCard() {
         //System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
 
 //        System.out.println(currentPlayer.getHand().getCard(getCardtoPlayIndex()));
@@ -99,25 +100,23 @@ public class Round {
      * make discard stack
      */
 
-    public void makeDiscard(){
-        if (deck.peek().getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)){
+    public void makeDiscard() {
+        if (deck.peek().getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
 
             deck = new Deck();
             discard.add(deck.pop());
-        }
-        else{
+        } else {
             discard.add(deck.pop());
 
         }
     }
 
 
-    public void nextPlayer(){
+    public void nextPlayer() {
 
         playerIndex = (playerIndex + 1) % players.size();
         currentPlayer = players.get(playerIndex);
     }
-
 
 
     public boolean cardPlayedLogic() {
@@ -127,7 +126,6 @@ public class Round {
 
             // light type cards only
             if (!(darkmode)) {
-                System.out.println("i said: " + getPlayCard().getTypeLight());
                 if (getPlayCard().getTypeLight() == Card.TypeLight.REVERSE) {
                     // reverse collection and decrement player index to get player before
                     playerIndex -= 1;
@@ -148,7 +146,7 @@ public class Round {
                 // same as WILD2 but draw 2 more
 
             }
-            if (darkmode){
+            if (darkmode) {
 
                 if (getPlayCard().getTypeDark() == Card.TypeDark.DRAW_FIVE) {
 
@@ -184,27 +182,23 @@ public class Round {
     }
 
 
-
     public void playRound() {
         currentPlayer = players.get(0);
     }
 
 
-    public String darkmode(boolean darkmode){
-        if (darkmode){
+    public String darkmode(boolean darkmode) {
+        if (darkmode) {
             return "Darkmode!";
-        }
-        else{
-            return  "Lightmode!";
+        } else {
+            return "Lightmode!";
         }
     }
 
     // draws one card from the deck and gives to current player! and RETURN the card that was just popped
-    public void drawCurrPlayer(){
+    public void drawCurrPlayer() {
 
         currentPlayer.getHand().addCard(deck.pop());
-
-
 
 
     }
@@ -214,10 +208,10 @@ public class Round {
      *
      * @param n The number of cards to draw.
      */
-    public void drawCard(int n){
+    public void drawCard(int n) {
         // loop for n times (draw n cards)
-        int nextPlayerIndex = (players.indexOf(currentPlayer)+1) % players.size(); // player that will draw cards
-        for(int i = 0; i < (n+1); i++){
+        int nextPlayerIndex = (players.indexOf(currentPlayer) + 1) % players.size(); // player that will draw cards
+        for (int i = 0; i < (n + 1); i++) {
             // give cards to the next player
             players.get(nextPlayerIndex).getHand().addCard(deck.pop());
         }
@@ -230,7 +224,7 @@ public class Round {
      * @param cardToPlay The index of the card to be played from the player's hand.
      * @return The card that was played.
      */
-    public Card playCard(int cardToPlay){
+    public Card playCard(int cardToPlay) {
         // find the card that's about to be played in player's hand
         Card addCard = currentPlayer.getHand().getCard(cardToPlay);
         discard.push(addCard); // add the card to the discard stack
@@ -248,12 +242,10 @@ public class Round {
 
 
         //CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
-        if (card1.getColorLight() == null || card1.getColorDark() == null || card2.getColorLight() == null || card2.getColorDark() == null){
+        if (card1.getColorLight() == null || card1.getColorDark() == null || card2.getColorLight() == null || card2.getColorDark() == null) {
             return true;
-        }
+        } else {
 
-        else {
-            
             boolean check_colour_light = card1.getColorLight().equals(card2.getColorLight());
             boolean check_colour_dark = card1.getColorDark().equals(card2.getColorDark());
 
@@ -306,7 +298,7 @@ public class Round {
     /**
      * Reverses the order of players in the game.
      */
-    public void reverse(){
+    public void reverse() {
         Collections.reverse(players);
     }
 
@@ -316,10 +308,10 @@ public class Round {
      *
      * @return True if a player has won, false otherwise.
      */
-    public boolean checkWinner(){
+    public boolean checkWinner() {
         // loop all players and check hand size
-        for (Player player: players) {
-            if(player.getHand().getSize() == 0) {
+        for (Player player : players) {
+            if (player.getHand().getSize() == 0) {
                 roundWinner = player;
                 return true;
             }
@@ -332,16 +324,28 @@ public class Round {
      *
      * @return The total points for the round.
      */
-    public int getTotalPoints(){
+    public int getTotalPoints() {
         int totalPoint = 0; //  sum of all player's cards' values
-        for(Player plr : players){
-            Hand hand = plr.getHand();
-            // get each invidiual card's value and add to sum
-            for(Card card : hand.getHandList()){
-                totalPoint += card.getValue();
+
+        if (!darkmode) {
+            for (Player plr : players) {
+                Hand hand = plr.getHand();
+                // get each invidiual card's value and add to sum
+                for (Card card : hand.getHandList()) {
+                    totalPoint += card.getTypeLight().getValue();
+                }
             }
+        } else {
+            for (Player plr : players) {
+                Hand hand = plr.getHand();
+                // get each invidiual card's value and add to sum
+                for (Card card : hand.getHandList()) {
+                    totalPoint += card.getTypeDark().getValue();
+                }
+
+            }
+
         }
         return totalPoint;
     }
-
 }
