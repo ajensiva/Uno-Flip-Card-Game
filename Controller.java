@@ -212,7 +212,6 @@ public class Controller {
             
             wildCardLogic();
 
-
                     if (unoModel.currentRound.checkWinner()){
                         JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "Won Round! ", JOptionPane.INFORMATION_MESSAGE);
 
