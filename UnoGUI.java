@@ -148,7 +148,6 @@ public class UnoGUI {
 
 
         startMenuFrame.add(startMenuPanel);
-        System.out.println(startMenuFrame.getContentPane());
     }
 
     /**
