@@ -239,14 +239,14 @@ public class Round {
         System.out.println("[CARD_1]: ColorDark: " + card1.getColorDark() + ", TypeDark: " + card1.getTypeDark());
         System.out.println("[CARD_2]: ColorDark: " + card2.getColorDark() + ", TypeDark: " + card2.getTypeDark());
 
-        if(!darkmode){
+        if(darkmode == false){
             // CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
             if(card1.getColorLight() == null || card2.getColorLight() == null) {return true;}
         }else{
             // CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
             if(card1.getColorDark() == null || card2.getColorDark() == null) {return true;}
         }
-        
+
         boolean check_colour_light = card1.getColorLight().equals(card2.getColorLight());
         boolean check_colour_dark = card1.getColorDark().equals(card2.getColorDark());
 
