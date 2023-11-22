@@ -52,20 +52,19 @@ public class Controller {
     public void wildCardLogic() {
 
         if (unoModel.currentRound.cardPlayedLogic() && !isPlayerLocked) {
-            System.out.println("entered logic block");
             isPlayerLocked = true;
             setHandPanelInteractable(false);
             unoGUI.nextPlayer.setEnabled(true);
 
             if (!Round.darkmode) {
                 System.out.println("light mode");
-                if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)
-                        || unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
 
+                if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) 
+                    || unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+                         
                     if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+                         
                         unoModel.currentRound.drawCard(1);
-
-
                         unoGUI.wildCardGui();
                         unoGUI.red.setText("Red");
                         unoGUI.blue.setText("Blue");
@@ -77,9 +76,8 @@ public class Controller {
                         unoGUI.greenWildCardButtonListener(new PlayGreenWildCard());
                         unoGUI.discardLabel.setVisible(false);
                     } else if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                        
                         unoModel.currentRound.drawCard(3);
-
-
                         unoGUI.wildCardGui();
                         unoGUI.red.setText("Red");
                         unoGUI.blue.setText("Blue");
@@ -92,6 +90,7 @@ public class Controller {
                         unoGUI.discardLabel.setVisible(false);
                     }
                 }
+
             } else{
                 System.out.println("dark mode");
                 if (unoModel.currentRound.Remove_card.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD)) {
@@ -111,6 +110,7 @@ public class Controller {
                 }
 
             }
+        System.out.println("index: " + unoModel.currentRound.getCardtoPlayIndex());
         unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
         unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
         }
