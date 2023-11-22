@@ -57,6 +57,34 @@ public class AllenAI extends Player{
                 currentRound.discard.peek().setColorLight("Green");
 
             }
+
+
+        }
+
+        if (allenCards.get(index).getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD) || allenCards.get(index).getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR)) {
+            Random rand = new Random();
+            int colour = rand.nextInt(4);
+
+            if (colour == 0) {
+                allenCards.get(index).setColorLight("Orange");
+                currentRound.discard.peek().setColorLight("Orange");
+
+            }
+            if (colour == 1) {
+                allenCards.get(index).setColorLight("Teal");
+                currentRound.discard.peek().setColorLight("Teal");
+
+            }
+            if (colour == 2) {
+                allenCards.get(index).setColorLight("Purple");
+                currentRound.discard.peek().setColorLight("Purple");
+
+            }
+            if (colour == 3) {
+                allenCards.get(index).setColorLight("Pink");
+                currentRound.discard.peek().setColorLight("Pink");
+
+            }
         }
         // play the card
         currentRound.setPlayCardIndex(index);

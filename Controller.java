@@ -372,11 +372,9 @@ public class Controller {
 //                        unoGUI.discardInfo(unoModel.currentRound.discard.peek());
 //*/
                     }
-                    if ((bot.allenCardPlayed !=  null) && bot.allenCardPlayed.getTypeLight() == Card.TypeLight.REVERSE) {
+                    if ((bot.allenCardPlayed !=  null) && bot.allenCardPlayed.getTypeLight() == Card.TypeLight.REVERSE || (bot.allenCardPlayed !=  null) && bot.allenCardPlayed.getTypeDark() == Card.TypeDark.REVERSE) {
                         Collections.reverse(unoGUI.playerInputFields);
                     }
-
-
 
                 }
                 else{
@@ -393,7 +391,7 @@ public class Controller {
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
-            if ((unoModel.currentRound.Remove_card !=  null) && unoModel.currentRound.Remove_card.getTypeLight() == Card.TypeLight.REVERSE) {
+            if ((unoModel.currentRound.Remove_card !=  null) && unoModel.currentRound.Remove_card.getTypeLight() == Card.TypeLight.REVERSE || (unoModel.currentRound.Remove_card !=  null) && unoModel.currentRound.Remove_card.getTypeDark() == Card.TypeDark.REVERSE) {
                 Collections.reverse(unoGUI.playerInputFields);
             }
 
