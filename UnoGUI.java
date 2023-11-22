@@ -3,6 +3,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -39,6 +40,10 @@ public class UnoGUI {
     private JPanel displayCurrentPlayerPanel = new JPanel();
 
     private JPanel nextPlayerButtonPanel = new JPanel();
+
+    private JPanel leaderboardPanel = new JPanel();
+
+    private JFrame leaderboardFrame = new JFrame("Leaderboard");
 
 
     protected ArrayList<JTextField> playerInputFields; // Array to store user inputs
@@ -298,11 +303,32 @@ public class UnoGUI {
         nextPlayer();
 
 
+
+        leaderboardFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
+        leaderboardFrame.setVisible(true);
+        leaderboardFrame.pack();
+        leaderboardFrame.add(leaderboardPanel);
+
+
         // clean up root frame
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         setstartGameVisible(true);
 
+
+    }
+
+    public void updateLeaderboard(ArrayList<Player> players) {
+        leaderboardPanel.removeAll();
+        leaderboardPanel.setLayout(new FlowLayout());
+
+
+        for (Player player : players) {
+            JLabel label = new JLabel("Player " + player.getName() + ":" + player.getScore());
+            leaderboardPanel.add(label);
+
+        }
+        leaderboardFrame.pack();
 
     }
 

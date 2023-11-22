@@ -168,6 +168,7 @@ public class Controller {
             unoModel.round();
             unoGUI.startGame();
             unoGUI.clearPlayerCards();
+            unoGUI.updateLeaderboard(unoModel.currentRound.getPlayers());
 
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
