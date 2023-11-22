@@ -44,6 +44,10 @@ public class Round {
         deck = new Deck();
         discard = new Stack<Card>();
         this.roundWinner = null;
+        // clear old hand if it exists
+        for(Player plr : players){
+            plr.getHand().clearHand();;
+        }
         distributeHand();
         makeDiscard();
     }
