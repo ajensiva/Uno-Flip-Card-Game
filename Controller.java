@@ -232,6 +232,13 @@ public class Controller {
                         }
                         else{
                             System.out.println("Starting new round...");
+
+                            System.out.println(unoGUI.wildCardFrame);
+                            if(unoGUI.wildCardFrame != null) {
+
+                                System.out.println("I AM DISPOSING");
+                                unoGUI.wildCardFrame.dispose();
+                            }
                             unoModel.round();
                             unoGUI.clearPlayerCards();
                             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
@@ -241,7 +248,11 @@ public class Controller {
                             unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                             unoGUI.setStartMenuVisible(false);
                             unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
+
+
                             unoGUI.nextPlayer.doClick();
+
+
                         }
 
                     }
