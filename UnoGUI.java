@@ -17,7 +17,7 @@ import java.util.Random;
 public class UnoGUI {
 
     protected int numFields;
-    protected JButton nextPlayer = new JButton("next Player");
+    protected JButton nextPlayer = new JButton("Next Player");
     protected JButton UnoButton = new JButton("UNO!!");
     protected JButton buildDeckbutton = new JButton();
     protected JButton buildDiscardbutton = new JButton();
@@ -57,7 +57,7 @@ public class UnoGUI {
 
     //---------------WILD CARD GUI-----------------
 
-    protected JFrame wildCardFrame;
+    protected Dialog wildCardDialog;
 
     protected JPanel wildPanel;
 
@@ -337,29 +337,28 @@ public class UnoGUI {
      */
     public void wildCardGui() {
         // test create wildcard pane
-        wildCardFrame = new JFrame();
-        wildCardFrame.setSize(100, 100);
+        wildCardDialog = new JDialog();
+        wildCardDialog.setTitle("Pick a color");
+        wildCardDialog.setResizable(false);
 
-        wildCardFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        wildCardFrame.setResizable(true);
+        Dimension buttonSize = new Dimension(90, 25);
 
-        wildPanel = new JPanel();
-        wildCardFrame.add(wildPanel);
-
-        wildPanel.setLayout(new GridBagLayout());
-
-        JLabel wild_label = new JLabel("Pick a color?");
-        wildPanel.add(wild_label);
+        red.setPreferredSize(buttonSize);
+        blue.setPreferredSize(buttonSize);
+        yellow.setPreferredSize(buttonSize);
+        green.setPreferredSize(buttonSize);
 
 
+        wildPanel = new JPanel(new GridLayout(1, 4));
         wildPanel.add(red);
         wildPanel.add(blue);
         wildPanel.add(yellow);
         wildPanel.add(green);
 
-        wildCardFrame.pack();
-        wildCardFrame.setVisible(true);
-
+        wildCardDialog.add(wildPanel);
+        wildCardDialog.pack();
+        wildCardDialog.setLocationRelativeTo(null);
+        wildCardDialog.setVisible(true);
 
     }
 
@@ -376,8 +375,12 @@ public class UnoGUI {
      * @param card The card to display in the discard information panel.
      */
 
-    public void discardInfo(Card card){
-        discardLabel.setText("Colour at top of discard: Light: " + card.getColorLight().toString() + " Dark: " + card.getColorDark().toString());
+    public void discardInfo(Card card, boolean isDarkMode){
+        if (isDarkMode) {
+            discardLabel.setText("Colour at top of discard: " + card.getColorDark().toString());
+        } else {
+            discardLabel.setText("Colour at top of discard: " + card.getColorLight().toString());
+        }
         discardPanel.add(discardLabel);
         mainPanel.add(discardPanel);
     }
