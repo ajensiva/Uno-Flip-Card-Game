@@ -239,6 +239,14 @@ public class Round {
         System.out.println("[CARD_1]: ColorDark: " + card1.getColorDark() + ", TypeDark: " + card1.getTypeDark());
         System.out.println("[CARD_2]: ColorDark: " + card2.getColorDark() + ", TypeDark: " + card2.getTypeDark());
 
+        if(!darkmode){
+            // CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
+            if(card1.getColorLight() == null || card2.getColorLight() == null) {return true;}
+        }else{
+            // CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
+            if(card1.getColorDark() == null || card2.getColorDark() == null) {return true;}
+        }
+        
         boolean check_colour_light = card1.getColorLight().equals(card2.getColorLight());
         boolean check_colour_dark = card1.getColorDark().equals(card2.getColorDark());
 
@@ -251,9 +259,6 @@ public class Round {
 
         // for light side checks
         if (darkmode == false) {
-
-            // CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
-            if(card1.getColorLight() == null || card2.getColorLight() == null) {return true;}
 
             // if its a normal card, do a normal OR check; else check for wild card logic
             if (is_light_wildcard) {
@@ -270,9 +275,6 @@ public class Round {
                 return check_colour_light || check_type_light;
             }
         } else {
-
-            // CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
-            if(card1.getColorDark() == null || card2.getColorDark() == null) {return true;}
 
             // if its a normal card, do a normal OR check; else check for wild card logic
             if (is_dark_wildcard) {
