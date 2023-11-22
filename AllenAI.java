@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Allen extends Player{
+public class AllenAI extends Player{
     /**
      * Constructor to create a new player with the given name.
      *
@@ -11,7 +11,7 @@ public class Allen extends Player{
 
     Card allenCardPlayed;
     
-    public Allen(String name) {
+    public AllenAI(String name) {
         super(name);
     }
 

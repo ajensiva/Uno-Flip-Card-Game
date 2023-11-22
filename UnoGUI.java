@@ -481,6 +481,7 @@ public class UnoGUI {
 
         Scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
+
         rootFrame.add(Scrollpane, BorderLayout.SOUTH);
 
 
@@ -523,13 +524,15 @@ public class UnoGUI {
      */
     public void updatePlayerCardsRemove(int buttonToRemove, Hand hand) {
 
-        handPanel.remove(playerCards.get(buttonToRemove));
-        playerCards.remove(buttonToRemove);
+
 
         for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
             button.setName(Integer.toString(i));
         }
+
+        handPanel.remove(playerCards.get(buttonToRemove));
+        playerCards.remove(buttonToRemove);
     }
 
 
