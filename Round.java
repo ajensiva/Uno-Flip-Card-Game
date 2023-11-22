@@ -20,7 +20,7 @@ public class Round {
     protected Deck deck; // main deck of the game
     protected Stack<Card> discard; // discard cards stack
 
-    public static boolean darkmode = false; // if true then we're playing dark sides of card
+    public static boolean darkmode = true; // if true then we're playing dark sides of card
 
     protected Player currentPlayer; // current player that's playing
     private final int DEALTCARDS = 20; // max number of cards to be delt
@@ -167,7 +167,22 @@ public class Round {
                     darkmode = !(darkmode);
 
                 }
+                if (getPlayCard().getTypeDark() == Card.TypeDark.WILD_DRAW_COLOR) {
 
+                    boolean flag = true;
+
+                    while(flag){
+
+                        if (deck.peek().getColorDark().equals(getPlayCard().getColorDark())) {
+                            flag = false;
+                        }
+                        else {
+                            drawCard(1);
+                        }
+
+                    }
+
+                }
             }
 
             Remove_card = currentPlayer.getHand().removeCard(getPlayCard());

@@ -315,7 +315,7 @@ public class UnoGUI {
         wildCardFrame.setSize(100, 100);
 
         wildCardFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        wildCardFrame.setResizable(false);
+        wildCardFrame.setResizable(true);
 
         wildPanel = new JPanel();
         wildCardFrame.add(wildPanel);
