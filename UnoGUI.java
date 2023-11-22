@@ -302,10 +302,11 @@ public class UnoGUI {
 
 
 
-        leaderboardFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
+        leaderboardFrame.setPreferredSize(new Dimension(FRAME_SIZE_WIDTH/2, FRAME_SIZE_HEIGHT/2));
         leaderboardFrame.setVisible(true);
         leaderboardFrame.pack();
         leaderboardFrame.add(leaderboardPanel);
+        leaderboardFrame.setLocationRelativeTo(rootFrame);
 
 
         // clean up root frame
@@ -317,11 +318,11 @@ public class UnoGUI {
 
     public void updateLeaderboard(ArrayList<Player> players) {
         leaderboardPanel.removeAll();
-        leaderboardPanel.setLayout(new FlowLayout());
+        leaderboardPanel.setLayout(new GridLayout(4, 1));
 
 
         for (Player player : players) {
-            JLabel label = new JLabel("Player " + player.getName() + ":" + player.getScore());
+            JLabel label = new JLabel("Player " + player.getName() + " Score :" + player.getScore());
             leaderboardPanel.add(label);
 
         }
