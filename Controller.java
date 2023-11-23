@@ -219,7 +219,6 @@ public class Controller {
             int buttonIndex = Integer.parseInt(button.getName());
 
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
-            
             controllerPlayCardLogic();
 
                     if (unoModel.currentRound.checkWinner()){
@@ -376,13 +375,13 @@ public class Controller {
             int nextIndex = (currentIndex + 1) % playersList.size();
 
             if(playersList.get(nextIndex) instanceof AllenAI){
+
                 unoModel.currentRound.nextPlayer();
                 currentIndex = unoModel.currentRound.playerIndex;
                 AllenAI bot = (AllenAI) playersList.get(unoModel.currentRound.playerIndex);
+                
                 unoGUI.displayCurrentPlayer(currentIndex);
                 if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())){
-                    unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
-
                     if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
                         unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                     }
@@ -390,12 +389,11 @@ public class Controller {
 
                         Collections.reverse(unoGUI.playerInputFields);
                     }
-
-
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
-
+                    unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
                 }
                 else{
+                    System.out.println("allen drew");
                     unoModel.currentRound.drawCurrPlayer();
                     unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
                     setHandPanelInteractable(false);

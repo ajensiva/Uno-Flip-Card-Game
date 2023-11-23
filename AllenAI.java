@@ -93,9 +93,8 @@ public class AllenAI extends Player{
         // play the card
         currentRound.setPlayCardIndex(index);
         allenCardPlayed = currentRound.getPlayCard();
+        
         return currentRound.cardPlayedLogic();
-
-
     }
 
 }
