@@ -8,14 +8,18 @@ public class AllenAI extends Player{
      * @param name The name of the player.
      */
 
-
     Card allenCardPlayed;
     
     public AllenAI(String name) {
         super(name);
     }
 
-    // this will play the card with the highest value
+    /**
+     * Performs the AI behaviour : Play the highest Card possible in the hand if the Card is playable, if not, Draw a Card
+     * @param currentRound
+     * @param hand
+     * @return boolean
+     */
     public boolean allenPlayCard(Round currentRound, Hand hand){
         /*
             get the bot's hand to see all which cards are playable first
@@ -92,11 +96,6 @@ public class AllenAI extends Player{
         return currentRound.cardPlayedLogic();
 
 
-    }
-
-    public Card getAllenPlayCard(){
-
-        return allenCardPlayed;
     }
 
 }

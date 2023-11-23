@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Stack;
 
-import java.util.Scanner;
 import java.util.Collections;
 
 /**
@@ -69,6 +68,7 @@ public class Round {
     }
 
     /**
+     * returns the models player's list
      * @return ArrayList<Player>
      */
     public ArrayList<Player> getPlayers() {
@@ -83,28 +83,23 @@ public class Round {
 
     /**
      * Card to play index
-     *
      * @return
      */
-
     public int getCardtoPlayIndex() {
         return playCardIndex;
     }
 
     /**
      * Retreive the Card that was played
-     *
      * @return
      */
     public Card getPlayCard() {
 
         return currentPlayer.getHand().getCard(getCardtoPlayIndex());
     }
-
     /**
      * make discard stack
      */
-
     public void makeDiscard() {
         if (deck.peek().getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
 
@@ -116,11 +111,19 @@ public class Round {
         }
     }
 
+    /**
+     * traverse to next player
+     */
     public void nextPlayer() {
 
         playerIndex = (playerIndex + 1) % players.size();
         currentPlayer = players.get(playerIndex);
     }
+
+    /**
+     * Implements a series of checks for cards other than wild cards and performs the necessary actions to the game
+     * @return
+     */
 
     public boolean cardPlayedLogic() {
         if ((checkCard(getPlayCard(), discard.peek()))) {
@@ -194,20 +197,18 @@ public class Round {
         return false;
     }
 
-    public void playRound() {
+    /**
+     * Sets the current Player to first index of the player list
+     */
+
+    public void setCurrentPlayertoFirstIndex() {
         currentPlayer = players.get(0);
     }
 
-    public String darkmode(boolean darkmode) {
-        if (darkmode) {
-            return "Darkmode!";
-        } else {
-            return "Lightmode!";
-        }
-    }
 
-    // draws one card from the deck and gives to current player! and RETURN the card
-    // that was just popped
+    /**
+     * Draws a Card for the current player playing
+     */
     public void drawCurrPlayer() {
 
         currentPlayer.getHand().addCard(deck.pop());

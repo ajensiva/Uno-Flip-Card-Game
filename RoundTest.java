@@ -23,7 +23,7 @@ public class RoundTest {
 
         // Create and initialize a Round instance for testing
         round = new Round(players);
-        round.playRound(); // Sets the currentPlayer to the first player
+        round.setCurrentPlayertoFirstIndex(); // Sets the currentPlayer to the first player
     }
 
     @Test
@@ -100,5 +100,18 @@ public class RoundTest {
         assertEquals(cardToPlay, round.discard.peek());
     }
 
-}
+    @Test
+    public void testDarkSideImplementation(){
+
+        //Checks if the darkside Cards work; Normal Cards
+
+        round.darkmode = true;
+        Card darksideCard =  round.currentPlayer.getHand().getCard(0);
+
+            round.playCard(0);
+
+            assertEquals(darksideCard, round.discard.peek());
+        }
+    }
+
 

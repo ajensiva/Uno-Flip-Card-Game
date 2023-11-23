@@ -65,10 +65,19 @@ public class Deck {
         return deck.pop();
     }
 
+    /**
+     * Retrieves Card at the top of the deck
+     * @return
+     */
+
     public Card peek(){
         return deck.peek();
     }
 
+    /**
+     * Retrieves the size of the deck
+     * @return
+     */
     public int getSize() {
         return this.deck.size();
     }

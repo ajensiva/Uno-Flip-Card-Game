@@ -53,7 +53,7 @@ public class Uno {
      */
     public void round(){
         currentRound = new Round(players);
-        currentRound.playRound();
+        currentRound.setCurrentPlayertoFirstIndex();
     }
 
     /**

@@ -203,6 +203,9 @@ public class UnoGUI {
         }
     }
 
+    /**
+     * adds the bot textfield option when starting the game
+     */
     public void addBotField() {
         if (numFields < 8) {
             GridBagConstraints constraints = new GridBagConstraints();
@@ -318,6 +321,10 @@ public class UnoGUI {
 
     }
 
+    /**
+     * updates the running leaderboard in the current round of Uno
+     * @param players
+     */
     public void updateLeaderboard(ArrayList<Player> players) {
 
         leaderboardPanel.removeAll();
@@ -342,8 +349,6 @@ public class UnoGUI {
         leaderboardFrame.setLocationRelativeTo(null); // Center the frame on the screen
         leaderboardFrame.setVisible(true);
     }
-
-
     /**
      * Creates a panel for the wild card selection.
      */
@@ -373,6 +378,9 @@ public class UnoGUI {
         wildCardDialog.setVisible(true);
 
     }
+    /**
+     *
+     */
 
     public void setstartGameVisible(boolean flag){
 
