@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+
 /**
  * Hand class represents a player's hand of Uno cards.
  *
  * @author Zarif, Arun, Ajen, Jason
  * @version 2.0
  */
+
 public class Hand {
 
     // a hand of cards, originally 7
@@ -61,7 +63,6 @@ public class Hand {
      */
     public Card getCard(int card_num) {
 
-
         return this.hand.get(card_num);
     }
 
@@ -75,21 +76,23 @@ public class Hand {
     }
 
     /**
-     * Override the `toString` method to provide a formatted string representation of the hand.
+     * Override the `toString` method to provide a formatted string representation
+     * of the hand.
      *
-     * @return A string representation of the hand with card indices and card details.
+     * @return A string representation of the hand with card indices and card
+     *         details.
      */
     @Override
     public String toString() {
         // override the toString to print out the hand in a new string format
 
-        /* 
-        EXAMPLE OUTPUT:
-            [0] Color: Red, Type: WILDTWO
-            [1] Color: Yellow, Type: THREE
-            [2] Color: Red, Type: WILDTWO
-            [3] Color: Yellow, Type: FOUR
-            [4] Color: Yellow, Type: REVERSE
+        /*
+         * EXAMPLE OUTPUT:
+         * [0] Color: Red, Type: WILDTWO
+         * [1] Color: Yellow, Type: THREE
+         * [2] Color: Red, Type: WILDTWO
+         * [3] Color: Yellow, Type: FOUR
+         * [4] Color: Yellow, Type: REVERSE
          */
         StringBuilder sb = new StringBuilder();
         for (Card card : hand) {
