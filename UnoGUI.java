@@ -279,7 +279,6 @@ public class UnoGUI {
         rootFrame = new JFrame();
         rootFrame.setLayout(new BorderLayout());
         rootFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        rootFrame.setLocationRelativeTo(null);
         rootFrame.setResizable(true);
 
         // main panel
