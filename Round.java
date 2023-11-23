@@ -250,11 +250,7 @@ public class Round {
      * @return True if the card can be played, false otherwise.
      */
     public boolean checkCard(Card card1, Card card2) {
-
-        // System.out.println("ColorLight: " + card1.getColorLight() + ", TypeLight: " +
-        System.out.println("[CARD_1]: ColorLight: " + card1.getColorLight() + ", TypeLight: " + card1.getTypeLight());
-        System.out.println("[CARD_2]: ColorLight: " + card2.getColorLight() + ", TypeLight: " + card2.getTypeLight());
-
+        
         // for light side checks
         if (darkmode == false) {
 
