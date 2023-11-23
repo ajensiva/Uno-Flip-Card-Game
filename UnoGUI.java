@@ -318,8 +318,6 @@ public class UnoGUI {
 
     }
 
-
-
     public void updateLeaderboard(ArrayList<Player> players) {
 
         leaderboardPanel.removeAll();
