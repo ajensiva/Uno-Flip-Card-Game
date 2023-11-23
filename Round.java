@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Stack;
+
 import java.util.Collections;
 
 /**
@@ -40,7 +41,6 @@ public class Round {
     public Round(ArrayList<Player> players) {
         // set players, create a new deck and discard stack... then distribute the cards
         // to the players
-        this.playerIndex = 0;
         this.players = players;
         deck = new Deck();
         discard = new Stack<Card>();
@@ -68,6 +68,7 @@ public class Round {
     }
 
     /**
+     * returns the models player's list
      * @return ArrayList<Player>
      */
     public ArrayList<Player> getPlayers() {
@@ -75,44 +76,54 @@ public class Round {
     }
 
     public void setPlayCardIndex(int PlayCardIndex) {
+
         this.playCardIndex = PlayCardIndex;
+
     }
 
     /**
      * Card to play index
-     *
      * @return
      */
-
     public int getCardtoPlayIndex() {
         return playCardIndex;
     }
 
     /**
      * Retreive the Card that was played
-     *
      * @return
      */
     public Card getPlayCard() {
+
         return currentPlayer.getHand().getCard(getCardtoPlayIndex());
     }
-
     /**
      * make discard stack
      */
     public void makeDiscard() {
         if (deck.peek().getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+
             deck = new Deck();
             discard.add(deck.pop());
         } else {
             discard.add(deck.pop());
+
         }
     }
 
+    /**
+     * traverse to next player
+     */
     public void nextPlayer() {
+
         playerIndex = (playerIndex + 1) % players.size();
         currentPlayer = players.get(playerIndex);
     }
+
+    /**
+     * Implements a series of checks for cards other than wild cards and performs the necessary actions to the game
+     * @return
+     */
 
     public boolean cardPlayedLogic() {
         if ((checkCard(getPlayCard(), discard.peek()))) {
@@ -140,7 +151,9 @@ public class Round {
 
             }
             if (darkmode) {
+
                 if (getPlayCard().getTypeDark() == Card.TypeDark.DRAW_FIVE) {
+
                     drawCard(5); // give 2 new cards
                 }
                 if (getPlayCard().getTypeDark() == Card.TypeDark.SKIP_EVERYONE) {
@@ -151,47 +164,55 @@ public class Round {
                     playerIndex -= 1;
                     reverse();
                 }
+
                 if (getPlayCard().getTypeDark() == Card.TypeDark.FLIP) {
+
                     darkmode = !(darkmode);
+
                 }
                 if (getPlayCard().getTypeDark() == Card.TypeDark.WILD_DRAW_COLOR) {
+
                     boolean flag = true;
 
-                    while (flag) {
+                    while(flag){
+
                         if (deck.peek().getColorDark().equals(getPlayCard().getColorDark())) {
                             flag = false;
-                        } else {
+                        }
+                        else {
                             drawCard(1);
                         }
+
                     }
+
                 }
             }
 
             removeCard = currentPlayer.getHand().removeCard(getPlayCard());
+
             discard.add(removeCard);
 
             return true;
         }
-
         return false;
     }
 
-    public void playRound() {
+    /**
+     * Sets the current Player to first index of the player list
+     */
+
+    public void setCurrentPlayertoFirstIndex() {
         currentPlayer = players.get(0);
     }
 
-    public String darkmode(boolean darkmode) {
-        if (darkmode) {
-            return "Darkmode!";
-        } else {
-            return "Lightmode!";
-        }
-    }
 
-    // draws one card from the deck and gives to current player! and RETURN the card
-    // that was just popped
+    /**
+     * Draws a Card for the current player playing
+     */
     public void drawCurrPlayer() {
+
         currentPlayer.getHand().addCard(deck.pop());
+
     }
 
     /**
@@ -238,16 +259,13 @@ public class Round {
         if (darkmode == false) {
 
             // CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
-            if (card1.getColorLight() == null || card2.getColorLight() == null) {
-                return true;
-            }
+            if(card1.getColorLight() == null || card2.getColorLight() == null) {return true;}
 
             // checks
             boolean check_colour_light = card1.getColorLight().equals(card2.getColorLight());
             boolean check_type_light = card1.getTypeLight().equals(card2.getTypeLight());
             // check to see if it's a wild card that was played
-            boolean is_light_wildcard = card1.getTypeLight().equals(Card.TypeLight.WILDTWO)
-                    || card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR);
+            boolean is_light_wildcard = card1.getTypeLight().equals(Card.TypeLight.WILDTWO) || card1.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR);
 
             // if its a normal card, do a normal OR check; else check for wild card logic
             if (is_light_wildcard) {
@@ -266,16 +284,13 @@ public class Round {
         } else {
 
             // CHECK IF THEY ARE WILD_DRAW_4 OR DARK_WILD_CARD
-            if (card1.getColorDark() == null || card2.getColorDark() == null) {
-                return true;
-            }
+            if(card1.getColorDark() == null || card2.getColorDark() == null) {return true;}
 
             // checks
             boolean check_colour_dark = card1.getColorDark().equals(card2.getColorDark());
             boolean check_type_dark = card1.getTypeDark().equals(card2.getTypeDark());
             // check to see if it's a wild card that was played
-            boolean is_dark_wildcard = card1.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD)
-                    || card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR);
+            boolean is_dark_wildcard = card1.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD) || card1.getTypeDark().equals(Card.TypeDark.WILD_DRAW_COLOR);
 
             // if its a normal card, do a normal OR check; else check for wild card logic
             if (is_dark_wildcard) {

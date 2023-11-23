@@ -34,15 +34,20 @@ public class Controller {
         this.unoGUI.addBot.addActionListener(new addbotListener());
     }
 
-
+    /**
+     * sets the current players hand to be interactable or not interactable depending on if they used their turn or not
+     * @param interactable
+     */
     private void setHandPanelInteractable(boolean interactable) {
         for (JButton button : unoGUI.playerCards) {
             button.setEnabled(interactable);
         }
     }
 
-
-    public void wildCardLogic() {
+    /**
+     * Performs a series of checks to see what actions should be performed according to the type; plays card if card is playable
+     */
+    public void controllerPlayCardLogic() {
 
         if (unoModel.currentRound.cardPlayedLogic() && !isPlayerLocked) {
             isPlayerLocked = true;
@@ -121,6 +126,10 @@ public class Controller {
             }
         }
     }
+
+    /**
+     * adds a Listener to the "ADD BOT" button in the GUI
+     */
 
     public class addbotListener implements ActionListener{
 
@@ -211,7 +220,7 @@ public class Controller {
 
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
             
-            wildCardLogic();
+            controllerPlayCardLogic();
 
                     if (unoModel.currentRound.checkWinner()){
                         JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "Won Round! ", JOptionPane.INFORMATION_MESSAGE);
@@ -352,8 +361,11 @@ public class Controller {
         }
     }
 
+
+
+
     /**
-     * ActionListener for the "Next Player" button in the GUI.
+     * ActionListener for the "Next Player" button in the GUI, also handles AI logic
      */
     public class NextPlayerButtonListener implements ActionListener {
         @Override

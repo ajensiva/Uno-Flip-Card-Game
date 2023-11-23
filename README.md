@@ -1,5 +1,5 @@
 # Uno-Flip-Card
-## Development Team
+## Development Team - Team 6
 - __Zarif Khan__ : _101224172_
 - __Arun Karki__ : _101219923_
 - __Jason Kia__ : _101233435_
@@ -33,6 +33,9 @@
 - This stage introduces Uno Flip cards, incorporating their specific rules and scoring mechanisms to enhance gameplay dynamics.
 - A notable enhancement is the incorporation of an arbitrary number of AI players with flexible behavior strategies, allowing for intelligent gameplay simulation. Options include generating all legal moves and selecting the highest-scoring move or using rules such as "The first valid card will be placed."
 
+### Known issues:
+- No known errors at this stage in the development process 
+- Potential scaling issues with Card images across platforms  
 
 #### MIT License
 

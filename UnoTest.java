@@ -43,8 +43,7 @@ public class UnoTest {
         // Add some players
         unoGame.addPlayer("Alice", false);
         unoGame.addPlayer("Bob", false);
-        // Print players
-        unoGame.printPlayers();
+
         String printedContent = outputStreamCaptor.toString().trim();
         assertTrue(printedContent.contains("Alice"));
         assertTrue(printedContent.contains("Bob"));
