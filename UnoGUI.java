@@ -45,6 +45,8 @@ public class UnoGUI {
 
     private JFrame leaderboardFrame = new JFrame("Leaderboard");
 
+    private JLabel leaderboardLabelTitle;
+
 
     protected ArrayList<JTextField> playerInputFields; // Array to store user inputs
     protected ArrayList<JButton> playerCards = new ArrayList<>(); // holds player's hand; array of cards
@@ -252,11 +254,6 @@ public class UnoGUI {
         }
     }
 
-    public void reboot(){
-        rootFrame.dispose();
-
-        startGame();
-    }
     /**
      * Sets the visibility of the start menu frame.
      *
@@ -279,6 +276,7 @@ public class UnoGUI {
         rootFrame = new JFrame();
         rootFrame.setLayout(new BorderLayout());
         rootFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        rootFrame.setLocationRelativeTo(null);
         rootFrame.setResizable(true);
 
         // main panel
@@ -304,11 +302,13 @@ public class UnoGUI {
 
 
 
+
         leaderboardFrame.setPreferredSize(new Dimension(FRAME_SIZE_WIDTH/2, FRAME_SIZE_HEIGHT/2));
         leaderboardFrame.setVisible(true);
         leaderboardFrame.pack();
-        leaderboardFrame.add(leaderboardPanel);
+
         leaderboardFrame.setLocationRelativeTo(rootFrame);
+
 
 
         // clean up root frame
@@ -316,22 +316,35 @@ public class UnoGUI {
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         setstartGameVisible(true);
 
-
     }
+
+
 
     public void updateLeaderboard(ArrayList<Player> players) {
-        leaderboardPanel.removeAll();
-        leaderboardPanel.setLayout(new GridLayout(4, 1));
 
+        leaderboardPanel.removeAll();
+
+        leaderboardPanel.setLayout(new BoxLayout(leaderboardPanel, BoxLayout.Y_AXIS));
+        leaderboardLabelTitle = new JLabel("LEADERBOARD", SwingConstants.CENTER);
+        leaderboardLabelTitle.setFont(new Font("Arial", Font.BOLD, 16));
+        leaderboardLabelTitle.setForeground(Color.DARK_GRAY);
+
+        leaderboardPanel.add(leaderboardLabelTitle);
 
         for (Player player : players) {
-            JLabel label = new JLabel("Player " + player.getName() + " Score :" + player.getScore());
+            JLabel label = new JLabel("Player: " + player.getName() + "  Score: " + player.getScore());
+            label.setFont(new Font("Arial", Font.PLAIN, 14));
             leaderboardPanel.add(label);
-
         }
-        leaderboardFrame.pack();
 
+        leaderboardFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        leaderboardFrame.setLayout(new BorderLayout());
+        leaderboardFrame.add(leaderboardPanel, BorderLayout.CENTER);
+        leaderboardFrame.setSize(300, 400);
+        leaderboardFrame.setLocationRelativeTo(null); // Center the frame on the screen
+        leaderboardFrame.setVisible(true);
     }
+
 
     /**
      * Creates a panel for the wild card selection.
