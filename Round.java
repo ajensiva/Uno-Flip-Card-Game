@@ -28,7 +28,7 @@ public class Round {
 
     protected int playerIndex = 0;
 
-    protected Card Remove_card;
+    protected Card removeCard;
 
     protected Player roundWinner;
 
@@ -188,9 +188,9 @@ public class Round {
                 }
             }
 
-            Remove_card = currentPlayer.getHand().removeCard(getPlayCard());
+            removeCard = currentPlayer.getHand().removeCard(getPlayCard());
 
-            discard.add(Remove_card);
+            discard.add(removeCard);
 
             return true;
         }
