@@ -252,8 +252,8 @@ public class Round {
     public boolean checkCard(Card card1, Card card2) {
 
         // System.out.println("ColorLight: " + card1.getColorLight() + ", TypeLight: " +
-        System.out.println("[CARD_1]: ColorDark: " + card1.getColorDark() + ", TypeDark: " + card1.getTypeDark());
-        System.out.println("[CARD_2]: ColorDark: " + card2.getColorDark() + ", TypeDark: " + card2.getTypeDark());
+        System.out.println("[CARD_1]: ColorLight: " + card1.getColorLight() + ", TypeLight: " + card1.getTypeLight());
+        System.out.println("[CARD_2]: ColorLight: " + card2.getColorLight() + ", TypeLight: " + card2.getTypeLight());
 
         // for light side checks
         if (darkmode == false) {
