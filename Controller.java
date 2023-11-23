@@ -57,10 +57,10 @@ public class Controller {
             if (!Round.darkmode) {
 
 
-                if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) 
-                    || unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+                if (unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) 
+                    || unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
                          
-                    if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+                    if (unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
                          
                         unoModel.currentRound.drawCard(1);
                         unoGUI.wildCardGui();
@@ -73,7 +73,7 @@ public class Controller {
                         unoGUI.yellowWildCardButtonListener(new PlayYellowWildCard());
                         unoGUI.greenWildCardButtonListener(new PlayGreenWildCard());
                         unoGUI.discardLabel.setVisible(false);
-                    } else if (unoModel.currentRound.Remove_card.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                    } else if (unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
                         
                         unoModel.currentRound.drawCard(3);
                         unoGUI.wildCardGui();
@@ -90,7 +90,7 @@ public class Controller {
                 }
 
             } else{
-                if (unoModel.currentRound.Remove_card.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD)) {
+                if (unoModel.currentRound.removeCard.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD)) {
                     unoModel.currentRound.drawCard(1);
                     unoGUI.wildCardGui();
                     unoGUI.red.setText("Orange");
@@ -410,7 +410,7 @@ public class Controller {
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
-            if ((unoModel.currentRound.Remove_card !=  null) && unoModel.currentRound.Remove_card.getTypeLight() == Card.TypeLight.REVERSE || (unoModel.currentRound.Remove_card !=  null) && unoModel.currentRound.Remove_card.getTypeDark() == Card.TypeDark.REVERSE) {
+            if ((unoModel.currentRound.removeCard !=  null) && unoModel.currentRound.removeCard.getTypeLight() == Card.TypeLight.REVERSE || (unoModel.currentRound.removeCard !=  null) && unoModel.currentRound.removeCard.getTypeDark() == Card.TypeDark.REVERSE) {
                 Collections.reverse(unoGUI.playerInputFields);
             }
 
@@ -438,4 +438,3 @@ public class Controller {
         Controller controller = new Controller(new UnoGUI(), new Uno());
     }
 }
-

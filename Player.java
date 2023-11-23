@@ -4,12 +4,13 @@
  * @author Arun, Jason, Ajen, Zarif
  * @version 2.0
  */
+
 public class Player {
 
     // attributes
-    private Hand hand;        // The player's hand of Uno cards
-    private String name;     // The name of the player
-    private int playerScore;  // The player's score in the game
+    private Hand hand; // The player's hand of Uno cards
+    private String name; // The name of the player
+    private int playerScore; // The player's score in the game
 
     /**
      * Constructor to create a new player with the given name.
@@ -21,7 +22,7 @@ public class Player {
         this.playerScore = 0;
         this.hand = new Hand();
     }
-  
+
     /**
      * Get the player's score.
      *
@@ -30,7 +31,7 @@ public class Player {
     public int getScore() {
         return this.playerScore;
     }
-  
+
     /**
      * Set the player's score to the specified value.
      *
@@ -50,7 +51,7 @@ public class Player {
     public Hand getHand() {
         return this.hand;
     }
-  
+
     /**
      * Get the name of the player.
      *
