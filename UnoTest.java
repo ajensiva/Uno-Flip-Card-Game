@@ -28,23 +28,22 @@ public class UnoTest {
     @Test
     public void testAddPlayer() {
         // Test adding a player
-//        unoGame.addPlayer("Alice");
+        unoGame.addPlayer("Alice", false);
 
         assertEquals(3, Uno.players.size());
         assertEquals("Alice", Uno.players.get(0).getName());
 
-//        assertEquals(3, Uno.players.size());
-//        assertEquals("Alice", Uno.players.get(0).getName());
+        assertEquals(3, Uno.players.size());
+        assertEquals("Alice", Uno.players.get(0).getName());
 
     }
 
     @Test
     public void testPrintPlayers() {
         // Add some players
-//        unoGame.addPlayer("Alice");
-//        unoGame.addPlayer("Bob");
-        // Print players
-        unoGame.printPlayers();
+        unoGame.addPlayer("Alice", false);
+        unoGame.addPlayer("Bob", false);
+
         String printedContent = outputStreamCaptor.toString().trim();
         assertTrue(printedContent.contains("Alice"));
         assertTrue(printedContent.contains("Bob"));
@@ -54,10 +53,8 @@ public class UnoTest {
     public void testRound() {
         // Add players
 
-
-
-//        unoGame.addPlayer("Alice");
-//        unoGame.addPlayer("Bob");
+        unoGame.addPlayer("Alice", false);
+        unoGame.addPlayer("Bob", false);
 
         // Start a round
         unoGame.round();
