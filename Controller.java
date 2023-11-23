@@ -379,8 +379,8 @@ public class Controller {
                 unoModel.currentRound.nextPlayer();
                 currentIndex = unoModel.currentRound.playerIndex;
                 AllenAI bot = (AllenAI) playersList.get(unoModel.currentRound.playerIndex);
-                
                 unoGUI.displayCurrentPlayer(currentIndex);
+
                 if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())){
                     if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
                         unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
@@ -390,17 +390,23 @@ public class Controller {
                         Collections.reverse(unoGUI.playerInputFields);
                     }
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
-                    unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
+                    unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), bot.getHand());
                 }
                 else{
                     System.out.println("allen drew");
                     unoModel.currentRound.drawCurrPlayer();
-                    unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
+                    unoGUI.addCard(bot.getHand().getCard(bot.getHand().getSize() - 1));
                     setHandPanelInteractable(false);
                     unoGUI.nextPlayer.setEnabled(true);
                 }
 
-
+                // clear cards
+                unoGUI.clearPlayerCards();
+                for (int i = 0; i < bot.getHand().getSize(); i++) {
+                    unoGUI.addCard(bot.getHand().getCard(i));
+                }
+                setHandPanelInteractable(false);
+                
                 unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
                 return;
             }
