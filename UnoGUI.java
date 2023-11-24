@@ -569,11 +569,9 @@ public class UnoGUI {
      * @param hand          The hand from which the card is removed.
      */
     public void updatePlayerCardsRemove(int buttonToRemove, Hand hand) {
-        System.out.println("entering critical section");
-        handPanel.remove(playerCards.get(buttonToRemove));
-        playerCards.remove(playerCards.get(buttonToRemove));
 
         System.out.println("HandSize: " + hand.getSize());
+
 
         for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);

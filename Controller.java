@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * The Controller class handles user input and manages interactions between the
- * GUI and the Uno game model.
- * 
+ * The Controller class handles user input and manages interactions between the GUI and the Uno game model.
  * @author Zarif, Ajen, Arun, Jason
  * @version 2.0
  */
@@ -22,8 +20,8 @@ public class Controller {
     /**
      * Constructor for the Controller class.
      *
-     * @param gui The UnoGUI instance representing the graphical user interface.
-     * @param uno The Uno instance representing the Uno game model.
+     * @param gui  The UnoGUI instance representing the graphical user interface.
+     * @param uno  The Uno instance representing the Uno game model.
      */
     public Controller(UnoGUI gui, Uno uno) {
         this.unoGUI = gui;
@@ -37,9 +35,7 @@ public class Controller {
     }
 
     /**
-     * sets the current players hand to be interactable or not interactable
-     * depending on if they used their turn or not
-     * 
+     * sets the current players hand to be interactable or not interactable depending on if they used their turn or not
      * @param interactable
      */
     private void setHandPanelInteractable(boolean interactable) {
@@ -49,8 +45,7 @@ public class Controller {
     }
 
     /**
-     * Performs a series of checks to see what actions should be performed according
-     * to the type; plays card if card is playable
+     * Performs a series of checks to see what actions should be performed according to the type; plays card if card is playable
      */
     public void controllerPlayCardLogic() {
 
@@ -61,11 +56,12 @@ public class Controller {
 
             if (!Round.darkmode) {
 
-                if (unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)
-                        || unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
 
+                if (unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) 
+                    || unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
+                         
                     if (unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
-
+                         
                         unoModel.currentRound.drawCard(1);
                         unoGUI.wildCardGui();
                         unoGUI.red.setText("Red");
@@ -78,7 +74,7 @@ public class Controller {
                         unoGUI.greenWildCardButtonListener(new PlayGreenWildCard());
                         unoGUI.discardLabel.setVisible(false);
                     } else if (unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-
+                        
                         unoModel.currentRound.drawCard(3);
                         unoGUI.wildCardGui();
                         unoGUI.red.setText("Red");
@@ -93,7 +89,7 @@ public class Controller {
                     }
                 }
 
-            } else {
+            } else{
                 if (unoModel.currentRound.removeCard.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD)) {
                     unoModel.currentRound.drawCard(1);
                     unoGUI.wildCardGui();
@@ -111,9 +107,8 @@ public class Controller {
                 }
 
             }
-            unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(),
-                    unoModel.currentRound.currentPlayer.getHand());
-            unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+        unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
+        unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
         }
     }
 
@@ -136,7 +131,7 @@ public class Controller {
      * adds a Listener to the "ADD BOT" button in the GUI
      */
 
-    public class addbotListener implements ActionListener {
+    public class addbotListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -166,15 +161,14 @@ public class Controller {
             }
 
             if (hasEmptyPlayerName) {
-                JOptionPane.showMessageDialog(null, "Please fill out all player names.", "Error",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please fill out all player names.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             for (int i = 0; i < unoGUI.playerInputFields.size(); i++) {
                 JTextField field = unoGUI.playerInputFields.get(i);
                 boolean isBot = false;
-                if (field.getName() != null && field.getName().substring(0, 3).equals("Bot")) {
+                if(field.getName() != null && field.getName().substring(0, 3).equals("Bot")){
                     isBot = true;
                 }
                 unoModel.addPlayer(unoGUI.playerInputFields.get(i).getText(), isBot);
@@ -205,8 +199,7 @@ public class Controller {
 
             if (!isPlayerLocked) {
                 unoModel.currentRound.drawCurrPlayer();
-                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand()
-                        .getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
+                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
                 unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
 
                 isPlayerLocked = true;
@@ -222,49 +215,47 @@ public class Controller {
     public class ListenForCardPlayed implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
             JButton button = (JButton) e.getSource();
             int buttonIndex = Integer.parseInt(button.getName());
 
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
             controllerPlayCardLogic();
 
-            if (unoModel.currentRound.checkWinner()) {
-                JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "Won Round! ",
-                        JOptionPane.INFORMATION_MESSAGE);
+                    if (unoModel.currentRound.checkWinner()){
+                        JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "Won Round! ", JOptionPane.INFORMATION_MESSAGE);
 
-                unoModel.currentRound.roundWinner.setScore(
-                        unoModel.currentRound.roundWinner.getScore() + unoModel.currentRound.getTotalPoints());
+                        unoModel.currentRound.roundWinner.setScore(unoModel.currentRound.roundWinner.getScore() + unoModel.currentRound.getTotalPoints());
 
-                // PERSON WON GAME
-                if (unoModel.checkGameWon()) {
+                        //PERSON WON GAME
+                        if(unoModel.checkGameWon()){
 
-                    JOptionPane.showMessageDialog(null, unoModel.gameWinner.getName(), "Won The Game! ",
-                            JOptionPane.INFORMATION_MESSAGE);
-                } else {
+                            JOptionPane.showMessageDialog(null, unoModel.gameWinner.getName(), "Won The Game! ", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        else{
 
-                    if (unoGUI.wildCardDialog != null) {
-                        unoGUI.wildCardDialog.dispose();
+                            if(unoGUI.wildCardDialog != null) {
+                                unoGUI.wildCardDialog.dispose();
+                            }
+                            unoModel.round();
+                            unoGUI.clearPlayerCards();
+                            for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
+                                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                            }
+                            unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
+                            unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+                            unoGUI.setStartMenuVisible(false);
+                            unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
+
+
+                            unoGUI.nextPlayer.doClick();
+
+
+                        }
+
                     }
-                    unoModel.round();
-                    unoGUI.clearPlayerCards();
-                    for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
-                        unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
-                    }
-                    unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(),
-                            new ListenForCardPlayed());
-                    unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
-                    unoGUI.setStartMenuVisible(false);
-                    unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
-
-                    unoGUI.nextPlayer.doClick();
-
-                }
 
             }
-
         }
-    }
 
     /**
      * ActionListener for playing the red wild card.
@@ -273,14 +264,16 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if (Round.darkmode) {
+            if(Round.darkmode){
+
 
                 unoModel.currentRound.discard.peek().setColorDark("Orange");
                 unoGUI.wildCardDialog.setVisible(false);
                 unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
 
-            } else {
+            }
+            else{
                 unoModel.currentRound.discard.peek().setColorLight("Red");
                 unoGUI.wildCardDialog.setVisible(false);
                 unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
@@ -299,15 +292,16 @@ public class Controller {
 
             if (Round.darkmode) {
 
+
                 unoModel.currentRound.discard.peek().setColorDark("Teal");
                 unoGUI.wildCardDialog.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
 
             } else {
                 unoModel.currentRound.discard.peek().setColorLight("Blue");
                 unoGUI.wildCardDialog.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
             }
         }
@@ -320,18 +314,20 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if (Round.darkmode) {
+            if(Round.darkmode){
+
 
                 unoModel.currentRound.discard.peek().setColorDark("Purple");
                 unoGUI.wildCardDialog.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
 
-            } else {
+            }
+            else{
 
                 unoModel.currentRound.discard.peek().setColorLight("Yellow");
                 unoGUI.wildCardDialog.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
 
             }
@@ -346,22 +342,26 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if (Round.darkmode) {
+            if(Round.darkmode){
+
 
                 unoModel.currentRound.discard.peek().setColorDark("Pink");
                 unoGUI.wildCardDialog.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
 
-            } else {
+            }else {
 
                 unoModel.currentRound.discard.peek().setColorLight("Green");
                 unoGUI.wildCardDialog.setVisible(false);
-                unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
+                unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
                 unoGUI.discardLabel.setVisible(true);
             }
         }
     }
+
+
+
 
     /**
      * ActionListener for the "Next Player" button in the GUI, also handles AI logic
@@ -374,33 +374,12 @@ public class Controller {
             int currentIndex = unoModel.currentRound.playerIndex;
             int nextIndex = (currentIndex + 1) % playersList.size();
 
-            if (playersList.get(nextIndex) instanceof AllenAI) {
+            if(playersList.get(nextIndex) instanceof AllenAI){
 
                 unoModel.currentRound.nextPlayer();
                 currentIndex = unoModel.currentRound.playerIndex;
                 AllenAI bot = (AllenAI) playersList.get(unoModel.currentRound.playerIndex);
                 unoGUI.displayCurrentPlayer(currentIndex);
-
-                if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())) {
-                    if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO)
-                            || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-                        unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
-                    }
-                    if ((bot.allenCardPlayed != null) && bot.allenCardPlayed.getTypeLight() == Card.TypeLight.REVERSE
-                            || (bot.allenCardPlayed != null)
-                                    && bot.allenCardPlayed.getTypeDark() == Card.TypeDark.REVERSE) {
-
-                        Collections.reverse(unoGUI.playerInputFields);
-                    }
-                    unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
-                    unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), bot.getHand());
-                } else {
-                    System.out.println("allen drew");
-                    unoModel.currentRound.drawCurrPlayer();
-                    unoGUI.addCard(bot.getHand().getCard(bot.getHand().getSize() - 1));
-                    setHandPanelInteractable(false);
-                    unoGUI.nextPlayer.setEnabled(true);
-                }
 
                 // clear cards
                 unoGUI.clearPlayerCards();
@@ -409,6 +388,25 @@ public class Controller {
                 }
                 setHandPanelInteractable(false);
 
+                if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())){
+                    if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                        unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
+                    }
+                    if ((bot.allenCardPlayed !=  null) && bot.allenCardPlayed.getTypeLight() == Card.TypeLight.REVERSE || (bot.allenCardPlayed !=  null) && bot.allenCardPlayed.getTypeDark() == Card.TypeDark.REVERSE) {
+
+                        Collections.reverse(unoGUI.playerInputFields);
+                    }
+                    unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+                    unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), bot.getHand());
+                }
+                else{
+                    System.out.println("allen drew");
+                    unoModel.currentRound.drawCurrPlayer();
+                    unoGUI.addCard(bot.getHand().getCard(bot.getHand().getSize() - 1));
+                    setHandPanelInteractable(false);
+                    unoGUI.nextPlayer.setEnabled(true);
+                }
+                
                 unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
                 return;
             }
@@ -416,16 +414,13 @@ public class Controller {
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
-            if ((unoModel.currentRound.removeCard != null)
-                    && unoModel.currentRound.removeCard.getTypeLight() == Card.TypeLight.REVERSE
-                    || (unoModel.currentRound.removeCard != null)
-                            && unoModel.currentRound.removeCard.getTypeDark() == Card.TypeDark.REVERSE) {
+            if ((unoModel.currentRound.removeCard !=  null) && unoModel.currentRound.removeCard.getTypeLight() == Card.TypeLight.REVERSE || (unoModel.currentRound.removeCard !=  null) && unoModel.currentRound.removeCard.getTypeDark() == Card.TypeDark.REVERSE) {
                 Collections.reverse(unoGUI.playerInputFields);
             }
 
+
             unoModel.currentRound.nextPlayer();
-            unoGUI.displayCurrentPlayer(
-                    unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
+            unoGUI.displayCurrentPlayer(unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
             unoGUI.clearPlayerCards();
 
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
