@@ -381,6 +381,13 @@ public class Controller {
                 AllenAI bot = (AllenAI) playersList.get(unoModel.currentRound.playerIndex);
                 unoGUI.displayCurrentPlayer(currentIndex);
 
+                // clear cards
+                unoGUI.clearPlayerCards();
+                for (int i = 0; i < bot.getHand().getSize(); i++) {
+                    unoGUI.addCard(bot.getHand().getCard(i));
+                }
+                setHandPanelInteractable(false);
+
                 if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())){
                     if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
                         unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
@@ -399,13 +406,6 @@ public class Controller {
                     setHandPanelInteractable(false);
                     unoGUI.nextPlayer.setEnabled(true);
                 }
-
-                // clear cards
-                unoGUI.clearPlayerCards();
-                for (int i = 0; i < bot.getHand().getSize(); i++) {
-                    unoGUI.addCard(bot.getHand().getCard(i));
-                }
-                setHandPanelInteractable(false);
                 
                 unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
                 return;
