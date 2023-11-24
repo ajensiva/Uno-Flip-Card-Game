@@ -134,6 +134,7 @@ public class Round {
                     // reverse collection and decrement player index to get player before
                     playerIndex -= 1;
                     reverse();
+                    System.out.println("model reversed");
                 }
                 if (getPlayCard().getTypeLight() == Card.TypeLight.SKIP) {
                     // move to the next player
@@ -153,7 +154,6 @@ public class Round {
             if (darkmode) {
 
                 if (getPlayCard().getTypeDark() == Card.TypeDark.DRAW_FIVE) {
-
                     drawCard(5); // give 2 new cards
                 }
                 if (getPlayCard().getTypeDark() == Card.TypeDark.SKIP_EVERYONE) {
@@ -163,6 +163,7 @@ public class Round {
                     // reverse collection and decrement player index to get player before
                     playerIndex -= 1;
                     reverse();
+                    System.out.println("model reversed");
                 }
 
                 if (getPlayCard().getTypeDark() == Card.TypeDark.FLIP) {
