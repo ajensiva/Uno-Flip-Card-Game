@@ -574,13 +574,17 @@ public class UnoGUI {
         playerCards.remove(playerCards.get(buttonToRemove));
 
         System.out.println("HandSize: " + hand.getSize());
-        System.out.println("Player Cards: " + playerCards.size());
+
 
         for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
             button.setName(Integer.toString(i));
         }
-        System.out.println("end of critical section");   
+
+        handPanel.remove(playerCards.get(buttonToRemove));
+        //playerCards.remove(buttonToRemove);
+        playerCards.remove(buttonToRemove);
+        System.out.println("Player Cards: " + playerCards.size());
     }
 
 
