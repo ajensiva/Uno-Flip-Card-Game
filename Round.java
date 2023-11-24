@@ -22,7 +22,7 @@ public class Round {
     public static boolean darkmode = true; // if true then we're playing dark sides of card
 
     protected Player currentPlayer; // current player that's playing
-    private final int DEALTCARDS = 7; // max number of cards to be delt
+    private final int DEALTCARDS = 20; // max number of cards to be delt
 
     protected int playCardIndex;
 
@@ -132,9 +132,9 @@ public class Round {
             if (!(darkmode)) {
                 if (getPlayCard().getTypeLight() == Card.TypeLight.REVERSE) {
                     // reverse collection and decrement player index to get player before
+                    System.out.println("MODEL RTEVERSE");
                     playerIndex -= 1;
                     reverse();
-                    System.out.println("model reversed");
                 }
                 if (getPlayCard().getTypeLight() == Card.TypeLight.SKIP) {
                     // move to the next player
@@ -154,7 +154,8 @@ public class Round {
             if (darkmode) {
 
                 if (getPlayCard().getTypeDark() == Card.TypeDark.DRAW_FIVE) {
-                    drawCard(5); // give 2 new cards
+
+                    drawCard(4); // give 2 new cards
                 }
                 if (getPlayCard().getTypeDark() == Card.TypeDark.SKIP_EVERYONE) {
                     playerIndex -= 1;
@@ -163,7 +164,7 @@ public class Round {
                     // reverse collection and decrement player index to get player before
                     playerIndex -= 1;
                     reverse();
-                    System.out.println("model reversed");
+                    System.out.println("MODEL RTEVERSE");
                 }
 
                 if (getPlayCard().getTypeDark() == Card.TypeDark.FLIP) {
@@ -177,7 +178,7 @@ public class Round {
 
                     while(flag){
 
-                        if (deck.peek().getColorDark().equals(getPlayCard().getColorDark())) {
+                        if (deck.peek().getColorDark() != null && deck.peek().getColorDark().equals(getPlayCard().getColorDark())) {
                             flag = false;
                         }
                         else {
@@ -192,6 +193,8 @@ public class Round {
             removeCard = currentPlayer.getHand().removeCard(getPlayCard());
 
             discard.add(removeCard);
+
+
 
             return true;
         }
