@@ -575,7 +575,6 @@ public class UnoGUI {
 
         System.out.println("HandSize: " + hand.getSize());
 
-
         for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
             button.setName(Integer.toString(i));
