@@ -54,7 +54,10 @@ public class Controller {
             setHandPanelInteractable(false);
             unoGUI.nextPlayer.setEnabled(true);
 
+
             if (!Round.darkmode) {
+
+
 
 
                 if (unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) 
@@ -107,6 +110,9 @@ public class Controller {
                 }
 
             }
+
+
+
         unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
         unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
         }
@@ -198,6 +204,7 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
 
             if (!isPlayerLocked) {
+
                 unoModel.currentRound.drawCurrPlayer();
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(unoModel.currentRound.currentPlayer.getHand().getSize() - 1));
                 unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
@@ -205,6 +212,8 @@ public class Controller {
                 isPlayerLocked = true;
                 setHandPanelInteractable(false);
                 unoGUI.nextPlayer.setEnabled(true);
+
+                System.out.println("DECK: " + unoModel.currentRound.deck.getSize());
             }
         }
     }
@@ -231,6 +240,7 @@ public class Controller {
 
                             JOptionPane.showMessageDialog(null, unoModel.gameWinner.getName(), "Won The Game! ", JOptionPane.INFORMATION_MESSAGE);
                         }
+
                         else{
 
                             if(unoGUI.wildCardDialog != null) {
@@ -367,14 +377,18 @@ public class Controller {
      * ActionListener for the "Next Player" button in the GUI, also handles AI logic
      */
     public class NextPlayerButtonListener implements ActionListener {
+
+
+        boolean ifReversed = false;
         @Override
         public void actionPerformed(ActionEvent e) {
+
 
             ArrayList<Player> playersList = unoModel.currentRound.getPlayers();
             int currentIndex = unoModel.currentRound.playerIndex;
             int nextIndex = (currentIndex + 1) % playersList.size();
 
-            if(playersList.get(nextIndex) instanceof AllenAI){
+            if (playersList.get(nextIndex) instanceof AllenAI) {
 
                 unoModel.currentRound.nextPlayer();
                 currentIndex = unoModel.currentRound.playerIndex;
@@ -388,25 +402,24 @@ public class Controller {
                 }
                 setHandPanelInteractable(false);
 
-                if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())){
+                if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())) {
                     if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
-                        unoGUI.discardInfo(unoModel.currentRound.discard.peek(),unoModel.currentRound.darkmode);
+                        unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
                     }
-                    if ((bot.allenCardPlayed !=  null) && bot.allenCardPlayed.getTypeLight() == Card.TypeLight.REVERSE || (bot.allenCardPlayed !=  null) && bot.allenCardPlayed.getTypeDark() == Card.TypeDark.REVERSE) {
+                    if ((bot.allenCardPlayed != null) && bot.allenCardPlayed.getTypeLight() == Card.TypeLight.REVERSE || (bot.allenCardPlayed != null) && bot.allenCardPlayed.getTypeDark() == Card.TypeDark.REVERSE) {
 
                         Collections.reverse(unoGUI.playerInputFields);
                     }
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), bot.getHand());
-                }
-                else{
+                } else {
                     System.out.println("allen drew");
                     unoModel.currentRound.drawCurrPlayer();
                     unoGUI.addCard(bot.getHand().getCard(bot.getHand().getSize() - 1));
                     setHandPanelInteractable(false);
                     unoGUI.nextPlayer.setEnabled(true);
                 }
-                
+
                 unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
                 return;
             }
@@ -414,22 +427,37 @@ public class Controller {
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
-            if ((unoModel.currentRound.removeCard !=  null) && unoModel.currentRound.removeCard.getTypeLight() == Card.TypeLight.REVERSE || (unoModel.currentRound.removeCard !=  null) && unoModel.currentRound.removeCard.getTypeDark() == Card.TypeDark.REVERSE) {
+            if ((unoModel.currentRound.removeCard != null) && unoModel.currentRound.removeCard.getTypeLight() == Card.TypeLight.REVERSE || (unoModel.currentRound.removeCard != null) && unoModel.currentRound.removeCard.getTypeDark() == Card.TypeDark.REVERSE) {
+
+                ifReversed = true;
+                System.out.println("GUI REVERSED");
                 Collections.reverse(unoGUI.playerInputFields);
             }
 
+            if (ifReversed) {
+                System.out.println("THE DISPLAY IS NOW GETTING REVERSED");
+                unoGUI.displayCurrentPlayer((unoGUI.playerInputFields.indexOf(unoGUI.getCurrentJTextField(unoModel.currentRound.playerIndex))));
+                unoModel.currentRound.nextPlayer();
 
-            unoModel.currentRound.nextPlayer();
-            unoGUI.displayCurrentPlayer(unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
+            } else {
+                System.out.println("GO TO NEXT PLAYER NORMALLY");
+                unoModel.currentRound.nextPlayer();
+                unoGUI.displayCurrentPlayer(unoModel.currentRound.playerIndex);
+            }
+            ifReversed = false;
+
             unoGUI.clearPlayerCards();
 
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
-                unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                    unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
             }
 
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
             unoGUI.nextPlayer.setEnabled(false);
             unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
+
+            unoModel.currentRound.removeCard = null;
+
         }
     }
 

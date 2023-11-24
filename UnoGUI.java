@@ -415,6 +415,11 @@ public class UnoGUI {
     }
 
 
+    public JTextField getCurrentJTextField(int index){
+        return playerInputFields.get(index);
+    }
+
+
 
     /**
      * Adds the "Next Player" button to the user interface.
