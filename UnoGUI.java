@@ -651,4 +651,10 @@ public class UnoGUI {
             button.addActionListener(listenforCardtoPlay);
         }
     }
+
+    public void updatePlayerInputFields(ArrayList<Player> players){
+        for(int i = 0; i < players.size(); i++){
+            playerInputFields.get(i).setText(players.get(i).getName());
+        }
+    }
 }
