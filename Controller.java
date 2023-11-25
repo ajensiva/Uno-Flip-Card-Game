@@ -122,10 +122,11 @@ public class Controller {
     public class AddPlayersListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (unoGUI.numFields < 8) {
+            if (unoGUI.numFields < 4) {
                 unoGUI.addPlayerField();
             }
-            if (unoGUI.numFields >= 8) {
+            if (unoGUI.numFields >= 4) {
+                unoGUI.addBot.setEnabled(false); // Disable the add bot button
                 unoGUI.addPlayer.setEnabled(false); // Disable the add player button
             }
         }
@@ -139,11 +140,12 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (unoGUI.numFields < 8) {
+            if (unoGUI.numFields < 4) {
                 unoGUI.addBotField();
             }
-            if (unoGUI.numFields >= 8) {
-                unoGUI.addBot.setEnabled(false); // Disable the add player button
+            if (unoGUI.numFields >= 4) {
+                unoGUI.addBot.setEnabled(false); // Disable the add bot button
+                unoGUI.addPlayer.setEnabled(false); // Disable the add player button
             }
 
         }

@@ -162,7 +162,7 @@ public class UnoGUI {
      */
 
     public void addPlayerField() {
-        if (numFields < 8) {
+        if (numFields < 4) {
             GridBagConstraints constraints = new GridBagConstraints();
             constraints.fill = GridBagConstraints.HORIZONTAL;
             constraints.insets = new Insets(10, 10, 10, 10);
@@ -207,7 +207,7 @@ public class UnoGUI {
      * adds the bot textfield option when starting the game
      */
     public void addBotField() {
-        if (numFields < 8) {
+        if (numFields < 4) {
             GridBagConstraints constraints = new GridBagConstraints();
             constraints.fill = GridBagConstraints.HORIZONTAL;
             constraints.insets = new Insets(10, 10, 10, 10);
