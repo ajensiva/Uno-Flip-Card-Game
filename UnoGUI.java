@@ -162,7 +162,7 @@ public class UnoGUI {
      */
 
     public void addPlayerField() {
-        if (numFields < 8) {
+        if (numFields < 4) {
             GridBagConstraints constraints = new GridBagConstraints();
             constraints.fill = GridBagConstraints.HORIZONTAL;
             constraints.insets = new Insets(10, 10, 10, 10);
@@ -207,7 +207,7 @@ public class UnoGUI {
      * adds the bot textfield option when starting the game
      */
     public void addBotField() {
-        if (numFields < 8) {
+        if (numFields < 4) {
             GridBagConstraints constraints = new GridBagConstraints();
             constraints.fill = GridBagConstraints.HORIZONTAL;
             constraints.insets = new Insets(10, 10, 10, 10);
@@ -415,6 +415,11 @@ public class UnoGUI {
     }
 
 
+    public JTextField getCurrentJTextField(int index){
+        return playerInputFields.get(index);
+    }
+
+
 
     /**
      * Adds the "Next Player" button to the user interface.
@@ -570,9 +575,6 @@ public class UnoGUI {
      */
     public void updatePlayerCardsRemove(int buttonToRemove, Hand hand) {
 
-        System.out.println("HandSize: " + hand.getSize());
-
-
         for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
             button.setName(Integer.toString(i));
@@ -581,7 +583,6 @@ public class UnoGUI {
         handPanel.remove(playerCards.get(buttonToRemove));
         //playerCards.remove(buttonToRemove);
         playerCards.remove(buttonToRemove);
-        System.out.println("Player Cards: " + playerCards.size());
     }
 
 
@@ -644,6 +645,12 @@ public class UnoGUI {
             JButton button = playerCards.get(i);
             button.setName(Integer.toString(i));
             button.addActionListener(listenforCardtoPlay);
+        }
+    }
+
+    public void updatePlayerInputFields(ArrayList<Player> players){
+        for(int i = 0; i < players.size(); i++){
+            playerInputFields.get(i).setText(players.get(i).getName());
         }
     }
 }

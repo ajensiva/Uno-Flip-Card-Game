@@ -122,10 +122,11 @@ public class Controller {
     public class AddPlayersListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (unoGUI.numFields < 8) {
+            if (unoGUI.numFields < 4) {
                 unoGUI.addPlayerField();
             }
-            if (unoGUI.numFields >= 8) {
+            if (unoGUI.numFields >= 4) {
+                unoGUI.addBot.setEnabled(false); // Disable the add bot button
                 unoGUI.addPlayer.setEnabled(false); // Disable the add player button
             }
         }
@@ -139,11 +140,12 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (unoGUI.numFields < 8) {
+            if (unoGUI.numFields < 4) {
                 unoGUI.addBotField();
             }
-            if (unoGUI.numFields >= 8) {
-                unoGUI.addBot.setEnabled(false); // Disable the add player button
+            if (unoGUI.numFields >= 4) {
+                unoGUI.addBot.setEnabled(false); // Disable the add bot button
+                unoGUI.addPlayer.setEnabled(false); // Disable the add player button
             }
 
         }
@@ -414,25 +416,12 @@ public class Controller {
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
-            // if ((unoModel.currentRound.removeCard != null) &&
-            // unoModel.currentRound.removeCard.getTypeLight() == Card.TypeLight.REVERSE ||
-            // (unoModel.currentRound.removeCard != null) &&
-            // unoModel.currentRound.removeCard.getTypeDark() == Card.TypeDark.REVERSE) {
-            // System.out.println("gui reverse");
-            // Collections.reverse(unoGUI.playerInputFields);
-            // }
 
-            if(unoModel.currentRound.getPlayCard() != null){
-                if(unoModel.currentRound.getPlayCard().getTypeLight() == Card.TypeLight.REVERSE || unoModel.currentRound.getPlayCard().getTypeDark() == Card.TypeDark.REVERSE ){
-                    System.out.println("gui reverse");
-                    Collections.reverse(unoGUI.playerInputFields);
-                }
-            }
-
+            unoGUI.updatePlayerInputFields(unoModel.currentRound.getPlayers());
             unoModel.currentRound.nextPlayer();
             unoGUI.displayCurrentPlayer(unoModel.currentRound.playerIndex);
-            unoGUI.clearPlayerCards();
 
+            unoGUI.clearPlayerCards();
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
             }
