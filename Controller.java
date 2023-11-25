@@ -182,7 +182,7 @@ public class Controller {
             unoModel.round();
             unoGUI.startGame();
             unoGUI.clearPlayerCards();
-            unoGUI.updateLeaderboard(unoModel.currentRound.getPlayers());
+            unoGUI.Leaderboard(unoModel.currentRound.getPlayers());
 
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
@@ -233,6 +233,8 @@ public class Controller {
 
                 unoModel.currentRound.roundWinner.setScore(
                         unoModel.currentRound.roundWinner.getScore() + unoModel.currentRound.getTotalPoints());
+                System.out.println(unoModel.currentRound.roundWinner.getScore());
+                unoGUI.Leaderboard(unoModel.players);
 
                 // PERSON WON GAME
                 if (unoModel.checkGameWon()) {

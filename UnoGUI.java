@@ -324,7 +324,7 @@ public class UnoGUI {
      * updates the running leaderboard in the current round of Uno
      * @param players
      */
-    public void updateLeaderboard(ArrayList<Player> players) {
+    public void Leaderboard(ArrayList<Player> players) {
 
         leaderboardPanel.removeAll();
 
@@ -347,7 +347,9 @@ public class UnoGUI {
         leaderboardFrame.setSize(300, 400);
         leaderboardFrame.setLocationRelativeTo(null); // Center the frame on the screen
         leaderboardFrame.setVisible(true);
+
     }
+
     /**
      * Creates a panel for the wild card selection.
      */
