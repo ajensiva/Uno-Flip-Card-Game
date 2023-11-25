@@ -412,8 +412,9 @@ public class Controller {
             setHandPanelInteractable(true);
 
             unoModel.currentRound.nextPlayer();
-            unoGUI.displayCurrentPlayer(unoModel.currentRound.playerIndex);
             unoGUI.updatePlayerInputFields(unoModel.currentRound.getPlayers());
+            unoGUI.displayCurrentPlayer(unoModel.currentRound.playerIndex);
+
             unoGUI.clearPlayerCards();
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
@@ -422,7 +423,6 @@ public class Controller {
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
             unoGUI.nextPlayer.setEnabled(false);
             unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
-            System.out.println("player index: " + unoModel.currentRound.playerIndex);
 
         }
     }
