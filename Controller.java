@@ -427,34 +427,34 @@ public class Controller {
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
-            if ((unoModel.currentRound.removeCard != null) && unoModel.currentRound.removeCard.getTypeLight() == Card.TypeLight.REVERSE || (unoModel.currentRound.removeCard != null) && unoModel.currentRound.removeCard.getTypeDark() == Card.TypeDark.REVERSE) {
-
-                ifReversed = true;
-                System.out.println("GUI REVERSED");
-
-
-                Collections.reverse(unoGUI.playerInputFields);
-            }
-
-            if (ifReversed) {
-                System.out.println("THE DISPLAY IS NOW GETTING REVERSED");
-                unoGUI.displayCurrentPlayer((unoGUI.playerInputFields.indexOf(unoGUI.getCurrentJTextField((unoModel.currentRound.playerIndex+1) % unoModel.currentRound.getPlayers().size()))));
-
-                for (JTextField players : unoGUI.playerInputFields){
-
-                    System.out.println(players.getText());
-
-                }
-                System.out.println("player index Model: " + unoModel.currentRound.playerIndex);
-
-                unoModel.currentRound.nextPlayer();
-
-            } else {
-                System.out.println("GO TO NEXT PLAYER NORMALLY");
-                unoModel.currentRound.nextPlayer();
-                unoGUI.displayCurrentPlayer(unoModel.currentRound.playerIndex);
-            }
-            ifReversed = false;
+//            if ((unoModel.currentRound.removeCard != null) && unoModel.currentRound.removeCard.getTypeLight() == Card.TypeLight.REVERSE || (unoModel.currentRound.removeCard != null) && unoModel.currentRound.removeCard.getTypeDark() == Card.TypeDark.REVERSE) {
+//
+//                ifReversed = true;
+//                System.out.println("GUI REVERSED");
+//
+//
+//                Collections.reverse(unoGUI.playerInputFields);
+//            }
+//
+//            if (ifReversed) {
+//                System.out.println("THE DISPLAY IS NOW GETTING REVERSED");
+//                unoGUI.displayCurrentPlayer((unoGUI.playerInputFields.indexOf(unoGUI.getCurrentJTextField((unoModel.currentRound.playerIndex+1) % unoModel.currentRound.getPlayers().size()))));
+//
+//                for (JTextField players : unoGUI.playerInputFields){
+//
+//                    System.out.println(players.getText());
+//
+//                }
+//                System.out.println("player index Model: " + unoModel.currentRound.playerIndex);
+//
+//                unoModel.currentRound.nextPlayer();
+//
+//            } else {
+//                System.out.println("GO TO NEXT PLAYER NORMALLY");
+//                unoModel.currentRound.nextPlayer();
+//                unoGUI.displayCurrentPlayer(unoModel.currentRound.playerIndex);
+//            }
+//            ifReversed = false;
 
             unoGUI.clearPlayerCards();
 

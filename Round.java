@@ -32,6 +32,8 @@ public class Round {
 
     protected Player roundWinner;
 
+    private boolean isReversed = false;
+
     /**
      * Constructor for the `Round` class.
      * Initializes the round with a list of players, a deck, and a discard pile.
@@ -116,8 +118,16 @@ public class Round {
      */
     public void nextPlayer() {
 
-        playerIndex = (playerIndex + 1) % players.size();
+        if (!isReversed) {
+            playerIndex = (playerIndex + 1) % players.size();}
+        else {
+            playerIndex = (playerIndex - 1 + players.size()) % players.size();}
         currentPlayer = players.get(playerIndex);
+    }
+
+
+    public void isReverse(){
+        isReversed = !isReversed;
     }
 
     /**
@@ -133,12 +143,14 @@ public class Round {
             // light type cards only
             if (!(darkmode)) {
                 if (getPlayCard().getTypeLight() == Card.TypeLight.REVERSE) {
-                    // reverse collection and decrement player index to get player before
-                    System.out.println("MODEL RTEVERSE");
-                    System.out.println("player index before: " +  playerIndex);
-
-                    playerIndex -= 1;
-                    reverse();
+                    reverse(); // This will just toggle the direction
+                    // Since the direction is reversed, we need to go back two players to continue correctly
+                    if (!isReversed) {
+                        playerIndex = (playerIndex + players.size() - 2) % players.size();
+                    } else {
+                        playerIndex = (playerIndex + 2) % players.size();
+                    }
+                    currentPlayer = players.get(playerIndex);
                 }
                 if (getPlayCard().getTypeLight() == Card.TypeLight.SKIP) {
                     // move to the next player
@@ -165,10 +177,14 @@ public class Round {
                     playerIndex -= 1;
                 }
                 if (getPlayCard().getTypeDark() == Card.TypeDark.REVERSE) {
-                    // reverse collection and decrement player index to get player before
-                    playerIndex -= 1;
-                    reverse();
-                    System.out.println("MODEL RTEVERSE");
+                    reverse(); // This will just toggle the direction
+                    // Since the direction is reversed, we need to go back two players to continue correctly
+                    if (!isReversed) {
+                        playerIndex = (playerIndex + players.size() - 2) % players.size();
+                    } else {
+                        playerIndex = (playerIndex + 2) % players.size();
+                    }
+                    currentPlayer = players.get(playerIndex);
                 }
 
                 if (getPlayCard().getTypeDark() == Card.TypeDark.FLIP) {
