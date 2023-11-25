@@ -414,25 +414,10 @@ public class Controller {
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
-            // if ((unoModel.currentRound.removeCard != null) &&
-            // unoModel.currentRound.removeCard.getTypeLight() == Card.TypeLight.REVERSE ||
-            // (unoModel.currentRound.removeCard != null) &&
-            // unoModel.currentRound.removeCard.getTypeDark() == Card.TypeDark.REVERSE) {
-            // System.out.println("gui reverse");
-            // Collections.reverse(unoGUI.playerInputFields);
-            // }
-
-            if(unoModel.currentRound.getPlayCard() != null){
-                if(unoModel.currentRound.getPlayCard().getTypeLight() == Card.TypeLight.REVERSE || unoModel.currentRound.getPlayCard().getTypeDark() == Card.TypeDark.REVERSE ){
-                    System.out.println("gui reverse");
-                    Collections.reverse(unoGUI.playerInputFields);
-                }
-            }
-
             unoModel.currentRound.nextPlayer();
+            unoGUI.updatePlayerInputFields(unoModel.currentRound.getPlayers());
             unoGUI.displayCurrentPlayer(unoModel.currentRound.playerIndex);
             unoGUI.clearPlayerCards();
-
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
             }
