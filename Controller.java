@@ -414,9 +414,11 @@ public class Controller {
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
-            unoModel.currentRound.nextPlayer();
+
             unoGUI.updatePlayerInputFields(unoModel.currentRound.getPlayers());
+            unoModel.currentRound.nextPlayer();
             unoGUI.displayCurrentPlayer(unoModel.currentRound.playerIndex);
+
             unoGUI.clearPlayerCards();
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));

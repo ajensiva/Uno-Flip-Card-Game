@@ -22,7 +22,7 @@ public class Round {
     public static boolean darkmode = true; // if true then we're playing dark sides of card
 
     protected Player currentPlayer; // current player that's playing
-    private final int DEALTCARDS = 7; // max number of cards to be delt
+    private final int DEALTCARDS = 20; // max number of cards to be delt
 
     protected int playCardIndex;
 
@@ -177,7 +177,7 @@ public class Round {
 
                     while(flag){
 
-                        if (deck.peek().getColorDark().equals(getPlayCard().getColorDark())) {
+                        if (deck.peek().getColorDark() != null && deck.peek().getColorDark().equals(getPlayCard().getColorDark())) {
                             flag = false;
                         }
                         else {
