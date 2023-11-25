@@ -161,9 +161,9 @@ public class Round {
                 }
                 if (getPlayCard().getTypeDark() == Card.TypeDark.REVERSE) {
                     // reverse collection and decrement player index to get player before
-                    playerIndex -= 1;
+                    //playerIndex -= 1;
+                    playerIndex = (playerIndex - 1) % players.size();
                     reverse();
-                    System.out.println("model reversed");
                 }
 
                 if (getPlayCard().getTypeDark() == Card.TypeDark.FLIP) {
