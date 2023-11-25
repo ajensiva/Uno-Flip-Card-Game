@@ -570,9 +570,6 @@ public class UnoGUI {
      */
     public void updatePlayerCardsRemove(int buttonToRemove, Hand hand) {
 
-        System.out.println("HandSize: " + hand.getSize());
-
-
         for (int i = 0; i < hand.getSize(); i++) {
             JButton button = playerCards.get(i);
             button.setName(Integer.toString(i));
@@ -581,7 +578,6 @@ public class UnoGUI {
         handPanel.remove(playerCards.get(buttonToRemove));
         //playerCards.remove(buttonToRemove);
         playerCards.remove(buttonToRemove);
-        System.out.println("Player Cards: " + playerCards.size());
     }
 
 
