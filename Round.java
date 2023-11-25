@@ -128,11 +128,15 @@ public class Round {
     public boolean cardPlayedLogic() {
         if ((checkCard(getPlayCard(), discard.peek()))) {
 
+            System.out.println("BEFORE: " + players.toString());
+
             // light type cards only
             if (!(darkmode)) {
                 if (getPlayCard().getTypeLight() == Card.TypeLight.REVERSE) {
                     // reverse collection and decrement player index to get player before
                     System.out.println("MODEL RTEVERSE");
+                    System.out.println("player index before: " +  playerIndex);
+
                     playerIndex -= 1;
                     reverse();
                 }
@@ -189,6 +193,8 @@ public class Round {
 
                 }
             }
+
+            System.out.println("AFTER: " + players.toString());
 
             removeCard = currentPlayer.getHand().removeCard(getPlayCard());
 

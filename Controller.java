@@ -431,12 +431,22 @@ public class Controller {
 
                 ifReversed = true;
                 System.out.println("GUI REVERSED");
+
+
                 Collections.reverse(unoGUI.playerInputFields);
             }
 
             if (ifReversed) {
                 System.out.println("THE DISPLAY IS NOW GETTING REVERSED");
-                unoGUI.displayCurrentPlayer((unoGUI.playerInputFields.indexOf(unoGUI.getCurrentJTextField(unoModel.currentRound.playerIndex))));
+                unoGUI.displayCurrentPlayer((unoGUI.playerInputFields.indexOf(unoGUI.getCurrentJTextField((unoModel.currentRound.playerIndex+1) % unoModel.currentRound.getPlayers().size()))));
+
+                for (JTextField players : unoGUI.playerInputFields){
+
+                    System.out.println(players.getText());
+
+                }
+                System.out.println("player index Model: " + unoModel.currentRound.playerIndex);
+
                 unoModel.currentRound.nextPlayer();
 
             } else {
