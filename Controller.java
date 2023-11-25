@@ -226,6 +226,7 @@ public class Controller {
 
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
             controllerPlayCardLogic();
+            unoGUI.updatePlayerInputFields(unoModel.currentRound.getPlayers());
 
             if (unoModel.currentRound.checkWinner()) {
                 JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "Won Round! ",
@@ -377,8 +378,6 @@ public class Controller {
                 unoModel.currentRound.nextPlayer();
                 currentIndex = unoModel.currentRound.playerIndex;
                 AllenAI bot = (AllenAI) playersList.get(unoModel.currentRound.playerIndex);
-                unoGUI.displayCurrentPlayer(currentIndex);
-
                 // clear cards
                 unoGUI.clearPlayerCards();
                 for (int i = 0; i < bot.getHand().getSize(); i++) {
@@ -400,7 +399,6 @@ public class Controller {
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), bot.getHand());
                 } else {
-                    System.out.println("allen drew");
                     unoModel.currentRound.drawCurrPlayer();
                     unoGUI.addCard(bot.getHand().getCard(bot.getHand().getSize() - 1));
                     setHandPanelInteractable(false);
@@ -410,13 +408,12 @@ public class Controller {
                 unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
                 return;
             }
-
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
             unoModel.currentRound.nextPlayer();
-            unoGUI.updatePlayerInputFields(unoModel.currentRound.getPlayers());
             unoGUI.displayCurrentPlayer(unoModel.currentRound.playerIndex);
+            unoGUI.updatePlayerInputFields(unoModel.currentRound.getPlayers());
             unoGUI.clearPlayerCards();
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
@@ -425,6 +422,8 @@ public class Controller {
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
             unoGUI.nextPlayer.setEnabled(false);
             unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
+            System.out.println("player index: " + unoModel.currentRound.playerIndex);
+
         }
     }
 
