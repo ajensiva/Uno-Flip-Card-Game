@@ -177,10 +177,13 @@ public class Round {
 
                     while(flag){
 
-                        if (deck.peek().getColorDark() != null && deck.peek().getColorDark().equals(getPlayCard().getColorDark())) {
+                        if (deck.peek().getColorDark() != null && discard.peek().getColorDark().equals(players.get(((players.indexOf(currentPlayer) + 1) % players.size())).getHand().getCard(players.get(((players.indexOf(currentPlayer) + 1) % players.size())).getHand().getSize()-1).getColorDark())) {
+                            System.out.println("THIS IS THE TOP OF THE DECK:" + deck.peek());
+                            System.out.println("WHY DID SHE LEAVE ME");
                             flag = false;
                         }
                         else {
+                            System.out.println("I MISS HER");
                             drawCard(1);
                         }
 
@@ -224,7 +227,7 @@ public class Round {
     public void drawCard(int n) {
         // loop for n times (draw n cards)
         int nextPlayerIndex = (players.indexOf(currentPlayer) + 1) % players.size(); // player that will draw cards
-        for (int i = 0; i < (n + 1); i++) {
+        for (int i = 0; i < n; i++) {
             // give cards to the next player
             players.get(nextPlayerIndex).getHand().addCard(deck.pop());
         }
