@@ -66,7 +66,7 @@ public class Controller {
 
                     if (unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
 
-                        unoModel.currentRound.drawCard(1);
+                        unoModel.currentRound.drawCard(2);
                         unoGUI.wildCardGui();
                         unoGUI.red.setText("Red");
                         unoGUI.blue.setText("Blue");
@@ -79,7 +79,7 @@ public class Controller {
                         unoGUI.discardLabel.setVisible(false);
                     } else if (unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
 
-                        unoModel.currentRound.drawCard(3);
+                        unoModel.currentRound.drawCard(4);
                         unoGUI.wildCardGui();
                         unoGUI.red.setText("Red");
                         unoGUI.blue.setText("Blue");
