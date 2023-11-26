@@ -34,7 +34,9 @@
 - A notable enhancement is the incorporation of an arbitrary number of AI players with flexible behavior strategies, allowing for intelligent gameplay simulation. Options include generating all legal moves and selecting the highest-scoring move or using rules such as "The first valid card will be placed."
 
 ### Known issues:
-- Potential scaling issues with Card images across platforms  
+- No known error's at this point in the game 
+- Potential scaling issues with Card images across platforms
+--------------------------------------------------------------------
 
 #### MIT License
 

@@ -12,7 +12,7 @@ import java.util.Random;
  * UnoGUI class represents the graphical user interface for the UNO game.
  *
  * @author Zarif, Ajen, Arun, Jason
- * @version 2.0
+ * @version 3.0
  */
 public class UnoGUI {
 

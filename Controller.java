@@ -10,7 +10,7 @@ import java.util.Collections;
  * GUI and the Uno game model.
  * 
  * @author Zarif, Ajen, Arun, Jason
- * @version 2.0
+ * @version 3.0
  */
 public class Controller {
 
@@ -390,15 +390,8 @@ public class Controller {
                 setHandPanelInteractable(false);
 
                 if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())) {
-                    if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO)
-                            || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                    if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || bot.allenCardPlayed.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD)){
                         unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
-                    }
-                    if ((bot.allenCardPlayed != null) && bot.allenCardPlayed.getTypeLight() == Card.TypeLight.REVERSE
-                            || (bot.allenCardPlayed != null)
-                                    && bot.allenCardPlayed.getTypeDark() == Card.TypeDark.REVERSE) {
-
-                        Collections.reverse(unoGUI.playerInputFields);
                     }
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), bot.getHand());

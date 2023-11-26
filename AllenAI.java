@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * AllenAI class implements the logic behind all AI players within a given game of Uno
+ *
+ * @author Zarif, Arun, Ajen, Jason
+ * @version 3.0
+ */
+
 public class AllenAI extends Player{
     /**
      * Constructor to create a new player with the given name.
