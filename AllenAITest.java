@@ -43,7 +43,7 @@ class AllenAITest {
 
         // Allen should play the card and the top of the discard stack should be the card that allen played
         assertTrue(bot1.allenPlayCard(round, bot1.getHand()));
-        assertEquals(round.discard.peek(), bot1.allenCardPlayed);
+        assertEquals(round.discard.peek(), bot1.getAllenCardPlayed());
     }
 
 
@@ -79,7 +79,7 @@ class AllenAITest {
 
         // allen should play the higher card
         bot1.allenPlayCard(round, bot1.getHand());
-        assertEquals(best, bot1.allenCardPlayed);
+        assertEquals(best, bot1.getAllenCardPlayed());
 
 
     }

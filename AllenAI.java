@@ -15,7 +15,7 @@ public class AllenAI extends Player{
      * @param name The name of the player.
      */
 
-    Card allenCardPlayed;
+    private Card allenCardPlayed;
     
     public AllenAI(String name) {
         super(name);
@@ -102,6 +102,10 @@ public class AllenAI extends Player{
         allenCardPlayed = currentRound.getPlayCard();
         
         return currentRound.cardPlayedLogic();
+    }
+
+    public Card getAllenCardPlayed() {
+        return allenCardPlayed;
     }
 
 }

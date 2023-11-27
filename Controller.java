@@ -390,7 +390,7 @@ public class Controller {
                 setHandPanelInteractable(false);
 
                 if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())) {
-                    if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || bot.allenCardPlayed.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD)){
+                    if (bot.getAllenCardPlayed().getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.getAllenCardPlayed().getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || bot.getAllenCardPlayed().getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD)){
                         unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
                     }
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
