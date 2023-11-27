@@ -88,8 +88,8 @@ public class Card {
         DRAW_FIVE(50),
         SKIP_EVERYONE(30),
         REVERSE(20),
-        DARK_WILD_CARD(20),
-        WILD_DRAW_COLOR(60),
+        DARK_WILD_CARD(60),
+        WILD_DRAW_COLOR(20),
         FLIP(20);
 
         private final int value;
