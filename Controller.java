@@ -396,7 +396,6 @@ public class Controller {
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), bot.getHand());
                 } else {
-                    System.out.println("allen drew");
                     unoModel.currentRound.drawCurrPlayer();
                     unoGUI.addCard(bot.getHand().getCard(bot.getHand().getSize() - 1));
                     setHandPanelInteractable(false);

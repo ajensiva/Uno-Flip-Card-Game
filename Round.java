@@ -134,7 +134,7 @@ public class Round {
                     // reverse collection and decrement player index to get player before
                     playerIndex -= 1;
                     reverse();
-                    System.out.println("model reversed");
+
                 }
                 if (getPlayCard().getTypeLight() == Card.TypeLight.SKIP) {
                     // move to the next player
@@ -163,7 +163,7 @@ public class Round {
                     // reverse collection and decrement player index to get player before
                     playerIndex -= 1;
                     reverse();
-                    System.out.println("model reversed");
+
                 }
 
                 if (getPlayCard().getTypeDark() == Card.TypeDark.FLIP) {
@@ -178,12 +178,11 @@ public class Round {
                     while(flag){
 
                         if (deck.peek().getColorDark() != null && discard.peek().getColorDark().equals(players.get(((players.indexOf(currentPlayer) + 1) % players.size())).getHand().getCard(players.get(((players.indexOf(currentPlayer) + 1) % players.size())).getHand().getSize()-1).getColorDark())) {
-                            System.out.println("THIS IS THE TOP OF THE DECK:" + deck.peek());
-                            System.out.println("WHY DID SHE LEAVE ME");
+
                             flag = false;
                         }
                         else {
-                            System.out.println("I MISS HER");
+
                             drawCard(1);
                         }
 
