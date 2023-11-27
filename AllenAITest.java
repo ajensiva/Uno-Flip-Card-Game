@@ -16,7 +16,7 @@ class AllenAITest {
     @BeforeAll
     public static void setUp() {
         bot1 = new AllenAI("Bot1");
-        bot2 = new AllenAI("bot2");
+        bot2 = new AllenAI("Bot2");
         ArrayList<Player> bots  = new ArrayList<>();
         bots.add(bot1);
         bots.add(bot2);
@@ -66,10 +66,7 @@ class AllenAITest {
 
 
     }
-
-
-
-
+    
 
     @Test
     void allenPlayCardHighest() {
