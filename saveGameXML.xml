@@ -2,34 +2,34 @@
 	<Uno>
 	<Round>
 		<players>Juan</players>
-		<Hand> [0] Dark Color: Purple, Dark Type: EIGHT
- [1] Dark Color: Purple, Dark Type: REVERSE
- [2] Dark Color: Teal, Dark Type: WILD_DRAW_COLOR
- [3] Dark Color: Orange, Dark Type: ONE
- [4] Dark Color: Pink, Dark Type: SIX
- [5] Dark Color: Pink, Dark Type: SIX
- [6] Dark Color: Orange, Dark Type: WILD_DRAW_COLOR
+		<Hand> [0] Dark Color: Teal, Dark Type: DRAW_FIVE
+ [1] Dark Color: Teal, Dark Type: WILD_DRAW_COLOR
+ [2] Dark Color: null, Dark Type: DARK_WILD_CARD
+ [3] Dark Color: Teal, Dark Type: SIX
+ [4] Dark Color: Pink, Dark Type: FIVE
+ [5] Dark Color: Pink, Dark Type: SEVEN
+ [6] Dark Color: Teal, Dark Type: DRAW_FIVE
 </Hand>
 		<players>Georgio</players>
-		<Hand> [0] Dark Color: Teal, Dark Type: SEVEN
- [1] Dark Color: Pink, Dark Type: FOUR
- [2] Dark Color: Teal, Dark Type: REVERSE
- [3] Dark Color: null, Dark Type: DARK_WILD_CARD
- [4] Dark Color: Purple, Dark Type: FLIP
- [5] Dark Color: Orange, Dark Type: FOUR
- [6] Dark Color: Teal, Dark Type: NINE
+		<Hand> [0] Dark Color: Purple, Dark Type: FOUR
+ [1] Dark Color: Purple, Dark Type: FIVE
+ [2] Dark Color: Purple, Dark Type: EIGHT
+ [3] Dark Color: Pink, Dark Type: EIGHT
+ [4] Dark Color: Pink, Dark Type: DRAW_FIVE
+ [5] Dark Color: Purple, Dark Type: FOUR
+ [6] Dark Color: Purple, Dark Type: SKIP_EVERYONE
 </Hand>
 		<players>Georgio</players>
-		<Hand> [0] Dark Color: Purple, Dark Type: FLIP
- [1] Dark Color: Teal, Dark Type: REVERSE
- [2] Dark Color: Orange, Dark Type: SKIP_EVERYONE
- [3] Dark Color: Purple, Dark Type: FLIP
- [4] Dark Color: Orange, Dark Type: REVERSE
- [5] Dark Color: Purple, Dark Type: SEVEN
- [6] Dark Color: Purple, Dark Type: REVERSE
+		<Hand> [0] Dark Color: Teal, Dark Type: SKIP_EVERYONE
+ [1] Dark Color: Orange, Dark Type: ONE
+ [2] Dark Color: Orange, Dark Type: FLIP
+ [3] Dark Color: Pink, Dark Type: TWO
+ [4] Dark Color: Pink, Dark Type: TWO
+ [5] Dark Color: Teal, Dark Type: FLIP
+ [6] Dark Color: Teal, Dark Type: ONE
 </Hand>
 		<currentPlayer>Juan</currentPlayer>
-		<topOfDiscard>Dark Color: Pink, Dark Type: WILD_DRAW_COLOR</topOfDiscard>
+		<topOfDiscard>Dark Color: Pink, Dark Type: EIGHT</topOfDiscard>
 	</Round>
 	</Uno>
 </root>
