@@ -1,3 +1,5 @@
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +9,7 @@ import java.util.ArrayList;
  * @version 3.0
  */
 
-public class Hand {
+public class Hand implements Serializable {
 
     // a hand of cards, originally 7
     private ArrayList<Card> hand;

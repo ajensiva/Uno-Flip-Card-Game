@@ -111,5 +111,17 @@ public class Uno implements Serializable {
             uno.saveGame();
 
 
+            //saving load 1 of Uno game
+
+
+            System.out.println("IM HERE ABOUT TO WRITE BYTES TO UNOGAME!");
+            FileOutputStream file = new FileOutputStream("UnoGame1.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(uno);
+            out.close();
+
+
+
+
         }
     }
