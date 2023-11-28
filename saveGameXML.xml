@@ -1,0 +1,35 @@
+<root>
+	<Uno>
+	<Round>
+		<players>Juan</players>
+		<Hand> [0] Dark Color: Purple, Dark Type: EIGHT
+ [1] Dark Color: Purple, Dark Type: REVERSE
+ [2] Dark Color: Teal, Dark Type: WILD_DRAW_COLOR
+ [3] Dark Color: Orange, Dark Type: ONE
+ [4] Dark Color: Pink, Dark Type: SIX
+ [5] Dark Color: Pink, Dark Type: SIX
+ [6] Dark Color: Orange, Dark Type: WILD_DRAW_COLOR
+</Hand>
+		<players>Georgio</players>
+		<Hand> [0] Dark Color: Teal, Dark Type: SEVEN
+ [1] Dark Color: Pink, Dark Type: FOUR
+ [2] Dark Color: Teal, Dark Type: REVERSE
+ [3] Dark Color: null, Dark Type: DARK_WILD_CARD
+ [4] Dark Color: Purple, Dark Type: FLIP
+ [5] Dark Color: Orange, Dark Type: FOUR
+ [6] Dark Color: Teal, Dark Type: NINE
+</Hand>
+		<players>Georgio</players>
+		<Hand> [0] Dark Color: Purple, Dark Type: FLIP
+ [1] Dark Color: Teal, Dark Type: REVERSE
+ [2] Dark Color: Orange, Dark Type: SKIP_EVERYONE
+ [3] Dark Color: Purple, Dark Type: FLIP
+ [4] Dark Color: Orange, Dark Type: REVERSE
+ [5] Dark Color: Purple, Dark Type: SEVEN
+ [6] Dark Color: Purple, Dark Type: REVERSE
+</Hand>
+		<currentPlayer>Juan</currentPlayer>
+		<topOfDiscard>Dark Color: Pink, Dark Type: WILD_DRAW_COLOR</topOfDiscard>
+	</Round>
+	</Uno>
+</root>

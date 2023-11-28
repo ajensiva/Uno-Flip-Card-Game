@@ -257,7 +257,7 @@ public class Round implements Serializable {
      * @return True if the card can be played, false otherwise.
      */
     public boolean checkCard(Card card1, Card card2) {
-        
+
         // for light side checks
         if (darkmode == false) {
 
@@ -373,18 +373,39 @@ public class Round implements Serializable {
 
         xmlBuilder.append("\t<Round>\n");
 
-        xmlBuilder.append("<players>");
-        for (Player player : players) {
-            xmlBuilder.append(player.toString());
+
+        for (Player player : players){
+
+            xmlBuilder.append("\t\t<players>" + player.getName() + "</players>\n");
+
+            xmlBuilder.append("\t\t<Hand>" + player.getHand().toString() + "</Hand>\n");
         }
-        xmlBuilder.append("</players>\n");
 
-        xmlBuilder.append("<currentPlayer>" + currentPlayer.toString() + "</currentPlayer>\n");
-        xmlBuilder.append("\t</Round\n");
+        xmlBuilder.append("\t\t<currentPlayer>" + currentPlayer.getName() + "</currentPlayer>\n");
+        xmlBuilder.append("\t\t<topOfDiscard>" + discard.peek().toString() + "</topOfDiscard>\n");
 
+
+
+
+        System.out.println("NOW IM HERE!");
+        xmlBuilder.append("\t</Round>\n");
 
         return xmlBuilder.toString();
     }
+
+
+
+    //________________________________TEMP METHODS_______________________________
+
+    public void setPlayer(Player player){
+
+
+        players.add(player);
+
+
+    }
+
+
 
 
 }
