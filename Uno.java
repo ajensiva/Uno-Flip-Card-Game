@@ -1,3 +1,8 @@
+
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +14,7 @@ import java.util.ArrayList;
  * @version 3.0
  */
 
-public class Uno {
+public class Uno{
 
     private final int MAXSCORE = 500; // max score to win game
     protected static ArrayList<Player> players = new ArrayList<>(); // store all players in an array
@@ -35,7 +40,7 @@ public class Uno {
         // loop all players and check their score and compare with maxscore
         for (Player plr : players) {
             if (plr.getScore() >= MAXSCORE) {
-                gameWinner = plr; // player that wong the game
+                gameWinner = plr; // player that won the game
                 return true;
             }
         }
@@ -64,4 +69,42 @@ public class Uno {
             players.add(player);
         }
     }
-}
+
+    public String unoToXML(){
+        StringBuilder xmlBuilder = new StringBuilder();
+
+        xmlBuilder.append("<root>\n");
+        xmlBuilder.append("\t<Uno>\n");
+
+        xmlBuilder.append(currentRound.roundToXML());
+        xmlBuilder.append("\t</Uno\n");
+        xmlBuilder.append("</root>\n");
+
+        return xmlBuilder.toString();
+    }
+
+    public void saveGame() throws IOException {
+        try (FileWriter writer = new FileWriter("C:\\Users\\Zarif\\Documents\\COURSES\\CURRENT_COURSES\\SYSC 3110\\Uno-Flip-Card-Game\\SaveGame.xml")) {
+            writer.write(unoToXML());
+        }
+    }
+
+
+        public static void main (String [] args) throws IOException {
+
+            Player player1 = new Player("Juan");
+            Player player2 = new Player("Pedro");
+
+            ArrayList<Player> players = new ArrayList<>();
+            players.add(player1);
+            players.add(player2);
+
+            Uno uno = new Uno();
+            uno.round();
+
+
+
+            uno.saveGame();
+
+        }
+    }

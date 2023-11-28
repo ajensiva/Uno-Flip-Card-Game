@@ -1,3 +1,7 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -12,7 +16,7 @@ import java.util.Collections;
  * @version 3.0
  */
 
-public class Round {
+public class Round implements Serializable {
 
     private static ArrayList<Player> players; // array to hold players
 
@@ -363,4 +367,24 @@ public class Round {
         }
         return totalPoint;
     }
+
+    public String roundToXML(){
+        StringBuilder xmlBuilder = new StringBuilder();
+
+        xmlBuilder.append("\t<Round>\n");
+
+        xmlBuilder.append("<players>");
+        for (Player player : players) {
+            xmlBuilder.append(player.toString());
+        }
+        xmlBuilder.append("</players>\n");
+
+        xmlBuilder.append("<currentPlayer>" + currentPlayer.toString() + "</currentPlayer>\n");
+        xmlBuilder.append("\t</Round\n");
+
+
+        return xmlBuilder.toString();
+    }
+
+
 }
