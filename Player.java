@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 /**
  * Player class represents a player in the Uno game.
  *
@@ -5,7 +7,7 @@
  * @version 2.0
  */
 
-public class Player {
+public class Player implements Serializable {
 
     // attributes
     private Hand hand; // The player's hand of Uno cards
@@ -74,5 +76,11 @@ public class Player {
             return true;
         }
         return false;
+    }
+
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

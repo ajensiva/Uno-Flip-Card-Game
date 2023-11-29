@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Objects;
  * @version 1.0
  */
 
-public class Card {
+public class Card implements Serializable {
 
     public static final String RELATIVE_IMAGE_DIRECTORY = "images/";
     public static final String DECK_FILE_NAME = RELATIVE_IMAGE_DIRECTORY + "Top_CARD.jpg";
@@ -88,8 +89,8 @@ public class Card {
         DRAW_FIVE(50),
         SKIP_EVERYONE(30),
         REVERSE(20),
-        DARK_WILD_CARD(20),
-        WILD_DRAW_COLOR(60),
+        DARK_WILD_CARD(60),
+        WILD_DRAW_COLOR(20),
         FLIP(20);
 
         private final int value;

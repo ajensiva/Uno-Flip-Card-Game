@@ -10,7 +10,7 @@ import java.util.Collections;
  * GUI and the Uno game model.
  * 
  * @author Zarif, Ajen, Arun, Jason
- * @version 2.0
+ * @version 3.0
  */
 public class Controller {
 
@@ -66,7 +66,7 @@ public class Controller {
 
                     if (unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILDTWO)) {
 
-                        unoModel.currentRound.drawCard(1);
+                        unoModel.currentRound.drawCard(2);
                         unoGUI.wildCardGui();
                         unoGUI.red.setText("Red");
                         unoGUI.blue.setText("Blue");
@@ -79,7 +79,7 @@ public class Controller {
                         unoGUI.discardLabel.setVisible(false);
                     } else if (unoModel.currentRound.removeCard.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
 
-                        unoModel.currentRound.drawCard(3);
+                        unoModel.currentRound.drawCard(4);
                         unoGUI.wildCardGui();
                         unoGUI.red.setText("Red");
                         unoGUI.blue.setText("Blue");
@@ -122,10 +122,11 @@ public class Controller {
     public class AddPlayersListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (unoGUI.numFields < 8) {
+            if (unoGUI.numFields < 4) {
                 unoGUI.addPlayerField();
             }
-            if (unoGUI.numFields >= 8) {
+            if (unoGUI.numFields >= 4) {
+                unoGUI.addBot.setEnabled(false); // Disable the add bot button
                 unoGUI.addPlayer.setEnabled(false); // Disable the add player button
             }
         }
@@ -139,11 +140,12 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (unoGUI.numFields < 8) {
+            if (unoGUI.numFields < 4) {
                 unoGUI.addBotField();
             }
-            if (unoGUI.numFields >= 8) {
-                unoGUI.addBot.setEnabled(false); // Disable the add player button
+            if (unoGUI.numFields >= 4) {
+                unoGUI.addBot.setEnabled(false); // Disable the add bot button
+                unoGUI.addPlayer.setEnabled(false); // Disable the add player button
             }
 
         }
@@ -182,7 +184,7 @@ public class Controller {
             unoModel.round();
             unoGUI.startGame();
             unoGUI.clearPlayerCards();
-            unoGUI.updateLeaderboard(unoModel.currentRound.getPlayers());
+            unoGUI.Leaderboard(unoModel.currentRound.getPlayers());
 
             for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
@@ -226,7 +228,6 @@ public class Controller {
 
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
             controllerPlayCardLogic();
-            unoGUI.updatePlayerInputFields(unoModel.currentRound.getPlayers());
 
             if (unoModel.currentRound.checkWinner()) {
                 JOptionPane.showMessageDialog(null, unoModel.currentRound.currentPlayer.getName(), "Won Round! ",
@@ -234,6 +235,8 @@ public class Controller {
 
                 unoModel.currentRound.roundWinner.setScore(
                         unoModel.currentRound.roundWinner.getScore() + unoModel.currentRound.getTotalPoints());
+                System.out.println(unoModel.currentRound.roundWinner.getScore());
+                unoGUI.Leaderboard(unoModel.players);
 
                 // PERSON WON GAME
                 if (unoModel.checkGameWon()) {
@@ -250,8 +253,7 @@ public class Controller {
                     for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
                         unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
                     }
-                    unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(),
-                            new ListenForCardPlayed());
+                    unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                     unoGUI.setStartMenuVisible(false);
                     unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
@@ -378,6 +380,8 @@ public class Controller {
                 unoModel.currentRound.nextPlayer();
                 currentIndex = unoModel.currentRound.playerIndex;
                 AllenAI bot = (AllenAI) playersList.get(unoModel.currentRound.playerIndex);
+                unoGUI.displayCurrentPlayer(currentIndex);
+
                 // clear cards
                 unoGUI.clearPlayerCards();
                 for (int i = 0; i < bot.getHand().getSize(); i++) {
@@ -386,15 +390,8 @@ public class Controller {
                 setHandPanelInteractable(false);
 
                 if (bot.allenPlayCard(unoModel.currentRound, bot.getHand())) {
-                    if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO)
-                            || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR)) {
+                    if (bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILDTWO) || bot.allenCardPlayed.getTypeLight().equals(Card.TypeLight.WILD_DRAW_FOUR) || bot.allenCardPlayed.getTypeDark().equals(Card.TypeDark.DARK_WILD_CARD)){
                         unoGUI.discardInfo(unoModel.currentRound.discard.peek(), unoModel.currentRound.darkmode);
-                    }
-                    if ((bot.allenCardPlayed != null) && bot.allenCardPlayed.getTypeLight() == Card.TypeLight.REVERSE
-                            || (bot.allenCardPlayed != null)
-                                    && bot.allenCardPlayed.getTypeDark() == Card.TypeDark.REVERSE) {
-
-                        Collections.reverse(unoGUI.playerInputFields);
                     }
                     unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
                     unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), bot.getHand());
@@ -408,11 +405,13 @@ public class Controller {
                 unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
                 return;
             }
+
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
-            unoModel.currentRound.nextPlayer();
+
             unoGUI.updatePlayerInputFields(unoModel.currentRound.getPlayers());
+            unoModel.currentRound.nextPlayer();
             unoGUI.displayCurrentPlayer(unoModel.currentRound.playerIndex);
 
             unoGUI.clearPlayerCards();
@@ -423,7 +422,6 @@ public class Controller {
             unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
             unoGUI.nextPlayer.setEnabled(false);
             unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
-
         }
     }
 

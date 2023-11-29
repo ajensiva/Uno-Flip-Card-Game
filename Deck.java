@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.Random;
 
 import java.util.Stack;
@@ -5,9 +6,9 @@ import java.util.Stack;
 /**
  * Deck class : Generates 112 cards to be used to during play
  * @author Arun, Ajen, Zarif, Jason
- * @version 2.0
+ * @version 3.0
  */
-public class Deck {
+public class Deck implements Serializable {
 
     private Stack<Card> deck; // deck of all cards available
     public static final int FULL_DECK = 112; // max size of deck can only be 112

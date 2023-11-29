@@ -1,3 +1,7 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -9,10 +13,10 @@ import java.util.Collections;
  * round.
  *
  * @author Ajen, Jason, Zarif, Arun
- * @version 2.0
+ * @version 3.0
  */
 
-public class Round {
+public class Round implements Serializable {
 
     private static ArrayList<Player> players; // array to hold players
 
@@ -134,7 +138,7 @@ public class Round {
                     // reverse collection and decrement player index to get player before
                     playerIndex -= 1;
                     reverse();
-                    System.out.println("model reversed");
+
                 }
                 if (getPlayCard().getTypeLight() == Card.TypeLight.SKIP) {
                     // move to the next player
@@ -161,9 +165,9 @@ public class Round {
                 }
                 if (getPlayCard().getTypeDark() == Card.TypeDark.REVERSE) {
                     // reverse collection and decrement player index to get player before
-                    //playerIndex -= 1;
-                    playerIndex = (playerIndex - 1) % players.size();
+                    playerIndex -= 1;
                     reverse();
+
                 }
 
                 if (getPlayCard().getTypeDark() == Card.TypeDark.FLIP) {
@@ -177,10 +181,12 @@ public class Round {
 
                     while(flag){
 
-                        if (deck.peek().getColorDark().equals(getPlayCard().getColorDark())) {
+                        if (deck.peek().getColorDark() != null && discard.peek().getColorDark().equals(players.get(((players.indexOf(currentPlayer) + 1) % players.size())).getHand().getCard(players.get(((players.indexOf(currentPlayer) + 1) % players.size())).getHand().getSize()-1).getColorDark())) {
+
                             flag = false;
                         }
                         else {
+
                             drawCard(1);
                         }
 
@@ -224,7 +230,7 @@ public class Round {
     public void drawCard(int n) {
         // loop for n times (draw n cards)
         int nextPlayerIndex = (players.indexOf(currentPlayer) + 1) % players.size(); // player that will draw cards
-        for (int i = 0; i < (n + 1); i++) {
+        for (int i = 0; i < n; i++) {
             // give cards to the next player
             players.get(nextPlayerIndex).getHand().addCard(deck.pop());
         }
@@ -251,7 +257,7 @@ public class Round {
      * @return True if the card can be played, false otherwise.
      */
     public boolean checkCard(Card card1, Card card2) {
-        
+
         // for light side checks
         if (darkmode == false) {
 
@@ -312,6 +318,7 @@ public class Round {
      */
     public void reverse() {
         Collections.reverse(players);
+        playerIndex = players.indexOf(currentPlayer);
     }
 
     /**
@@ -360,4 +367,45 @@ public class Round {
         }
         return totalPoint;
     }
+
+    public String roundToXML(){
+        StringBuilder xmlBuilder = new StringBuilder();
+
+        xmlBuilder.append("\t<Round>\n");
+
+
+        for (Player player : players){
+
+            xmlBuilder.append("\t\t<players>" + player.getName() + "</players>\n");
+
+            xmlBuilder.append("\t\t<Hand>" + player.getHand().toString() + "</Hand>\n");
+        }
+
+        xmlBuilder.append("\t\t<currentPlayer>" + currentPlayer.getName() + "</currentPlayer>\n");
+        xmlBuilder.append("\t\t<topOfDiscard>" + discard.peek().toString() + "</topOfDiscard>\n");
+
+
+
+
+        System.out.println("NOW IM HERE!");
+        xmlBuilder.append("\t</Round>\n");
+
+        return xmlBuilder.toString();
+    }
+
+
+
+    //________________________________TEMP METHODS_______________________________
+
+    public void setPlayer(Player player){
+
+
+        players.add(player);
+
+
+    }
+
+
+
+
 }
