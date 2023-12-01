@@ -1,26 +1,29 @@
 <root>
 	<Uno>
 	<Round>
-		<players>2</players>
-		<Hand> [0] Dark Color: Purple, Dark Type: NINE
- [1] Dark Color: Pink, Dark Type: TWO
- [2] Dark Color: Teal, Dark Type: WILD_DRAW_COLOR
- [3] Dark Color: Purple, Dark Type: FLIP
- [4] Dark Color: Pink, Dark Type: WILD_DRAW_COLOR
- [5] Dark Color: Teal, Dark Type: TWO
-</Hand>
 		<players>1</players>
-		<Hand> [0] Dark Color: Teal, Dark Type: SKIP_EVERYONE
- [1] Dark Color: Purple, Dark Type: FIVE
- [2] Dark Color: Pink, Dark Type: SKIP_EVERYONE
- [3] Dark Color: Pink, Dark Type: THREE
- [4] Dark Color: Orange, Dark Type: EIGHT
- [5] Dark Color: Pink, Dark Type: SEVEN
- [6] Dark Color: Pink, Dark Type: REVERSE
+		<Hand> [0] Dark Color: Orange, Dark Type: DRAW_FIVE
+ [1] Dark Color: Teal, Dark Type: SIX
+ [2] Dark Color: Teal, Dark Type: ONE
+ [3] Dark Color: Teal, Dark Type: WILD_DRAW_COLOR
+ [4] Dark Color: Purple, Dark Type: NINE
+ [5] Dark Color: Purple, Dark Type: ONE
+ [6] Dark Color: Orange, Dark Type: FLIP
+ [7] Dark Color: Orange, Dark Type: NINE
+</Hand>
+		<players>2</players>
+		<Hand> [0] Dark Color: Purple, Dark Type: WILD_DRAW_COLOR
+ [1] Dark Color: Purple, Dark Type: FOUR
+ [2] Dark Color: Purple, Dark Type: FIVE
+ [3] Dark Color: Orange, Dark Type: REVERSE
+ [4] Dark Color: Pink, Dark Type: NINE
+ [5] Dark Color: Teal, Dark Type: SKIP_EVERYONE
+ [6] Dark Color: Purple, Dark Type: EIGHT
+ [7] Dark Color: Purple, Dark Type: FIVE
 </Hand>
 		<currentPlayer>1</currentPlayer>
-		<topOfDiscard>Dark Color: Teal, Dark Type: REVERSE</topOfDiscard>
-		<Deck>Dark Color: Pink, Dark Type: REVERSE</Deck>
+		<topOfDiscard>Dark Color: Pink, Dark Type: FOUR</topOfDiscard>
+		<Deck>Dark Color: Orange, Dark Type: NINE</Deck>
 	</Round>
 	</Uno>
 </root>

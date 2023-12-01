@@ -715,10 +715,10 @@ public class UnoGUI {
     }
 
     public void addFileUndo(ActionListener listenforUndo){
-        redo.addActionListener(listenforUndo);
+        undo.addActionListener(listenforUndo);
     }
     public void addFileRedo(ActionListener listenforRedo){
-        undo.addActionListener(listenforRedo);
+        redo.addActionListener(listenforRedo);
     }
 
     public void addFileLoad (ActionListener listenforLoad){ load.addActionListener(listenforLoad);}

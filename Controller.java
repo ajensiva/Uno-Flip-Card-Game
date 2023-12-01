@@ -23,6 +23,10 @@ public class Controller {
 
     private FileOutputStream playerMoveFile =new FileOutputStream("playerMoveRepository.ser");
 
+    private FileInputStream playerUndo = new FileInputStream( "playerMoveRepository.ser");
+
+    private FileInputStream playerRedo = new FileInputStream( "playerMoveRepository.ser");
+
     private FileOutputStream saveGameFile = new FileOutputStream("saveGameRepository.ser");
 
     private FileInputStream loadGameFile = new FileInputStream("saveGameRepository.ser");
@@ -128,6 +132,7 @@ public class Controller {
                 }
 
             }
+            System.out.println("UPDATING PLAYER HAND AND DISCARD");
             unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
             unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
         }
@@ -221,6 +226,21 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
 
+            //Saving what the player just did:
+
+            try {
+                unoModel.savePlayerMove();
+
+                ObjectOutputStream out = new ObjectOutputStream(playerMoveFile);
+
+                out.writeObject(unoModel.currentRound);
+                System.out.println("SAVED PLAYER MOVE");
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
             if (!isPlayerLocked) {
                 unoModel.currentRound.drawCurrPlayer();
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand()
@@ -231,6 +251,9 @@ public class Controller {
                 setHandPanelInteractable(false);
                 unoGUI.nextPlayer.setEnabled(true);
             }
+
+
+
         }
     }
 
@@ -240,6 +263,24 @@ public class Controller {
     public class ListenForCardPlayed implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            //Saving what the player just did:
+
+            try {
+                unoModel.savePlayerMove();
+
+                ObjectOutputStream out = new ObjectOutputStream(playerMoveFile);
+
+                out.writeObject(unoModel.currentRound);
+                System.out.println("SAVED PLAYER MOVE");
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
+
+
             JButton button = (JButton) e.getSource();
             int buttonIndex = Integer.parseInt(button.getName());
 
@@ -280,6 +321,7 @@ public class Controller {
                 }
 
             }
+
 
         }
     }
@@ -423,20 +465,6 @@ public class Controller {
                 return;
             }
 
-            //Saving what the player just did:
-
-            try {
-                unoModel.savePlayerMove();
-
-                ObjectOutputStream out = new ObjectOutputStream(playerMoveFile);
-                out.flush();
-                out.writeObject(unoModel.currentRound.currentPlayer + " " + unoModel.currentRound.currentPlayer.getHand() + " " + unoModel.currentRound.discard.peek() + " " + unoModel.currentRound.deck + "COMPLETE");
-                System.out.println("SAVED PLAYER MOVE");
-            } catch (FileNotFoundException ex) {
-                throw new RuntimeException(ex);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
 
             isPlayerLocked = false;
             setHandPanelInteractable(true);
@@ -513,7 +541,8 @@ public class Controller {
                 unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
                 unoGUI.nextPlayer.setEnabled(false);
                 unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
-                
+
+                System.out.println("LOADED");
 
             } catch (IOException | ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
@@ -525,7 +554,33 @@ public class Controller {
 
         public void actionPerformed(ActionEvent e){
 
-            System.out.println("UNDO");
+            try {
+                ObjectInputStream in = new ObjectInputStream(playerUndo);
+                unoModel.currentRound = (Round) in.readObject();
+
+                unoModel.savePlayerMove();
+
+                unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+
+                unoGUI.displayCurrentPlayer(unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
+
+                unoGUI.clearPlayerCards();
+                for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
+                    unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                }
+
+                unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
+                isPlayerLocked = false;
+
+
+
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+
+
         }
     }
 
