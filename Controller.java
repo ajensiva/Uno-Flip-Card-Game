@@ -492,8 +492,28 @@ public class Controller {
             try {
                 ObjectInputStream in = new ObjectInputStream(loadGameFile);
                 unoModel.currentRound = (Round) in.readObject();
-
                 unoModel.saveGame();
+
+                unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+
+                unoGUI.displayCurrentPlayer(unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
+
+                for (Player player : unoModel.currentRound.getPlayers()) {
+                    unoGUI.clearPlayerCards();
+
+                    for (int i = 0; i < player.getHand().getSize(); i++) {
+                        unoGUI.addCard(player.getHand().getCard(i));
+                    }
+                }
+
+                unoGUI.clearPlayerCards();
+                for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
+                    unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                }
+                unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
+                unoGUI.nextPlayer.setEnabled(false);
+                unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
+                
 
             } catch (IOException | ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
