@@ -698,7 +698,6 @@ public class UnoGUI {
 
         playGame.addActionListener(listenforStartGame);
 
-
     }
 
 
@@ -706,7 +705,20 @@ public class UnoGUI {
 
         addBot.addActionListener(listenforBot);
 
+    }
 
+
+    //-------------------------------------LISTENER ACTIONERS FOR MENUBAR----------------------------------
+
+    public void addFileSaveMenu(ActionListener listenforSave){
+        save.addActionListener(listenforSave);
+    }
+
+    public void addFileUndo(ActionListener listenforUndo){
+        redo.addActionListener(listenforUndo);
+    }
+    public void addFileRedo(ActionListener listenforRedo){
+        undo.addActionListener(listenforRedo);
     }
 
     public void addPlayCardListener(Hand hand, ActionListener listenforCardtoPlay) {
@@ -722,4 +734,5 @@ public class UnoGUI {
             playerInputFields.get(i).setText(players.get(i).getName());
         }
     }
+
 }

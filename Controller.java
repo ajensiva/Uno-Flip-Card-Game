@@ -31,6 +31,11 @@ public class Controller {
 
         this.unoGUI.addBuildDeckListener(new UpdateDeckListener());
         this.unoGUI.addStartGameListener(new PlayGameButtonListener());
+        //-----------------------------------------
+        this.unoGUI.addFileSaveMenu(new saveFileSave());
+        this.unoGUI.addFileUndo(new saveFileUndo());
+        this.unoGUI.addFileRedo(new saveFileRedo());
+        //-----------------------------------------
         this.unoGUI.addPlayers(new AddPlayersListener());
         this.unoGUI.addNextPlayerListener(new NextPlayerButtonListener());
         this.unoGUI.addBot.addActionListener(new addbotListener());
@@ -424,6 +429,33 @@ public class Controller {
             unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
         }
     }
+
+    public class saveFileSave implements ActionListener{
+
+        public void actionPerformed(ActionEvent e){
+
+            System.out.println("SAVE");
+        }
+
+    }
+
+    public class saveFileUndo implements ActionListener{
+
+        public void actionPerformed(ActionEvent e){
+
+            System.out.println("UNDO");
+        }
+    }
+
+    public class saveFileRedo implements ActionListener{
+
+        public void actionPerformed(ActionEvent e){
+
+            System.out.println("REDO");
+        }
+
+    }
+
 
     /**
      * The main method to run the Uno game.
