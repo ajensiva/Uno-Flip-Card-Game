@@ -2,6 +2,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -19,13 +21,20 @@ public class Controller {
 
     private boolean isPlayerLocked = false;
 
+    private FileOutputStream playerMoveFile =new FileOutputStream("playerMoveRepository.ser");
+
+    private FileOutputStream saveGameFile = new FileOutputStream("saveGameRepository.ser");
+
+    private FileInputStream loadGameFile = new FileInputStream("saveGameRepository.ser");
+
+
     /**
      * Constructor for the Controller class.
      *
      * @param gui The UnoGUI instance representing the graphical user interface.
      * @param uno The Uno instance representing the Uno game model.
      */
-    public Controller(UnoGUI gui, Uno uno) {
+    public Controller(UnoGUI gui, Uno uno) throws FileNotFoundException {
         this.unoGUI = gui;
         this.unoModel = uno;
 
@@ -35,10 +44,13 @@ public class Controller {
         this.unoGUI.addFileSaveMenu(new saveFileSave());
         this.unoGUI.addFileUndo(new saveFileUndo());
         this.unoGUI.addFileRedo(new saveFileRedo());
+
         //-----------------------------------------
         this.unoGUI.addPlayers(new AddPlayersListener());
         this.unoGUI.addNextPlayerListener(new NextPlayerButtonListener());
         this.unoGUI.addBot.addActionListener(new addbotListener());
+        this.unoGUI.addFileLoad(new loadSaveListener());
+
     }
 
     /**
@@ -411,6 +423,21 @@ public class Controller {
                 return;
             }
 
+            //Saving what the player just did:
+
+            try {
+                unoModel.savePlayerMove();
+
+                ObjectOutputStream out = new ObjectOutputStream(playerMoveFile);
+                out.flush();
+                out.writeObject(unoModel.currentRound.currentPlayer + " " + unoModel.currentRound.currentPlayer.getHand() + " " + unoModel.currentRound.discard.peek() + " " + unoModel.currentRound.deck + "COMPLETE");
+                System.out.println("SAVED PLAYER MOVE");
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
@@ -435,8 +462,43 @@ public class Controller {
         public void actionPerformed(ActionEvent e){
 
             System.out.println("SAVE");
+
+            try {
+
+                // Update XML
+                unoModel.saveGame();
+
+                //Update SAVE GAME output stream
+                ObjectOutputStream out = new ObjectOutputStream(saveGameFile);
+                out.writeObject(unoModel.currentRound);
+
+
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+            catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
         }
 
+    }
+
+    public class loadSaveListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            try {
+                ObjectInputStream in = new ObjectInputStream(loadGameFile);
+                unoModel.currentRound = (Round) in.readObject();
+
+                unoModel.saveGame();
+
+            } catch (IOException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
     }
 
     public class saveFileUndo implements ActionListener{
@@ -462,7 +524,7 @@ public class Controller {
      *
      * @param args Command-line arguments (not used).
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Controller controller = new Controller(new UnoGUI(), new Uno());
     }
 }

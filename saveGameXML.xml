@@ -1,35 +1,28 @@
 <root>
 	<Uno>
 	<Round>
-		<players>Juan</players>
-		<Hand> [0] Dark Color: Teal, Dark Type: FIVE
- [1] Dark Color: Pink, Dark Type: FLIP
- [2] Dark Color: Orange, Dark Type: FIVE
- [3] Dark Color: Pink, Dark Type: SEVEN
- [4] Dark Color: Purple, Dark Type: EIGHT
- [5] Dark Color: Teal, Dark Type: FOUR
- [6] Dark Color: Orange, Dark Type: SKIP_EVERYONE
-</Hand>
-		<players>Georgio</players>
-		<Hand> [0] Dark Color: Purple, Dark Type: SKIP_EVERYONE
- [1] Dark Color: Orange, Dark Type: EIGHT
- [2] Dark Color: Purple, Dark Type: EIGHT
+		<players>Jeremey</players>
+		<Hand> [0] Dark Color: Orange, Dark Type: NINE
+ [1] Dark Color: Orange, Dark Type: FLIP
+ [2] Dark Color: Teal, Dark Type: TWO
  [3] Dark Color: Teal, Dark Type: SKIP_EVERYONE
- [4] Dark Color: Purple, Dark Type: TWO
- [5] Dark Color: null, Dark Type: DARK_WILD_CARD
- [6] Dark Color: Teal, Dark Type: FOUR
+ [4] Dark Color: Teal, Dark Type: WILD_DRAW_COLOR
+ [5] Dark Color: Pink, Dark Type: EIGHT
+ [6] Dark Color: Purple, Dark Type: SKIP_EVERYONE
+ [7] Dark Color: Orange, Dark Type: REVERSE
 </Hand>
-		<players>Georgio</players>
-		<Hand> [0] Dark Color: Orange, Dark Type: FIVE
- [1] Dark Color: Pink, Dark Type: DRAW_FIVE
- [2] Dark Color: Orange, Dark Type: TWO
- [3] Dark Color: Orange, Dark Type: ONE
+		<players>Grant</players>
+		<Hand> [0] Dark Color: Orange, Dark Type: FOUR
+ [1] Dark Color: Orange, Dark Type: EIGHT
+ [2] Dark Color: Pink, Dark Type: NINE
+ [3] Dark Color: Purple, Dark Type: FLIP
  [4] Dark Color: null, Dark Type: DARK_WILD_CARD
- [5] Dark Color: Pink, Dark Type: FOUR
- [6] Dark Color: Teal, Dark Type: SEVEN
+ [5] Dark Color: Pink, Dark Type: TWO
+ [6] Dark Color: Pink, Dark Type: THREE
 </Hand>
-		<currentPlayer>Juan</currentPlayer>
-		<topOfDiscard>Dark Color: Teal, Dark Type: ONE</topOfDiscard>
+		<currentPlayer>Jeremey</currentPlayer>
+		<topOfDiscard>Dark Color: Purple, Dark Type: SKIP_EVERYONE</topOfDiscard>
+		<Deck>Dark Color: Purple, Dark Type: SKIP_EVERYONE</Deck>
 	</Round>
 	</Uno>
 </root>

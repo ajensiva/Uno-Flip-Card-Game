@@ -383,11 +383,10 @@ public class Round implements Serializable {
 
         xmlBuilder.append("\t\t<currentPlayer>" + currentPlayer.getName() + "</currentPlayer>\n");
         xmlBuilder.append("\t\t<topOfDiscard>" + discard.peek().toString() + "</topOfDiscard>\n");
+        xmlBuilder.append("\t\t<Deck>" + deck.peek().toString() + "</Deck>\n");
 
 
 
-
-        System.out.println("NOW IM HERE!");
         xmlBuilder.append("\t</Round>\n");
 
         return xmlBuilder.toString();

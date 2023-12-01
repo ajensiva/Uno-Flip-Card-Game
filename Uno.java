@@ -73,7 +73,6 @@ public class Uno implements Serializable {
         xmlBuilder.append("<root>\n");
         xmlBuilder.append("\t<Uno>\n");
 
-        System.out.println("IM HERE FIRST");
         xmlBuilder.append(this.currentRound.roundToXML());
         xmlBuilder.append("\t</Uno>\n");
         xmlBuilder.append("</root>\n");
@@ -87,6 +86,14 @@ public class Uno implements Serializable {
             writer.write(unoToXML());
         }
     }
+
+    public void savePlayerMove() throws IOException {
+        try (FileWriter writer = new FileWriter("savePlayerMoveXML.xml")) {
+            writer.write(unoToXML());
+        }
+    }
+
+
 
 
         public static void main (String [] args) throws IOException {

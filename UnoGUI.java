@@ -91,6 +91,8 @@ public class UnoGUI {
 
     private JMenuItem redo = new JMenuItem("Redo");
 
+    private JMenuItem load = new JMenuItem("Load");
+
 
 
     /**
@@ -596,6 +598,7 @@ public class UnoGUI {
         menu.add(save);
         menu.add(undo);
         menu.add(redo);
+        menu.add(load);
         menuBar.add(menu);
 
         mainPanel.add(menuBar);
@@ -658,9 +661,6 @@ public class UnoGUI {
     //-----------------------------------ACTION LISTENERS---------------------------------------------------------------
 
 
-    public void addUnoButtonListener(ActionListener listenforUnoPressed) {
-        UnoButton.addActionListener(listenforUnoPressed);
-    }
 
     public void addNextPlayerListener(ActionListener listenforNextPlayer) {
         nextPlayer.addActionListener(listenforNextPlayer);
@@ -720,6 +720,9 @@ public class UnoGUI {
     public void addFileRedo(ActionListener listenforRedo){
         undo.addActionListener(listenforRedo);
     }
+
+    public void addFileLoad (ActionListener listenforLoad){ load.addActionListener(listenforLoad);}
+
 
     public void addPlayCardListener(Hand hand, ActionListener listenforCardtoPlay) {
         for (int i = 0; i < hand.getSize(); i++) {
