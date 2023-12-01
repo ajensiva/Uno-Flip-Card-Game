@@ -21,11 +21,12 @@ public class Controller {
 
     private boolean isPlayerLocked = false;
 
-    private FileOutputStream playerMoveFile =new FileOutputStream("playerMoveRepository.ser");
+    private FileOutputStream playerMoveFileUndo =new FileOutputStream("playerMoveUndoRepository.ser");
+    private FileOutputStream playerMoveFileRedo =new FileOutputStream("playerMoveRedoRepository.ser");
 
-    private FileInputStream playerUndo = new FileInputStream( "playerMoveRepository.ser");
+    private FileInputStream playerUndo = new FileInputStream( "playerMoveUndoRepository.ser");
 
-    private FileInputStream playerRedo = new FileInputStream( "playerMoveRepository.ser");
+    private FileInputStream playerRedo = new FileInputStream( "playerMoveRedoRepository.ser");
 
     private FileOutputStream saveGameFile = new FileOutputStream("saveGameRepository.ser");
 
@@ -231,7 +232,7 @@ public class Controller {
             try {
                 unoModel.savePlayerMove();
 
-                ObjectOutputStream out = new ObjectOutputStream(playerMoveFile);
+                ObjectOutputStream out = new ObjectOutputStream(playerMoveFileUndo);
 
                 out.writeObject(unoModel.currentRound);
                 System.out.println("SAVED PLAYER MOVE");
@@ -269,10 +270,10 @@ public class Controller {
             try {
                 unoModel.savePlayerMove();
 
-                ObjectOutputStream out = new ObjectOutputStream(playerMoveFile);
+                ObjectOutputStream out = new ObjectOutputStream(playerMoveFileUndo);
 
                 out.writeObject(unoModel.currentRound);
-                System.out.println("SAVED PLAYER MOVE");
+                System.out.println("SAVED PLAYER MOVE UNDO");
             } catch (FileNotFoundException ex) {
                 throw new RuntimeException(ex);
             } catch (IOException ex) {
@@ -320,6 +321,21 @@ public class Controller {
 
                 }
 
+            }
+
+            //Saving what the player just did:
+
+            try {
+                unoModel.savePlayerMove();
+
+                ObjectOutputStream out = new ObjectOutputStream(playerMoveFileRedo);
+
+                out.writeObject(unoModel.currentRound);
+                System.out.println("SAVED PLAYER MOVE REDO");
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
 
 
@@ -584,13 +600,37 @@ public class Controller {
         }
     }
 
-    public class saveFileRedo implements ActionListener{
+    public class saveFileRedo implements ActionListener {
 
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
 
             System.out.println("REDO");
-        }
+            try {
+                ObjectInputStream in = new ObjectInputStream(playerRedo);
+                unoModel.currentRound = (Round) in.readObject();
 
+                unoModel.savePlayerMove();
+
+                unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+
+                unoGUI.displayCurrentPlayer(unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
+
+                unoGUI.clearPlayerCards();
+                for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
+                    unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                }
+
+                unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
+                isPlayerLocked = false;
+
+
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+
+        }
     }
 
 
