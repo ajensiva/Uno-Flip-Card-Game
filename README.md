@@ -46,7 +46,7 @@
 
 - No known error's at this point in the game
 - Potential scaling issues with Card images across platforms
-
+-------------------------------------------------------------------- 
 #### MIT License
 
 _Copyright (c) 2023 [Ajen Srisivapalan, Jason Keah, Zarif Khan, Arun Karki]_

@@ -37,7 +37,16 @@
 - No known error's at this point in the game 
 - Potential scaling issues with Card images across platforms
 --------------------------------------------------------------------
+### Milestone 4:
+-The game now allows for an undo and redo feature as well as a save and load feature
+-The options are presented through a JMenuBar located at the top of the main game frame
+-The code uses three ser files to save the game at different over the course of play
 
+### Known issues:
+
+- No known error's at this point in the game
+- Potential scaling issues with Card images across platforms
+-------------------------------------------------------------------- 
 #### MIT License
 
 _Copyright (c) 2023 [Ajen Srisivapalan, Jason Keah, Zarif Khan, Arun Karki]_

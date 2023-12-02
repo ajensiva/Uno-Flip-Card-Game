@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Hand class represents a player's hand of Uno cards.
  *
  * @author Zarif, Arun, Ajen, Jason
- * @version 3.0
+ * @version 4.0
  */
 
 public class Hand implements Serializable {

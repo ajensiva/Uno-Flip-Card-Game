@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * manages rounds.
  * 
  * @author Jason, Ajen, Arun, Zarif
- * @version 3.0
+ * @version 4.0
  */
 
 public class Uno implements Serializable {
@@ -67,6 +67,11 @@ public class Uno implements Serializable {
         }
     }
 
+    /**
+     * Builds XML String with current round information
+     * @return
+     */
+
     public String unoToXML() {
         StringBuilder xmlBuilder = new StringBuilder();
 
@@ -80,6 +85,10 @@ public class Uno implements Serializable {
         return xmlBuilder.toString();
     }
 
+    /**
+     * A function to write a current instance of the game to an XML in the appropriate format
+     * @throws IOException
+     */
 
     public void saveGame() throws IOException {
         try (FileWriter writer = new FileWriter("saveGameXML.xml")) {
@@ -87,46 +96,14 @@ public class Uno implements Serializable {
         }
     }
 
+    /**
+     * A function to write a current instance of the game after a player has made a move to an XML in the appropriate format
+     * @throws IOException
+     */
+
     public void savePlayerMove() throws IOException {
         try (FileWriter writer = new FileWriter("savePlayerMoveXML.xml")) {
             writer.write(unoToXML());
         }
     }
-
-
-
-
-        public static void main (String [] args) throws IOException {
-
-            Player player1 = new Player("Juan");
-
-            Player player2 = new Player("Georgio");
-
-            Player player3 = new Player( "DLo");
-
-
-
-            Uno uno = new Uno();
-
-            uno.addPlayer(player1.getName(), false);
-            uno.addPlayer(player2.getName(), false);
-            uno.addPlayer(player2.getName(), false);
-
-            uno.round();
-
-
-            uno.saveGame();
-
-
-            //saving load 1 of Uno game
-
-
-            System.out.println("IM HERE ABOUT TO WRITE BYTES TO UNOGAME!");
-            FileOutputStream file = new FileOutputStream("UnoGame1.txt");
-            ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(uno);
-            out.close();
-
-
-        }
     }

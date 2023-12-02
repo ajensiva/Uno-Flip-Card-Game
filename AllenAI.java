@@ -5,7 +5,7 @@ import java.util.Random;
  * AllenAI class implements the logic behind all AI players within a given game of Uno
  *
  * @author Zarif, Arun, Ajen, Jason
- * @version 3.0
+ * @version 4.0
  */
 
 public class AllenAI extends Player{
@@ -29,7 +29,7 @@ public class AllenAI extends Player{
      */
     public boolean allenPlayCard(Round currentRound, Hand hand){
         /*
-            get the bot's hand to see all which cards are playable first
+            get the bots hand to see all which cards are playable first
             play the card with the most value
          */
         ArrayList<Card> allenCards = hand.getHandList();

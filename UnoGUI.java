@@ -12,7 +12,7 @@ import java.util.Random;
  * UnoGUI class represents the graphical user interface for the UNO game.
  *
  * @author Zarif, Ajen, Arun, Jason
- * @version 3.0
+ * @version 4.0
  */
 public class UnoGUI {
 
@@ -21,7 +21,6 @@ public class UnoGUI {
 
     protected int numFields;
     protected JButton nextPlayer = new JButton("Next Player");
-    protected JButton UnoButton = new JButton("UNO!!");
     protected JButton buildDeckbutton = new JButton();
     protected JButton buildDiscardbutton = new JButton();
     protected JButton playGame = new JButton("PLAY GAME");
@@ -402,7 +401,7 @@ public class UnoGUI {
 
     }
     /**
-     *
+     * Sets the rootFrame of the game to visible
      */
 
     public void setstartGameVisible(boolean flag){
@@ -701,14 +700,7 @@ public class UnoGUI {
     }
 
 
-    public void addBotListener(ActionListener listenforBot) {
-
-        addBot.addActionListener(listenforBot);
-
-    }
-
-
-    //-------------------------------------LISTENER ACTIONERS FOR MENUBAR----------------------------------
+    //-------------------------------------LISTENER ACTIONS FOR MENUBAR----------------------------------
 
     public void addFileSaveMenu(ActionListener listenforSave){
         save.addActionListener(listenforSave);
