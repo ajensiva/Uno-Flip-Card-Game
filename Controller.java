@@ -30,6 +30,9 @@ public class Controller {
 
     private FileInputStream loadGameFile = new FileInputStream("saveGameRepository.ser");
 
+    private Card saveCardPLayed;
+
+
 
     /**
      * Constructor for the Controller class.
@@ -132,8 +135,10 @@ public class Controller {
 
             }
             System.out.println("UPDATING PLAYER HAND AND DISCARD");
+
             unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
             unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+
         }
     }
 
@@ -284,6 +289,8 @@ public class Controller {
             int buttonIndex = Integer.parseInt(button.getName());
 
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
+
+            saveCardPLayed = unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex);
             controllerPlayCardLogic();
 
             if (unoModel.currentRound.checkWinner()) {
@@ -588,6 +595,8 @@ public class Controller {
 
                 unoModel.currentRound.playerIndex = curr_index;
 
+                unoModel.currentRound.currentPlayer.getHand().addCard(saveCardPLayed);
+
                 System.out.println(unoModel.currentRound.playerIndex);
                 unoModel.savePlayerMove();
                 unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
@@ -631,7 +640,7 @@ public class Controller {
                 unoModel.currentRound = (Round) in.readObject();
 
                 unoModel.savePlayerMove();
-                
+
 
                 unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
 
