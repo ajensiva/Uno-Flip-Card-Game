@@ -1,35 +1,28 @@
 <root>
 	<Uno>
 	<Round>
-		<players>Juan</players>
-		<Hand> [0] Dark Color: Purple, Dark Type: EIGHT
- [1] Dark Color: Purple, Dark Type: REVERSE
- [2] Dark Color: Teal, Dark Type: WILD_DRAW_COLOR
- [3] Dark Color: Orange, Dark Type: ONE
- [4] Dark Color: Pink, Dark Type: SIX
- [5] Dark Color: Pink, Dark Type: SIX
- [6] Dark Color: Orange, Dark Type: WILD_DRAW_COLOR
+		<players>A</players>
+		<Hand> [0] Dark Color: Teal, Dark Type: SKIP_EVERYONE
+ [1] Dark Color: Pink, Dark Type: SEVEN
+ [2] Dark Color: Pink, Dark Type: THREE
+ [3] Dark Color: Purple, Dark Type: THREE
+ [4] Dark Color: Pink, Dark Type: WILD_DRAW_COLOR
+ [5] Dark Color: null, Dark Type: DARK_WILD_CARD
+ [6] Dark Color: Purple, Dark Type: FOUR
 </Hand>
-		<players>Georgio</players>
-		<Hand> [0] Dark Color: Teal, Dark Type: SEVEN
- [1] Dark Color: Pink, Dark Type: FOUR
- [2] Dark Color: Teal, Dark Type: REVERSE
- [3] Dark Color: null, Dark Type: DARK_WILD_CARD
- [4] Dark Color: Purple, Dark Type: FLIP
- [5] Dark Color: Orange, Dark Type: FOUR
- [6] Dark Color: Teal, Dark Type: NINE
-</Hand>
-		<players>Georgio</players>
-		<Hand> [0] Dark Color: Purple, Dark Type: FLIP
- [1] Dark Color: Teal, Dark Type: REVERSE
- [2] Dark Color: Orange, Dark Type: SKIP_EVERYONE
- [3] Dark Color: Purple, Dark Type: FLIP
+		<players>B</players>
+		<Hand> [0] Dark Color: Orange, Dark Type: FOUR
+ [1] Dark Color: Purple, Dark Type: TWO
+ [2] Dark Color: Purple, Dark Type: FOUR
+ [3] Dark Color: Pink, Dark Type: FIVE
  [4] Dark Color: Orange, Dark Type: REVERSE
- [5] Dark Color: Purple, Dark Type: SEVEN
- [6] Dark Color: Purple, Dark Type: REVERSE
+ [5] Dark Color: Orange, Dark Type: EIGHT
+ [6] Dark Color: Purple, Dark Type: SKIP_EVERYONE
+ [7] Dark Color: Purple, Dark Type: SEVEN
 </Hand>
-		<currentPlayer>Juan</currentPlayer>
-		<topOfDiscard>Dark Color: Pink, Dark Type: WILD_DRAW_COLOR</topOfDiscard>
+		<currentPlayer>A</currentPlayer>
+		<topOfDiscard>Dark Color: Orange, Dark Type: SKIP_EVERYONE</topOfDiscard>
+		<Deck>Dark Color: Purple, Dark Type: SEVEN</Deck>
 	</Round>
 	</Uno>
 </root>

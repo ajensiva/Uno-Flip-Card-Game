@@ -2,15 +2,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * The Controller class handles user input and manages interactions between the
  * GUI and the Uno game model.
  * 
  * @author Zarif, Ajen, Arun, Jason
- * @version 3.0
+ * @version 4.0
  */
 public class Controller {
 
@@ -19,21 +19,44 @@ public class Controller {
 
     private boolean isPlayerLocked = false;
 
+    private FileOutputStream playerMoveFileUndo =new FileOutputStream("playerMoveUndoRepository.ser");
+    private FileOutputStream playerMoveFileRedo =new FileOutputStream("playerMoveRedoRepository.ser");
+
+    private FileInputStream playerUndo = new FileInputStream( "playerMoveUndoRepository.ser");
+
+    private FileInputStream playerRedo = new FileInputStream( "playerMoveRedoRepository.ser");
+
+    private FileOutputStream saveGameFile = new FileOutputStream("saveGameRepository.ser");
+
+    private FileInputStream loadGameFile = new FileInputStream("saveGameRepository.ser");
+
+    private Card saveCardPLayed;
+
+
+
     /**
      * Constructor for the Controller class.
      *
      * @param gui The UnoGUI instance representing the graphical user interface.
      * @param uno The Uno instance representing the Uno game model.
      */
-    public Controller(UnoGUI gui, Uno uno) {
+    public Controller(UnoGUI gui, Uno uno) throws FileNotFoundException {
         this.unoGUI = gui;
         this.unoModel = uno;
 
         this.unoGUI.addBuildDeckListener(new UpdateDeckListener());
         this.unoGUI.addStartGameListener(new PlayGameButtonListener());
+        //-----------------------------------------
+        this.unoGUI.addFileSaveMenu(new saveFileSave());
+        this.unoGUI.addFileUndo(new saveFileUndo());
+        this.unoGUI.addFileRedo(new saveFileRedo());
+
+        //-----------------------------------------
         this.unoGUI.addPlayers(new AddPlayersListener());
         this.unoGUI.addNextPlayerListener(new NextPlayerButtonListener());
         this.unoGUI.addBot.addActionListener(new addbotListener());
+        this.unoGUI.addFileLoad(new loadSaveListener());
+
     }
 
     /**
@@ -111,8 +134,11 @@ public class Controller {
                 }
 
             }
+            System.out.println("UPDATING PLAYER HAND AND DISCARD");
+
             unoGUI.updatePlayerCardsRemove(unoModel.currentRound.getCardtoPlayIndex(), unoModel.currentRound.currentPlayer.getHand());
             unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+
         }
     }
 
@@ -204,6 +230,21 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
 
+            //Saving what the player just did:
+
+            try {
+                unoModel.savePlayerMove();
+
+                ObjectOutputStream out = new ObjectOutputStream(playerMoveFileUndo);
+
+                out.writeObject(unoModel.currentRound);
+                System.out.println("SAVED PLAYER MOVE");
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
             if (!isPlayerLocked) {
                 unoModel.currentRound.drawCurrPlayer();
                 unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand()
@@ -214,6 +255,9 @@ public class Controller {
                 setHandPanelInteractable(false);
                 unoGUI.nextPlayer.setEnabled(true);
             }
+
+
+
         }
     }
 
@@ -223,10 +267,30 @@ public class Controller {
     public class ListenForCardPlayed implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            //Saving what the player just did:
+
+            try {
+                unoModel.savePlayerMove();
+
+                ObjectOutputStream out = new ObjectOutputStream(playerMoveFileUndo);
+
+                out.writeObject(unoModel.currentRound);
+                System.out.println("SAVED PLAYER MOVE UNDO");
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
+
+
             JButton button = (JButton) e.getSource();
             int buttonIndex = Integer.parseInt(button.getName());
 
             unoModel.currentRound.setPlayCardIndex(buttonIndex);
+
+            saveCardPLayed = unoModel.currentRound.currentPlayer.getHand().getCard(buttonIndex);
             controllerPlayCardLogic();
 
             if (unoModel.currentRound.checkWinner()) {
@@ -263,6 +327,22 @@ public class Controller {
                 }
 
             }
+
+            //Saving what the player just did:
+
+            try {
+                unoModel.savePlayerMove();
+
+                ObjectOutputStream out = new ObjectOutputStream(playerMoveFileRedo);
+
+                out.writeObject(unoModel.currentRound);
+
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
 
         }
     }
@@ -406,6 +486,7 @@ public class Controller {
                 return;
             }
 
+
             isPlayerLocked = false;
             setHandPanelInteractable(true);
 
@@ -426,11 +507,171 @@ public class Controller {
     }
 
     /**
+     * ActionListener to listen to JMenuItem "Save"
+     */
+    public class saveFileSave implements ActionListener{
+
+        public void actionPerformed(ActionEvent e){
+
+
+
+            try {
+
+                // Update XML
+                unoModel.saveGame();
+
+                //Update SAVE GAME output stream
+                ObjectOutputStream out = new ObjectOutputStream(saveGameFile);
+                out.writeObject(unoModel.currentRound);
+
+
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+            catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
+        }
+
+    }
+
+    /**
+     * ActionListener to listen to JMenuItem "Load"
+     */
+    public class loadSaveListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            try {
+                ObjectInputStream in = new ObjectInputStream(loadGameFile);
+                unoModel.currentRound = (Round) in.readObject();
+                unoModel.saveGame();
+
+                unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+
+                unoGUI.displayCurrentPlayer(unoModel.currentRound.getPlayers().indexOf(unoModel.currentRound.currentPlayer));
+
+                for (Player player : unoModel.currentRound.getPlayers()) {
+                    unoGUI.clearPlayerCards();
+
+                    for (int i = 0; i < player.getHand().getSize(); i++) {
+                        unoGUI.addCard(player.getHand().getCard(i));
+                    }
+                }
+
+                unoGUI.clearPlayerCards();
+                for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
+                    unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                }
+                unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
+                unoGUI.nextPlayer.setEnabled(false);
+                unoGUI.updatePoints(unoModel.currentRound.getTotalPoints());
+
+
+
+            } catch (IOException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
+
+    /**
+     * ActionListener to listen to JMenuItem "Save"
+     */
+
+    public class saveFileUndo implements ActionListener{
+
+        public void actionPerformed(ActionEvent e){
+
+            try {
+                int curr_index = unoModel.currentRound.playerIndex;
+
+                ObjectInputStream in = new ObjectInputStream(playerUndo);
+                unoModel.currentRound = (Round) in.readObject();
+
+                unoModel.currentRound.currentPlayer = unoModel.currentRound.getPlayers().get(curr_index);
+
+                unoModel.currentRound.playerIndex = curr_index;
+
+                unoModel.currentRound.currentPlayer.getHand().addCard(saveCardPLayed);
+
+                System.out.println(unoModel.currentRound.playerIndex);
+                unoModel.savePlayerMove();
+                unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+
+                unoGUI.displayCurrentPlayer(unoModel.currentRound.playerIndex);
+
+                unoGUI.clearPlayerCards();
+                for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
+                    unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                }
+
+                unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
+                isPlayerLocked = false;
+                unoGUI.nextPlayer.setEnabled(false);
+
+
+
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+
+
+        }
+    }
+
+    /**
+     * ActionListener to listen to JMenuItem "Redo"
+     */
+
+    public class saveFileRedo implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+
+
+            try {
+
+
+                ObjectInputStream in = new ObjectInputStream(playerRedo);
+                unoModel.currentRound = (Round) in.readObject();
+
+                unoModel.savePlayerMove();
+
+
+                unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
+
+                unoGUI.displayCurrentPlayer(unoModel.currentRound.playerIndex);
+
+                unoGUI.clearPlayerCards();
+                for (int i = 0; i < unoModel.currentRound.currentPlayer.getHand().getSize(); i++) {
+                    unoGUI.addCard(unoModel.currentRound.currentPlayer.getHand().getCard(i));
+                }
+
+                unoGUI.addPlayCardListener(unoModel.currentRound.currentPlayer.getHand(), new ListenForCardPlayed());
+                isPlayerLocked = false;
+                unoGUI.nextPlayer.setEnabled(true);
+
+
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+
+        }
+    }
+
+
+    /**
      * The main method to run the Uno game.
      *
      * @param args Command-line arguments (not used).
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Controller controller = new Controller(new UnoGUI(), new Uno());
     }
 }

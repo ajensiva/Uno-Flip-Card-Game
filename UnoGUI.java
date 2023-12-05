@@ -12,13 +12,15 @@ import java.util.Random;
  * UnoGUI class represents the graphical user interface for the UNO game.
  *
  * @author Zarif, Ajen, Arun, Jason
- * @version 3.0
+ * @version 4.0
  */
 public class UnoGUI {
 
+
+    //----------------------------------BASIC GUI------------------------------------
+
     protected int numFields;
     protected JButton nextPlayer = new JButton("Next Player");
-    protected JButton UnoButton = new JButton("UNO!!");
     protected JButton buildDeckbutton = new JButton();
     protected JButton buildDiscardbutton = new JButton();
     protected JButton playGame = new JButton("PLAY GAME");
@@ -35,7 +37,7 @@ public class UnoGUI {
     protected JFrame startMenuFrame;
     private JFrame rootFrame;
     protected JPanel mainPanel, handPanel = new JPanel();
-    private JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    private JPanel buttonPanel = new JPanel();
 
     private JPanel displayCurrentPlayerPanel = new JPanel();
 
@@ -72,9 +74,24 @@ public class UnoGUI {
 
 //-------------------------------------------DISCARD INFO-----------------------------------------
 
-    JLabel discardLabel = new JLabel();
+    protected JLabel discardLabel = new JLabel();
 
-    JPanel discardPanel = new JPanel();
+    private JPanel discardPanel = new JPanel();
+
+
+    //----------------------------------------COMPONENTS TO SAVE INFORMATION------------------------------
+
+    private JMenuBar menuBar = new JMenuBar();
+    private JMenu menu = new JMenu("File");
+
+    private JMenuItem save = new JMenuItem("Save");
+
+    private JMenuItem undo = new JMenuItem("Undo");
+
+    private JMenuItem redo = new JMenuItem("Redo");
+
+    private JMenuItem load = new JMenuItem("Load");
+
 
 
     /**
@@ -274,7 +291,6 @@ public class UnoGUI {
     public void startGame() {
         playerCards = new ArrayList<JButton>();
 
-
         // root frame
         rootFrame = new JFrame();
         rootFrame.setLayout(new BorderLayout());
@@ -282,43 +298,48 @@ public class UnoGUI {
         rootFrame.setResizable(true);
 
         // main panel
-        mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        mainPanel.setPreferredSize(new Dimension(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT));
-        rootFrame.add(mainPanel);
+        mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setSize(new Dimension(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT));
+        rootFrame.add(mainPanel, BorderLayout.CENTER);
+
         // set up current player display
+
         displayCurrentPlayerPanel.add(display_current_player);
-        mainPanel.add(displayCurrentPlayerPanel);
+
 
         // Calculate round points
-        roundPoints = new JLabel("Round Cumulative Points: 0");
+        roundPoints = new JLabel(" ::: Round Cumulative Points: 0");
+        roundPoints.setHorizontalAlignment(SwingConstants.CENTER);
+        displayCurrentPlayerPanel.add(roundPoints);
 
-        mainPanel.add(roundPoints);
+        mainPanel.add(displayCurrentPlayerPanel, BorderLayout.SOUTH);
+
 
         // build hand ui and add cards
-        buildHand();
         buildDeck();
-        displayCurrentPlayer(0);
+
         buildDiscard();
+
+        buildMenuBar();
+        buildHand();
         nextPlayer();
+        displayCurrentPlayer(0);
 
 
-
-
-        leaderboardFrame.setPreferredSize(new Dimension(FRAME_SIZE_WIDTH/2, FRAME_SIZE_HEIGHT/2));
+        leaderboardFrame.setPreferredSize(new Dimension(FRAME_SIZE_WIDTH / 2, FRAME_SIZE_HEIGHT / 2));
         leaderboardFrame.setVisible(true);
         leaderboardFrame.pack();
 
         leaderboardFrame.setLocationRelativeTo(rootFrame);
 
-
-
         // clean up root frame
         rootFrame.pack();
         rootFrame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         setstartGameVisible(true);
-
     }
+
+
+
 
     /**
      * updates the running leaderboard in the current round of Uno
@@ -380,7 +401,7 @@ public class UnoGUI {
 
     }
     /**
-     *
+     * Sets the rootFrame of the game to visible
      */
 
     public void setstartGameVisible(boolean flag){
@@ -404,6 +425,10 @@ public class UnoGUI {
         }
         discardPanel.add(discardLabel);
         mainPanel.add(discardPanel);
+
+        mainPanel.revalidate();
+        mainPanel.repaint();
+
     }
 
     /**
@@ -417,11 +442,6 @@ public class UnoGUI {
     }
 
 
-    public JTextField getCurrentJTextField(int index){
-        return playerInputFields.get(index);
-    }
-
-
 
     /**
      * Adds the "Next Player" button to the user interface.
@@ -429,7 +449,8 @@ public class UnoGUI {
 
     public void nextPlayer() {
 
-        nextPlayer.setSize(100, 125);
+        nextPlayer.setSize(20, 50);
+        nextPlayerButtonPanel.setSize(20, 50);
 
         nextPlayerButtonPanel.add(nextPlayer);
 
@@ -437,10 +458,14 @@ public class UnoGUI {
 
         nextPlayer.setEnabled(false);
 
+        mainPanel.revalidate();
+        mainPanel.repaint();
+
+
     }
 
     public void updatePoints(int points) {
-        roundPoints.setText("Round Cumulative Points: " + points);
+        roundPoints.setText(" ::: Round Cumulative Points: " + points);
 
     }
 
@@ -460,36 +485,57 @@ public class UnoGUI {
      */
 
     public void buildDeck() {
-
+        // Set a fixed size for the discard button
         buildDeckbutton.setSize(100, 125);
-
-        buttonPanel.add(buildDeckbutton);
-
-        mainPanel.add(buttonPanel);
 
         ImageIcon image = new ImageIcon(Card.DECK_FILE_NAME);
         buildDeckbutton.setIcon(image);
 
-        // Scale the image to fit the button
+
+
+        // Retrieve the size after the button has been added
         int width = buildDeckbutton.getWidth();
         int height = buildDeckbutton.getHeight();
+
+        // Scale the image to fit the button
         ImageIcon resizedIcon = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
         buildDeckbutton.setIcon(resizedIcon);
 
-        // make only images visible
+        // Make only images visible
         buildDeckbutton.setOpaque(false);
         buildDeckbutton.setContentAreaFilled(false);
         buildDeckbutton.setBorderPainted(false);
+
+
+
+
+
+        buttonPanel.add(buildDeckbutton);
+
+        mainPanel.add(buttonPanel, BorderLayout.NORTH);
+
+        mainPanel.revalidate();
+        mainPanel.repaint();
     }
+
 
     /**
      * Builds the discard button in the user interface.
      */
     public void buildDiscard() {
         buildDiscardbutton.setSize(100, 125);
-        buttonPanel.add(buildDiscardbutton);
-        mainPanel.add(buttonPanel);
+
+
         updateDiscard(Card.DECK_FILE_NAME);
+
+        buttonPanel.add(buildDiscardbutton);
+
+        mainPanel.add(buttonPanel, BorderLayout.NORTH);
+        mainPanel.revalidate();
+        mainPanel.repaint();
+
+
+
     }
     /**
      * Updates the discard button with the specified file path.
@@ -505,7 +551,8 @@ public class UnoGUI {
 
         // Scale the image to fit the button
         int width = buildDiscardbutton.getWidth();
-        int height = buildDeckbutton.getHeight();
+        int height = buildDiscardbutton.getHeight();
+
         ImageIcon resizedIcon = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
         buildDiscardbutton.setIcon(resizedIcon);
 
@@ -537,6 +584,28 @@ public class UnoGUI {
 
         rootFrame.add(Scrollpane, BorderLayout.SOUTH);
 
+        mainPanel.revalidate();
+        mainPanel.repaint();
+
+
+
+    }
+
+
+    private void buildMenuBar(){
+
+        menu.add(save);
+        menu.add(undo);
+        menu.add(redo);
+        menu.add(load);
+        menuBar.add(menu);
+
+        mainPanel.add(menuBar);
+
+        rootFrame.setJMenuBar(menuBar);
+
+        mainPanel.revalidate();
+        mainPanel.repaint();
 
     }
 
@@ -591,9 +660,6 @@ public class UnoGUI {
     //-----------------------------------ACTION LISTENERS---------------------------------------------------------------
 
 
-    public void addUnoButtonListener(ActionListener listenforUnoPressed) {
-        UnoButton.addActionListener(listenforUnoPressed);
-    }
 
     public void addNextPlayerListener(ActionListener listenforNextPlayer) {
         nextPlayer.addActionListener(listenforNextPlayer);
@@ -631,16 +697,24 @@ public class UnoGUI {
 
         playGame.addActionListener(listenforStartGame);
 
-
     }
 
 
-    public void addBotListener(ActionListener listenforBot) {
+    //-------------------------------------LISTENER ACTIONS FOR MENUBAR----------------------------------
 
-        addBot.addActionListener(listenforBot);
-
-
+    public void addFileSaveMenu(ActionListener listenforSave){
+        save.addActionListener(listenforSave);
     }
+
+    public void addFileUndo(ActionListener listenforUndo){
+        undo.addActionListener(listenforUndo);
+    }
+    public void addFileRedo(ActionListener listenforRedo){
+        redo.addActionListener(listenforRedo);
+    }
+
+    public void addFileLoad (ActionListener listenforLoad){ load.addActionListener(listenforLoad);}
+
 
     public void addPlayCardListener(Hand hand, ActionListener listenforCardtoPlay) {
         for (int i = 0; i < hand.getSize(); i++) {
@@ -655,4 +729,5 @@ public class UnoGUI {
             playerInputFields.get(i).setText(players.get(i).getName());
         }
     }
+
 }

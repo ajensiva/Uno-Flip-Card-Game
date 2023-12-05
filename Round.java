@@ -1,6 +1,3 @@
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -13,7 +10,7 @@ import java.util.Collections;
  * round.
  *
  * @author Ajen, Jason, Zarif, Arun
- * @version 3.0
+ * @version 4.0
  */
 
 public class Round implements Serializable {
@@ -383,11 +380,10 @@ public class Round implements Serializable {
 
         xmlBuilder.append("\t\t<currentPlayer>" + currentPlayer.getName() + "</currentPlayer>\n");
         xmlBuilder.append("\t\t<topOfDiscard>" + discard.peek().toString() + "</topOfDiscard>\n");
+        xmlBuilder.append("\t\t<Deck>" + deck.peek().toString() + "</Deck>\n");
 
 
 
-
-        System.out.println("NOW IM HERE!");
         xmlBuilder.append("\t</Round>\n");
 
         return xmlBuilder.toString();

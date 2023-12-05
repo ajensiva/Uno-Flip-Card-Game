@@ -6,7 +6,7 @@ import java.util.Stack;
 /**
  * Deck class : Generates 112 cards to be used to during play
  * @author Arun, Ajen, Zarif, Jason
- * @version 3.0
+ * @version 4.0
  */
 public class Deck implements Serializable {
 
