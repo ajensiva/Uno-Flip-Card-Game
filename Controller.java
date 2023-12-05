@@ -462,7 +462,6 @@ public class Controller {
                 AllenAI bot = (AllenAI) playersList.get(unoModel.currentRound.playerIndex);
                 unoGUI.displayCurrentPlayer(currentIndex);
 
-                // clear cards
                 unoGUI.clearPlayerCards();
                 for (int i = 0; i < bot.getHand().getSize(); i++) {
                     unoGUI.addCard(bot.getHand().getCard(i));
@@ -640,6 +639,8 @@ public class Controller {
                 unoModel.currentRound = (Round) in.readObject();
 
                 unoModel.savePlayerMove();
+
+                unoModel.currentRound.currentPlayer.getHand().removeCard(saveCardPLayed);
 
 
                 unoGUI.updateDiscard(unoModel.currentRound.discard.peek().getImageFilePath());
