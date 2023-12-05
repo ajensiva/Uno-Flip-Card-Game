@@ -36,8 +36,8 @@
  [16] Dark Color: Teal, Dark Type: TWO
  [17] Dark Color: Purple, Dark Type: THREE
 </Hand>
-		<currentPlayer>b</currentPlayer>
-		<topOfDiscard>Dark Color: Purple, Dark Type: THREE</topOfDiscard>
+		<currentPlayer>a</currentPlayer>
+		<topOfDiscard>Dark Color: Teal, Dark Type: EIGHT</topOfDiscard>
 		<Deck>Dark Color: Teal, Dark Type: SEVEN</Deck>
 	</Round>
 	</Uno>
