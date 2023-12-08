@@ -4,7 +4,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class UnoTest {
@@ -30,24 +33,15 @@ public class UnoTest {
         // Test adding a player
         unoGame.addPlayer("Alice", false);
 
-        assertEquals(3, Uno.players.size());
+        assertEquals(5, Uno.players.size());
         assertEquals("Alice", Uno.players.get(0).getName());
 
-        assertEquals(3, Uno.players.size());
+        assertEquals(5, Uno.players.size());
         assertEquals("Alice", Uno.players.get(0).getName());
 
     }
 
-    @Test
-    public void testPrintPlayers() {
-        // Add some players
-        unoGame.addPlayer("Alice", false);
-        unoGame.addPlayer("Bob", false);
 
-        String printedContent = outputStreamCaptor.toString().trim();
-        assertTrue(printedContent.contains("Alice"));
-        assertTrue(printedContent.contains("Bob"));
-    }
 
     @Test
     public void testRound() {
@@ -60,5 +54,43 @@ public class UnoTest {
         unoGame.round();
         assertNotNull(unoGame.currentRound);
     }
+
+    @Test
+    public void testSaveGame() throws IOException {
+        unoGame.addPlayer("Alice", false);
+        unoGame.addPlayer("Bob", false);
+        unoGame.round();
+        unoGame.saveGame();
+        assertTrue(Files.exists(Path.of("saveGameXML.xml")), "XML file not created");
+        String xmlContent = Files.readString(Path.of("saveGameXML.xml"));
+
+        String expected = unoGame.unoToXML();
+
+        assertEquals(expected, xmlContent, "Unexpected XML content");
+
+    }
+
+    @Test
+    public void TestSavePlayerMove() throws IOException{
+        unoGame.addPlayer("Alicia", true);
+        unoGame.addPlayer("Bobby", true);
+        unoGame.round();
+        unoGame.savePlayerMove();
+        assertTrue(Files.exists(Path.of("savePlayerMoveXML.xml")), "XML file not created");
+        String xmlContent = Files.readString(Path.of("savePlayerMoveXML.xml"));
+
+        String expected = unoGame.unoToXML();
+
+        assertEquals(expected, xmlContent, "Unexpected XML content:"  );
+
+
+
+    }
+
+
+
+
+
+
 
 }

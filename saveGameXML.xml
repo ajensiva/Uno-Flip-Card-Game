@@ -1,29 +1,27 @@
 <root>
 	<Uno>
 	<Round>
-		<players>1</players>
-		<Hand> [0] Dark Color: Orange, Dark Type: DRAW_FIVE
- [1] Dark Color: Teal, Dark Type: EIGHT
- [2] Dark Color: Teal, Dark Type: SIX
- [3] Dark Color: Orange, Dark Type: EIGHT
- [4] Dark Color: Orange, Dark Type: DRAW_FIVE
- [5] Dark Color: Teal, Dark Type: DRAW_FIVE
- [6] Dark Color: Teal, Dark Type: WILD_DRAW_COLOR
- [7] Dark Color: Pink, Dark Type: FLIP
- [8] Dark Color: Teal, Dark Type: SKIP_EVERYONE
+		<players>Alice</players>
+		<Hand> [0] Dark Color: Pink, Dark Type: DRAW_FIVE
+ [1] Dark Color: Teal, Dark Type: WILD_DRAW_COLOR
+ [2] Dark Color: Purple, Dark Type: EIGHT
+ [3] Dark Color: Purple, Dark Type: SEVEN
+ [4] Dark Color: Orange, Dark Type: FOUR
+ [5] Dark Color: Orange, Dark Type: EIGHT
+ [6] Dark Color: Purple, Dark Type: SKIP_EVERYONE
 </Hand>
-		<players>2</players>
-		<Hand> [0] Dark Color: Pink, Dark Type: SKIP_EVERYONE
- [1] Dark Color: Pink, Dark Type: EIGHT
- [2] Dark Color: Purple, Dark Type: SKIP_EVERYONE
- [3] Dark Color: Orange, Dark Type: FIVE
- [4] Dark Color: null, Dark Type: DARK_WILD_CARD
- [5] Dark Color: Orange, Dark Type: FOUR
- [6] Dark Color: Purple, Dark Type: ONE
+		<players>Bob</players>
+		<Hand> [0] Dark Color: Purple, Dark Type: FIVE
+ [1] Dark Color: null, Dark Type: DARK_WILD_CARD
+ [2] Dark Color: Teal, Dark Type: DRAW_FIVE
+ [3] Dark Color: Purple, Dark Type: SEVEN
+ [4] Dark Color: Pink, Dark Type: FLIP
+ [5] Dark Color: Teal, Dark Type: SIX
+ [6] Dark Color: Pink, Dark Type: WILD_DRAW_COLOR
 </Hand>
-		<currentPlayer>1</currentPlayer>
-		<topOfDiscard>Dark Color: Purple, Dark Type: ONE</topOfDiscard>
-		<Deck>Dark Color: Teal, Dark Type: SKIP_EVERYONE</Deck>
+		<currentPlayer>Alice</currentPlayer>
+		<topOfDiscard>Dark Color: Teal, Dark Type: TWO</topOfDiscard>
+		<Deck>Dark Color: Orange, Dark Type: SIX</Deck>
 	</Round>
 	</Uno>
 </root>
