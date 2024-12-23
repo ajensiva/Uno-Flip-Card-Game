@@ -1,0 +1,2 @@
+javac --release 19 -d bin $(find src -name "*.java" ! -name "*Test.java")
+jar cvfm app.jar META-INF/MANIFEST.MF -C bin . -C src images
